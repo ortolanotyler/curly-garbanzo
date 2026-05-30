@@ -15,6 +15,7 @@ import TrustStrip from './components/TrustStrip';
 import HowWeWork from './components/HowWeWork';
 import Testimonials from './components/Testimonials';
 import SubmitResumePage from './components/SubmitResumePage';
+import NotFoundPage from './components/NotFoundPage';
 import SEO from './components/SEO';
 import ErrorBoundary from './components/ErrorBoundary';
 import { View, Section } from './types';
@@ -22,10 +23,12 @@ import { View, Section } from './types';
 const App: React.FC = () => {
   const [view, setView] = useState<View>(() => {
     const path = window.location.pathname;
+    if (path === '/' || path === '') return 'gateway';
+    if (path === '/landing') return 'landing';
     if (path.startsWith('/jobs')) return 'jobs';
     if (path === '/submit-resume') return 'submit';
     if (path === '/admin') return 'admin';
-    return 'gateway';
+    return 'not-found';
   });
 
   const [initialJobId, setInitialJobId] = useState<string | null>(() => {
@@ -113,6 +116,15 @@ const App: React.FC = () => {
 
     if (view === 'admin') {
       return <AdminPortal onExit={() => setView('landing')} />;
+    }
+
+    if (view === 'not-found') {
+      return (
+        <NotFoundPage
+          onBack={() => setView('gateway')}
+          onViewJobs={() => setView('jobs')}
+        />
+      );
     }
 
     return (
