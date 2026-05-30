@@ -270,7 +270,7 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
                         key={opt}
                         type="button"
                         onClick={() => toggleInterest(opt)}
-                        className={`px-4 py-2.5 rounded-sm text-xs font-bold uppercase tracking-[0.15em] border transition-all duration-200 ${
+                        className={`px-4 py-3 min-h-[44px] rounded-sm text-xs font-bold uppercase tracking-[0.15em] border transition-all duration-200 ${
                           selected
                             ? 'bg-brand-silver text-brand-dark border-brand-silver'
                             : 'border-white/15 text-white/70 hover:border-white/40 hover:text-white'
@@ -357,8 +357,10 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
   );
 };
 
+// text-base (16px) on inputs prevents iOS Safari from auto-zooming when a
+// field is focused.
 const inputClasses =
-  'w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-sm placeholder-gray-700 focus:outline-none focus:border-brand-silver/60 transition-colors';
+  'w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-base md:text-sm placeholder-gray-700 focus:outline-none focus:border-brand-silver/60 transition-colors';
 
 const Field: React.FC<{
   label: string;

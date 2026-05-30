@@ -289,8 +289,10 @@ const Contact: React.FC = () => {
   );
 };
 
+// text-base (16px) on inputs prevents iOS Safari from auto-zooming when a
+// field is focused — a real mobile UX bug on anything text-sm or smaller.
 const inputClasses =
-  'w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-sm placeholder-gray-700 focus:outline-none focus:border-brand-silver/60 transition-colors';
+  'w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-base md:text-sm placeholder-gray-700 focus:outline-none focus:border-brand-silver/60 transition-colors';
 
 const Field: React.FC<{
   label: string;

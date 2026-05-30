@@ -217,7 +217,7 @@ const JobCardSkeleton: React.FC = () => (
                                     type="button"
                                     onClick={() => !disabled && setActiveCategory(cat.key)}
                                     disabled={disabled}
-                                    className={`group inline-flex items-center gap-2 px-4 py-2.5 rounded-sm text-[10px] font-bold uppercase tracking-[0.2em] border transition-all duration-200 ${
+                                    className={`group inline-flex items-center gap-2 px-4 py-3 min-h-[44px] rounded-sm text-[10px] font-bold uppercase tracking-[0.2em] border transition-all duration-200 ${
                                         selected
                                             ? 'border-brand-silver bg-brand-silver text-brand-dark'
                                             : disabled

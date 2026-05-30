@@ -201,7 +201,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
                         value={formData.firstName}
                         onChange={handleInputChange}
                         required 
-                        className={`w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`}
+                        className={`w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-base md:text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`}
                         placeholder="Jane" 
                       />
                    </div>
@@ -213,7 +213,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
                         value={formData.lastName}
                         onChange={handleInputChange}
                         required 
-                        className={`w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`} 
+                        className={`w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-base md:text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`} 
                         placeholder="Doe"
                       />
                    </div>
@@ -227,7 +227,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
                      value={formData.email}
                      onChange={handleInputChange}
                      required 
-                     className={`w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`}
+                     className={`w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-base md:text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`}
                      placeholder="jane.doe@example.com"
                    />
                 </div>
@@ -244,7 +244,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
                        value={formData.linkedin}
                        onChange={handleInputChange}
                        placeholder="linkedin.com/in/..." 
-                       className={`w-full bg-brand-dark border border-white/10 rounded-sm pl-12 pr-4 py-3 text-white text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`} 
+                       className={`w-full bg-brand-dark border border-white/10 rounded-sm pl-12 pr-4 py-3 text-white text-base md:text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`} 
                      />
                    </div>
                 </div>
