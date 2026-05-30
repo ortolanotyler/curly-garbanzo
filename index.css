@@ -1,5 +1,55 @@
 @import "tailwindcss";
 
+/* Brand theme — replaces the inline tailwind.config block previously
+   inlined in index.html via the CDN script. */
+@theme {
+  --color-brand-silver: #9FA8B5;
+  --color-brand-steel: #5B6C7F;
+  --color-brand-navy: #38393A;
+  --color-brand-dark: #0E141E;
+  --color-brand-white: #FFFFFF;
+  --color-brand-logistics: #38393A;
+  --color-brand-accent: #68696c;
+
+  --font-sans: "Outfit", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-cursive: "Dancing Script", cursive;
+  --font-nourd: "Nourd", "Outfit", sans-serif;
+
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-elegant: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+}
+
+/* App-wide base styles previously sitting in index.html <style> */
+html,
+body,
+#root {
+  background-color: #0E141E !important;
+}
+body {
+  color: #f8fafc;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#root {
+  min-height: 100vh;
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0E141E;
+}
+::-webkit-scrollbar-thumb {
+  background: #5B6C7F;
+}
+.text-balance {
+  text-wrap: balance;
+}
+
 @layer base {
   .prose ul {
     list-style-type: disc;
@@ -20,22 +70,24 @@
   .prose p:last-child {
     margin-bottom: 0;
   }
-  .prose ul, .prose ol {
+  .prose ul,
+  .prose ol {
     margin-bottom: 1.25rem;
-  }
-  .prose li {
-    margin-bottom: 0.5rem;
   }
   .prose li p {
     margin-bottom: 0.25rem;
   }
-  .prose h1, .prose h2, .prose h3 {
+  .prose h1,
+  .prose h2,
+  .prose h3 {
     color: white;
     font-weight: bold;
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
-  .prose h1:first-child, .prose h2:first-child, .prose h3:first-child {
+  .prose h1:first-child,
+  .prose h2:first-child,
+  .prose h3:first-child {
     margin-top: 0;
   }
 }
