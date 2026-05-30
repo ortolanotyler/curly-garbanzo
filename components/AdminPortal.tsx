@@ -22,6 +22,7 @@ import {
   Lock
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import SEO from './SEO';
 
 interface AdminPortalProps {
   onExit: () => void;
@@ -207,6 +208,7 @@ const AdminPortal: React.FC<AdminPortalProps> = ({ onExit }) => {
   if (!isLoggedIn) {
     return (
       <div className="min-h-screen bg-brand-dark flex items-center justify-center p-6">
+        <SEO title="Admin" noindex />
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -274,6 +276,7 @@ const AdminPortal: React.FC<AdminPortalProps> = ({ onExit }) => {
 
   return (
     <div className="min-h-screen bg-brand-dark text-white flex flex-col">
+      <SEO title="Admin" noindex />
       {/* Admin Header */}
       <header className="bg-brand-navy/50 border-b border-white/10 px-8 py-4 flex items-center justify-between">
         <div className="flex items-center gap-6">

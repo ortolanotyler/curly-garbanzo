@@ -175,7 +175,11 @@ const JobRowSkeleton: React.FC = () => (
 
         {/* Roles Grid */}
         <main className="flex-grow pt-24 pb-24 px-6 lg:px-8 z-10">
-            <SEO title="Active Job Mandates" description="Explore current Sales, Operations, and Leadership opportunities within the 3PL, Asset-Based, Freight Forwarding, and Customs sectors." />
+            <SEO
+                title="Open roles"
+                description="Active executive search mandates from Certus Corporate Search. Senior finance, operations, and IT roles across North America."
+                keywords="finance jobs, operations jobs, IT jobs, executive jobs, CFO jobs, COO jobs, CIO jobs, VP finance, VP operations, North America"
+            />
             <div className="max-w-7xl mx-auto">
                 <h1 className="sr-only">Certus Group Supply Chain Search - Job Board</h1>
                 <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8">

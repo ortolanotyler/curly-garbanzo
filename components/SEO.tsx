@@ -12,187 +12,263 @@ interface SEOProps {
   job?: JobPosting;
   isGateway?: boolean;
   schemaOnly?: boolean;
+  noindex?: boolean;
 }
 
-const SEO: React.FC<SEOProps> = ({ 
-  title = "Certus Supply Chain Search | Specialized Supply Chain Recruitment",
-  description = "Certus Supply Chain Search specializes in recruiting high-impact Sales, Operations, and Leadership talent within the 3PL, Asset-Based, Freight Forwarding, and Customs Brokerage sectors.",
-  keywords = "3PL recruitment, freight forwarding jobs, customs brokerage recruitment, logistics sales hiring, asset-based transportation leadership, supply chain headhunters",
-  canonical = "https://certusgroup.com/supply-chain-search",
-  ogImage = "https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png",
-  ogType = "website",
+const DEFAULT_SITE_URL = 'https://certusgroup.com';
+const SITE_NAME = 'Certus Corporate Search';
+const ORG_NAME = 'Certus Corporate Search';
+const ORG_LEGAL_NAME = 'The Certus Group of Companies Inc.';
+const LOGO_URL =
+  'https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png';
+
+// Pull a number out of a salary string. "$180,000 - $220,000" → [180000, 220000].
+// "$120k" → [120000]. Returns up to two numbers (min, max).
+const parseSalary = (raw?: string): number[] => {
+  if (!raw) return [];
+  const matches = raw.match(/(\d+[\d,.]*)\s*(k|m)?/gi) || [];
+  return matches
+    .map((m) => {
+      const num = parseFloat(m.replace(/[^\d.]/g, ''));
+      if (isNaN(num)) return NaN;
+      if (/k$/i.test(m)) return num * 1000;
+      if (/m$/i.test(m)) return num * 1_000_000;
+      return num;
+    })
+    .filter((n) => !isNaN(n) && n > 0)
+    .slice(0, 2);
+};
+
+// Best-guess country from a "City, ST" string. Defaults to CA (HQ market).
+const guessCountry = (location?: string): string => {
+  if (!location) return 'CA';
+  const region = location.split(',')[1]?.trim().toUpperCase() || '';
+  const usStates = new Set([
+    'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME',
+    'MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA',
+    'RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC',
+  ]);
+  if (usStates.has(region)) return 'US';
+  return 'CA';
+};
+
+const getBaseUrl = (): string => {
+  if (typeof window !== 'undefined' && window.location?.origin) {
+    return window.location.origin;
+  }
+  return DEFAULT_SITE_URL;
+};
+
+const SEO: React.FC<SEOProps> = ({
+  title,
+  description = 'Executive search for senior finance, operations, and IT roles at corporate clients across North America. Part of The Certus Group.',
+  keywords = 'executive search, finance recruitment, operations recruitment, IT leadership recruitment, CFO search, COO search, CIO search, corporate search, North America',
+  canonical,
+  ogImage = LOGO_URL,
+  ogType = 'website',
   job,
   isGateway = false,
-  schemaOnly = false
+  schemaOnly = false,
+  noindex = false,
 }) => {
-  const siteName = "Certus Supply Chain Search";
-  
-  // Adjust title and description for Gateway if needed
-  const finalTitle = isGateway 
-    ? "Certus Supply Chain Search | Certainty Delivered" 
-    : title.includes(siteName) ? title : `${title} | ${siteName}`;
+  const baseUrl = getBaseUrl();
+  const resolvedCanonical = canonical || (typeof window !== 'undefined' ? `${baseUrl}${window.location.pathname}` : baseUrl);
+
+  const finalTitle = job
+    ? `${job.title} · ${SITE_NAME}`
+    : isGateway
+      ? `${SITE_NAME} | Executive search — finance, operations, IT`
+      : title
+        ? title.includes(SITE_NAME)
+          ? title
+          : `${title} · ${SITE_NAME}`
+        : `${SITE_NAME} | Executive search — finance, operations, IT`;
+
+  const finalDescription = job
+    ? `${job.title} · ${job.location}${job.salary ? ` · ${job.salary}` : ''}. ${job.summary || ''}`.slice(0, 300)
+    : description;
 
   const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "RecruitmentAgency",
-    "name": "Certus Supply Chain Search",
-    "alternateName": "Certus Group",
-    "url": "https://certusgroup.com/supply-chain-search",
-    "logo": "https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png",
-    "description": "Certus Supply Chain Search is part of The Certus Group of Companies Inc., specializing in Sales, Operations, and Leadership recruitment for the 3PL, Asset-Based, Freight Forwarding, and Customs sectors since 2008.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "91 Skyway Avenue, Suite 206",
-      "addressLocality": "Toronto",
-      "addressRegion": "ON",
-      "postalCode": "M9W 6R5",
-      "addressCountry": "CA"
+    '@context': 'https://schema.org',
+    '@type': 'EmploymentAgency',
+    name: ORG_NAME,
+    legalName: ORG_LEGAL_NAME,
+    alternateName: 'Certus Group',
+    url: baseUrl,
+    logo: LOGO_URL,
+    image: LOGO_URL,
+    description:
+      'Certus Corporate Search runs executive search engagements for senior finance, operations, and IT roles at corporate clients across North America.',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '91 Skyway Avenue, Suite 206',
+      addressLocality: 'Toronto',
+      addressRegion: 'ON',
+      postalCode: 'M9W 6R5',
+      addressCountry: 'CA',
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+1-437-295-1799",
-      "contactType": "customer service",
-      "email": "info@certusgroup.com",
-      "availableLanguage": ["English", "French"]
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+1-437-295-1799',
+      contactType: 'business inquiries',
+      email: 'info@certusgroup.com',
+      areaServed: ['CA', 'US'],
+      availableLanguage: ['English', 'French'],
     },
-    "sameAs": [
-      "https://www.linkedin.com/showcase/certus-supply-chain-search/"
-    ],
-    "areaServed": "North America",
-    "foundingDate": "2008"
+    sameAs: ['https://www.linkedin.com/showcase/certus-supply-chain-search/'],
+    areaServed: ['Canada', 'United States'],
+    knowsAbout: ['Finance recruitment', 'Operations recruitment', 'IT leadership recruitment', 'Executive search'],
   };
 
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "3PL, Asset-Based, Freight Forwarding & Customs Recruitment",
-    "provider": {
-      "@type": "RecruitmentAgency",
-      "name": "Certus Supply Chain Search"
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: baseUrl,
+    publisher: {
+      '@type': 'Organization',
+      name: ORG_NAME,
+      logo: LOGO_URL,
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Canada"
-    },
-    "description": "Specialized recruitment services for Sales, Operations, and Leadership roles in the 3PL, Asset-Based, Freight Forwarding, and Customs sectors."
   };
+
+  // JobPosting schema — Google for Jobs spec
+  // https://developers.google.com/search/docs/appearance/structured-data/job-posting
+  let jobSchema: Record<string, unknown> | null = null;
+  if (job) {
+    const datePosted = job.createdAt || new Date().toISOString();
+    const validThrough = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString();
+    const country = guessCountry(job.location);
+    const salaryNums = parseSalary(job.salary);
+
+    const baseSalary = salaryNums.length
+      ? {
+          '@type': 'MonetaryAmount',
+          currency: country === 'CA' ? 'CAD' : 'USD',
+          value: {
+            '@type': 'QuantitativeValue',
+            unitText: 'YEAR',
+            ...(salaryNums.length === 2
+              ? { minValue: salaryNums[0], maxValue: salaryNums[1] }
+              : { value: salaryNums[0] }),
+          },
+        }
+      : undefined;
+
+    const descriptionHtml = job.description
+      ? job.description
+      : `
+          <p>${job.summary || ''}</p>
+          ${job.responsibilities?.length ? `<h3>Responsibilities</h3><ul>${job.responsibilities.map((r) => `<li>${r}</li>`).join('')}</ul>` : ''}
+          ${job.requirements?.length ? `<h3>Requirements</h3><ul>${job.requirements.map((r) => `<li>${r}</li>`).join('')}</ul>` : ''}
+        `.trim();
+
+    jobSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'JobPosting',
+      title: job.title,
+      description: descriptionHtml,
+      identifier: {
+        '@type': 'PropertyValue',
+        name: ORG_NAME,
+        value: String(job.ref || job.id),
+      },
+      datePosted,
+      validThrough,
+      employmentType: job.type
+        ? job.type.toUpperCase().replace(/[\s-]/g, '_')
+        : 'FULL_TIME',
+      hiringOrganization: {
+        '@type': 'Organization',
+        name: ORG_NAME,
+        sameAs: baseUrl,
+        logo: LOGO_URL,
+      },
+      jobLocation: {
+        '@type': 'Place',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: job.location?.split(',')[0]?.trim() || 'Toronto',
+          addressRegion: job.location?.split(',')[1]?.trim() || 'ON',
+          addressCountry: country,
+        },
+      },
+      applicantLocationRequirements: {
+        '@type': 'Country',
+        name: country === 'CA' ? 'Canada' : 'United States',
+      },
+      directApply: true,
+      url: `${baseUrl}/jobs/${job.id}`,
+      ...(baseSalary ? { baseSalary } : {}),
+    };
+  }
 
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
       {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://certusgroup.com/supply-chain-search"
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: baseUrl,
       },
-      job ? {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Job Board",
-        "item": "https://certusgroup.com/supply-chain-search/jobs"
-      } : null,
-      job ? {
-        "@type": "ListItem",
-        "position": 3,
-        "name": job.title,
-        "item": `https://certusgroup.com/supply-chain-search/jobs/${job.id}`
-      } : null
-    ].filter(Boolean)
+      ...(job
+        ? [
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Open Roles',
+              item: `${baseUrl}/jobs`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: job.title,
+              item: `${baseUrl}/jobs/${job.id}`,
+            },
+          ]
+        : []),
+    ],
   };
 
-  const jobSchema = job ? {
-    "@context": "https://schema.org",
-    "@type": "JobPosting",
-    "title": job.title,
-    "description": `
-      <p>${job.summary}</p>
-      <h3>Responsibilities:</h3>
-      <ul>${job.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>
-      <h3>Requirements:</h3>
-      <ul>${job.requirements.map(r => `<li>${r}</li>`).join('')}</ul>
-    `,
-    "datePosted": job.createdAt || new Date().toISOString().split('T')[0],
-    "validThrough": new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-    "employmentType": "FULL_TIME",
-    "hiringOrganization": {
-      "@type": "Organization",
-      "name": "Certus Supply Chain Search",
-      "sameAs": "https://certusgroup.com/",
-      "logo": "https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png"
-    },
-    "jobLocation": {
-      "@type": "Place",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": job.location.split(',')[0].trim(),
-        "addressRegion": job.location.split(',')[1]?.trim() || "ON",
-        "addressCountry": "CA"
-      }
-    },
-    "baseSalary": {
-      "@type": "MonetaryAmount",
-      "currency": "CAD",
-      "value": {
-        "@type": "QuantitativeValue",
-        "value": job.salary,
-        "unitText": "YEAR"
-      }
-    },
-    "industry": "3PL, Asset-Based, Freight Forwarding & Customs",
-    "occupationalCategory": job.title
-  } : null;
+  const robotsValue = noindex ? 'noindex, nofollow' : 'index, follow';
 
   return (
     <Helmet>
       {!schemaOnly && (
         <>
-          {/* Basic Meta Tags */}
           <title>{finalTitle}</title>
-          <meta name="description" content={description} />
+          <meta name="description" content={finalDescription} />
           <meta name="keywords" content={keywords} />
-          <meta name="robots" content="index, follow" />
-          <link rel="canonical" href={canonical} />
+          <meta name="robots" content={robotsValue} />
+          <link rel="canonical" href={resolvedCanonical} />
 
-          {/* Open Graph / Facebook */}
           <meta property="og:type" content={ogType} />
-          <meta property="og:url" content={canonical} />
+          <meta property="og:url" content={resolvedCanonical} />
           <meta property="og:title" content={finalTitle} />
-          <meta property="og:description" content={description} />
+          <meta property="og:description" content={finalDescription} />
           <meta property="og:image" content={ogImage} />
-          <meta property="og:site_name" content={siteName} />
+          <meta property="og:site_name" content={SITE_NAME} />
 
-          {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:url" content={canonical} />
+          <meta name="twitter:url" content={resolvedCanonical} />
           <meta name="twitter:title" content={finalTitle} />
-          <meta name="twitter:description" content={description} />
+          <meta name="twitter:description" content={finalDescription} />
           <meta name="twitter:image" content={ogImage} />
         </>
       )}
 
-      {/* Structured Data */}
-      {!schemaOnly && (
+      {!schemaOnly && !job && (
         <>
-          <script type="application/ld+json">
-            {JSON.stringify(organizationSchema)}
-          </script>
-          
-          <script type="application/ld+json">
-            {JSON.stringify(serviceSchema)}
-          </script>
-
-          <script type="application/ld+json">
-            {JSON.stringify(breadcrumbSchema)}
-          </script>
+          <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
+          <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>
+          <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         </>
       )}
 
       {jobSchema && (
-        <script type="application/ld+json">
-          {JSON.stringify(jobSchema)}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(jobSchema)}</script>
       )}
     </Helmet>
   );

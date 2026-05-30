@@ -35,56 +35,37 @@ try {
 
 const app = express();
 
-// Sitemap dynamic generation - Register this EARLY
-app.get("/sitemap.xml", async (req, res) => {
-  console.log("Sitemap request received");
-  try {
-    const baseUrl = process.env.APP_URL || `https://${req.get('host')}`;
-    console.log(`Generating sitemap with baseUrl: ${baseUrl}`);
-    
-    // Fetch jobs from Firestore
-    let jobs: any[] = [];
-    if (dbAdmin) {
-      const jobsSnapshot = await dbAdmin.collection('jobs').get();
-      jobs = jobsSnapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() }));
-      console.log(`Fetched ${jobs.length} jobs for sitemap`);
-    } else {
-      console.warn("dbAdmin not initialized, sitemap will be partial");
-    }
+// Static sitemap covering the known SPA routes. Per-job URLs are discovered
+// by Google via the JobPosting structured data emitted on /jobs, so we don't
+// need to enumerate them here.
+app.get("/sitemap.xml", (req, res) => {
+  const baseUrl = process.env.APP_URL || `https://${req.get('host')}`;
+  const today = new Date().toISOString().split('T')[0];
 
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+  const routes = [
+    { loc: '/', priority: '1.0', changefreq: 'weekly' },
+    { loc: '/jobs', priority: '0.9', changefreq: 'daily' },
+    { loc: '/submit-resume', priority: '0.7', changefreq: 'monthly' },
+  ];
+
+  const body = routes
+    .map(
+      (r) => `  <url>
+    <loc>${baseUrl}${r.loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${r.changefreq}</changefreq>
+    <priority>${r.priority}</priority>
+  </url>`
+    )
+    .join('\n');
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${baseUrl}/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/jobs</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>`;
-
-    jobs.forEach((job: any) => {
-      xml += `
-  <url>
-    <loc>${baseUrl}/jobs/${job.id}</loc>
-    <lastmod>${job.updatedAt ? job.updatedAt.split('T')[0] : new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>`;
-    });
-
-    xml += `
+${body}
 </urlset>`;
 
-    res.set('Content-Type', 'application/xml');
-    res.status(200).send(xml);
-    console.log("Sitemap sent successfully");
-  } catch (error) {
-    console.error("Error generating sitemap:", error);
-    res.status(500).set('Content-Type', 'text/plain').send("Error generating sitemap");
-  }
+  res.set('Content-Type', 'application/xml');
+  res.status(200).send(xml);
 });
 
 app.use(express.json({ limit: '5mb' }));

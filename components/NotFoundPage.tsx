@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Briefcase, Building2 } from 'lucide-react';
+import SEO from './SEO';
 
 interface NotFoundPageProps {
   onBack: () => void;
@@ -17,6 +18,7 @@ const NotFoundPage: React.FC<NotFoundPageProps> = ({ onBack, onViewJobs }) => {
 
   return (
     <div className="min-h-screen bg-brand-dark text-white flex flex-col font-sans relative overflow-hidden">
+      <SEO title="404 — Page not found" noindex />
       <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-brand-silver/[0.04] rounded-full blur-[160px] pointer-events-none"></div>
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"

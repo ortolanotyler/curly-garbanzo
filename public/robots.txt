@@ -1,3 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.thecertusgroup.tech/sitemap.xml
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://certusgroup.com/sitemap.xml
