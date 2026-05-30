@@ -97,7 +97,7 @@ const LinkedInFeed: React.FC = () => {
               </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-              Field notes from the <span className="font-serif italic font-light text-brand-silver">search.</span>
+              Field notes from the search.
             </h2>
             <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-xl">
               Placements, market signals, and the occasional unfiltered observation —

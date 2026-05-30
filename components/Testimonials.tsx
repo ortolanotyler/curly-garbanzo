@@ -35,6 +35,9 @@ const Testimonials: React.FC = () => {
           <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
             What clients say after the offer is signed.
           </h2>
+          <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-2xl">
+            Anonymized at the client&rsquo;s request — every engagement we run is confidential.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">

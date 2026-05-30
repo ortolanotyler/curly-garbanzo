@@ -346,7 +346,7 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
                 )}
               </button>
 
-              <p className="text-center text-[10px] text-white/30 font-light tracking-[0.2em] uppercase">
+              <p className="text-center text-[10px] text-white/50 font-light tracking-[0.2em] uppercase">
                 Confidentiality guaranteed
               </p>
             </form>
@@ -372,7 +372,7 @@ const Field: React.FC<{
         {label}
         {required && <span className="text-brand-silver ml-1">*</span>}
       </label>
-      {hint && <span className="text-[10px] text-white/30 font-light">{hint}</span>}
+      {hint && <span className="text-[10px] text-white/50 font-light">{hint}</span>}
     </div>
     {children}
   </div>

@@ -96,7 +96,7 @@ const Contact: React.FC = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-            Start the <span className="font-serif italic font-light text-brand-silver">conversation.</span>
+            Start the conversation.
           </h2>
           <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-2xl">
             Whether you&rsquo;re building a Finance, Operations, or IT team — or you want to be the
@@ -184,7 +184,7 @@ const Contact: React.FC = () => {
                         <div className={`text-sm font-medium transition-colors ${selected ? 'text-white' : 'text-white/80'}`}>
                           {opt.label}
                         </div>
-                        <div className={`text-[10px] uppercase tracking-[0.2em] mt-1 transition-colors ${selected ? 'text-brand-silver' : 'text-white/30'}`}>
+                        <div className={`text-[10px] uppercase tracking-[0.2em] mt-1 transition-colors ${selected ? 'text-brand-silver' : 'text-white/50'}`}>
                           {opt.sub}
                         </div>
                       </button>
@@ -278,7 +278,7 @@ const Contact: React.FC = () => {
                 )}
               </button>
 
-              <p className="text-center text-[10px] text-white/30 font-light tracking-[0.2em] uppercase">
+              <p className="text-center text-[10px] text-white/50 font-light tracking-[0.2em] uppercase">
                 Confidentiality guaranteed
               </p>
             </form>
@@ -304,7 +304,7 @@ const Field: React.FC<{
         {label}
         {required && <span className="text-brand-silver ml-1">*</span>}
       </label>
-      {hint && <span className="text-[10px] text-white/30 font-light">{hint}</span>}
+      {hint && <span className="text-[10px] text-white/50 font-light">{hint}</span>}
     </div>
     {children}
   </div>

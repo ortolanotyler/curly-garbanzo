@@ -48,7 +48,7 @@ const TrustStrip: React.FC = () => {
           ))}
         </div>
 
-        <p className="mt-10 text-center text-[10px] font-light tracking-[0.25em] uppercase text-white/30">
+        <p className="mt-10 text-center text-[10px] font-light tracking-[0.2em] uppercase text-white/50">
           Client identities withheld by engagement confidentiality
         </p>
       </div>
