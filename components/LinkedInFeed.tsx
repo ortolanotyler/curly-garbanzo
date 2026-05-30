@@ -93,15 +93,14 @@ const LinkedInFeed: React.FC = () => {
             <div className="flex items-center gap-4 mb-6">
               <div className="w-10 h-[1px] bg-brand-silver"></div>
               <span className="text-white/60 font-light tracking-[0.3em] text-[10px] uppercase">
-                From the network
+                Recent posts
               </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-              Field notes from the search.
+              From the LinkedIn page.
             </h2>
             <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-xl">
-              Placements, market signals, and the occasional unfiltered observation —
-              straight from our LinkedIn channel.
+              Placements, market notes, and occasional commentary.
             </p>
           </div>
 

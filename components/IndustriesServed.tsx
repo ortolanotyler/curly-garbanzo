@@ -48,11 +48,10 @@ const IndustriesServed: React.FC = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-            The sectors we know cold.
+            What we recruit for.
           </h2>
           <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-2xl">
-            Four practice areas, each led by recruiters who have placed in them long enough to
-            know the warning signs, the price points, and the people worth calling first.
+            Four practice areas. Each one led by a recruiter with deep experience in the vertical.
           </p>
         </div>
 

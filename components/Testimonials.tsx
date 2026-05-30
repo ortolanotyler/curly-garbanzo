@@ -7,15 +7,15 @@ import { Quote } from 'lucide-react';
 const quotes = [
   {
     body:
-      'Certus delivered a shortlist of four genuinely fit candidates inside a month — and the one we hired is still our strongest leadership add of the year.',
+      'Four candidates we&rsquo;d actually hire, inside a month. The one we picked is still the best leadership hire we&rsquo;ve made this year.',
     attribution: 'Chief Operating Officer',
-    org: 'North American 3PL · 2025 engagement',
+    org: 'North American 3PL · 2025',
   },
   {
     body:
-      'They understood the technical depth we needed for a Director of FP&A without us having to over-explain. Every shortlisted candidate had already been screened on the things we actually cared about.',
+      'They knew what we needed for a Director of FP&A without us having to spell it out. Every candidate they sent was already screened on the things that actually mattered.',
     attribution: 'VP, Finance',
-    org: 'PE-backed manufacturer · 2024 engagement',
+    org: 'PE-backed manufacturer · 2024',
   },
 ];
 
@@ -33,10 +33,10 @@ const Testimonials: React.FC = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-            What clients say after the offer is signed.
+            What clients say.
           </h2>
           <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-2xl">
-            Anonymized at the client&rsquo;s request — every engagement we run is confidential.
+            Attributions anonymized at the client&rsquo;s request.
           </p>
         </div>
 

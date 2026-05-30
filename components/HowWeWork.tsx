@@ -7,22 +7,22 @@ const steps = [
     icon: Compass,
     n: '01',
     label: 'Brief',
-    title: 'We listen first.',
-    body: 'A 60-minute deep-dive on the role, the team, the constraints, and what success looks like in 12 months. No job-description copy-paste — we build the search around the actual gap.',
+    title: 'Start with a real conversation.',
+    body: 'A 60-minute call on the role, the team, and what success looks like 12 months in. We build the search around the actual gap, not a copy-pasted job description.',
   },
   {
     icon: Search,
     n: '02',
     label: 'Search',
-    title: 'We hand-source.',
-    body: 'Targeted outreach into our network of senior finance, operations, and IT leaders across North America. Every shortlisted candidate is interviewed by us before they ever reach you.',
+    title: 'Hand-sourced shortlist.',
+    body: 'Targeted outreach across our network of senior finance, operations, and IT leaders in North America. Every shortlisted candidate is interviewed by us first.',
   },
   {
     icon: Handshake,
     n: '03',
     label: 'Place',
-    title: 'We stay close.',
-    body: 'Three to five qualified candidates within 30–45 days. We stay in the loop through references, the offer, the signing, and the first 90 days on the job.',
+    title: 'Three to five candidates in 30–45 days.',
+    body: 'We stay in the loop through references, the offer, the signing, and the first 90 days on the job.',
   },
 ];
 
@@ -47,11 +47,11 @@ const HowWeWork: React.FC = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-            Three steps. No fluff.
+            Three phases.
           </h2>
           <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-2xl">
-            Every engagement runs the same disciplined arc. The work happens
-            between the steps; the steps are how we keep you honest about timing.
+            Every engagement follows the same arc. The phases give us — and you — clear
+            checkpoints on timing.
           </p>
         </div>
 

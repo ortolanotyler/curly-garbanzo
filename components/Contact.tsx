@@ -96,11 +96,10 @@ const Contact: React.FC = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-            Start the conversation.
+            Tell us what you&rsquo;re after.
           </h2>
           <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-2xl">
-            Whether you&rsquo;re building a Finance, Operations, or IT team — or you want to be the
-            next senior leader we place — start here. We respond within one business day.
+            Hiring or job-hunting, send a note. We reply within one business day.
           </p>
         </div>
 

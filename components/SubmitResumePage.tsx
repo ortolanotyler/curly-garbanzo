@@ -177,8 +177,8 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
               Not seeing the right role? <span className="font-serif italic font-light text-brand-silver">Tell us about you.</span>
             </h1>
             <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed">
-              We run searches we never publicly post. Submit your background and the practice
-              areas you care about — we&rsquo;ll reach out when something fits.
+              Most of our searches never get publicly posted. Share your background and what
+              you&rsquo;re looking for — we&rsquo;ll reach out when something matches.
             </p>
           </div>
 

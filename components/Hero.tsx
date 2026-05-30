@@ -43,9 +43,9 @@ const Hero: React.FC<HeroProps> = ({ onViewJobs, onNavigate }) => {
   }, [shouldRenderVideo]);
 
   const stats = [
-    { value: '15+', label: 'Years in Corporate Search' },
-    { value: '90%', label: 'Repeat Client Engagements' },
-    { value: '30–60d', label: 'Average Time to Shortlist' },
+    { value: '15+', label: 'Years in search' },
+    { value: '90%', label: 'Repeat clients' },
+    { value: '30–60d', label: 'Avg. time to shortlist' },
   ];
 
   return (
@@ -113,20 +113,19 @@ const Hero: React.FC<HeroProps> = ({ onViewJobs, onNavigate }) => {
 
           <h1 className="text-[12vw] sm:text-[9vw] md:text-[7vw] lg:text-[6.5rem] xl:text-[7.5rem] font-medium text-white leading-[0.95] tracking-tight mb-8 md:mb-10">
             <span className="block animate-[slideUp_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] opacity-0">
-              Senior finance, ops,
+              Executive search
             </span>
             <span className="block animate-[slideUp_1.2s_cubic-bezier(0.16,1,0.3,1)_0.15s_forwards] opacity-0">
-              and IT leaders.
+              for <span className="font-serif italic font-light text-brand-silver">finance, ops,</span>
             </span>
-            <span className="block font-serif italic font-light text-brand-silver animate-[slideUp_1.2s_cubic-bezier(0.16,1,0.3,1)_0.3s_forwards] opacity-0">
-              Placed with conviction.
+            <span className="block animate-[slideUp_1.2s_cubic-bezier(0.16,1,0.3,1)_0.3s_forwards] opacity-0">
+              and IT.
             </span>
           </h1>
 
           <p className="text-gray-300 font-light text-base md:text-lg leading-relaxed max-w-2xl mb-10 md:mb-12 animate-[fadeIn_1.2s_ease-out_0.5s_forwards] opacity-0">
-            Certus Corporate Search is the executive search arm of The Certus Group. We place
-            high-impact Finance, Operations, and IT leaders in fast-paced corporate teams across
-            North America.
+            Part of The Certus Group. We run targeted searches for finance, operations, and IT
+            roles at corporate clients across North America.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-16 md:mb-24 animate-[fadeIn_1.2s_ease-out_0.7s_forwards] opacity-0">

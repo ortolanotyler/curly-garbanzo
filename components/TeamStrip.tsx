@@ -14,18 +14,18 @@ type TeamMember = {
 const team: TeamMember[] = [
   {
     name: 'Founder & Managing Partner',
-    role: 'Leads engagement strategy',
-    bio: 'Twenty years placing senior leadership across finance, operations, and IT. Built Certus around the belief that search is a craft, not a transaction.',
+    role: 'Engagement lead',
+    bio: 'Twenty years in executive search across finance, operations, and IT. Founded Certus to take a more direct approach to senior placement work.',
   },
   {
     name: 'Director of Search',
-    role: 'Runs the day-to-day mandates',
-    bio: 'Specializes in CFO, COO, and VP-level placements for PE-backed and public corporates. Quietly known for the calls clients ask for by name.',
+    role: 'Search delivery',
+    bio: 'CFO, COO, and VP-level placements for PE-backed and public corporates. Runs the day-to-day on active mandates.',
   },
   {
     name: 'Research Lead',
-    role: 'Owns the candidate network',
-    bio: 'Maintains and qualifies the relationships behind every shortlist. The reason we don’t cold-source from job boards.',
+    role: 'Network & sourcing',
+    bio: 'Owns the candidate network. Every shortlist starts with people we already know — not a cold pull from a job board.',
   },
 ];
 
@@ -51,11 +51,11 @@ const TeamStrip: React.FC = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-            A small bench, deliberately.
+            Who runs your search.
           </h2>
           <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-2xl">
-            Search is a relationship business. Every engagement is run by a senior partner —
-            no juniors, no handoffs, no surprises.
+            Every search is run by a senior partner you&rsquo;ll work with directly. No
+            handoffs to junior staff once the contract is signed.
           </p>
         </div>
 
@@ -117,8 +117,8 @@ const TeamStrip: React.FC = () => {
           ))}
         </div>
 
-        <p className="mt-10 text-[10px] font-light tracking-[0.2em] uppercase text-white/50">
-          Names withheld pending headshot &amp; bio swap — see component for placeholder slot.
+        <p className="mt-10 text-[10px] font-light tracking-[0.2em] uppercase text-white/40">
+          Headshots and full bios coming soon.
         </p>
       </div>
     </section>

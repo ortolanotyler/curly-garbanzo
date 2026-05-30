@@ -55,11 +55,11 @@ const NotFoundPage: React.FC<NotFoundPageProps> = ({ onBack, onViewJobs }) => {
             404
           </h1>
           <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05] mb-6">
-            This search came up empty.
+            This page doesn&rsquo;t exist.
           </h2>
           <p className="text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-12">
-            The page you were looking for has moved, been retired, or was never here.
-            Head back to the homepage or jump straight to what you came for.
+            It may have moved, or the link was wrong. Head back to the homepage or browse open
+            roles.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -21,7 +21,7 @@ const TrustStrip: React.FC = () => {
         <div className="flex items-center gap-4 mb-10 justify-center">
           <div className="w-8 h-[1px] bg-brand-silver/40"></div>
           <span className="text-white/40 font-light tracking-[0.3em] text-[10px] uppercase">
-            Trusted across
+            Recent placements
           </span>
           <div className="w-8 h-[1px] bg-brand-silver/40"></div>
         </div>
@@ -49,7 +49,7 @@ const TrustStrip: React.FC = () => {
         </div>
 
         <p className="mt-10 text-center text-[10px] font-light tracking-[0.2em] uppercase text-white/50">
-          Client identities withheld by engagement confidentiality
+          Clients withheld for confidentiality
         </p>
       </div>
     </section>
