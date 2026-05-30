@@ -1,12 +1,16 @@
 import React from 'react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Section } from '../types';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onViewJobs: () => void;
+  onNavigate: (sectionId: string) => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onViewJobs, onNavigate }) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
-  
-  // Optimized video asset with Cloudinary transformations for faster loading
   const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
-  
+
   const videoSrc = "https://res.cloudinary.com/dvbubqhpp/video/upload/v1779319281/15294386_1080_1920_25fps_wzyx8f.mp4";
   const videoPoster = "https://res.cloudinary.com/dvbubqhpp/video/upload/v1779319281/15294386_1080_1920_25fps_wzyx8f.mp4";
 
@@ -25,117 +29,133 @@ const Hero: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  const brandSilver = 'text-white'; 
-  const sectorTint = 'bg-brand-logistics/10';
-
-  const content = {
-    label: "Certainty Delivered.",
-    titleLine1: "Certus Corporate",
-    titleLine2: "Search",
-    p1: "Certus Corporate Search is part of The Certus Group of Companies Inc. We specialize in sourcing high-impact talent for Finance, Operations, and IT roles within corporate environments. We understand the specific demands of these fast-paced sectors, delivering the strategic talent that drives growth and operational excellence."
-  };
+  const stats = [
+    { value: '15+', label: 'Years in Corporate Search' },
+    { value: '90%', label: 'Repeat Client Engagements' },
+    { value: '30–60d', label: 'Average Time to Shortlist' },
+  ];
 
   return (
-    <section id={Section.HERO} className="relative min-h-[100svh] w-full flex items-center overflow-hidden bg-brand-dark py-20 md:py-32">
-      
+    <section
+      id={Section.HERO}
+      className="relative min-h-[100svh] w-full flex items-center overflow-hidden bg-brand-dark pt-32 pb-24 md:pt-40 md:pb-32"
+    >
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <video 
+        <video
           ref={videoRef}
           key={videoSrc}
-          muted 
-          loop 
+          muted
+          loop
           playsInline
           preload="none"
           onLoadedData={() => setIsVideoLoaded(true)}
           poster={videoPoster}
-          className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-40' : 'opacity-0'} grayscale-[40%] brightness-[0.8] will-change-opacity`}
+          className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-30' : 'opacity-0'} grayscale-[40%] brightness-[0.8] will-change-opacity`}
           style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
-        
-        {/* Dynamic Overlay Gradients */}
-        <div className={`absolute inset-0 z-10 ${sectorTint} mix-blend-multiply opacity-50`}></div>
-        <div className="absolute inset-0 z-20 bg-gradient-to-l from-brand-dark via-brand-dark/20 to-transparent"></div>
+
+        <div className="absolute inset-0 z-10 bg-brand-logistics/10 mix-blend-multiply opacity-50"></div>
+        <div className="absolute inset-0 z-20 bg-gradient-to-r from-brand-dark via-brand-dark/60 to-transparent"></div>
         <div className="absolute inset-0 z-20 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/40"></div>
-        
-        {/* Technical Grid Pattern */}
-        <div 
-            className="absolute inset-0 z-30 pointer-events-none opacity-20"
-            style={{
-                backgroundImage: 'radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px)',
-                backgroundSize: '40px 40px'
-            }}
-        ></div>
+
+        <div
+          className="absolute inset-0 z-30 pointer-events-none opacity-20"
+          style={{
+            backgroundImage: 'radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+          }}
+        />
       </div>
 
-      {/* 2. LAYER: LOGO WATERMARK - Bottom Left (Moved to left since content is right) */}
-      <img 
-        src="https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png" 
-        className="absolute bottom-[-4%] left-[-4%] w-[35vw] max-w-[550px] opacity-[0.06] z-[3] pointer-events-none select-none"
-        style={{ 
-          maskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)', 
-          WebkitMaskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)' 
+      <img
+        src="https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png"
+        className="absolute bottom-[-4%] right-[-4%] w-[35vw] max-w-[500px] opacity-[0.05] z-[3] pointer-events-none select-none"
+        style={{
+          maskImage: 'radial-gradient(circle at bottom right, black 30%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(circle at bottom right, black 30%, transparent 80%)',
         }}
-        alt="Certus Group Logo Watermark"
+        alt=""
+        aria-hidden="true"
       />
 
-      {/* 3. LAYER: Primary Content Grid */}
       <div className="max-w-7xl w-full mx-auto px-6 lg:px-8 relative z-20">
-        
-        <div className="flex flex-col md:flex-row gap-12 max-w-4xl items-start">
-          
-          {/* Main Content Column */}
-          <div className="flex flex-col items-start">
-            
-            {/* Headline */}
-            <h1 className="text-[10vw] sm:text-[8vw] md:text-[7vw] lg:text-[8.5rem] font-medium text-white leading-[0.85] md:leading-[0.82] tracking-tighter mb-8 md:mb-12 select-none relative flex flex-col items-start">
-                <span className="block animate-[slideUp_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] opacity-0">
-                    {content.titleLine1}
-                </span>
-                <span className={`block font-serif italic font-light ${brandSilver} animate-[slideUp_1.2s_cubic-bezier(0.16,1,0.3,1)_0.2s_forwards] opacity-0 drop-shadow-lg`}>
-                    {content.titleLine2}
-                </span>
-            </h1>
-
-            {/* About Content */}
-            <div className="space-y-6 animate-[fadeIn_1.2s_ease-out_0.6s_forwards] opacity-0 max-w-2xl">
-               <div className="flex items-center gap-4">
-                  <div className="w-12 h-[1px] bg-white"></div>
-                  <span className="text-white font-light tracking-[0.3em] text-[10px] uppercase">{content.label}</span>
-               </div>
-               <div className="space-y-6">
-                  <p className="text-gray-300 font-light text-sm md:text-base leading-relaxed text-justify tracking-wide">
-                      {content.p1}
-                  </p>
-               </div>
-            </div>
-
+        <div className="max-w-4xl">
+          <div className="flex items-center gap-4 mb-8 animate-[fadeIn_0.8s_ease-out_forwards] opacity-0">
+            <div className="w-10 h-[1px] bg-brand-silver"></div>
+            <span className="text-white/80 font-light tracking-[0.3em] text-[10px] uppercase">
+              Certainty Delivered
+            </span>
           </div>
 
-        </div>
+          <h1 className="text-[12vw] sm:text-[9vw] md:text-[7vw] lg:text-[6.5rem] xl:text-[7.5rem] font-medium text-white leading-[0.95] tracking-tight mb-8 md:mb-10">
+            <span className="block animate-[slideUp_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] opacity-0">
+              Senior finance, ops,
+            </span>
+            <span className="block animate-[slideUp_1.2s_cubic-bezier(0.16,1,0.3,1)_0.15s_forwards] opacity-0">
+              and IT leaders.
+            </span>
+            <span className="block font-serif italic font-light text-brand-silver animate-[slideUp_1.2s_cubic-bezier(0.16,1,0.3,1)_0.3s_forwards] opacity-0">
+              Placed with conviction.
+            </span>
+          </h1>
 
+          <p className="text-gray-300 font-light text-base md:text-lg leading-relaxed max-w-2xl mb-10 md:mb-12 animate-[fadeIn_1.2s_ease-out_0.5s_forwards] opacity-0">
+            Certus Corporate Search is the executive search arm of The Certus Group. We place
+            high-impact Finance, Operations, and IT leaders in fast-paced corporate teams across
+            North America.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 mb-16 md:mb-24 animate-[fadeIn_1.2s_ease-out_0.7s_forwards] opacity-0">
+            <button
+              onClick={onViewJobs}
+              className="group inline-flex items-center justify-center gap-3 bg-white text-brand-dark hover:bg-brand-silver px-8 py-4 rounded-sm font-bold text-[11px] uppercase tracking-[0.2em] transition-all duration-300 shadow-lg hover:-translate-y-0.5"
+            >
+              Browse open roles
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button
+              onClick={() => onNavigate(Section.CONTACT)}
+              className="group inline-flex items-center justify-center gap-3 border border-white/20 text-white hover:border-white hover:bg-white/5 px-8 py-4 rounded-sm font-bold text-[11px] uppercase tracking-[0.2em] transition-all duration-300"
+            >
+              Hire with Certus
+              <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 pt-10 border-t border-white/10 animate-[fadeIn_1.2s_ease-out_0.9s_forwards] opacity-0">
+            {stats.map((stat) => (
+              <div key={stat.label} className="flex flex-col gap-2">
+                <span className="text-4xl md:text-5xl font-medium text-white tracking-tight">
+                  {stat.value}
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/50">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* SCROLL INDICATOR */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 animate-bounce opacity-40">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 animate-bounce opacity-30 hidden md:block">
         <div className="flex flex-col items-center gap-2">
           <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/60">Scroll</span>
           <div className="w-[1px] h-12 bg-gradient-to-b from-brand-silver to-transparent"></div>
         </div>
       </div>
 
-      {/* SECTION DIVIDER */}
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-brand-dark to-transparent z-10 pointer-events-none"></div>
 
       <style>{`
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(100px); }
-            to { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(60px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
       `}</style>
     </section>

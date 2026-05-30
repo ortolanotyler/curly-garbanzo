@@ -10,7 +10,6 @@ import Footer from './components/Footer';
 import JobBoardPage from './components/JobBoardPage';
 import AdminPortal from './components/AdminPortal';
 import IndustriesServed from './components/IndustriesServed';
-import SplitGateway from './components/SplitGateway';
 import SEO from './components/SEO';
 import ErrorBoundary from './components/ErrorBoundary';
 import { View, Section } from './types';
@@ -20,7 +19,7 @@ const App: React.FC = () => {
     const path = window.location.pathname;
     if (path.startsWith('/jobs')) return 'jobs';
     if (path === '/admin') return 'admin';
-    return 'gateway';
+    return 'landing';
   });
 
   const [initialJobId, setInitialJobId] = useState<string | null>(() => {
@@ -31,19 +30,16 @@ const App: React.FC = () => {
     return null;
   });
 
-  // Ensure window scrolls to top on navigation/state change
   useEffect(() => {
-    if (view !== 'gateway') {
+    if (view !== 'landing') {
       window.scrollTo(0, 0);
     }
-    
-    // Update URL to match view
+
     const path = window.location.pathname;
     let newPath = '/';
     if (view === 'jobs') newPath = '/jobs';
     else if (view === 'admin') newPath = '/admin';
-    else if (view === 'landing') newPath = '/';
-    
+
     if (path !== newPath && !path.startsWith('/jobs/')) {
       window.history.pushState({}, '', newPath);
     }
@@ -51,14 +47,14 @@ const App: React.FC = () => {
 
   const handleNavigate = (sectionId: string) => {
     if (sectionId === Section.ADMIN) {
-        setView('admin');
-        return;
+      setView('admin');
+      return;
     }
 
-    if (view === 'jobs' || view === 'admin' || view === 'gateway') {
+    if (view !== 'landing') {
       setView('landing');
       setTimeout(() => {
-         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
       return;
     }
@@ -66,35 +62,13 @@ const App: React.FC = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleGatewaySelect = (target: 'landing' | 'sectors') => {
-    setView('landing');
-    if (target === 'sectors') {
-      setTimeout(() => {
-        document.getElementById(Section.INDUSTRIES)?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
-  };
-
   const renderContent = () => {
-    if (view === 'gateway') {
-      return (
-        <>
-          <SEO isGateway={true} />
-          <SplitGateway 
-            onSelect={handleGatewaySelect} 
-            onViewJobs={() => setView('jobs')}
-            onNavigate={handleNavigate}
-          />
-        </>
-      );
-    }
-
     if (view === 'jobs') {
       return <JobBoardPage onBack={() => setView('landing')} initialJobId={initialJobId} />;
     }
 
     if (view === 'admin') {
-        return <AdminPortal onExit={() => setView('landing')} />;
+      return <AdminPortal onExit={() => setView('landing')} />;
     }
 
     return (
@@ -106,24 +80,26 @@ const App: React.FC = () => {
             to { opacity: 1; }
           }
         `}</style>
-        
-        {/* Global Background (Solid) - Video is now handled within components like Hero for cleaner flow */}
+
         <div className="fixed inset-0 z-[-1] bg-brand-dark"></div>
 
-        <Header 
+        <Header
           onViewJobs={() => setView('jobs')}
-          onNavigate={handleNavigate} 
+          onNavigate={handleNavigate}
         />
-        
+
         <main className="relative z-10">
-          <Hero />
+          <Hero
+            onViewJobs={() => setView('jobs')}
+            onNavigate={handleNavigate}
+          />
           <IndustriesServed />
           <LinkedInFeed />
           <LocationsMap />
           <FeaturedJobsHero onViewJobs={() => setView('jobs')} />
           <Contact />
         </main>
-        
+
         <Footer onNavigate={(id) => handleNavigate(id)} />
       </div>
     );

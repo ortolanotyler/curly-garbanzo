@@ -8,7 +8,7 @@ export enum Section {
   ADMIN = 'admin'
 }
 
-export type View = 'gateway' | 'landing' | 'jobs' | 'admin';
+export type View = 'landing' | 'jobs' | 'admin';
 
 export interface JobPosting {
   id: string | number;
