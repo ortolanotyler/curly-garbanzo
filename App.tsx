@@ -14,6 +14,7 @@ import SplitGateway from './components/SplitGateway';
 import TrustStrip from './components/TrustStrip';
 import HowWeWork from './components/HowWeWork';
 import Testimonials from './components/Testimonials';
+import TeamStrip from './components/TeamStrip';
 import SubmitResumePage from './components/SubmitResumePage';
 import NotFoundPage from './components/NotFoundPage';
 import SEO from './components/SEO';
@@ -153,6 +154,7 @@ const App: React.FC = () => {
           <TrustStrip />
           <IndustriesServed />
           <HowWeWork />
+          <TeamStrip />
           <LinkedInFeed />
           <LocationsMap />
           <Testimonials />
