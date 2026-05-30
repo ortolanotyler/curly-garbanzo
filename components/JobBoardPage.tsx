@@ -165,7 +165,7 @@ const JobCardSkeleton: React.FC = () => (
                                     relative w-full group cursor-pointer bg-white/[0.01] border border-white/5 rounded-sm overflow-hidden
                                     transition-all duration-500 ease-out hover:-translate-y-1
                                     flex flex-col backdrop-blur-sm text-left
-                                    ${theme.cardBorderHover}
+                                    hover:border-brand-silver/30
                                 `}
                                 aria-label={`View details for ${job.title}`}
                             >
@@ -203,11 +203,11 @@ const JobCardSkeleton: React.FC = () => (
                                     <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
                                         <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-500">
                                             <div className="flex items-center gap-2">
-                                                <MapPin size={14} className={theme.iconColor} />
+                                                <MapPin size={14} className="text-brand-silver" />
                                                 <span>{job.location}</span>
                                             </div>
                                             <div className="hidden sm:flex items-center gap-2">
-                                                <DollarSign size={14} className={theme.iconColor} />
+                                                <DollarSign size={14} className="text-brand-silver" />
                                                 <span>{job.salary}</span>
                                             </div>
                                         </div>
@@ -217,7 +217,7 @@ const JobCardSkeleton: React.FC = () => (
                                         </div>
                                     </div>
                                 </div>
-                                <div className={`absolute inset-0 bg-gradient-to-br ${theme.cardGradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
+                                <div className="absolute inset-0 bg-gradient-to-br from-brand-silver/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                             </button>
                         ))}
                     </div>
