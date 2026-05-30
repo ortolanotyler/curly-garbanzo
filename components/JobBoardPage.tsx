@@ -7,10 +7,11 @@ import SEO from './SEO';
 
 interface JobBoardPageProps {
   onBack: () => void;
+  onViewSubmit?: () => void;
   initialJobId?: string | null;
 }
 
-const JobBoardPage: React.FC<JobBoardPageProps> = ({ onBack, initialJobId }) => {
+const JobBoardPage: React.FC<JobBoardPageProps> = ({ onBack, onViewSubmit, initialJobId }) => {
   const [selectedJob, setSelectedJob] = useState<JobPosting | null>(null);
   const [jobs, setJobs] = useState<JobPosting[]>([]);
   const [loading, setLoading] = useState(true);
@@ -138,13 +139,25 @@ const JobCardSkeleton: React.FC = () => (
             <SEO title="Active Job Mandates" description="Explore current Sales, Operations, and Leadership opportunities within the 3PL, Asset-Based, Freight Forwarding, and Customs sectors." />
             <div className="max-w-7xl mx-auto">
                 <h1 className="sr-only">Certus Group Supply Chain Search - Job Board</h1>
-                <div className="mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-                        Active <span className="text-white italic font-serif font-light">Mandates</span>
-                    </h2>
-                    <p className="mt-4 text-gray-500 text-sm font-light uppercase tracking-widest">
-                        Showing {jobs.length} Priority Search Opportunities
-                    </p>
+                <div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+                    <div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+                            Active <span className="text-white italic font-serif font-light">Mandates</span>
+                        </h2>
+                        <p className="mt-4 text-gray-500 text-sm font-light uppercase tracking-widest">
+                            Showing {jobs.length} Priority Search Opportunities
+                        </p>
+                    </div>
+
+                    {onViewSubmit && (
+                        <button
+                            onClick={onViewSubmit}
+                            className="group inline-flex items-center gap-3 self-start md:self-end border border-white/15 hover:border-white text-white/80 hover:text-white px-5 py-3 rounded-sm text-[10px] font-bold uppercase tracking-[0.25em] transition-all duration-300"
+                        >
+                            Not seeing a fit? Submit your resume
+                            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                        </button>
+                    )}
                 </div>
                 {loading ? (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

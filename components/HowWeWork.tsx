@@ -1,5 +1,6 @@
 import React from 'react';
 import { Compass, Search, Handshake } from 'lucide-react';
+import { Section } from '../types';
 
 const steps = [
   {
@@ -27,7 +28,7 @@ const steps = [
 
 const HowWeWork: React.FC = () => {
   return (
-    <section className="relative py-24 md:py-32 bg-brand-dark overflow-hidden">
+    <section id={Section.HOW_WE_WORK} className="relative py-24 md:py-32 bg-brand-dark overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{

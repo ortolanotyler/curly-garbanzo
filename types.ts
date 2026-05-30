@@ -2,13 +2,14 @@ export enum Section {
   HERO = 'hero',
   INDUSTRIES = 'industries',
   SERVICES = 'services',
+  HOW_WE_WORK = 'how-we-work',
   INSIGHTS = 'insights',
   CONTACT = 'contact',
   JOB_BOARD = 'job-board',
   ADMIN = 'admin'
 }
 
-export type View = 'gateway' | 'landing' | 'jobs' | 'admin';
+export type View = 'gateway' | 'landing' | 'jobs' | 'submit' | 'admin';
 
 export interface JobPosting {
   id: string | number;

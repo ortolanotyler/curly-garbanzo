@@ -14,6 +14,7 @@ import SplitGateway from './components/SplitGateway';
 import TrustStrip from './components/TrustStrip';
 import HowWeWork from './components/HowWeWork';
 import Testimonials from './components/Testimonials';
+import SubmitResumePage from './components/SubmitResumePage';
 import SEO from './components/SEO';
 import ErrorBoundary from './components/ErrorBoundary';
 import { View, Section } from './types';
@@ -22,6 +23,7 @@ const App: React.FC = () => {
   const [view, setView] = useState<View>(() => {
     const path = window.location.pathname;
     if (path.startsWith('/jobs')) return 'jobs';
+    if (path === '/submit-resume') return 'submit';
     if (path === '/admin') return 'admin';
     return 'gateway';
   });
@@ -42,6 +44,7 @@ const App: React.FC = () => {
     const path = window.location.pathname;
     let newPath = '/';
     if (view === 'jobs') newPath = '/jobs';
+    else if (view === 'submit') newPath = '/submit-resume';
     else if (view === 'admin') newPath = '/admin';
     else if (view === 'landing') newPath = '/';
 
@@ -56,7 +59,7 @@ const App: React.FC = () => {
       return;
     }
 
-    if (view === 'jobs' || view === 'admin' || view === 'gateway') {
+    if (view !== 'landing') {
       setView('landing');
       setTimeout(() => {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -95,7 +98,17 @@ const App: React.FC = () => {
     }
 
     if (view === 'jobs') {
-      return <JobBoardPage onBack={() => setView('landing')} initialJobId={initialJobId} />;
+      return (
+        <JobBoardPage
+          onBack={() => setView('landing')}
+          onViewSubmit={() => setView('submit')}
+          initialJobId={initialJobId}
+        />
+      );
+    }
+
+    if (view === 'submit') {
+      return <SubmitResumePage onBack={() => setView('landing')} />;
     }
 
     if (view === 'admin') {
@@ -116,6 +129,7 @@ const App: React.FC = () => {
 
         <Header
           onViewJobs={() => setView('jobs')}
+          onViewSubmit={() => setView('submit')}
           onNavigate={handleNavigate}
         />
 

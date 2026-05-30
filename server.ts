@@ -159,6 +159,61 @@ app.post("/api/blob-upload", async (req, res) => {
   }
 });
 
+app.post("/api/submit-pipeline", async (req, res) => {
+  const { firstName, lastName, email, linkedin, note, interests, resumeUrl, resumeName } = req.body;
+
+  if (!email || !firstName || !lastName) {
+    return res.status(400).json({ error: "Required fields missing" });
+  }
+
+  if (!process.env.SENDGRID_API_KEY) {
+    console.log("[Dev] Pipeline submission:", { firstName, lastName, email, interests, resumeUrl });
+    return res.json({ success: true, message: "Dev mode: Submission logged to console" });
+  }
+
+  const interestList = Array.isArray(interests) && interests.length ? interests.join(', ') : 'Not specified';
+  const resumeHtml = resumeUrl
+    ? `<a href="${resumeUrl}" target="_blank" rel="noopener">Download ${resumeName || 'resume'}</a>`
+    : 'Not provided';
+  const resumeText = resumeUrl ? `${resumeName || 'resume'}: ${resumeUrl}` : 'Not provided';
+
+  const msg = {
+    to: "recruit@certusgroup.com",
+    from: "tyler@certusgroup.com",
+    subject: `Pipeline Submission: ${firstName} ${lastName}`,
+    text: `
+      New pipeline submission
+
+      Name: ${firstName} ${lastName}
+      Email: ${email}
+      LinkedIn: ${linkedin || 'Not provided'}
+      Areas of interest: ${interestList}
+      Resume: ${resumeText}
+
+      Note:
+      ${note || '(no note provided)'}
+    `,
+    html: `
+      <h3>New Pipeline Submission</h3>
+      <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>LinkedIn:</strong> ${linkedin || 'Not provided'}</p>
+      <p><strong>Areas of interest:</strong> ${interestList}</p>
+      <p><strong>Resume:</strong> ${resumeHtml}</p>
+      <p><strong>Note:</strong></p>
+      <blockquote style="border-left:3px solid #ddd;padding-left:12px;color:#444;">${(note || '(no note provided)').replace(/\n/g, '<br/>')}</blockquote>
+    `,
+  };
+
+  try {
+    await sgMail.send(msg);
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error sending pipeline submission:", error);
+    res.status(500).json({ error: "Failed to send submission" });
+  }
+});
+
 app.post("/api/apply", async (req, res) => {
   const { firstName, lastName, email, phone, linkedin, jobTitle, jobRef, resumeUrl, resumeName } = req.body;
 
