@@ -87,20 +87,11 @@ const Contact: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div
-          className={`max-w-3xl mb-16 md:mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`max-w-3xl mb-12 md:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-10 h-[1px] bg-brand-silver"></div>
-            <span className="text-white/60 font-light tracking-[0.3em] text-[10px] uppercase">
-              Get in touch
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-            Tell us what you&rsquo;re after.
+          <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
+            Get in touch.
           </h2>
-          <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-2xl">
-            Hiring or job-hunting, send a note. We reply within one business day.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">

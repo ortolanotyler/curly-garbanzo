@@ -1,7 +1,5 @@
 import React from 'react';
 import { APIProvider, Map, AdvancedMarker, Pin } from '@vis.gl/react-google-maps';
-import { MapPin } from 'lucide-react';
-
 const API_KEY = process.env.GOOGLE_MAPS_PLATFORM_KEY || '';
 const hasValidKey = Boolean(API_KEY) && API_KEY !== 'YOUR_API_KEY';
 
@@ -15,32 +13,10 @@ const COVERAGE_CITIES = [
 export default function LocationsMap() {
   return (
     <section className="relative py-24 md:py-32 bg-brand-dark border-y border-white/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 md:mb-16">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-[1px] bg-brand-silver"></div>
-              <span className="text-white/60 font-light tracking-[0.3em] text-[10px] uppercase">
-                One office. Continental reach.
-              </span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.1]">
-              Based in Toronto. Recruiting across North America.
-            </h2>
-          </div>
-
-          <div className="flex flex-col md:items-end gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40">
-              Headquarters
-            </span>
-            <div className="flex items-center gap-3 text-white">
-              <MapPin size={18} className="text-brand-silver" strokeWidth={1.5} />
-              <span className="text-base md:text-lg font-light">
-                91 Skyway Avenue, Suite 206 · Toronto
-              </span>
-            </div>
-          </div>
-        </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-10 md:mb-12">
+        <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
+          Based in Toronto. Recruiting across North America.
+        </h2>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">

@@ -40,19 +40,10 @@ const IndustriesServed: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
-        <div className="mb-12 md:mb-20 max-w-3xl">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-10 h-[1px] bg-brand-silver"></div>
-            <span className="text-white/60 font-light tracking-[0.3em] text-[10px] uppercase">
-              Practice Areas
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
+        <div className="mb-12 md:mb-16 max-w-3xl">
+          <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
             What we recruit for.
           </h2>
-          <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-2xl">
-            Four practice areas. Each one led by a recruiter with deep experience in the vertical.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -69,12 +60,6 @@ const IndustriesServed: React.FC = () => {
                   className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/85 to-brand-dark/30"></div>
-              </div>
-
-              <div className="absolute top-5 left-5 z-20">
-                <span className="font-mono text-[10px] text-white/40 tracking-widest">
-                  0{idx + 1}
-                </span>
               </div>
 
               <div className="relative z-20 p-6 flex flex-col h-full justify-end gap-3">

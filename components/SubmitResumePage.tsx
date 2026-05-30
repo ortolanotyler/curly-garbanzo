@@ -173,18 +173,11 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
       <main className="flex-grow py-16 md:py-24 px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <div className="mb-12">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-[1px] bg-brand-silver"></div>
-              <span className="text-white/60 font-light tracking-[0.3em] text-[10px] uppercase">
-                Join our pipeline
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-              Not seeing the right role? <span className="font-serif italic font-light text-brand-silver">Tell us about you.</span>
+            <h1 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
+              Join our pipeline.
             </h1>
-            <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed">
-              Most of our searches never get publicly posted. Share your background and what
-              you&rsquo;re looking for — we&rsquo;ll reach out when something matches.
+            <p className="mt-6 text-gray-400 font-light text-base leading-relaxed max-w-xl">
+              Most of our searches are never publicly posted. Send your details and we&rsquo;ll reach out when something matches.
             </p>
           </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, DollarSign, ArrowRight, ArrowUpRight, Loader2 } from 'lucide-react';
+import { MapPin, DollarSign, ArrowRight, Loader2 } from 'lucide-react';
 import { JobPosting } from '../types';
 import * as jobService from '../services/jobService';
 import JobDetailDrawer from './JobDetailDrawer';
@@ -65,28 +65,16 @@ const FeaturedJobsHero: React.FC<FeaturedJobsHeroProps> = ({ onViewJobs }) => {
       ></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16 md:mb-20">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-[1px] bg-brand-silver"></div>
-              <span className="text-white/60 font-light tracking-[0.3em] text-[10px] uppercase">
-                Active searches
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-              Roles we&rsquo;re placing right now.
-            </h2>
-          </div>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
+            Active searches.
+          </h2>
 
           <button
             onClick={onViewJobs}
-            className="group inline-flex items-center gap-3 self-start md:self-end border border-white/15 hover:border-white text-white/80 hover:text-white px-5 py-3 rounded-sm text-[10px] font-bold uppercase tracking-[0.25em] transition-all duration-300"
+            className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/60 hover:text-white transition-colors text-left md:text-right"
           >
-            All open roles
-            <ArrowUpRight
-              size={14}
-              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-            />
+            All open roles →
           </button>
         </div>
 

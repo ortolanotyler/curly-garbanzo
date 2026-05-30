@@ -182,18 +182,12 @@ const JobRowSkeleton: React.FC = () => (
             />
             <div className="max-w-7xl mx-auto">
                 <h1 className="sr-only">Certus Group Supply Chain Search - Job Board</h1>
-                <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-                    <div className="max-w-2xl">
-                        <div className="flex items-center gap-4 mb-6">
-                            <div className="w-10 h-[1px] bg-brand-silver"></div>
-                            <span className="text-white/60 font-light tracking-[0.3em] text-[10px] uppercase">
-                                Open mandates
-                            </span>
-                        </div>
-                        <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
-                            Roles we&rsquo;re placing.
+                <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                    <div>
+                        <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
+                            Open roles.
                         </h2>
-                        <p className="mt-4 text-gray-500 text-xs font-light uppercase tracking-[0.25em]">
+                        <p className="mt-3 text-white/50 text-xs font-light uppercase tracking-[0.25em]">
                             {visibleJobs.length === jobs.length
                                 ? `${jobs.length} active`
                                 : `${visibleJobs.length} of ${jobs.length} · ${CATEGORIES.find(c => c.key === activeCategory)?.label}`}
@@ -203,10 +197,9 @@ const JobRowSkeleton: React.FC = () => (
                     {onViewSubmit && (
                         <button
                             onClick={onViewSubmit}
-                            className="group inline-flex items-center gap-3 self-start md:self-end border border-white/15 hover:border-white text-white/80 hover:text-white px-5 py-3 rounded-sm text-[10px] font-bold uppercase tracking-[0.25em] transition-all duration-300"
+                            className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/60 hover:text-white transition-colors text-left md:text-right"
                         >
-                            Not seeing a fit? Submit your resume
-                            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                            Not seeing a fit? Submit your resume →
                         </button>
                     )}
                 </div>
