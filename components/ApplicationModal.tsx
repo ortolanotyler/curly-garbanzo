@@ -32,7 +32,8 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
     }
   }, [isOpen]);
 
-  const MAX_FILE_BYTES = 5 * 1024 * 1024;
+  const MAX_FILE_BYTES = 3 * 1024 * 1024;
+  const MAX_FILE_LABEL = '3MB';
   const REQUEST_TIMEOUT_MS = 20_000;
 
   const readFileAsDataUrl = (file: File): Promise<string> =>
@@ -95,11 +96,15 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
       }
 
       let detail = `Server returned ${response.status}`;
-      try {
-        const data = await response.json();
-        if (data?.error) detail = data.error;
-      } catch {
-        // response was not JSON — keep status-code message
+      if (response.status === 413) {
+        detail = `Resume file is too large. Please attach a file under ${MAX_FILE_LABEL}.`;
+      } else {
+        try {
+          const data = await response.json();
+          if (data?.error) detail = data.error;
+        } catch {
+          // response was not JSON — keep status-code message
+        }
       }
       setErrorMessage(detail);
       setStep('error');
@@ -128,7 +133,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
     if (!file) return;
 
     if (file.size > MAX_FILE_BYTES) {
-      setErrorMessage('Resume must be 5MB or smaller.');
+      setErrorMessage(`Resume must be ${MAX_FILE_LABEL} or smaller.`);
       setResumeFile(null);
       setFileName(null);
       if (fileInputRef.current) fileInputRef.current.value = '';
@@ -268,7 +273,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
                             </div>
                             <div>
                                 <p className="text-sm text-gray-300 font-medium">Click to upload resume</p>
-                                <p className="text-[10px] text-gray-600 uppercase mt-1">PDF or Word (Max 5MB)</p>
+                                <p className="text-[10px] text-gray-600 uppercase mt-1">PDF or Word (Max {MAX_FILE_LABEL})</p>
                             </div>
                          </div>
                       )}
