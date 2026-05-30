@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import JobBoardPage from './components/JobBoardPage';
 import AdminPortal from './components/AdminPortal';
 import IndustriesServed from './components/IndustriesServed';
+import SplitGateway from './components/SplitGateway';
 import SEO from './components/SEO';
 import ErrorBoundary from './components/ErrorBoundary';
 import { View, Section } from './types';
@@ -19,7 +20,7 @@ const App: React.FC = () => {
     const path = window.location.pathname;
     if (path.startsWith('/jobs')) return 'jobs';
     if (path === '/admin') return 'admin';
-    return 'landing';
+    return 'gateway';
   });
 
   const [initialJobId, setInitialJobId] = useState<string | null>(() => {
@@ -31,7 +32,7 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-    if (view !== 'landing') {
+    if (view !== 'gateway') {
       window.scrollTo(0, 0);
     }
 
@@ -39,6 +40,7 @@ const App: React.FC = () => {
     let newPath = '/';
     if (view === 'jobs') newPath = '/jobs';
     else if (view === 'admin') newPath = '/admin';
+    else if (view === 'landing') newPath = '/';
 
     if (path !== newPath && !path.startsWith('/jobs/')) {
       window.history.pushState({}, '', newPath);
@@ -51,7 +53,7 @@ const App: React.FC = () => {
       return;
     }
 
-    if (view !== 'landing') {
+    if (view === 'jobs' || view === 'admin' || view === 'gateway') {
       setView('landing');
       setTimeout(() => {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -62,7 +64,29 @@ const App: React.FC = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleGatewaySelect = (target: 'landing' | 'sectors') => {
+    setView('landing');
+    if (target === 'sectors') {
+      setTimeout(() => {
+        document.getElementById(Section.INDUSTRIES)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
   const renderContent = () => {
+    if (view === 'gateway') {
+      return (
+        <>
+          <SEO isGateway={true} />
+          <SplitGateway
+            onSelect={handleGatewaySelect}
+            onViewJobs={() => setView('jobs')}
+            onNavigate={handleNavigate}
+          />
+        </>
+      );
+    }
+
     if (view === 'jobs') {
       return <JobBoardPage onBack={() => setView('landing')} initialJobId={initialJobId} />;
     }
