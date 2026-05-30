@@ -153,7 +153,7 @@ const JobCardSkeleton: React.FC = () => (
                         <div className="p-2 rounded-full border border-white/10 group-hover:border-white/30 bg-white/5 group-hover:bg-white/10 transition-all">
                              <ArrowLeft size={16} />
                         </div>
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] hidden sm:block">Back to Gateway</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] hidden sm:block">Back to site</span>
                     </button>
                 </div>
                 
@@ -182,14 +182,20 @@ const JobCardSkeleton: React.FC = () => (
             <div className="max-w-7xl mx-auto">
                 <h1 className="sr-only">Certus Group Supply Chain Search - Job Board</h1>
                 <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-                    <div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-                            Active <span className="text-white italic font-serif font-light">Mandates</span>
+                    <div className="max-w-2xl">
+                        <div className="flex items-center gap-4 mb-6">
+                            <div className="w-10 h-[1px] bg-brand-silver"></div>
+                            <span className="text-white/60 font-light tracking-[0.3em] text-[10px] uppercase">
+                                Open mandates
+                            </span>
+                        </div>
+                        <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
+                            Roles we&rsquo;re placing.
                         </h2>
-                        <p className="mt-4 text-gray-500 text-sm font-light uppercase tracking-widest">
+                        <p className="mt-4 text-gray-500 text-xs font-light uppercase tracking-[0.25em]">
                             {visibleJobs.length === jobs.length
-                                ? `Showing ${jobs.length} priority search opportunities`
-                                : `${visibleJobs.length} of ${jobs.length} mandates · ${CATEGORIES.find(c => c.key === activeCategory)?.label}`}
+                                ? `${jobs.length} active`
+                                : `${visibleJobs.length} of ${jobs.length} · ${CATEGORIES.find(c => c.key === activeCategory)?.label}`}
                         </p>
                     </div>
 

@@ -39,14 +39,8 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
 
   if (!isOpen) return null;
 
-  // Theme Config - Monochrome Brand
-  const theme = {
-    accent: 'text-brand-silver',
-    borderFocus: 'focus:border-brand-silver',
-    button: 'bg-brand-silver hover:bg-white text-black',
-    icon: 'text-brand-silver',
-    ring: 'focus:ring-brand-silver/20',
-  };
+  const inputClasses =
+    'w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-base md:text-sm placeholder-gray-700 focus:outline-none focus:border-brand-silver/60 transition-colors';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -159,30 +153,31 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
       <div className="relative w-full max-w-lg bg-brand-dark border border-white/10 rounded-sm shadow-2xl overflow-hidden animate-[scaleIn_0.3s_ease-out]">
         <style>{`
           @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-          }
-          @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            from { opacity: 0; transform: scale(0.96) translateY(8px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
           }
         `}</style>
-        
+
         {/* Header */}
-        <div className="flex justify-between items-center px-8 py-6 border-b border-white/10 bg-white/[0.02]">
+        <div className="flex justify-between items-start px-6 md:px-8 py-5 border-b border-white/10 bg-white/[0.02]">
            <div>
-             <h3 className="text-xl font-bold text-white tracking-tight">Application</h3>
-             <p className="text-xs text-gray-500 uppercase tracking-wider mt-1 font-mono">REF: {job.ref}</p>
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-silver">Apply</span>
+                <span className="text-white/20">·</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-white/40">{job.ref}</span>
+              </div>
+              <h3 className="text-base md:text-lg font-medium text-white tracking-tight leading-snug pr-6">{job.title}</h3>
            </div>
-           <button 
-             onClick={onClose} 
-             className="text-gray-500 hover:text-white transition-colors p-2 -mr-2 rounded-sm hover:bg-white/5"
+           <button
+             onClick={onClose}
+             className="text-white/40 hover:text-white transition-colors p-1.5 -mr-2 rounded-sm hover:bg-white/5"
+             aria-label="Close"
            >
-             <X size={20} />
+             <X size={18} strokeWidth={1.5} />
            </button>
         </div>
 
-        <div className="p-8 bg-brand-navy/30">
+        <div className="p-6 md:p-8">
            {(step === 'form' || step === 'error') && (
              <form onSubmit={handleSubmit} className="space-y-6">
                 {(step === 'error' || errorMessage) && (
@@ -192,134 +187,123 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
                     </p>
                   </div>
                 )}
-                <div className="grid grid-cols-2 gap-6">
-                   <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">First Name</label>
-                      <input 
-                        type="text" 
+                <div className="grid grid-cols-2 gap-4">
+                   <FieldLabel text="First name">
+                      <input
+                        type="text"
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        required 
-                        className={`w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-base md:text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`}
-                        placeholder="Jane" 
+                        required
+                        className={inputClasses}
+                        placeholder="Jane"
                       />
-                   </div>
-                   <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Last Name</label>
-                      <input 
-                        type="text" 
+                   </FieldLabel>
+                   <FieldLabel text="Last name">
+                      <input
+                        type="text"
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        required 
-                        className={`w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-base md:text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`} 
+                        required
+                        className={inputClasses}
                         placeholder="Doe"
                       />
-                   </div>
+                   </FieldLabel>
                 </div>
 
-                <div className="space-y-2">
-                   <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Email Address</label>
-                   <input 
-                     type="email" 
+                <FieldLabel text="Email">
+                   <input
+                     type="email"
                      name="email"
                      value={formData.email}
                      onChange={handleInputChange}
-                     required 
-                     className={`w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-base md:text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`}
+                     required
+                     className={inputClasses}
                      placeholder="jane.doe@example.com"
                    />
-                </div>
+                </FieldLabel>
 
-                <div className="space-y-2">
-                   <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Profile URL</label>
-                   <div className="relative group">
+                <FieldLabel text="LinkedIn">
+                   <div className="relative">
                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                       <Linkedin size={18} className="text-gray-600 group-focus-within:text-gray-400 transition-colors" />
+                       <Linkedin size={16} className="text-gray-600" />
                      </div>
-                     <input 
-                       type="url" 
+                     <input
+                       type="url"
                        name="linkedin"
                        value={formData.linkedin}
                        onChange={handleInputChange}
-                       placeholder="linkedin.com/in/..." 
-                       className={`w-full bg-brand-dark border border-white/10 rounded-sm pl-12 pr-4 py-3 text-white text-base md:text-sm focus:outline-none transition-all ${theme.borderFocus} focus:border-opacity-50 placeholder-gray-700`} 
+                       placeholder="linkedin.com/in/..."
+                       className={`${inputClasses} pl-12`}
                      />
                    </div>
-                </div>
+                </FieldLabel>
 
-                <div className="space-y-2">
-                   <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Resume / CV</label>
-                   <div 
+                <FieldLabel text="Resume">
+                   <div
                       onClick={() => fileInputRef.current?.click()}
-                      className={`border border-dashed border-white/20 rounded-sm p-8 text-center cursor-pointer hover:bg-white/[0.02] hover:border-white/40 transition-all duration-300 group relative overflow-hidden ${fileName ? 'border-green-500/30 bg-green-500/5' : ''}`}
+                      className={`border border-dashed rounded-sm p-6 text-center cursor-pointer transition-all duration-300 ${fileName ? 'border-brand-silver/40 bg-brand-silver/[0.04]' : 'border-white/15 hover:border-white/40 hover:bg-white/[0.02]'}`}
                    >
                       <input ref={fileInputRef} type="file" accept=".pdf,.doc,.docx" className="hidden" onChange={handleFileChange} />
-                      
-                      {/* Hover Flash Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-
                       {fileName ? (
-                         <div className="flex flex-col items-center justify-center gap-2 text-green-400 animate-[fadeIn_0.3s_ease-out]">
-                            <div className="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center mb-1">
-                                <Check size={20} />
+                         <div className="flex flex-col items-center gap-2">
+                            <div className="w-10 h-10 rounded-full bg-brand-silver/10 flex items-center justify-center text-brand-silver">
+                                <Check size={18} strokeWidth={1.75} />
                             </div>
-                            <span className="text-sm font-medium">{fileName}</span>
-                            <span className="text-[10px] uppercase text-green-500/50">Ready to upload</span>
+                            <span className="text-sm font-medium text-white">{fileName}</span>
+                            <span className="text-[10px] uppercase tracking-[0.2em] text-white/40">Ready to upload</span>
                          </div>
                       ) : (
                          <div className="space-y-3">
-                            <div className={`w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mx-auto text-gray-500 group-hover:text-white transition-colors`}>
-                                <Upload size={20} strokeWidth={1.5} />
+                            <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mx-auto text-white/50">
+                                <Upload size={18} strokeWidth={1.5} />
                             </div>
                             <div>
-                                <p className="text-sm text-gray-300 font-medium">Click to upload resume</p>
-                                <p className="text-[10px] text-gray-600 uppercase mt-1">PDF or Word (Max {MAX_FILE_LABEL})</p>
+                                <p className="text-sm text-white/80 font-medium">Click to upload resume</p>
+                                <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] mt-1">PDF or Word · Max {MAX_FILE_LABEL}</p>
                             </div>
                          </div>
                       )}
                    </div>
-                </div>
+                </FieldLabel>
 
-                <div className="pt-4">
-                   <button 
-                     type="submit" 
-                     className={`w-full py-4 font-bold uppercase tracking-widest text-xs rounded-sm transition-all duration-300 shadow-lg hover:-translate-y-1 ${theme.button}`}
-                   >
-                      Submit Application
-                   </button>
-                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-white text-brand-dark hover:bg-brand-silver py-4 font-bold uppercase tracking-[0.2em] text-xs rounded-sm transition-all duration-300 shadow-lg flex items-center justify-center gap-3"
+                >
+                  Submit application
+                </button>
+
+                <p className="text-center text-[10px] text-white/50 font-light tracking-[0.2em] uppercase">
+                  Confidentiality guaranteed
+                </p>
              </form>
            )}
 
            {step === 'submitting' && (
-             <div className="py-20 flex flex-col items-center justify-center text-center space-y-6">
-                <div className="relative">
-                    <Loader2 size={48} className={`animate-spin ${theme.icon}`} strokeWidth={1.5} />
-                    <div className={`absolute inset-0 blur-xl opacity-50 ${theme.icon} animate-pulse`}></div>
-                </div>
-                <p className="text-white text-sm font-medium uppercase tracking-widest animate-pulse">Processing Application...</p>
+             <div className="py-20 flex flex-col items-center justify-center text-center gap-4">
+                <Loader2 size={32} className="animate-spin text-brand-silver" strokeWidth={1.5} />
+                <p className="text-white/60 text-[11px] uppercase tracking-[0.3em] font-bold">Uploading & sending…</p>
              </div>
            )}
 
            {step === 'success' && (
-             <div className="py-12 flex flex-col items-center justify-center text-center space-y-8 animate-[fadeIn_0.5s_ease-out]">
-                <div className={`w-24 h-24 rounded-full bg-white/5 flex items-center justify-center ${theme.icon} relative`}>
-                   <Check size={48} strokeWidth={1.5} />
-                   <div className={`absolute inset-0 rounded-full border border-current opacity-20 animate-ping`}></div>
+             <div className="py-12 flex flex-col items-center justify-center text-center gap-8">
+                <div className="w-20 h-20 rounded-full bg-brand-silver/10 flex items-center justify-center text-brand-silver">
+                   <Check size={40} strokeWidth={1.5} />
                 </div>
                 <div className="space-y-2">
-                   <h4 className="text-2xl font-bold text-white">Application Received</h4>
-                   <p className="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">
-                     Your profile has been securely transmitted to our search team. We will review your credentials for the <span className="text-white font-medium">{job.title}</span> mandate.
+                   <h4 className="text-2xl md:text-3xl font-medium text-white">Application received.</h4>
+                   <p className="text-gray-400 text-sm max-w-sm mx-auto leading-relaxed font-light">
+                     We&rsquo;ve got your details for <span className="text-white">{job.title}</span> and will be in touch if it&rsquo;s a fit.
                    </p>
                 </div>
-                <button 
-                    onClick={onClose} 
-                    className="px-10 py-4 border border-white/10 text-white rounded-sm hover:bg-white hover:text-black transition-all duration-300 text-xs uppercase tracking-widest font-bold"
+                <button
+                    onClick={onClose}
+                    className="inline-flex items-center gap-3 px-8 py-4 border border-white/15 hover:border-white text-white text-[10px] font-bold uppercase tracking-[0.25em] rounded-sm hover:bg-white/5 transition-all"
                 >
-                   Return to Board
+                   Close
                 </button>
              </div>
            )}
@@ -328,5 +312,12 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
     </div>
   );
 };
+
+const FieldLabel: React.FC<{ text: string; children: React.ReactNode }> = ({ text, children }) => (
+  <div className="space-y-2">
+    <label className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.25em]">{text}</label>
+    {children}
+  </div>
+);
 
 export default ApplicationModal;
