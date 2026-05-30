@@ -12,6 +12,7 @@ interface SplitGatewayProps {
 const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNavigate }) => {
   const [hovered, setHovered] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [shouldRenderVideos, setShouldRenderVideos] = useState(false);
   const hireVideoRef = useRef<HTMLVideoElement>(null);
   const candidatesVideoRef = useRef<HTMLVideoElement>(null);
 
@@ -29,6 +30,14 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const conn = (navigator as unknown as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    const isSlow = conn?.saveData || (conn?.effectiveType && /2g/.test(conn.effectiveType));
+    if (!prefersReducedMotion && !isSlow && window.innerWidth >= 768) {
+      setShouldRenderVideos(true);
+    }
+
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
@@ -71,18 +80,27 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
         onMouseLeave={() => !isMobile && setHovered(null)}
       >
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <video
-            ref={candidatesVideoRef}
-            src={videos.candidates}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={posters.candidates}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-out will-change-opacity ${hovered === 'candidates' ? 'opacity-60' : 'opacity-20'}`}
-            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-          />
+          {shouldRenderVideos ? (
+            <video
+              ref={candidatesVideoRef}
+              src={videos.candidates}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster={posters.candidates}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-out will-change-opacity ${hovered === 'candidates' ? 'opacity-60' : 'opacity-20'}`}
+              style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+            />
+          ) : (
+            <img
+              src={posters.candidates}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover opacity-20"
+            />
+          )}
           <div className={`absolute inset-0 bg-black/30 transition-opacity duration-700 ${hovered === 'candidates' ? 'opacity-0' : 'opacity-100'}`}></div>
           <div
             className="absolute inset-0 z-10 opacity-20 pointer-events-none transition-opacity duration-700"
@@ -150,18 +168,27 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
         onMouseLeave={() => !isMobile && setHovered(null)}
       >
         <div className="absolute inset-0 bg-brand-dark">
-          <video
-            ref={hireVideoRef}
-            src={videos.hire}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={posters.hire}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-out will-change-opacity ${hovered === 'hire' ? 'opacity-60' : 'opacity-20'}`}
-            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-          />
+          {shouldRenderVideos ? (
+            <video
+              ref={hireVideoRef}
+              src={videos.hire}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster={posters.hire}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-out will-change-opacity ${hovered === 'hire' ? 'opacity-60' : 'opacity-20'}`}
+              style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+            />
+          ) : (
+            <img
+              src={posters.hire}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover opacity-20"
+            />
+          )}
 
           <div className={`absolute inset-0 bg-brand-dark/60 transition-opacity duration-700 ${hovered === 'hire' ? 'opacity-0' : 'opacity-100'}`}></div>
           <div className={`absolute inset-0 bg-black/40 transition-opacity duration-700 ${hovered === 'hire' ? 'opacity-100' : 'opacity-0'}`}></div>

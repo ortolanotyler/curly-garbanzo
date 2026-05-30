@@ -10,11 +10,24 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onViewJobs, onNavigate }) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
+  const [shouldRenderVideo, setShouldRenderVideo] = React.useState(false);
 
   const videoSrc = "https://res.cloudinary.com/dvbubqhpp/video/upload/v1779319281/15294386_1080_1920_25fps_wzyx8f.mp4";
-  const videoPoster = "https://res.cloudinary.com/dvbubqhpp/video/upload/v1779319281/15294386_1080_1920_25fps_wzyx8f.mp4";
+  // Cloudinary frame extraction → static poster image, ~50KB instead of multi-MB video
+  const videoPoster = "https://res.cloudinary.com/dvbubqhpp/video/upload/so_0,w_1280,q_auto,f_auto/v1779319281/15294386_1080_1920_25fps_wzyx8f.jpg";
 
   React.useEffect(() => {
+    // Skip the video entirely on small screens, slow connections, or reduced-motion preference
+    const isSmall = window.matchMedia('(max-width: 768px)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const conn = (navigator as unknown as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    const isSlow = conn?.saveData || (conn?.effectiveType && /2g/.test(conn.effectiveType));
+    if (isSmall || prefersReducedMotion || isSlow) return;
+    setShouldRenderVideo(true);
+  }, []);
+
+  React.useEffect(() => {
+    if (!shouldRenderVideo) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -27,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({ onViewJobs, onNavigate }) => {
     );
     if (videoRef.current) observer.observe(videoRef.current);
     return () => observer.disconnect();
-  }, []);
+  }, [shouldRenderVideo]);
 
   const stats = [
     { value: '15+', label: 'Years in Corporate Search' },
@@ -41,20 +54,29 @@ const Hero: React.FC<HeroProps> = ({ onViewJobs, onNavigate }) => {
       className="relative min-h-[100svh] w-full flex items-center overflow-hidden bg-brand-dark pt-32 pb-24 md:pt-40 md:pb-32"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          ref={videoRef}
-          key={videoSrc}
-          muted
-          loop
-          playsInline
-          preload="none"
-          onLoadedData={() => setIsVideoLoaded(true)}
-          poster={videoPoster}
-          className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-30' : 'opacity-0'} grayscale-[40%] brightness-[0.8] will-change-opacity`}
-          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
+        {shouldRenderVideo ? (
+          <video
+            ref={videoRef}
+            key={videoSrc}
+            muted
+            loop
+            playsInline
+            preload="none"
+            onLoadedData={() => setIsVideoLoaded(true)}
+            poster={videoPoster}
+            className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-30' : 'opacity-0'} grayscale-[40%] brightness-[0.8] will-change-opacity`}
+            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src={videoPoster}
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover opacity-30 grayscale-[40%] brightness-[0.8]"
+          />
+        )}
 
         <div className="absolute inset-0 z-10 bg-brand-logistics/10 mix-blend-multiply opacity-50"></div>
         <div className="absolute inset-0 z-20 bg-gradient-to-r from-brand-dark via-brand-dark/60 to-transparent"></div>

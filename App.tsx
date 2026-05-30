@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
+import { Loader2 } from 'lucide-react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import LinkedInFeed from './components/LinkedInFeed';
@@ -7,19 +8,28 @@ import FeaturedJobsHero from './components/FeaturedJobsHero';
 import LocationsMap from './components/LocationsMap';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import JobBoardPage from './components/JobBoardPage';
-import AdminPortal from './components/AdminPortal';
 import IndustriesServed from './components/IndustriesServed';
 import SplitGateway from './components/SplitGateway';
 import TrustStrip from './components/TrustStrip';
 import HowWeWork from './components/HowWeWork';
 import Testimonials from './components/Testimonials';
 import TeamStrip from './components/TeamStrip';
-import SubmitResumePage from './components/SubmitResumePage';
-import NotFoundPage from './components/NotFoundPage';
 import SEO from './components/SEO';
 import ErrorBoundary from './components/ErrorBoundary';
 import { View, Section } from './types';
+
+// Route-level lazy chunks — these views are only loaded when navigated to,
+// keeping the initial gateway/landing bundle lean.
+const JobBoardPage = lazy(() => import('./components/JobBoardPage'));
+const AdminPortal = lazy(() => import('./components/AdminPortal'));
+const SubmitResumePage = lazy(() => import('./components/SubmitResumePage'));
+const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
+
+const RouteLoader: React.FC = () => (
+  <div className="min-h-screen bg-brand-dark flex items-center justify-center">
+    <Loader2 className="text-brand-silver animate-spin" size={32} strokeWidth={1.5} />
+  </div>
+);
 
 const App: React.FC = () => {
   const [view, setView] = useState<View>(() => {
@@ -103,28 +113,40 @@ const App: React.FC = () => {
 
     if (view === 'jobs') {
       return (
-        <JobBoardPage
-          onBack={() => setView('landing')}
-          onViewSubmit={() => setView('submit')}
-          initialJobId={initialJobId}
-        />
+        <Suspense fallback={<RouteLoader />}>
+          <JobBoardPage
+            onBack={() => setView('landing')}
+            onViewSubmit={() => setView('submit')}
+            initialJobId={initialJobId}
+          />
+        </Suspense>
       );
     }
 
     if (view === 'submit') {
-      return <SubmitResumePage onBack={() => setView('landing')} />;
+      return (
+        <Suspense fallback={<RouteLoader />}>
+          <SubmitResumePage onBack={() => setView('landing')} />
+        </Suspense>
+      );
     }
 
     if (view === 'admin') {
-      return <AdminPortal onExit={() => setView('landing')} />;
+      return (
+        <Suspense fallback={<RouteLoader />}>
+          <AdminPortal onExit={() => setView('landing')} />
+        </Suspense>
+      );
     }
 
     if (view === 'not-found') {
       return (
-        <NotFoundPage
-          onBack={() => setView('gateway')}
-          onViewJobs={() => setView('jobs')}
-        />
+        <Suspense fallback={<RouteLoader />}>
+          <NotFoundPage
+            onBack={() => setView('gateway')}
+            onViewJobs={() => setView('jobs')}
+          />
+        </Suspense>
       );
     }
 
