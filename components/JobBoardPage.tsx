@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { JobPosting } from '../types';
 import { ArrowLeft, MapPin, DollarSign, ArrowRight, Share2, Check } from 'lucide-react';
 import JobDetailDrawer from './JobDetailDrawer';
+import ApplicationModal from './ApplicationModal';
 import * as jobService from '../services/jobService';
 import SEO from './SEO';
 
@@ -51,6 +52,7 @@ const CATEGORIES: Array<{ key: CategoryKey; label: string; match: (job: JobPosti
 
 const JobBoardPage: React.FC<JobBoardPageProps> = ({ onBack, onViewSubmit, initialJobId }) => {
   const [selectedJob, setSelectedJob] = useState<JobPosting | null>(null);
+  const [applyingTo, setApplyingTo] = useState<JobPosting | null>(null);
   const [jobs, setJobs] = useState<JobPosting[]>([]);
   const [loading, setLoading] = useState(true);
   const [copiedId, setCopiedId] = useState<string | number | null>(null);
@@ -116,23 +118,18 @@ const JobBoardPage: React.FC<JobBoardPageProps> = ({ onBack, onViewSubmit, initi
     return () => window.removeEventListener('popstate', handlePopState);
   }, [jobs]);
 
-  // Skeleton Loader for Job Cards
-const JobCardSkeleton: React.FC = () => (
-    <div className="bg-white/[0.01] border border-white/5 rounded-sm p-8 md:p-10 flex flex-col h-[280px] animate-pulse">
-        <div className="flex justify-between items-start mb-8">
-            <div className="w-24 h-4 bg-white/5 rounded-sm"></div>
-            <div className="w-8 h-8 bg-white/5 rounded-sm"></div>
+  // Skeleton row for the loading state — matches the row layout below
+const JobRowSkeleton: React.FC = () => (
+    <div className="bg-white/[0.01] border border-white/5 rounded-sm p-6 md:p-7 flex flex-col md:flex-row md:items-center justify-between gap-5 animate-pulse">
+        <div className="flex-grow space-y-3">
+            <div className="w-24 h-3 bg-white/5 rounded-sm"></div>
+            <div className="w-2/3 h-6 bg-white/10 rounded-sm"></div>
+            <div className="w-1/2 h-3 bg-white/5 rounded-sm"></div>
         </div>
-        <div className="space-y-4 mb-8">
-            <div className="w-3/4 h-8 bg-white/10 rounded-sm"></div>
-            <div className="w-1/2 h-6 bg-white/5 rounded-sm"></div>
-        </div>
-        <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
-            <div className="space-y-2">
-                <div className="w-32 h-4 bg-white/5 rounded-sm"></div>
-                <div className="w-24 h-4 bg-white/5 rounded-sm"></div>
-            </div>
-            <div className="w-10 h-10 rounded-full bg-white/5"></div>
+        <div className="flex items-center gap-4 shrink-0">
+            <div className="w-24 h-3 bg-white/5 rounded-sm"></div>
+            <div className="w-24 h-3 bg-white/5 rounded-sm hidden sm:block"></div>
+            <div className="w-20 h-10 bg-white/5 rounded-sm"></div>
         </div>
     </div>
 );
@@ -241,78 +238,88 @@ const JobCardSkeleton: React.FC = () => (
                     </div>
                 )}
                 {loading ? (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        {[...Array(6)].map((_, i) => <JobCardSkeleton key={i} />)}
+                    <div className="space-y-3">
+                        {[...Array(6)].map((_, i) => <JobRowSkeleton key={i} />)}
                     </div>
                 ) : visibleJobs.length > 0 ? (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="space-y-3">
                         {/* JobPosting Structured Data — emit for all jobs so search engines index them */}
                         {jobs.map((job) => (
                             <SEO key={`seo-${job.id}`} job={job} schemaOnly={true} />
                         ))}
                         {visibleJobs.map((job) => (
-                            <button 
-                                type="button"
-                                key={job.id} 
+                            <div
+                                key={job.id}
                                 onClick={() => setSelectedJob(job)}
-                                className={`
-                                    relative w-full group cursor-pointer bg-white/[0.01] border border-white/5 rounded-sm overflow-hidden
-                                    transition-all duration-500 ease-out hover:-translate-y-1
-                                    flex flex-col backdrop-blur-sm text-left
-                                    hover:border-brand-silver/30
-                                `}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        setSelectedJob(job);
+                                    }
+                                }}
                                 aria-label={`View details for ${job.title}`}
+                                className="group relative bg-white/[0.02] border border-white/5 rounded-sm p-6 md:p-7 hover:border-brand-silver/40 hover:bg-white/[0.04] transition-all duration-300 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-5"
                             >
-                                <div className="p-8 md:p-10 flex flex-col h-full relative z-10">
-                                    <div className="flex justify-between items-start mb-8">
-                                        <span className="font-mono text-[10px] text-gray-600 uppercase tracking-widest px-2 py-1 border border-white/5 rounded-sm">
-                                            REF: {job.ref}
-                                        </span>
-                                        <button 
-                                            onClick={(e) => handleShare(e, job.id)}
-                                            className="p-2 rounded-sm border border-white/5 hover:border-brand-silver/30 hover:bg-white/5 transition-all group/share relative"
-                                            title="Copy Job Link"
-                                        >
-                                            {copiedId === job.id ? (
-                                                <Check size={14} className="text-green-400" />
-                                            ) : (
-                                                <Share2 size={14} className="text-gray-500 group-hover/share:text-brand-silver" />
-                                            )}
-                                            {copiedId === job.id && (
-                                                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-brand-navy border border-white/10 text-[10px] text-white px-2 py-1 rounded-sm whitespace-nowrap animate-in fade-in slide-in-from-bottom-1">
-                                                    Link Copied
-                                                </span>
-                                            )}
-                                        </button>
-                                    </div>
+                                <div className="absolute top-0 left-0 w-[2px] h-full bg-brand-silver scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
 
-                                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-brand-silver transition-colors tracking-tight leading-tight text-balance">
+                                <div className="flex-grow min-w-0 space-y-2">
+                                    <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">
+                                        {job.ref}
+                                    </span>
+                                    <h3 className="text-xl md:text-2xl font-medium text-white group-hover:text-brand-silver transition-colors leading-tight tracking-tight">
                                         {job.title}
                                     </h3>
-
-                                    <p className="text-gray-500 text-sm leading-relaxed mb-10 line-clamp-2 font-light text-justify">
-                                        {job.summary}
-                                    </p>
-
-                                    <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
-                                        <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-500">
-                                            <div className="flex items-center gap-2">
-                                                <MapPin size={14} className="text-brand-silver" />
-                                                <span>{job.location}</span>
-                                            </div>
-                                            <div className="hidden sm:flex items-center gap-2">
-                                                <DollarSign size={14} className="text-brand-silver" />
-                                                <span>{job.salary}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="p-2 rounded-full border border-white/10 group-hover:bg-white group-hover:text-brand-dark transition-all duration-300">
-                                            <ArrowRight size={14} />
-                                        </div>
-                                    </div>
+                                    {job.summary && (
+                                        <p className="text-sm text-white/50 font-light leading-relaxed line-clamp-1 max-w-2xl">
+                                            {job.summary}
+                                        </p>
+                                    )}
                                 </div>
-                                <div className="absolute inset-0 bg-gradient-to-br from-brand-silver/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                            </button>
+
+                                <div className="flex flex-wrap items-center gap-4 md:gap-6 shrink-0">
+                                    <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.15em] text-white/60">
+                                        <MapPin size={14} className="text-brand-silver" strokeWidth={1.5} />
+                                        <span>{job.location}</span>
+                                    </div>
+                                    <div className="hidden sm:flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.15em] text-white/60">
+                                        <DollarSign size={14} className="text-brand-silver" strokeWidth={1.5} />
+                                        <span>{job.salary}</span>
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        onClick={(e) => handleShare(e, job.id)}
+                                        className="p-2.5 rounded-sm border border-white/10 hover:border-brand-silver/40 hover:bg-white/5 transition-all relative"
+                                        title="Copy job link"
+                                        aria-label="Copy job link"
+                                    >
+                                        {copiedId === job.id ? (
+                                            <Check size={14} className="text-emerald-400" strokeWidth={2} />
+                                        ) : (
+                                            <Share2 size={14} className="text-white/50" strokeWidth={1.5} />
+                                        )}
+                                        {copiedId === job.id && (
+                                            <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-brand-navy border border-white/10 text-[10px] text-white px-2 py-1 rounded-sm whitespace-nowrap">
+                                                Link copied
+                                            </span>
+                                        )}
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setApplyingTo(job);
+                                        }}
+                                        className="inline-flex items-center gap-2 bg-white text-brand-dark hover:bg-brand-silver px-5 py-3 min-h-[44px] rounded-sm text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300"
+                                    >
+                                        Apply
+                                        <ArrowRight size={14} />
+                                    </button>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 ) : jobs.length > 0 ? (
@@ -340,11 +347,19 @@ const JobCardSkeleton: React.FC = () => (
             </div>
         </main>
 
-        <JobDetailDrawer 
-            job={selectedJob} 
-            isOpen={!!selectedJob} 
-            onClose={() => setSelectedJob(null)} 
+        <JobDetailDrawer
+            job={selectedJob}
+            isOpen={!!selectedJob}
+            onClose={() => setSelectedJob(null)}
         />
+
+        {applyingTo && (
+            <ApplicationModal
+                job={applyingTo}
+                isOpen={!!applyingTo}
+                onClose={() => setApplyingTo(null)}
+            />
+        )}
     </div>
   );
 };
