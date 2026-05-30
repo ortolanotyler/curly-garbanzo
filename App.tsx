@@ -148,7 +148,11 @@ const App: React.FC = () => {
           <Contact />
         </main>
 
-        <Footer onNavigate={(id) => handleNavigate(id)} />
+        <Footer
+          onNavigate={(id) => handleNavigate(id)}
+          onViewJobs={() => setView('jobs')}
+          onViewSubmit={() => setView('submit')}
+        />
       </div>
     );
   };
