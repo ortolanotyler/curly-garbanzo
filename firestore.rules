@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (request.auth.token.email == "tyler.ortolano95@gmail.com" && request.auth.token.email_verified == true);
+    }
+
+    // Jobs collection
+    match /jobs/{jobId} {
+      // Publicly readable
+      allow read: if true;
+      // Only admins can write
+      allow write: if isAdmin();
+    }
+
+    // LinkedIn posts collection
+    match /linkedinPosts/{postId} {
+      // Publicly readable
+      allow read: if true;
+      // Only admins can write
+      allow write: if isAdmin();
+    }
+
+    // Users collection (for roles)
+    match /users/{userId} {
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      allow write: if isAdmin();
+    }
+  }
+}
