@@ -1,244 +1,331 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Section } from '../types';
-import { Building2, Phone, Mail, Linkedin, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Building2, Phone, Mail, ArrowRight, Loader2, ArrowUpRight, Linkedin } from 'lucide-react';
+
+type InquiryType = 'hiring' | 'candidate' | 'other';
+
+const INQUIRY_OPTIONS: Array<{ key: InquiryType; label: string; sub: string }> = [
+  { key: 'hiring', label: 'I am hiring', sub: 'Start a search' },
+  { key: 'candidate', label: 'I am exploring roles', sub: 'Reach the team' },
+  { key: 'other', label: 'Something else', sub: 'Press, partnerships, etc.' },
+];
 
 const Contact: React.FC = () => {
-    const [isVisible, setIsVisible] = useState(false);
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-    const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
+  const [inquiryType, setInquiryType] = useState<InquiryType>('hiring');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const sectionRef = useRef<HTMLElement>(null);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!email || !name) return;
-
-        setStatus('loading');
-        try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, name }),
-            });
-
-            if (response.ok) {
-                setStatus('success');
-                setEmail('');
-                setName('');
-            } else {
-                setStatus('error');
-            }
-        } catch (error) {
-            console.error('Submission error:', error);
-            setStatus('error');
-        }
-    };
-
-    useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // Theme Config - Monochrome Brand
-  const theme = {
-    accent: 'text-brand-silver',
-    bg: 'bg-brand-steel',
-    borderHover: 'hover:border-brand-steel/50',
-    iconBg: 'group-hover/item:bg-brand-steel',
-    iconColor: 'group-hover/item:text-white',
-    glow: 'bg-brand-steel/5 group-hover:bg-brand-steel/20',
-    button: 'bg-brand-steel hover:bg-white text-white hover:text-brand-dark',
-    gradientText: 'from-brand-silver to-white',
-    sectionBg: 'bg-brand-dark/95'
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !name) return;
+    setStatus('loading');
+    setErrorMessage('');
+
+    const inquiryLabel = INQUIRY_OPTIONS.find((o) => o.key === inquiryType)?.label || inquiryType;
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          company,
+          inquiryType: inquiryLabel,
+          message: message || '(no message)',
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setName('');
+        setEmail('');
+        setCompany('');
+        setMessage('');
+        setInquiryType('hiring');
+      } else {
+        let detail = `Server returned ${response.status}`;
+        try {
+          const data = await response.json();
+          if (data?.error) detail = data.error;
+        } catch {
+          // ignore
+        }
+        setErrorMessage(detail);
+        setStatus('error');
+      }
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : 'Network error');
+      setStatus('error');
+    }
   };
 
   return (
-    <section 
-      id={Section.CONTACT} 
+    <section
+      id={Section.CONTACT}
       ref={sectionRef}
-      className={`${theme.sectionBg} backdrop-blur-xl py-32 relative overflow-hidden transition-colors duration-700`}
+      className="relative py-24 md:py-32 bg-brand-dark border-t border-white/5 overflow-hidden"
     >
-        {/* Abstract Map Background */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-             <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/dvbubqhpp/image/upload/v1770947667/IMG_5018-edit-1024x683_eiabfr.jpg')] bg-cover bg-center grayscale mix-blend-overlay"></div>
-             <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-silver/[0.03] rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div
+          className={`max-w-3xl mb-16 md:mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-10 h-[1px] bg-brand-silver"></div>
+            <span className="text-white/60 font-light tracking-[0.3em] text-[10px] uppercase">
+              Get in touch
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1.05]">
+            Start the <span className="font-serif italic font-light text-brand-silver">conversation.</span>
+          </h2>
+          <p className="mt-6 text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-2xl">
+            Whether you&rsquo;re building a Finance, Operations, or IT team — or you want to be the
+            next senior leader we place — start here. We respond within one business day.
+          </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                
-                {/* The "Business Card" */}
-                <div 
-                  className={`
-                    bg-white/5 backdrop-blur-md border border-white/10 p-8 md:p-10 lg:p-14 rounded-sm shadow-2xl relative overflow-hidden group transition-all duration-1000 ease-out
-                    ${theme.borderHover}
-                    ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}
-                  `}
-                >
-                    <div className={`absolute top-0 left-0 w-1 h-full transition-all duration-500 ${theme.bg} ${isVisible ? 'h-full' : 'h-0'}`}></div>
-                    <div className={`absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[80px] transition-all duration-700 ${theme.glow}`}></div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          {/* Sidebar — direct info */}
+          <aside
+            className={`lg:col-span-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'}`}
+          >
+            <div className="bg-white/[0.02] border border-white/5 rounded-sm p-8 md:p-10 h-full flex flex-col gap-10">
+              <div className="space-y-6">
+                <ContactRow icon={Building2} label="Headquarters">
+                  91 Skyway Avenue, Suite 206
+                  <br />
+                  Toronto, ON · M9W 6R5
+                </ContactRow>
 
-                    <div className="mb-8 md:mb-12 relative">
-                        <div className="flex items-center gap-3 mb-2">
-                            <img 
-                                src="https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png" 
-                                className="w-8 h-8 opacity-90"
-                                alt="Certus Logo"
-                                referrerPolicy="no-referrer"
-                            />
-                            <span className="font-sans font-bold text-2xl md:text-3xl text-white tracking-tight block">
-                                CERTUS<span className="text-white">GROUP</span>
-                            </span>
-                        </div>
-                        <span className="text-white/50 text-[9px] md:text-[10px] uppercase tracking-[0.4em] ml-[44px]">Corporate Search</span>
-                    </div>
+                <ContactRow icon={Phone} label="Direct line">
+                  <a href="tel:+14372951799" className="hover:text-white transition-colors">
+                    (437) 295 1799
+                  </a>
+                </ContactRow>
 
-                    <div className="space-y-8 md:space-y-10">
-                        {/* Address */}
-                        <div className="flex items-start gap-4 md:gap-6 group/item cursor-default">
-                            <div className={`
-                                w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-sm flex-shrink-0
-                                ${theme.accent} transition-all duration-300
-                                ${theme.iconBg} ${theme.iconColor}
-                            `}>
-                                <Building2 strokeWidth={1.5} className="w-[18px] h-[18px] md:w-5 md:h-5 drop-shadow-lg" />
-                            </div>
-                            <div>
-                                <h4 className="text-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 md:mb-2 opacity-80">Headquarters</h4>
-                                <p className="text-gray-400 font-light text-xs md:text-sm leading-relaxed tracking-wide">
-                                    91 Skyway Avenue, Suite 206<br/>
-                                    Toronto, ON., M9W 6R5
-                                </p>
-                            </div>
-                        </div>
+                <ContactRow icon={Mail} label="Inquiries">
+                  <a
+                    href="mailto:info@certusgroup.com"
+                    className="hover:text-white transition-colors"
+                  >
+                    info@certusgroup.com
+                  </a>
+                </ContactRow>
+              </div>
 
-                        {/* Phone */}
-                        <div className="flex items-start gap-4 md:gap-6 group/item cursor-default">
-                            <div className={`
-                                w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-sm flex-shrink-0
-                                ${theme.accent} transition-all duration-300
-                                ${theme.iconBg} ${theme.iconColor}
-                            `}>
-                                <Phone strokeWidth={1.5} className="w-[18px] h-[18px] md:w-5 md:h-5 drop-shadow-lg" />
-                            </div>
-                            <div>
-                                <h4 className="text-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 md:mb-2 opacity-80">Direct Line</h4>
-                                <p className="text-gray-400 font-light text-xs md:text-sm tracking-wide">
-                                    (437) 295 1799
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Email */}
-                        <div className="flex items-start gap-4 md:gap-6 group/item cursor-default">
-                            <div className={`
-                                w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-sm flex-shrink-0
-                                ${theme.accent} transition-all duration-300
-                                ${theme.iconBg} ${theme.iconColor}
-                            `}>
-                                <Mail strokeWidth={1.5} className="w-[18px] h-[18px] md:w-5 md:h-5 drop-shadow-lg" />
-                            </div>
-                            <div>
-                                <h4 className="text-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 md:mb-2 opacity-80">Inquiries</h4>
-                                <p className="text-gray-400 font-light text-xs md:text-sm tracking-wide">
-                                    info@certusgroup.com
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Footer / Social - Upgraded */}
-                    <div className="mt-10 md:mt-14 pt-6 md:pt-8 border-t border-white/5">
-                        <a href="#" className="flex items-center justify-between group/link cursor-pointer">
-                            <div className="flex flex-col">
-                                <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1 group-hover/link:text-gray-400 transition-colors">Social</span>
-                                <span className="text-xs md:text-sm font-medium text-white group-hover/link:text-brand-silver transition-colors flex items-center gap-2">
-                                    Follow on Network <ArrowUpRight size={14} className="opacity-0 group-hover/link:opacity-100 transition-opacity translate-y-1 group-hover/link:translate-y-0" />
-                                </span>
-                            </div>
-                            <div className={`
-                                w-8 h-8 md:w-10 md:h-10 rounded-sm border border-white/10 flex items-center justify-center 
-                                ${theme.accent} group-hover/link:bg-white group-hover/link:text-brand-dark transition-all duration-300
-                            `}>
-                                <Linkedin strokeWidth={1.5} className="w-4 h-4 md:w-[18px] md:h-[18px]" />
-                            </div>
-                        </a>
-                    </div>
+              <a
+                href="https://www.linkedin.com/showcase/certus-supply-chain-search/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-auto pt-6 border-t border-white/5 flex items-center justify-between"
+              >
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-1">
+                    Network
+                  </span>
+                  <span className="text-sm font-medium text-white group-hover:text-brand-silver transition-colors flex items-center gap-2">
+                    Follow on LinkedIn
+                    <ArrowUpRight
+                      size={14}
+                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                    />
+                  </span>
                 </div>
-
-                {/* Call to Action */}
-                <div 
-                  className={`
-                    text-center lg:text-left space-y-6 md:space-y-8 transition-all duration-1000 ease-out delay-200
-                    ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}
-                  `}
-                >
-                    <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight md:leading-[1.1]">
-                        Start Your <br/>
-                        <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>Search Today.</span>
-                    </h2>
-                    <p className="text-gray-400 text-base md:text-lg font-light leading-relaxed max-w-md mx-auto lg:mx-0 border-l border-brand-steel/20 pl-6">
-                        Whether you are looking to build a high-impact Finance, Operations, or IT team, or seeking your next leadership challenge, connect with our specialists.
-                    </p>
-                    
-                    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto lg:mx-0 pt-2 md:pt-4">
-                        <div className="relative group">
-                             <input 
-                                type="text" 
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                                placeholder="Your Name" 
-                                className="w-full bg-transparent border-b border-white/30 px-0 py-3 md:py-4 text-white placeholder-gray-400 focus:outline-none focus:border-brand-silver transition-colors text-base md:text-lg font-light" 
-                             />
-                             <div className={`absolute bottom-0 left-0 h-[1px] bg-brand-silver transition-all duration-500 w-0 group-hover:w-full group-focus-within:w-full`}></div>
-                        </div>
-                        <div className="relative group">
-                             <input 
-                                type="email" 
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                                placeholder="Enter your email" 
-                                className="w-full bg-transparent border-b border-white/30 px-0 py-3 md:py-4 text-white placeholder-gray-400 focus:outline-none focus:border-brand-silver transition-colors text-base md:text-lg font-light" 
-                             />
-                             <div className={`absolute bottom-0 left-0 h-[1px] bg-brand-silver transition-all duration-500 w-0 group-hover:w-full group-focus-within:w-full`}></div>
-                        </div>
-                        
-                        {status === 'success' && (
-                            <p className="text-emerald-400 text-xs md:text-sm font-medium animate-pulse">Thank you. We will be in touch shortly.</p>
-                        )}
-                        {status === 'error' && (
-                            <p className="text-red-400 text-xs md:text-sm font-medium">Something went wrong. Please try again.</p>
-                        )}
-
-                        <button 
-                            type="submit"
-                            disabled={status === 'loading'}
-                            className={`w-full group font-bold uppercase tracking-widest py-4 md:py-5 transition-all duration-300 flex items-center justify-center gap-3 mt-4 ${theme.button} ${status === 'loading' ? 'opacity-50 cursor-not-allowed' : ''}`}
-                        >
-                            {status === 'loading' ? 'Sending...' : 'Request Callback'}
-                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                        </button>
-                    </form>
+                <div className="w-10 h-10 rounded-sm border border-white/10 flex items-center justify-center text-white/60 group-hover:border-white/40 group-hover:text-white transition-all">
+                  <Linkedin size={16} strokeWidth={1.5} />
                 </div>
-
+              </a>
             </div>
+          </aside>
+
+          {/* Form */}
+          <div
+            className={`lg:col-span-8 transition-all duration-1000 delay-150 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'}`}
+          >
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white/[0.02] border border-white/5 rounded-sm p-8 md:p-10 space-y-7"
+            >
+              <Field label="I am…" required>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  {INQUIRY_OPTIONS.map((opt) => {
+                    const selected = inquiryType === opt.key;
+                    return (
+                      <button
+                        key={opt.key}
+                        type="button"
+                        onClick={() => setInquiryType(opt.key)}
+                        className={`group text-left p-4 rounded-sm border transition-all duration-200 ${
+                          selected
+                            ? 'border-brand-silver bg-brand-silver/10'
+                            : 'border-white/10 hover:border-white/30 bg-transparent'
+                        }`}
+                      >
+                        <div className={`text-sm font-medium transition-colors ${selected ? 'text-white' : 'text-white/80'}`}>
+                          {opt.label}
+                        </div>
+                        <div className={`text-[10px] uppercase tracking-[0.2em] mt-1 transition-colors ${selected ? 'text-brand-silver' : 'text-white/30'}`}>
+                          {opt.sub}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </Field>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Field label="Name" required>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    className={inputClasses}
+                    placeholder="Jane Doe"
+                  />
+                </Field>
+                <Field label="Email" required>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className={inputClasses}
+                    placeholder="jane.doe@example.com"
+                  />
+                </Field>
+              </div>
+
+              <Field label="Company" hint="Optional">
+                <input
+                  type="text"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className={inputClasses}
+                  placeholder="Acme Industries"
+                />
+              </Field>
+
+              <Field
+                label="Message"
+                hint={inquiryType === 'hiring' ? 'Role, timing, sector — whatever’s useful' : 'Optional'}
+              >
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={4}
+                  className={`${inputClasses} resize-none`}
+                  placeholder={
+                    inquiryType === 'hiring'
+                      ? 'We’re looking for a VP of Finance, ideally placed by Q3...'
+                      : inquiryType === 'candidate'
+                        ? 'I’m a Director of Operations exploring CFO-track roles in the GTA...'
+                        : 'How can we help?'
+                  }
+                />
+              </Field>
+
+              {status === 'error' && (
+                <div className="bg-red-500/10 border border-red-500/30 rounded-sm px-4 py-3">
+                  <p className="text-red-300 text-xs font-medium">
+                    {errorMessage || 'Something went wrong. Please try again.'}
+                  </p>
+                </div>
+              )}
+              {status === 'success' && (
+                <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-sm px-4 py-3">
+                  <p className="text-emerald-300 text-xs font-medium">
+                    Thanks — your message is in. We&rsquo;ll respond within one business day.
+                  </p>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="w-full bg-white text-brand-dark hover:bg-brand-silver disabled:opacity-50 disabled:cursor-not-allowed py-4 font-bold uppercase tracking-[0.2em] text-xs rounded-sm transition-all duration-300 shadow-lg flex items-center justify-center gap-3"
+              >
+                {status === 'loading' ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" />
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    Send message
+                    <ArrowRight size={16} />
+                  </>
+                )}
+              </button>
+
+              <p className="text-center text-[10px] text-white/30 font-light tracking-[0.2em] uppercase">
+                Confidentiality guaranteed
+              </p>
+            </form>
+          </div>
         </div>
+      </div>
     </section>
   );
 };
+
+const inputClasses =
+  'w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-sm placeholder-gray-700 focus:outline-none focus:border-brand-silver/60 transition-colors';
+
+const Field: React.FC<{
+  label: string;
+  required?: boolean;
+  hint?: string;
+  children: React.ReactNode;
+}> = ({ label, required, hint, children }) => (
+  <div className="space-y-2">
+    <div className="flex items-baseline justify-between gap-3">
+      <label className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.25em]">
+        {label}
+        {required && <span className="text-brand-silver ml-1">*</span>}
+      </label>
+      {hint && <span className="text-[10px] text-white/30 font-light">{hint}</span>}
+    </div>
+    {children}
+  </div>
+);
+
+const ContactRow: React.FC<{
+  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+  label: string;
+  children: React.ReactNode;
+}> = ({ icon: Icon, label, children }) => (
+  <div className="flex items-start gap-4">
+    <div className="w-10 h-10 rounded-sm border border-white/10 flex items-center justify-center text-brand-silver flex-shrink-0">
+      <Icon size={16} strokeWidth={1.5} />
+    </div>
+    <div>
+      <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40 mb-1.5">
+        {label}
+      </div>
+      <div className="text-sm text-gray-300 font-light leading-relaxed">{children}</div>
+    </div>
+  </div>
+);
 
 export default Contact;

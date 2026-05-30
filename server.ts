@@ -95,28 +95,33 @@ if (process.env.SENDGRID_API_KEY) {
 
 // Email API routes
 app.post("/api/contact", async (req, res) => {
-  const { email, name, company, message } = req.body;
+  const { email, name, company, inquiryType, message } = req.body;
 
   if (!email || !name) {
     return res.status(400).json({ error: "Name and Email are required" });
   }
 
   if (!process.env.SENDGRID_API_KEY) {
-    console.log("[Dev] Contact form submission:", { name, email, company, message });
+    console.log("[Dev] Contact form submission:", { name, email, company, inquiryType, message });
     return res.json({ success: true, message: "Dev mode: Email logged to console" });
   }
 
+  const subjectTag = inquiryType ? `[${inquiryType}]` : '';
+  const safeMessage = (message || '(no message provided)').replace(/\n/g, '<br/>');
+
   const msg = {
     to: "recruit@certusgroup.com",
-    from: "tyler@certusgroup.com", 
-    subject: `New Contact: ${name}`,
-    text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nMessage: ${message || 'N/A'}`,
+    from: "tyler@certusgroup.com",
+    subject: `${subjectTag} Contact: ${name}`.trim(),
+    text: `Inquiry type: ${inquiryType || 'N/A'}\nName: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\n\nMessage:\n${message || '(no message provided)'}`,
     html: `
       <h3>New Contact Form Submission</h3>
+      <p><strong>Inquiry type:</strong> ${inquiryType || 'N/A'}</p>
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Company:</strong> ${company || 'N/A'}</p>
-      <p><strong>Message:</strong> ${message || 'N/A'}</p>
+      <p><strong>Message:</strong></p>
+      <blockquote style="border-left:3px solid #ddd;padding-left:12px;color:#444;">${safeMessage}</blockquote>
     `,
   };
 
