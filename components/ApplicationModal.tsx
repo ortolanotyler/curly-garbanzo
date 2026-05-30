@@ -12,6 +12,8 @@ interface ApplicationModalProps {
 const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClose }) => {
   const [step, setStep] = useState<'form' | 'submitting' | 'success' | 'error'>('form');
   const [fileName, setFileName] = useState<string | null>(null);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -24,9 +26,22 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
     if (isOpen) {
         setStep('form');
         setFileName(null);
+        setResumeFile(null);
+        setErrorMessage('');
         setFormData({ firstName: '', lastName: '', email: '', linkedin: '' });
     }
   }, [isOpen]);
+
+  const MAX_FILE_BYTES = 5 * 1024 * 1024;
+  const REQUEST_TIMEOUT_MS = 20_000;
+
+  const readFileAsDataUrl = (file: File): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result));
+      reader.onerror = () => reject(new Error('Could not read the selected file.'));
+      reader.readAsDataURL(file);
+    });
 
   if (!isOpen) return null;
 
@@ -41,27 +56,65 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
     setStep('submitting');
-    
+
+    let resumeBase64: string | undefined;
+    let resumeName: string | undefined;
+    if (resumeFile) {
+      try {
+        resumeBase64 = await readFileAsDataUrl(resumeFile);
+        resumeName = resumeFile.name;
+      } catch (err) {
+        setErrorMessage('Could not read the selected file. Please try again.');
+        setStep('error');
+        return;
+      }
+    }
+
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
     try {
       const response = await fetch('/api/apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
         body: JSON.stringify({
           ...formData,
           jobTitle: job.title,
-          jobRef: job.ref
+          jobRef: job.ref,
+          resumeBase64,
+          resumeName,
         }),
       });
 
       if (response.ok) {
         setStep('success');
-      } else {
-        setStep('error');
+        return;
       }
-    } catch (error) {
-      console.error('Application error:', error);
+
+      let detail = `Server returned ${response.status}`;
+      try {
+        const data = await response.json();
+        if (data?.error) detail = data.error;
+      } catch {
+        // response was not JSON — keep status-code message
+      }
+      setErrorMessage(detail);
       setStep('error');
+    } catch (error) {
+      const isAbort = error instanceof DOMException && error.name === 'AbortError';
+      setErrorMessage(
+        isAbort
+          ? 'Request timed out. The server may be unreachable — please try again.'
+          : error instanceof Error
+            ? error.message
+            : 'Network error. Please try again.'
+      );
+      setStep('error');
+    } finally {
+      window.clearTimeout(timeoutId);
     }
   };
 
@@ -71,9 +124,20 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFileName(e.target.files[0].name);
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > MAX_FILE_BYTES) {
+      setErrorMessage('Resume must be 5MB or smaller.');
+      setResumeFile(null);
+      setFileName(null);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+      return;
     }
+
+    setErrorMessage('');
+    setResumeFile(file);
+    setFileName(file.name);
   };
 
   return (
@@ -114,8 +178,12 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
         <div className="p-8 bg-brand-navy/30">
            {(step === 'form' || step === 'error') && (
              <form onSubmit={handleSubmit} className="space-y-6">
-                {step === 'error' && (
-                  <p className="text-red-400 text-xs font-medium text-center">Something went wrong. Please try again.</p>
+                {(step === 'error' || errorMessage) && (
+                  <div className="bg-red-500/10 border border-red-500/30 rounded-sm px-4 py-3">
+                    <p className="text-red-300 text-xs font-medium">
+                      {errorMessage || 'Something went wrong. Please try again.'}
+                    </p>
+                  </div>
                 )}
                 <div className="grid grid-cols-2 gap-6">
                    <div className="space-y-2">
