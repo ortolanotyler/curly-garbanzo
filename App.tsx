@@ -11,6 +11,9 @@ import JobBoardPage from './components/JobBoardPage';
 import AdminPortal from './components/AdminPortal';
 import IndustriesServed from './components/IndustriesServed';
 import SplitGateway from './components/SplitGateway';
+import TrustStrip from './components/TrustStrip';
+import HowWeWork from './components/HowWeWork';
+import Testimonials from './components/Testimonials';
 import SEO from './components/SEO';
 import ErrorBoundary from './components/ErrorBoundary';
 import { View, Section } from './types';
@@ -121,9 +124,12 @@ const App: React.FC = () => {
             onViewJobs={() => setView('jobs')}
             onNavigate={handleNavigate}
           />
+          <TrustStrip />
           <IndustriesServed />
+          <HowWeWork />
           <LinkedInFeed />
           <LocationsMap />
+          <Testimonials />
           <FeaturedJobsHero onViewJobs={() => setView('jobs')} />
           <Contact />
         </main>
