@@ -64,11 +64,15 @@ const App: React.FC = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleGatewaySelect = (target: 'landing' | 'sectors') => {
+  const handleGatewaySelect = (target: 'landing' | 'sectors' | 'hire') => {
     setView('landing');
     if (target === 'sectors') {
       setTimeout(() => {
         document.getElementById(Section.INDUSTRIES)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else if (target === 'hire') {
+      setTimeout(() => {
+        document.getElementById(Section.CONTACT)?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     }
   };
