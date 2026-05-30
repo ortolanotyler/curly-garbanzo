@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { JobPosting } from '../types';
 import { X, Upload, Check, Loader2, Linkedin } from 'lucide-react';
+import { upload } from '@vercel/blob/client';
 
 interface ApplicationModalProps {
   job: JobPosting;
@@ -32,17 +33,9 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
     }
   }, [isOpen]);
 
-  const MAX_FILE_BYTES = 3 * 1024 * 1024;
-  const MAX_FILE_LABEL = '3MB';
-  const REQUEST_TIMEOUT_MS = 20_000;
-
-  const readFileAsDataUrl = (file: File): Promise<string> =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(String(reader.result));
-      reader.onerror = () => reject(new Error('Could not read the selected file.'));
-      reader.readAsDataURL(file);
-    });
+  const MAX_FILE_BYTES = 25 * 1024 * 1024;
+  const MAX_FILE_LABEL = '25MB';
+  const REQUEST_TIMEOUT_MS = 30_000;
 
   if (!isOpen) return null;
 
@@ -60,14 +53,23 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
     setErrorMessage('');
     setStep('submitting');
 
-    let resumeBase64: string | undefined;
+    let resumeUrl: string | undefined;
     let resumeName: string | undefined;
     if (resumeFile) {
       try {
-        resumeBase64 = await readFileAsDataUrl(resumeFile);
+        const blob = await upload(resumeFile.name, resumeFile, {
+          access: 'public',
+          handleUploadUrl: '/api/blob-upload',
+          contentType: resumeFile.type || 'application/pdf',
+        });
+        resumeUrl = blob.url;
         resumeName = resumeFile.name;
       } catch (err) {
-        setErrorMessage('Could not read the selected file. Please try again.');
+        setErrorMessage(
+          err instanceof Error
+            ? `Resume upload failed: ${err.message}`
+            : 'Resume upload failed. Please try again.'
+        );
         setStep('error');
         return;
       }
@@ -85,7 +87,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
           ...formData,
           jobTitle: job.title,
           jobRef: job.ref,
-          resumeBase64,
+          resumeUrl,
           resumeName,
         }),
       });

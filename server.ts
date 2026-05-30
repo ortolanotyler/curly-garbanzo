@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 import admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
+import { handleUpload, type HandleUploadBody } from '@vercel/blob/client';
 
 dotenv.config();
 
@@ -128,29 +129,65 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+// Token endpoint for direct client → Vercel Blob uploads.
+// The browser POSTs here, gets back a short-lived upload token, then PUTs
+// the file straight to Blob — bypassing the 4.5MB function body limit.
+app.post("/api/blob-upload", async (req, res) => {
+  const body = req.body as HandleUploadBody;
+  try {
+    const jsonResponse = await handleUpload({
+      body,
+      request: req as any,
+      onBeforeGenerateToken: async (pathname) => ({
+        allowedContentTypes: [
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        ],
+        maximumSizeInBytes: 25 * 1024 * 1024,
+        addRandomSuffix: true,
+        tokenPayload: JSON.stringify({ pathname }),
+      }),
+      onUploadCompleted: async () => {
+        // Hook for follow-up work (e.g. log to Firestore). No-op for now.
+      },
+    });
+    res.json(jsonResponse);
+  } catch (error) {
+    console.error("Blob upload token error:", error);
+    res.status(400).json({ error: (error as Error).message });
+  }
+});
+
 app.post("/api/apply", async (req, res) => {
-  const { firstName, lastName, email, phone, linkedin, jobTitle, jobRef, resumeBase64, resumeName } = req.body;
+  const { firstName, lastName, email, phone, linkedin, jobTitle, jobRef, resumeUrl, resumeName } = req.body;
 
   if (!email || !firstName || !lastName) {
     return res.status(400).json({ error: "Required fields missing" });
   }
 
   if (!process.env.SENDGRID_API_KEY) {
-    console.log("[Dev] Job application:", { firstName, lastName, email, jobTitle });
+    console.log("[Dev] Job application:", { firstName, lastName, email, jobTitle, resumeUrl });
     return res.json({ success: true, message: "Dev mode: Application logged to console" });
   }
 
-  const msg: any = {
+  const resumeHtml = resumeUrl
+    ? `<a href="${resumeUrl}" target="_blank" rel="noopener">Download ${resumeName || 'resume'}</a>`
+    : 'Not provided';
+  const resumeText = resumeUrl ? `${resumeName || 'resume'}: ${resumeUrl}` : 'Not provided';
+
+  const msg = {
     to: "recruit@certusgroup.com",
     from: "tyler@certusgroup.com",
     subject: `New Job Application: ${jobTitle} (${jobRef || 'No Ref'})`,
     text: `
       New application for ${jobTitle} (${jobRef || 'No Ref'})
-      
+
       Name: ${firstName} ${lastName}
       Email: ${email}
       Phone: ${phone || 'Not provided'}
       LinkedIn: ${linkedin || 'Not provided'}
+      Resume: ${resumeText}
     `,
     html: `
       <h3>New Job Application</h3>
@@ -159,19 +196,9 @@ app.post("/api/apply", async (req, res) => {
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
       <p><strong>LinkedIn:</strong> ${linkedin || 'Not provided'}</p>
+      <p><strong>Resume:</strong> ${resumeHtml}</p>
     `,
   };
-
-  if (resumeBase64) {
-    msg.attachments = [
-      {
-        content: resumeBase64.split(',')[1],
-        filename: resumeName || 'resume.pdf',
-        type: 'application/pdf',
-        disposition: 'attachment',
-      },
-    ];
-  }
 
   try {
     await sgMail.send(msg);
