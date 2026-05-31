@@ -10,8 +10,6 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import IndustriesServed from './components/IndustriesServed';
 import SplitGateway from './components/SplitGateway';
-import HowWeWork from './components/HowWeWork';
-import TeamStrip from './components/TeamStrip';
 import SEO from './components/SEO';
 import ErrorBoundary from './components/ErrorBoundary';
 import { View, Section } from './types';
@@ -172,8 +170,6 @@ const App: React.FC = () => {
             onNavigate={handleNavigate}
           />
           <IndustriesServed />
-          <HowWeWork />
-          <TeamStrip />
           <LinkedInFeed />
           <LocationsMap />
           <FeaturedJobsHero onViewJobs={() => setView('jobs')} />
