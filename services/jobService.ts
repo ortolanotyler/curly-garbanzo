@@ -3,6 +3,80 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'hs-compliance-manager-carlisle',
+    ref: 'CG-2026-007',
+    title: 'Health, Safety & Compliance Manager (U.S. Region)',
+    location: 'Carlisle, PA',
+    type: 'Full-time · Onsite · 20% travel',
+    salary: '$100,000 - $125,000',
+    summary:
+      'Newly created multi-site safety leadership role for a leading North American 3PL. Acts as the central SME across a growing U.S. distribution and packaging network. Open to candidates in Carlisle, PA or Columbus, OH.',
+    description: `Partnering with a leading North American 3PL to hire a Health, Safety & Compliance Manager supporting a growing U.S. network of distribution and packaging operations. Newly created, high-impact role reporting directly to the VP of Operations.
+
+The role is the central safety SME across multiple U.S. sites — standardizing programs, ensuring compliance, and driving consistent safety culture while allowing flexibility for site-specific needs. Each site has local H&S champions; this role is the strategic lead and primary point of contact for all safety initiatives across the region.
+
+**Locations**
+
+Open to candidates in Carlisle, PA or Columbus, OH. Fully onsite at the home site. Approximately 20% travel for quarterly multi-state site visits and new-site launches.
+
+**What you'll own**
+
+- Develop and standardize health & safety programs, policies, and SOPs across all U.S. sites
+- Ensure compliance with OSHA, Cal-OSHA, DOT, and EPA regulations
+- Act as primary safety advisor to operations leadership
+- Partner with GMs and site leaders to drive safety performance and accountability
+- Conduct site audits, inspections, and risk assessments; oversee corrective action plans
+- Lead incident investigations, root cause analysis, and prevention initiatives
+- Develop and deliver training programs; ensure consistent onboarding and ongoing safety education
+- Support new site start-ups with extended travel during ramp-up phases
+- Monitor and analyze safety metrics to drive proactive improvements
+- Align and execute through site-level safety champions
+
+**What we're looking for**
+
+- 5+ years of progressive H&S leadership in warehousing, logistics, manufacturing, or distribution
+- Proven multi-site safety program management
+- Strong working knowledge of OSHA regulations
+- Experience with incident investigations, audits, and risk assessments
+- Familiarity with DOT and EPA regulations, including hazardous materials exposure
+- Ability to influence operations leadership in fast-paced, high-volume environments
+- Strong communication across all levels of the organization
+- Comfortable operating in a hands-on, standalone role without direct reports
+
+**Preferred**
+
+- CSP, ASP, CHMM, or OSHA 30 certifications
+
+**Compensation & benefits**
+
+- $100,000 - $125,000 annual salary
+- Full travel coverage
+- Health, dental, vision, and life insurance
+- 401(k) with matching
+- 3 weeks PTO`,
+    responsibilities: [
+      'Develop and standardize H&S programs, policies, and SOPs across all U.S. sites',
+      'Ensure compliance with OSHA, Cal-OSHA, DOT, and EPA regulations',
+      'Serve as primary safety advisor to operations leadership',
+      'Partner with GMs and site leaders on safety performance and accountability',
+      'Conduct site audits, inspections, and risk assessments; oversee corrective actions',
+      'Lead incident investigations, root cause analysis, and prevention',
+      'Develop and deliver training programs across the network',
+      'Support new site start-ups, including extended travel during ramp-up',
+      'Monitor safety metrics and drive proactive improvements',
+    ],
+    requirements: [
+      '5+ years of H&S leadership in warehousing, logistics, manufacturing, or distribution',
+      'Proven multi-site safety program management',
+      'Strong working knowledge of OSHA (including Cal-OSHA)',
+      'Experience with incident investigations, audits, and risk assessments',
+      'Familiarity with DOT and EPA regulations, including hazardous materials',
+      'Comfortable in a hands-on, standalone role without direct reports',
+      'CSP, ASP, CHMM, or OSHA 30 certifications preferred',
+    ],
+    createdAt: new Date('2026-05-11').toISOString(),
+  },
+  {
     id: 'bilingual-hr-specialist-lachine',
     ref: 'CG-2026-006',
     title: 'Bilingual HR Recruitment & Operations Specialist',

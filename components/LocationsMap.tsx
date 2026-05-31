@@ -39,6 +39,7 @@ const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
   'phoenix,az': { lat: 33.4484, lng: -112.074 },
   'miami,fl': { lat: 25.7617, lng: -80.1918 },
   'philadelphia,pa': { lat: 39.9526, lng: -75.1652 },
+  'carlisle,pa': { lat: 40.2017, lng: -77.1997 },
   'washington,dc': { lat: 38.9072, lng: -77.0369 },
   'minneapolis,mn': { lat: 44.9778, lng: -93.265 },
   'detroit,mi': { lat: 42.3314, lng: -83.0458 },
