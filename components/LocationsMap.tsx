@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 import { JobPosting } from '../types';
 import * as jobService from '../services/jobService';
 
@@ -51,20 +51,16 @@ const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
   'orlando,fl': { lat: 28.5383, lng: -81.3792 },
 };
 
-// Parse "Chicago, IL", "Remote / Atlanta, GA", "Toronto, ON, Canada" → key.
 const normalizeLocation = (raw: string): string | null => {
   if (!raw) return null;
-  // Strip "Remote /" prefix; take the last comma'd pair if multiple
   const cleaned = raw.replace(/remote\s*\/\s*/i, '').trim();
   const parts = cleaned.split(',').map((p) => p.trim());
   if (parts.length < 2) return null;
   const city = parts[0].toLowerCase();
-  // Region might be a 2-letter state/province
   const region = parts[1].slice(0, 2).toLowerCase();
   return `${city},${region}`;
 };
 
-// Group jobs by their geocoded city. Returns one pin per city with a count.
 type JobPin = { lat: number; lng: number; key: string; label: string; count: number };
 
 const groupJobsByCity = (jobs: JobPosting[]): JobPin[] => {
@@ -78,7 +74,6 @@ const groupJobsByCity = (jobs: JobPosting[]): JobPin[] => {
     if (existing) {
       existing.count += 1;
     } else {
-      // Use the original location label so "Toronto, ON" doesn't become "toronto,on"
       const displayParts = job.location.replace(/remote\s*\/\s*/i, '').split(',').map((p) => p.trim());
       buckets.set(key, {
         ...coords,
@@ -90,46 +85,6 @@ const groupJobsByCity = (jobs: JobPosting[]): JobPin[] => {
   }
   return Array.from(buckets.values());
 };
-
-const darkMapStyles = [
-  { elementType: 'geometry', stylers: [{ color: '#0E141E' }] },
-  { elementType: 'labels.text.stroke', stylers: [{ color: '#0E141E' }] },
-  { elementType: 'labels.text.fill', stylers: [{ color: '#5B6C7F' }] },
-  { featureType: 'administrative', elementType: 'geometry', stylers: [{ visibility: 'off' }] },
-  { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#2a3340' }] },
-  { featureType: 'administrative.province', elementType: 'geometry.stroke', stylers: [{ color: '#1f2632' }] },
-  { featureType: 'administrative.locality', elementType: 'labels.text.fill', stylers: [{ color: '#9FA8B5' }] },
-  { featureType: 'administrative.land_parcel', stylers: [{ visibility: 'off' }] },
-  { featureType: 'administrative.neighborhood', stylers: [{ visibility: 'off' }] },
-  { featureType: 'poi', stylers: [{ visibility: 'off' }] },
-  { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#1a2230' }] },
-  { featureType: 'road', elementType: 'labels', stylers: [{ visibility: 'off' }] },
-  { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#222b3a' }] },
-  { featureType: 'transit', stylers: [{ visibility: 'off' }] },
-  { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#070b12' }] },
-  { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#38393A' }] },
-  { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#0E141E' }] },
-];
-
-// Active-search pin: silver dot in a glowing ring
-const searchPin = (count: number) =>
-  'data:image/svg+xml;charset=UTF-8,' +
-  encodeURIComponent(`
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-      <circle cx="16" cy="16" r="14" fill="#9FA8B5" fill-opacity="0.2" />
-      <circle cx="16" cy="16" r="7" fill="#FFFFFF" stroke="#9FA8B5" stroke-width="2" />
-      ${count > 1 ? `<text x="16" y="20" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="#0E141E">${count}</text>` : ''}
-    </svg>
-  `);
-
-// HQ pin: smaller, square — visually distinct from the round search pins
-const hqPin =
-  'data:image/svg+xml;charset=UTF-8,' +
-  encodeURIComponent(`
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-      <rect x="4" y="4" width="12" height="12" fill="#5B6C7F" stroke="#9FA8B5" stroke-width="1.5" />
-    </svg>
-  `);
 
 export default function LocationsMap() {
   const [jobs, setJobs] = useState<JobPosting[]>([]);
@@ -153,28 +108,41 @@ export default function LocationsMap() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="relative h-[420px] md:h-[500px] w-full rounded-sm overflow-hidden border border-white/10">
           {hasValidKey ? (
-            <APIProvider apiKey={API_KEY} version="weekly">
+            <APIProvider apiKey={API_KEY} version="weekly" libraries={['marker']}>
               <Map
                 defaultCenter={{ lat: 41.5, lng: -90 }}
                 defaultZoom={4}
+                mapId="DEMO_MAP_ID"
+                colorScheme="DARK"
                 internalUsageAttributionIds={['gmp_mcp_codeassist_v1_aistudio']}
                 style={{ width: '100%', height: '100%' }}
                 disableDefaultUI={true}
                 gestureHandling="cooperative"
-                styles={darkMapStyles}
               >
-                <Marker
+                <AdvancedMarker
                   position={{ lat: HQ.lat, lng: HQ.lng }}
-                  icon={hqPin}
                   title={HQ.label}
-                />
+                >
+                  <div className="w-3 h-3 bg-brand-steel border border-brand-silver"></div>
+                </AdvancedMarker>
+
                 {pins.map((pin) => (
-                  <Marker
+                  <AdvancedMarker
                     key={pin.key}
                     position={{ lat: pin.lat, lng: pin.lng }}
-                    icon={searchPin(pin.count)}
                     title={pin.count > 1 ? `${pin.label} · ${pin.count} active` : pin.label}
-                  />
+                  >
+                    <div className="relative flex items-center justify-center">
+                      <div className="absolute w-8 h-8 rounded-full bg-brand-silver/20"></div>
+                      <div className="relative w-4 h-4 rounded-full bg-white border-2 border-brand-silver flex items-center justify-center">
+                        {pin.count > 1 && (
+                          <span className="text-[8px] font-bold text-brand-dark leading-none">
+                            {pin.count}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </AdvancedMarker>
                 ))}
               </Map>
             </APIProvider>
