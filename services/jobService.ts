@@ -3,6 +3,65 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'bilingual-hr-specialist-lachine',
+    ref: 'CG-2026-006',
+    title: 'Bilingual HR Recruitment & Operations Specialist',
+    location: 'Lachine, QC',
+    type: 'Full-time · Onsite',
+    salary: '$80,000 - $90,000 CAD',
+    summary:
+      'Joins the North American HR team of a global freight forwarding and logistics organization. Owns junior and operational recruitment, day-to-day HR support across Canada and the US, and process-improvement initiatives. Bilingual French/English required.',
+    description: `Joining the North American HR team of a global freight forwarding and logistics organization based in Lachine, QC. Supports both Canadian and US operations with strong exposure across recruitment, employee relations, HR operations, and process improvement.
+
+**What you'll be doing**
+
+- Manage full-cycle recruitment for junior and operational positions: postings, resume screening, interviews, reference/background checks, offer coordination
+- Run onboarding, orientation, and offboarding
+- Provide day-to-day HR support to managers and employees across Canada and the US
+- Assist with performance management, progressive discipline, investigations, and employee relations
+- Support HR reporting and compliance: WSIB, CNESST, workplace accommodations, leaves of absence, and incidents
+- Support annual performance reviews, service awards, and HR communications
+- Contribute to HR projects and continuous improvement work across office and warehouse operations
+- Identify opportunities to improve HR processes through automation, technology, and AI-driven efficiencies
+
+**What we're looking for**
+
+- Bachelor's degree in Human Resources, Industrial Relations, or related field
+- 1-3 years of recruitment and/or HR experience
+- Bilingual in English and French (written and verbal) — required
+- Strong organizational and multitasking skills with high attention to detail
+- Professional, adaptable, eager to learn in a fast-paced environment
+- General knowledge of Canadian and/or US employment legislation is an asset
+
+**Compensation & benefits**
+
+- $80,000 - $90,000 CAD
+- Health and dental benefits
+- Tuition reimbursement
+- Flexible schedule
+- On-site parking
+- Paid time off
+- Full-time, onsite in Lachine`,
+    responsibilities: [
+      'Manage full-cycle recruitment for junior and operational positions',
+      'Run onboarding, orientation, and offboarding',
+      'Provide day-to-day HR support to managers and employees in Canada and the US',
+      'Assist with performance management, progressive discipline, investigations, and ER matters',
+      'Support WSIB, CNESST, workplace accommodations, leaves, and incident reporting',
+      'Support annual performance reviews, service awards, and HR communications',
+      'Contribute to HR projects and continuous improvement initiatives',
+      'Identify HR process improvements through automation, technology, and AI tools',
+    ],
+    requirements: [
+      "Bachelor's degree in Human Resources, Industrial Relations, or related field",
+      '1-3 years of recruitment and/or HR experience',
+      'Bilingual in English and French (written and verbal) — required',
+      'Strong organizational and multitasking skills, high attention to detail',
+      'General knowledge of Canadian and/or US employment legislation is an asset',
+    ],
+    createdAt: new Date('2026-05-19').toISOString(),
+  },
+  {
     id: 'hr-coordinator-brantford',
     ref: 'CG-2026-005',
     title: 'Human Resources Coordinator',

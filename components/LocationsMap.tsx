@@ -18,6 +18,7 @@ const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
   'brantford,on': { lat: 43.1394, lng: -80.2644 },
   'windsor,on': { lat: 42.3149, lng: -83.0364 },
   'montreal,qc': { lat: 45.5019, lng: -73.5674 },
+  'lachine,qc': { lat: 45.4351, lng: -73.6776 },
   'vancouver,bc': { lat: 49.2827, lng: -123.1207 },
   'calgary,ab': { lat: 51.0447, lng: -114.0719 },
   'ottawa,on': { lat: 45.4215, lng: -75.6972 },
