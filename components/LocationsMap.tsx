@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { APIProvider, Map, AdvancedMarker, useMapsLibrary } from '@vis.gl/react-google-maps';
 import { JobPosting } from '../types';
 import * as jobService from '../services/jobService';
 
-const API_KEY = process.env.GOOGLE_MAPS_PLATFORM_KEY || '';
-const hasValidKey = Boolean(API_KEY) && API_KEY !== 'YOUR_API_KEY';
-
-const HQ = { lat: 43.6532, lng: -79.3832, label: 'Toronto · HQ' };
+const HQ = { lat: 43.6532, lng: -79.3832 };
 
 const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
   'toronto,on': { lat: 43.6532, lng: -79.3832 },
@@ -84,40 +80,20 @@ const groupJobsByCity = (jobs: JobPosting[]): JobPin[] => {
   return Array.from(buckets.values());
 };
 
-// Renders the AdvancedMarkers only after google.maps.marker is loaded.
-// Without this gate, the markers try to construct AdvancedMarkerElement
-// before its library is available, which throws "dh is not a constructor"
-// (the minified name for AdvancedMarkerElement).
-const PinsLayer: React.FC<{ pins: JobPin[] }> = ({ pins }) => {
-  const markerLib = useMapsLibrary('marker');
-  if (!markerLib) return null;
+// Equirectangular projection (web Mercator's simple cousin). Good enough
+// for a static North America view — pins land within ~50 mi of correct
+// position on a continent-wide map.
+const MAP_BOUNDS = {
+  north: 60,
+  south: 24,
+  west: -135,
+  east: -65,
+};
 
-  return (
-    <>
-      <AdvancedMarker position={{ lat: HQ.lat, lng: HQ.lng }} title={HQ.label}>
-        <div className="w-3 h-3 bg-brand-steel border border-brand-silver"></div>
-      </AdvancedMarker>
-
-      {pins.map((pin) => (
-        <AdvancedMarker
-          key={pin.key}
-          position={{ lat: pin.lat, lng: pin.lng }}
-          title={pin.count > 1 ? `${pin.label} · ${pin.count} active` : pin.label}
-        >
-          <div className="relative flex items-center justify-center">
-            <div className="absolute w-8 h-8 rounded-full bg-brand-silver/20"></div>
-            <div className="relative w-4 h-4 rounded-full bg-white border-2 border-brand-silver flex items-center justify-center">
-              {pin.count > 1 && (
-                <span className="text-[8px] font-bold text-brand-dark leading-none">
-                  {pin.count}
-                </span>
-              )}
-            </div>
-          </div>
-        </AdvancedMarker>
-      ))}
-    </>
-  );
+const project = (lat: number, lng: number) => {
+  const x = ((lng - MAP_BOUNDS.west) / (MAP_BOUNDS.east - MAP_BOUNDS.west)) * 100;
+  const y = ((MAP_BOUNDS.north - lat) / (MAP_BOUNDS.north - MAP_BOUNDS.south)) * 100;
+  return { x, y };
 };
 
 export default function LocationsMap() {
@@ -130,6 +106,7 @@ export default function LocationsMap() {
   const pins = groupJobsByCity(jobs);
   const totalShown = pins.reduce((sum, p) => sum + p.count, 0);
   const unmappedCount = jobs.length - totalShown;
+  const hqProjected = project(HQ.lat, HQ.lng);
 
   return (
     <section className="relative py-24 md:py-32 bg-brand-dark border-y border-white/5 overflow-hidden">
@@ -140,32 +117,72 @@ export default function LocationsMap() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="relative h-[420px] md:h-[500px] w-full rounded-sm overflow-hidden border border-white/10">
-          {hasValidKey ? (
-            <APIProvider apiKey={API_KEY} version="weekly" libraries={['marker']}>
-              <Map
-                defaultCenter={{ lat: 41.5, lng: -90 }}
-                defaultZoom={4}
-                mapId="DEMO_MAP_ID"
-                colorScheme="DARK"
-                internalUsageAttributionIds={['gmp_mcp_codeassist_v1_aistudio']}
-                style={{ width: '100%', height: '100%' }}
-                disableDefaultUI={true}
-                gestureHandling="cooperative"
+        <div className="relative h-[420px] md:h-[500px] w-full rounded-sm overflow-hidden border border-white/10 bg-[#0a0f17]">
+          {/* SVG silhouette of North America — drawn as a subtle backdrop */}
+          <svg
+            viewBox="0 0 1000 700"
+            preserveAspectRatio="xMidYMid slice"
+            className="absolute inset-0 w-full h-full"
+            aria-hidden="true"
+          >
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2230" strokeWidth="1" />
+              </pattern>
+            </defs>
+            <rect width="1000" height="700" fill="url(#grid)" />
+            {/* Rough North America outline */}
+            <path
+              d="M 100 200 Q 80 150, 150 120 L 250 100 Q 350 80, 450 100 L 600 90 Q 700 80, 780 110 L 850 150 L 880 220 L 890 320 L 870 420 L 820 500 L 750 560 L 650 590 L 550 610 L 450 620 L 380 600 L 320 560 L 280 500 L 240 450 L 200 400 L 170 350 L 140 290 Z"
+              fill="#0e1721"
+              stroke="#1f2a38"
+              strokeWidth="1.5"
+            />
+          </svg>
+
+          {/* HQ pin (small square) */}
+          <div
+            className="absolute"
+            style={{
+              left: `${hqProjected.x}%`,
+              top: `${hqProjected.y}%`,
+              transform: 'translate(-50%, -50%)',
+            }}
+            title="Toronto · HQ"
+          >
+            <div className="w-2.5 h-2.5 bg-brand-steel border border-brand-silver"></div>
+          </div>
+
+          {/* Active-search pins */}
+          {pins.map((pin) => {
+            const { x, y } = project(pin.lat, pin.lng);
+            return (
+              <div
+                key={pin.key}
+                className="absolute group"
+                style={{
+                  left: `${x}%`,
+                  top: `${y}%`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+                title={pin.count > 1 ? `${pin.label} · ${pin.count} active` : pin.label}
               >
-                <PinsLayer pins={pins} />
-              </Map>
-            </APIProvider>
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-brand-navy/30 text-center px-8">
-              <div className="max-w-md">
-                <p className="text-white/60 text-sm font-light leading-relaxed">
-                  Add a <code className="text-brand-silver text-xs">GOOGLE_MAPS_PLATFORM_KEY</code> environment
-                  variable to enable the coverage map.
-                </p>
+                <div className="relative flex items-center justify-center">
+                  <div className="absolute w-8 h-8 rounded-full bg-brand-silver/20 animate-pulse"></div>
+                  <div className="relative w-3.5 h-3.5 rounded-full bg-white border border-brand-silver flex items-center justify-center">
+                    {pin.count > 1 && (
+                      <span className="text-[8px] font-bold text-brand-dark leading-none">
+                        {pin.count}
+                      </span>
+                    )}
+                  </div>
+                  <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.15em] text-white/70 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    {pin.label}
+                  </span>
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })}
 
           {pins.length > 0 && (
             <div className="absolute bottom-6 left-6 right-6 md:left-8 md:right-auto md:max-w-xs bg-brand-dark/90 backdrop-blur-md border border-white/10 rounded-sm px-5 py-4 pointer-events-none">
