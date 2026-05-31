@@ -165,14 +165,14 @@ export default function LocationsMap() {
               >
                 <Marker
                   position={{ lat: HQ.lat, lng: HQ.lng }}
-                  icon={{ url: hqPin, scaledSize: { width: 20, height: 20 } as google.maps.Size }}
+                  icon={hqPin}
                   title={HQ.label}
                 />
                 {pins.map((pin) => (
                   <Marker
                     key={pin.key}
                     position={{ lat: pin.lat, lng: pin.lng }}
-                    icon={{ url: searchPin(pin.count), scaledSize: { width: 32, height: 32 } as google.maps.Size }}
+                    icon={searchPin(pin.count)}
                     title={pin.count > 1 ? `${pin.label} · ${pin.count} active` : pin.label}
                   />
                 ))}
