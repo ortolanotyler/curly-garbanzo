@@ -1,104 +1,64 @@
 import { JobPosting, LinkedInPost } from '../types';
 
-// Mock data for Job Postings
+// Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
-    id: '1',
-    ref: 'CG-2024-001',
-    title: 'VP of Sales - 3PL & Asset-Based',
-    location: 'Chicago, IL',
+    id: 'lrm-monroe',
+    ref: 'CG-2026-001',
+    title: 'Labor Relations Manager',
+    location: 'Monroe, OH',
     type: 'Full-time',
-    salary: '$180,000 - $220,000',
-    posted: '2 days ago',
-    summary: 'Leading national sales strategy for a premier asset-based transportation provider.',
-    description: 'We are seeking a high-impact VP of Sales to drive revenue growth and strategic partnerships within our 3PL and Asset-Based divisions.',
+    salary: '$100,000 - $125,000 + up to 10% bonus',
+    summary:
+      'Sole HR and labor relations leader for a single unionized site. Manages a team of three onsite HR reps and serves as the SME for collective bargaining, grievances, and NLRA compliance.',
+    description: `Sole HR and labor relations leader for a single unionized site in Monroe, OH. Onsite five days a week, managing three HR representatives and acting as the organization's primary expert on labor relations.
+
+**What you'll own**
+
+- Day-to-day HR leadership for the site: employee relations, performance management, investigations, policy
+- Full grievance lifecycle from intake through arbitration, including evidence prep and collaboration with legal counsel
+- Collective bargaining support: research, costing, proposal development, ratification
+- Interpretation and consistent administration of the collective agreement
+- Compliance across NLRA, FLSA, Title VII, ADA, FMLA, and related state law
+- Coaching site leaders on labor relations best practices and union interactions
+
+**What we're looking for**
+
+- 7-10 years of progressive HR experience with significant labor relations responsibility
+- Proven experience in unionized environments, including grievance handling and collective bargaining
+- Strong working knowledge of U.S. labor and employment law
+- Teamsters experience a strong asset
+- Bachelor's in HR, Industrial/Labor Relations, Business, or related field
+- PHR, SPHR, SHRM-CP, or SHRM-SCP preferred
+- Manufacturing, logistics, healthcare, or utilities background is an asset
+
+**Compensation & benefits**
+
+- $100,000 - $125,000 base + up to 10% bonus
+- Full benefits and 401(k) matching
+- 3 weeks PTO
+- Onsite, 5 days a week
+- Occasional travel for bargaining sessions and hearings`,
     responsibilities: [
-      'Develop and execute national sales strategies',
-      'Lead a high-performing team of account executives',
-      'Manage key enterprise relationships',
-      'Drive market expansion in the 3PL sector',
-      'Collaborate with operations to ensure service excellence'
+      'Lead all HR operations for the site, managing 3 onsite HR representatives',
+      'Serve as SME for collective agreement interpretation and administration',
+      'Manage the full grievance process from intake through arbitration',
+      'Support collective bargaining: research, costing, proposal development, negotiations',
+      'Investigate complex employee relations matters and advise on corrective action',
+      'Build and maintain constructive relationships with union leaders and stewards',
+      'Ensure compliance with NLRA, FLSA, Title VII, ADA, and FMLA',
+      'Coach site leaders on labor relations best practices and union interactions',
     ],
     requirements: [
-      '12+ years in logistics sales leadership',
-      'Proven track record in 3PL or Asset-Based environments',
-      'Strong network within the transportation industry',
-      'Exceptional negotiation and closing skills'
+      "Bachelor's in HR, Industrial/Labor Relations, Business, or related field",
+      '7-10 years of progressive HR experience with significant labor relations responsibility',
+      'Proven experience in unionized environments, including grievance handling and collective bargaining',
+      'Strong working knowledge of U.S. labor and employment law',
+      'Teamsters experience a strong asset',
+      'PHR, SPHR, SHRM-CP, or SHRM-SCP preferred',
     ],
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   },
-  {
-    id: '2',
-    ref: 'CG-2024-002',
-    title: 'Operations Manager - Freight Forwarding',
-    location: 'Remote / Atlanta, GA',
-    type: 'Full-time',
-    salary: '$120,000 - $145,000',
-    posted: '1 week ago',
-    summary: 'Overseeing global air and ocean operations for a leading forwarder.',
-    description: 'The Operations Manager will lead a team of specialists to ensure seamless global freight movement and exceptional client service.',
-    responsibilities: [
-      'Manage end-to-end air and ocean freight operations',
-      'Optimize carrier procurement and routing',
-      'Ensure compliance with international shipping regulations',
-      'Drive operational efficiency and cost-reduction initiatives'
-    ],
-    requirements: [
-      '7+ years in freight forwarding operations',
-      'Deep knowledge of air and ocean logistics',
-      'Experience with global TMS platforms',
-      'Strong problem-solving and leadership abilities'
-    ],
-    createdAt: new Date().toISOString()
-  },
-  {
-    id: '3',
-    ref: 'CG-2024-003',
-    title: 'Customs Brokerage Manager',
-    location: 'Dallas, TX',
-    type: 'Full-time',
-    salary: '$130,000 - $160,000',
-    posted: '3 days ago',
-    summary: 'Leading compliance and brokerage operations for a growing regional hub.',
-    description: 'We need an expert Customs Brokerage Manager to oversee our compliance programs and lead our brokerage team in Dallas.',
-    responsibilities: [
-      'Manage daily customs entry and compliance operations',
-      'Ensure adherence to CBP regulations and trade laws',
-      'Develop and mentor a team of licensed brokers',
-      'Liaise with government agencies and clients'
-    ],
-    requirements: [
-      'Licensed Customs Broker (LCB) required',
-      '8+ years in customs brokerage management',
-      'Strong understanding of HTS classification and valuation',
-      'Excellent communication and regulatory knowledge'
-    ],
-    createdAt: new Date().toISOString()
-  },
-  {
-    id: '4',
-    ref: 'CG-2024-004',
-    title: 'Director of Operations - Asset-Based',
-    location: 'New York, NY',
-    type: 'Full-time',
-    salary: '$190,000 - $240,000',
-    posted: '5 days ago',
-    summary: 'Strategic operational leadership for a large-scale asset-based carrier.',
-    description: 'The Director of Operations will oversee the entire fleet and terminal network, driving safety, efficiency, and profitability.',
-    responsibilities: [
-      'Direct all asset-based terminal and fleet operations',
-      'Implement safety and maintenance excellence programs',
-      'Optimize asset utilization and driver retention',
-      'Manage P&L for the operations division'
-    ],
-    requirements: [
-      '15+ years in asset-based transportation leadership',
-      'Proven experience managing large-scale fleet operations',
-      'Strong financial acumen and P&L experience',
-      'Advanced degree in Logistics or Business preferred'
-    ],
-    createdAt: new Date().toISOString()
-  }
 ];
 
 // Mock data for LinkedIn Posts

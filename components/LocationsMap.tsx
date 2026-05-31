@@ -47,6 +47,7 @@ const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
   'st louis,mo': { lat: 38.627, lng: -90.1994 },
   'cleveland,oh': { lat: 41.4993, lng: -81.6944 },
   'cincinnati,oh': { lat: 39.1031, lng: -84.512 },
+  'monroe,oh': { lat: 39.4392, lng: -84.3622 },
   'tampa,fl': { lat: 27.9506, lng: -82.4572 },
   'orlando,fl': { lat: 28.5383, lng: -81.3792 },
 };
