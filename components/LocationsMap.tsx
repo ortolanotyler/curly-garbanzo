@@ -14,6 +14,7 @@ const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
   'toronto,on': { lat: 43.6532, lng: -79.3832 },
   'mississauga,on': { lat: 43.5890, lng: -79.6441 },
   'sarnia,on': { lat: 42.9745, lng: -82.4066 },
+  'hamilton,on': { lat: 43.2557, lng: -79.8711 },
   'windsor,on': { lat: 42.3149, lng: -83.0364 },
   'montreal,qc': { lat: 45.5019, lng: -73.5674 },
   'vancouver,bc': { lat: 49.2827, lng: -123.1207 },

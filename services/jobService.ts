@@ -3,6 +3,65 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'project-coordinator-hamilton',
+    ref: 'CG-2026-003',
+    title: 'Logistics Project Coordinator',
+    location: 'Hamilton, ON',
+    type: 'Full-time · Onsite',
+    salary: '$55,000 - $65,000 CAD',
+    summary:
+      'Coordinator role on the Operations team of an established logistics and transportation organization. Manages project timelines, vendor and carrier relationships, and client communication end-to-end.',
+    description: `Working with an established and growing organization in logistics and transportation. The Project Coordinator joins the Operations team to own project timelines, service schedules, and client communication across a high-volume slate of active mandates. Strong long-term growth and mentorship environment.
+
+**What you'll be doing**
+
+- Coordinate project timelines, service schedules, and customer expectations end-to-end
+- Manage multiple active projects in a high-volume, deadline-driven environment
+- Serve as a primary point of contact between clients, carriers, and internal teams
+- Provide consistent updates to stakeholders across project lifecycles
+- Track progress, milestones, and deliverables in Excel and internal systems
+- Prepare and verify shipping documentation
+- Build and maintain vendor and carrier relationships
+- Support day-to-day operations including data entry and administrative coordination
+- Handle high volumes of email, phone, and Teams communication, with occasional after-hours support
+
+**What we're looking for**
+
+- Experience in logistics, transportation, or project coordination (3PL exposure is an asset)
+- Strong organizational and multitasking skills; able to manage competing priorities
+- High attention to detail and problem-solving ability
+- Professional written and verbal communication
+- Customer-focused, proactive mindset
+- Comfortable in a fast-paced, team-oriented environment
+
+**Compensation & benefits**
+
+- $55,000 - $65,000 CAD
+- Medical, dental, vision, disability, and life insurance
+- Paid vacation plus additional personal time
+- On-site parking
+- Training, mentorship, and long-term growth opportunities
+- Full-time, permanent, onsite in Hamilton`,
+    responsibilities: [
+      'Coordinate project timelines, service schedules, and customer expectations end-to-end',
+      'Manage multiple active projects in a high-volume, deadline-driven environment',
+      'Serve as a primary point of contact between clients, carriers, and internal teams',
+      'Track progress, milestones, and deliverables in Excel and internal systems',
+      'Prepare and verify shipping documentation',
+      'Build and maintain vendor and carrier relationships',
+      'Support day-to-day operations including data entry and administrative coordination',
+    ],
+    requirements: [
+      'Experience in logistics, transportation, or project coordination (3PL exposure an asset)',
+      'Strong organizational and multitasking skills',
+      'High attention to detail and problem-solving ability',
+      'Professional written and verbal communication',
+      'Customer-focused, proactive mindset',
+      'Comfortable in a fast-paced, team-oriented environment',
+    ],
+    createdAt: new Date('2026-03-31').toISOString(),
+  },
+  {
     id: 'customs-rater-sarnia',
     ref: 'CG-2026-002',
     title: 'Customs Rater',
