@@ -3,6 +3,57 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'it-account-exec-gta',
+    ref: 'CG-2026-009',
+    title: 'Account Executive — IT Infrastructure (Reseller)',
+    location: 'Mississauga, ON',
+    type: 'Full-time · Hybrid',
+    salary: '$100,000 - $120,000 base + variable',
+    summary:
+      'Outside IT infrastructure sales for a Canadian reseller expanding its Ontario presence. Three openings: two in the GTA and one covering Northern Ontario (Barrie / Sudbury / Sault Ste. Marie / Timmins).',
+    description: `Outside sales role on a growing Ontario team. Three openings: two GTA-based, one covering Northern Ontario (local to Barrie / Sudbury / Sault Ste. Marie / Timmins preferred). Hybrid — Tuesday to Thursday in office, flexible based on territory and ramp-up.
+
+**What you'll be doing**
+
+- Sell IT infrastructure: cloud, data centre, security, networking, Microsoft, Dell server/storage
+- Manage existing accounts and drive new business across private and public sector verticals (legal, manufacturing, healthcare, municipal)
+- Lead RFP-driven and consultative solution sales; transaction sizes from ~$20K services through multi-million-dollar contracts
+- Build deep partner relationships (Cisco, Dell, Microsoft, Arctic Wolf, and others)
+- Bring and grow your own book; reps can retain unassigned existing accounts they bring
+
+**What we're looking for**
+
+- 5+ years of IT sales experience in the GTA (or Northern Ontario, for that territory)
+- Reseller / VAR background — not OEM direct
+- Strong track record of self-built deals, not just RFP responses
+- Existing book of business and trusted customer relationships
+- Consultative, entrepreneurial, comfortable with long sales cycles and RFP processes
+
+**Compensation & benefits**
+
+- $100,000 - $120,000 base (flexible for strong performers and bridging existing comp)
+- Variable comp tied to gross margin: 10% to first 50% of $500K target, 15% to next 50%, 20% above target
+- Signing bonus available for the right candidate
+- RRSP matching after one year
+- Health and dental after three months
+- Car allowance negotiable`,
+    responsibilities: [
+      'Sell IT infrastructure: cloud, data centre, security, networking, Microsoft, Dell server/storage',
+      'Drive new business across private and public sector verticals (legal, manufacturing, healthcare, municipal)',
+      'Lead RFP-driven and consultative solution sales',
+      'Build and maintain partner relationships (Cisco, Dell, Microsoft, Arctic Wolf, others)',
+      'Grow your own book of business and retain unassigned accounts you bring',
+    ],
+    requirements: [
+      '5+ years of IT sales experience in the GTA (or Northern Ontario for that territory)',
+      'Reseller / VAR background — not OEM direct',
+      'Track record of self-built deals, not only RFP responses',
+      'Existing book of business and trusted customer relationships',
+      'Consultative, entrepreneurial selling style; comfortable with long sales cycles',
+    ],
+    createdAt: new Date().toISOString(),
+  },
+  {
     id: 'bilingual-hr-admin-lachine',
     ref: 'CG-2026-008',
     title: 'Bilingual HR Administrator & Compliance Coordinator',
