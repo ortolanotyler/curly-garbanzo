@@ -114,41 +114,32 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
 
         <div
           className={`${isMobile
-            ? 'absolute bottom-0 left-0 h-[48%] w-full items-center px-6 text-center pb-8'
+            ? 'absolute bottom-0 left-0 h-[48%] w-full items-center px-6 text-center pb-10'
             : 'absolute top-0 right-0 h-full w-[40%] items-end pr-10 lg:pr-24 text-right'
-          } flex flex-col justify-end pb-20 md:pb-32 z-20 pointer-events-none transition-all duration-700 ${
+          } flex flex-col justify-center pb-20 md:pb-0 z-20 pointer-events-none transition-all duration-700 ${
             isMobile ? 'opacity-100' : (hovered === 'candidates' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8')
           }`}
         >
-          <div className="space-y-5 md:space-y-8 max-w-md pointer-events-auto transform transition-transform duration-500 active:scale-95">
+          <div className="space-y-6 max-w-sm pointer-events-auto transform transition-transform duration-500 active:scale-95">
             <div className={`flex items-center gap-3 ${isMobile ? 'justify-center' : 'justify-end'}`}>
-              <Briefcase size={14} strokeWidth={1.5} className="text-brand-silver" />
+              <Briefcase size={12} strokeWidth={1.5} className="text-brand-silver" />
               <span className="text-[10px] font-bold uppercase tracking-[0.35em] text-white/80">
                 For Candidates
               </span>
             </div>
 
-            <h2 className={`text-2xl md:text-4xl font-medium text-white leading-tight tracking-tight ${isMobile ? '' : ''}`}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-[1.05] tracking-tight">
               Browse open <span className="font-serif italic font-light text-brand-silver">roles.</span>
             </h2>
 
-            <div className={`flex flex-col ${isMobile ? 'items-center' : 'items-end'} gap-2`}>
-              {candidateMandates.map((label) => (
-                <div key={label} className="flex items-center gap-3">
-                  <div className="w-1 h-1 rounded-full bg-brand-silver"></div>
-                  <span className="text-[11px] md:text-xs font-light uppercase tracking-[0.2em] text-white/70">
-                    {label}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <p className="text-sm font-light text-white/60 leading-relaxed">
+              Senior finance, operations, IT, and executive searches across North America.
+            </p>
 
-            <div className={`flex ${isMobile ? 'justify-center' : 'justify-end'} pt-2`}>
-              <div className="group flex items-center gap-4 text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-white">
-                <span className="group-hover:tracking-[0.32em] transition-all duration-500">
-                  View open roles
-                </span>
-                <ArrowRight strokeWidth={1.5} className={`w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 ${hovered === 'candidates' ? 'translate-x-2' : ''}`} />
+            <div className={`flex ${isMobile ? 'justify-center' : 'justify-end'} pt-1`}>
+              <div className="group inline-flex items-center gap-3 border border-white/30 hover:border-white text-white hover:bg-white/5 px-6 py-3.5 rounded-sm font-bold text-[11px] uppercase tracking-[0.2em] transition-colors">
+                View open roles
+                <ArrowRight strokeWidth={2} className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
           </div>
@@ -204,54 +195,41 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
 
         <div
           className={`${isMobile
-            ? 'absolute top-0 left-0 h-[60%] w-full items-center px-6 text-center pt-24'
+            ? 'absolute top-0 left-0 h-[60%] w-full items-center px-6 text-center pt-28'
             : 'absolute top-0 left-0 h-full w-[50%] md:w-[60%] lg:w-[55%] items-start pl-10 lg:pl-24 text-left'
-          } flex flex-col justify-start pt-20 md:pt-32 z-40 transition-all duration-700 ${
+          } flex flex-col justify-center pt-20 md:pt-0 pb-20 md:pb-16 z-40 transition-all duration-700 ${
             hovered === 'candidates' ? 'opacity-30 -translate-x-12 blur-sm' : 'opacity-100 translate-x-0'
           }`}
         >
-          <div className="space-y-6 md:space-y-10 max-w-2xl transform transition-transform duration-500 active:scale-95">
-            <div className="space-y-1 md:space-y-3 drop-shadow-xl">
-              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] font-medium text-white leading-[0.85] tracking-tighter">
-                Certus
-              </h1>
-              <h2 className="text-lg sm:text-3xl md:text-5xl lg:text-6xl font-light text-white/90 leading-tight tracking-tight">
-                Corporate <span className="font-serif italic font-light text-white">Search</span>
-              </h2>
-            </div>
-
+          <div className="space-y-6 md:space-y-8 max-w-xl transform transition-transform duration-500 active:scale-95">
             <div className={`flex items-center gap-3 ${isMobile ? 'justify-center' : ''}`}>
-              <Building2 size={14} strokeWidth={1.5} className="text-brand-silver" />
+              <Building2 size={12} strokeWidth={1.5} className="text-brand-silver" />
               <span className="text-[10px] font-bold uppercase tracking-[0.35em] text-white/70">
                 For Companies
               </span>
             </div>
 
-            <div className={`flex flex-col gap-3 ${isMobile ? 'items-center' : ''}`}>
-              {hirePractices.map((practice) => (
-                <div key={practice} className="flex items-center gap-3 text-white/80 text-lg md:text-xl font-light tracking-wide">
-                  <div className="w-1.5 h-1.5 bg-brand-silver rounded-full"></div>
-                  <span>{practice}</span>
-                </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-white leading-[0.95] tracking-tight drop-shadow-xl">
+              Executive search for <span className="font-serif italic font-light text-brand-silver">finance, operations,</span> and IT.
+            </h1>
+
+            <div className={`flex flex-wrap gap-x-5 gap-y-2 ${isMobile ? 'justify-center' : ''} pt-1`}>
+              {hirePractices.map((practice, idx) => (
+                <React.Fragment key={practice}>
+                  <span className="text-xs md:text-sm font-light text-white/60 tracking-wide">
+                    {practice}
+                  </span>
+                  {idx < hirePractices.length - 1 && (
+                    <span className="text-white/20 hidden md:inline">·</span>
+                  )}
+                </React.Fragment>
               ))}
             </div>
 
-            <div className={`flex ${isMobile ? 'justify-center' : 'justify-start'} pt-6 md:pt-10`}>
-              <div className={`group flex items-center gap-6 transition-all duration-1000 ${hovered === 'hire' || isMobile ? 'opacity-100 translate-y-0' : 'opacity-70 translate-y-2'}`}>
-                <div className="relative flex items-center justify-center">
-                  <div className="absolute inset-0 rounded-full border border-white/10 group-hover:scale-150 group-hover:opacity-0 transition-all duration-700"></div>
-                  <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:border-white/60 group-hover:bg-white/5 transition-all duration-500">
-                    <ArrowRight strokeWidth={1} className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-500" />
-                  </div>
-                </div>
-                <div className="flex flex-col text-left">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 mb-1">
-                    Engagement
-                  </span>
-                  <span className="text-sm md:text-base font-light text-white tracking-[0.1em] group-hover:tracking-[0.15em] transition-all duration-500">
-                    Start a <span className="font-serif italic">search</span>
-                  </span>
-                </div>
+            <div className={`flex ${isMobile ? 'justify-center' : 'justify-start'} pt-2`}>
+              <div className="group inline-flex items-center gap-3 bg-white text-brand-dark px-6 py-3.5 rounded-sm font-bold text-[11px] uppercase tracking-[0.2em] transition-colors hover:bg-brand-silver">
+                Start a search
+                <ArrowRight strokeWidth={2} className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
           </div>
