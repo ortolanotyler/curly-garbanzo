@@ -4,23 +4,23 @@ import { Section } from '../types';
 const IndustriesServed: React.FC = () => {
   const categories = [
     {
-      category: "Finance & Human Resources",
-      description: "Sourcing financial leaders and HR experts. Roles include: CFO, Controller, Director of Finance, Insurance Advisor, Payroll Manager, & HR Business Partner.",
+      category: "Finance & HR",
+      description: "CFO, Controller, Director of Finance, Insurance Advisor, Payroll Manager, HR Business Partner.",
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1000"
     },
     {
       category: "Operations & Logistics",
-      description: "Connecting operational experts across 3PL, Freight, and Customs. Roles include: Director of Operations, Warehouse Solutions Designer, Customs Manager, & Logistics Coordinator.",
+      description: "Director of Operations, Warehouse Solutions Designer, Customs Manager, Logistics Coordinator.",
       image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1000"
     },
     {
       category: "Information Technology",
-      description: "Specialized recruitment for IT leadership and technical experts. Roles include: CIO, Salesforce Developer, Business Intelligence Analyst, Solutions Architect, & EDI Manager.",
+      description: "CIO, Salesforce Developer, Business Intelligence Analyst, Solutions Architect, EDI Manager.",
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000"
     },
     {
       category: "Executive Leadership",
-      description: "Strategic search for C-suite and VP-level talent. Roles include: VP of Sales, VP of Data Science, Product Head, & Global Logistics Directors.",
+      description: "VP of Sales, VP of Data Science, Product Head, Global Logistics Directors.",
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000"
     }
   ];
@@ -42,7 +42,7 @@ const IndustriesServed: React.FC = () => {
         
         <div className="mb-12 md:mb-16 max-w-3xl">
           <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-            What we recruit for.
+            Practice areas.
           </h2>
         </div>
 
@@ -55,7 +55,7 @@ const IndustriesServed: React.FC = () => {
               <div className="absolute inset-0 z-0">
                 <img
                   src={cat.image}
-                  alt={`${cat.category} recruitment — Certus Corporate Search`}
+                  alt={`${cat.category} recruitment`}
                   loading="lazy"
                   className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700 ease-out"
                 />

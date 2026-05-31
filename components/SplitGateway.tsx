@@ -265,8 +265,7 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
         className={`absolute bottom-6 right-6 z-50 group flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 hover:text-white transition-all duration-300 ${hovered ? 'opacity-100' : 'opacity-60'}`}
         aria-label="Skip intro and view full site"
       >
-        <span className="hidden sm:inline">Explore the firm</span>
-        <span className="sm:hidden">About</span>
+        <span>Continue</span>
         <ArrowRight strokeWidth={1.5} className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
       </button>
 

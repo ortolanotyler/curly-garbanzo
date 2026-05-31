@@ -174,10 +174,10 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
         <div className="max-w-3xl mx-auto">
           <div className="mb-12">
             <h1 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-              Join our pipeline.
+              Submit your resume.
             </h1>
             <p className="mt-6 text-gray-400 font-light text-base leading-relaxed max-w-xl">
-              Most of our searches are never publicly posted. Send your details and we&rsquo;ll reach out when something matches.
+              Most of our searches are never publicly posted.
             </p>
           </div>
 
@@ -187,9 +187,9 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
                 <Check size={40} strokeWidth={1.5} />
               </div>
               <div className="space-y-2">
-                <h2 className="text-2xl md:text-3xl font-medium text-white">You&rsquo;re in the pipeline.</h2>
+                <h2 className="text-2xl md:text-3xl font-medium text-white">Received.</h2>
                 <p className="text-gray-400 font-light text-sm max-w-md mx-auto leading-relaxed">
-                  Our team will review your background and reach out when an aligned mandate opens.
+                  Someone will be in touch if a matching mandate opens.
                 </p>
               </div>
               <button
@@ -282,7 +282,7 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
                 </div>
               </Field>
 
-              <Field label="Brief note" hint="Optional — what you're looking for, when you're moving, etc.">
+              <Field label="Brief note" hint="Optional">
                 <textarea
                   name="note"
                   value={formData.note}

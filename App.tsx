@@ -10,9 +10,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import IndustriesServed from './components/IndustriesServed';
 import SplitGateway from './components/SplitGateway';
-import TrustStrip from './components/TrustStrip';
 import HowWeWork from './components/HowWeWork';
-import Testimonials from './components/Testimonials';
 import TeamStrip from './components/TeamStrip';
 import SEO from './components/SEO';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -173,13 +171,11 @@ const App: React.FC = () => {
             onViewJobs={() => setView('jobs')}
             onNavigate={handleNavigate}
           />
-          <TrustStrip />
           <IndustriesServed />
           <HowWeWork />
           <TeamStrip />
           <LinkedInFeed />
           <LocationsMap />
-          <Testimonials />
           <FeaturedJobsHero onViewJobs={() => setView('jobs')} />
           <Contact />
         </main>

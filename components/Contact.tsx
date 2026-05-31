@@ -218,7 +218,7 @@ const Contact: React.FC = () => {
 
               <Field
                 label="Message"
-                hint={inquiryType === 'hiring' ? 'Role, timing, sector — whatever’s useful' : 'Optional'}
+                hint={inquiryType === 'hiring' ? 'Role, timing, sector' : 'Optional'}
               >
                 <textarea
                   value={message}
@@ -245,7 +245,7 @@ const Contact: React.FC = () => {
               {status === 'success' && (
                 <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-sm px-4 py-3">
                   <p className="text-emerald-300 text-xs font-medium">
-                    Thanks — your message is in. We&rsquo;ll respond within one business day.
+                    Thanks. We&rsquo;ll respond within one business day.
                   </p>
                 </div>
               )}

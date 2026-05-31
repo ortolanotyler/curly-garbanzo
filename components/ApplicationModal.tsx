@@ -108,7 +108,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
       const isAbort = error instanceof DOMException && error.name === 'AbortError';
       setErrorMessage(
         isAbort
-          ? 'Request timed out. The server may be unreachable — please try again.'
+          ? 'Request timed out. Please try again.'
           : error instanceof Error
             ? error.message
             : 'Network error. Please try again.'
@@ -296,7 +296,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
                 <div className="space-y-2">
                    <h4 className="text-2xl md:text-3xl font-medium text-white">Application received.</h4>
                    <p className="text-gray-400 text-sm max-w-sm mx-auto leading-relaxed font-light">
-                     We&rsquo;ve got your details for <span className="text-white">{job.title}</span> and will be in touch if it&rsquo;s a fit.
+                     Your details for <span className="text-white">{job.title}</span> are in. Someone will be in touch if there&rsquo;s a fit.
                    </p>
                 </div>
                 <button

@@ -3,16 +3,16 @@ import { Section } from '../types';
 
 const steps = [
   {
-    title: 'Start with a real conversation.',
-    body: 'A 60-minute call on the role, the team, and what success looks like 12 months in. We build the search around the actual gap, not a copy-pasted job description.',
+    title: 'Brief',
+    body: 'A 60-minute call on the role, the team, and what success looks like 12 months in.',
   },
   {
-    title: 'Hand-sourced shortlist.',
+    title: 'Search',
     body: 'Targeted outreach across our network of senior finance, operations, and IT leaders in North America. Every shortlisted candidate is interviewed by us first.',
   },
   {
-    title: 'Three to five candidates in 30–45 days.',
-    body: 'We stay in the loop through references, the offer, the signing, and the first 90 days on the job.',
+    title: 'Shortlist',
+    body: 'Three to five candidates in 30 to 45 days. We stay in the loop through references, the offer, and the first 90 days on the job.',
   },
 ];
 
@@ -22,7 +22,7 @@ const HowWeWork: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="max-w-3xl mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-            How a search runs.
+            Process.
           </h2>
         </div>
 

@@ -14,17 +14,17 @@ const team: TeamMember[] = [
   {
     name: 'Founder & Managing Partner',
     role: 'Engagement lead',
-    bio: 'Twenty years in executive search across finance, operations, and IT. Founded Certus to take a more direct approach to senior placement work.',
+    bio: 'Executive search across finance, operations, and IT.',
   },
   {
     name: 'Director of Search',
     role: 'Search delivery',
-    bio: 'CFO, COO, and VP-level placements for PE-backed and public corporates. Runs the day-to-day on active mandates.',
+    bio: 'CFO, COO, and VP-level placements for PE-backed and public corporates.',
   },
   {
     name: 'Research Lead',
     role: 'Network & sourcing',
-    bio: 'Owns the candidate network. Every shortlist starts with people we already know — not a cold pull from a job board.',
+    bio: 'Owns the candidate network and shortlist research.',
   },
 ];
 
@@ -42,7 +42,7 @@ const TeamStrip: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="max-w-3xl mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-            Who runs your search.
+            Team.
           </h2>
         </div>
 
