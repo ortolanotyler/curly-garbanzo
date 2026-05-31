@@ -487,7 +487,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Teamsters experience a strong asset',
       'PHR, SPHR, SHRM-CP, or SHRM-SCP preferred',
     ],
-    createdAt: new Date().toISOString(),
+    createdAt: new Date('2026-04-17').toISOString(),
   },
 ];
 
