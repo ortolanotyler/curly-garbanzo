@@ -3,6 +3,65 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'bilingual-hr-admin-lachine',
+    ref: 'CG-2026-008',
+    title: 'Bilingual HR Administrator & Compliance Coordinator',
+    location: 'Lachine, QC',
+    type: 'Full-time · Onsite · Permanent',
+    salary: '$60,000 - $65,000 CAD',
+    summary:
+      'HR administration and compliance support across Canada and the US for an established logistics organization. Owns HR data in D365, internal SharePoint content, onboarding/offboarding, and H&S compliance tracking. Bilingual French/English required.',
+    description: `Provides day-to-day HR administration and compliance support across Canada and the United States. Reports to the HR Manager. Ensures HR activities are accurate, consistent, and executed on time across North American locations.
+
+**What you'll be doing**
+
+- HR administration and compliance support across Canada and the US; consistent application of HR procedures
+- Maintain and update employee data in Dynamics 365 (D365); support reporting, audits, and compliance documentation
+- Prepare and maintain HR documentation: hiring, terminations, employee letters, SOPs; filing and version control
+- Coordinate onboarding and offboarding using established checklists; follow up on completion, update records, coordinate system access
+- Own HR content on internal SharePoint sites; maintain accuracy and coordinate company-wide updates
+- Support the review, updating, tracking, and communication of HR policies
+- Support administrative and compliance activities for Health & Safety across all North American locations; track mandatory training and maintain records
+- Provide admin support for HR projects and process updates as assigned
+
+**What we're looking for**
+
+- HR education
+- Minimum 1 year of HR administration or coordinator-level experience
+- Bilingual French and English — required
+- Highly organized; able to meet tight deadlines
+- Strong communication and active listening skills
+- Comfortable using a variety of systems and platforms (D365 and SharePoint experience an asset)
+- Resourceful and flexible; thrives in dynamic environments
+
+**Compensation & benefits**
+
+- $60,000 - $65,000 CAD
+- Health, dental, and vision coverage (after 3 months)
+- Fitness reimbursement program
+- 2 weeks vacation
+- Flexible start time (7, 8, or 9am)
+- Equal opportunity employer`,
+    responsibilities: [
+      'Provide HR administration and compliance support across Canada and the US',
+      'Maintain and update employee data in Dynamics 365',
+      'Prepare and maintain HR documentation (hiring, terminations, employee letters, SOPs)',
+      'Coordinate onboarding and offboarding using established checklists',
+      'Own HR content on internal SharePoint sites and coordinate company-wide updates',
+      'Support review, updating, tracking, and communication of HR policies',
+      'Support H&S administrative and compliance activities across all North American locations',
+      'Provide admin support for HR projects and process updates as assigned',
+    ],
+    requirements: [
+      'HR education',
+      'Minimum 1 year of HR administration or coordinator-level experience',
+      'Bilingual French and English — required',
+      'Strong organizational skills and ability to meet tight deadlines',
+      'Comfortable with a variety of systems and platforms (D365 and SharePoint an asset)',
+    ],
+    createdAt: new Date('2026-05-12').toISOString(),
+  },
+  {
     id: 'hs-compliance-manager-carlisle',
     ref: 'CG-2026-007',
     title: 'Health, Safety & Compliance Manager (U.S. Region)',
