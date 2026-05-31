@@ -3,6 +3,68 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'hr-coordinator-brantford',
+    ref: 'CG-2026-005',
+    title: 'Human Resources Coordinator',
+    location: 'Brantford, ON',
+    type: 'Full-time · Onsite',
+    salary: '$58,000 - $60,000 CAD',
+    summary:
+      'HR Coordinator for an established Canadian manufacturing site. Broad exposure across recruitment, employee relations, onboarding, payroll support, and engagement. Reports to the Senior Manager of HR; partners closely with the onsite HRBP.',
+    description: `An established Canadian manufacturing organization is adding an HR Coordinator to support its Brantford plant. Reports to the Senior Manager of HR and partners with the onsite HRBP. Supports both hourly and salaried employees in a fast-paced plant environment. Strong fit for someone continuing to build a career in HR with broad operational exposure.
+
+**What you'll be doing**
+
+- Support full-cycle recruitment: resume review, interview coordination, onboarding admin, background checks, agency communication
+- Run onboarding and orientation for new hires
+- Serve as a point of contact for employees and supervisors on HR policies and day-to-day questions
+- Support attendance tracking, weekly payroll audits, and reporting
+- Assist with employee relations, documentation, and disciplinary administration under HR leadership
+- Maintain HR files, records, employee documentation, and reporting databases
+- Coordinate service awards, engagement initiatives, training, and social events
+- Support benefits administration and third-party provider communication
+- Support compliance administration, audits, and workplace documentation
+
+**What we're looking for**
+
+- Diploma or degree in HR, Business, or related field
+- 1-3 years of HR experience, ideally in manufacturing, industrial, warehousing, or production
+- Strong organizational skills; comfortable juggling priorities in a fast-paced setting
+- Comfortable interacting with employees and leadership at all levels
+- Professional, approachable, highly discreet with sensitive information
+- HRIS and timekeeping system familiarity (ADP Workforce Now is an asset)
+- CHRP designation (or working toward it) is an asset
+
+**Compensation & benefits**
+
+- $58,000 - $60,000 CAD
+- Health and dental benefits
+- Company pension program
+- Paid time off
+- On-site parking
+- Full-time, onsite, Monday to Friday`,
+    responsibilities: [
+      'Support full-cycle recruitment: resume review, interview coordination, onboarding, background checks',
+      'Run onboarding and orientation for new hires',
+      'Be the point of contact for employees and supervisors on HR policies and day-to-day questions',
+      'Support attendance tracking, weekly payroll audits, and reporting',
+      'Assist with employee relations, documentation, and disciplinary administration',
+      'Maintain HR files, records, documentation, and reporting databases',
+      'Coordinate service awards, engagement initiatives, training, and social events',
+      'Support benefits administration and third-party provider communication',
+      'Support compliance administration, audits, and workplace documentation',
+    ],
+    requirements: [
+      'Diploma or degree in HR, Business, or related field',
+      '1-3 years of HR experience (manufacturing or industrial environment preferred)',
+      'Strong organizational skills and ability to manage multiple priorities',
+      'Professional, approachable, discreet with sensitive information',
+      'HRIS / timekeeping familiarity (ADP Workforce Now is an asset)',
+      'CHRP designation or working toward it is an asset',
+    ],
+    createdAt: new Date('2026-05-27').toISOString(),
+  },
+  {
     id: 'hr-ops-manager-mississauga',
     ref: 'CG-2026-004',
     title: 'HR Operations Manager',
