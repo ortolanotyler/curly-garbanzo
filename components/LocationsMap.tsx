@@ -1,5 +1,6 @@
 import React from 'react';
-import { APIProvider, Map, AdvancedMarker, Pin } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+
 const API_KEY = process.env.GOOGLE_MAPS_PLATFORM_KEY || '';
 const hasValidKey = Boolean(API_KEY) && API_KEY !== 'YOUR_API_KEY';
 
@@ -9,6 +10,40 @@ const COVERAGE_CITIES = [
   'Toronto', 'Montreal', 'Vancouver', 'New York', 'Chicago',
   'Atlanta', 'Dallas', 'Los Angeles', 'San Francisco',
 ];
+
+// Dark theme for the map. Inline styles only take effect when no
+// cloud-based mapId is set, which is why we use the legacy `Marker`
+// component (AdvancedMarker requires mapId).
+const darkMapStyles = [
+  { elementType: 'geometry', stylers: [{ color: '#0E141E' }] },
+  { elementType: 'labels.text.stroke', stylers: [{ color: '#0E141E' }] },
+  { elementType: 'labels.text.fill', stylers: [{ color: '#5B6C7F' }] },
+  { featureType: 'administrative', elementType: 'geometry', stylers: [{ visibility: 'off' }] },
+  { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#2a3340' }] },
+  { featureType: 'administrative.province', elementType: 'geometry.stroke', stylers: [{ color: '#1f2632' }] },
+  { featureType: 'administrative.locality', elementType: 'labels.text.fill', stylers: [{ color: '#9FA8B5' }] },
+  { featureType: 'administrative.land_parcel', stylers: [{ visibility: 'off' }] },
+  { featureType: 'administrative.neighborhood', stylers: [{ visibility: 'off' }] },
+  { featureType: 'poi', stylers: [{ visibility: 'off' }] },
+  { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#1a2230' }] },
+  { featureType: 'road', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+  { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#222b3a' }] },
+  { featureType: 'transit', stylers: [{ visibility: 'off' }] },
+  { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#070b12' }] },
+  { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#38393A' }] },
+  { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#0E141E' }] },
+];
+
+// SVG-encoded brand pin (silver dot inside a darker ring), so the
+// legacy Marker matches the rest of the UI without needing AdvancedMarker.
+const pinIcon =
+  'data:image/svg+xml;charset=UTF-8,' +
+  encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="14" fill="#9FA8B5" fill-opacity="0.18" />
+      <circle cx="16" cy="16" r="7" fill="#FFFFFF" stroke="#9FA8B5" stroke-width="2" />
+    </svg>
+  `);
 
 export default function LocationsMap() {
   return (
@@ -26,20 +61,16 @@ export default function LocationsMap() {
               <Map
                 defaultCenter={{ lat: 41.5, lng: -90 }}
                 defaultZoom={4}
-                mapId="DEMO_MAP_ID"
                 internalUsageAttributionIds={['gmp_mcp_codeassist_v1_aistudio']}
                 style={{ width: '100%', height: '100%' }}
                 disableDefaultUI={true}
-                styles={[
-                  { featureType: 'all', elementType: 'geometry', stylers: [{ color: '#1a2230' }] },
-                  { featureType: 'all', elementType: 'labels.text.stroke', stylers: [{ color: '#1a2230' }] },
-                  { featureType: 'all', elementType: 'labels.text.fill', stylers: [{ color: '#5B6C7F' }] },
-                  { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#0E141E' }] },
-                ]}
+                gestureHandling="cooperative"
+                styles={darkMapStyles}
               >
-                <AdvancedMarker position={HQ}>
-                  <Pin background="#FFFFFF" glyphColor="#0E141E" borderColor="#9FA8B5" />
-                </AdvancedMarker>
+                <Marker
+                  position={HQ}
+                  icon={{ url: pinIcon, scaledSize: { width: 32, height: 32 } as google.maps.Size }}
+                />
               </Map>
             </APIProvider>
           ) : (
