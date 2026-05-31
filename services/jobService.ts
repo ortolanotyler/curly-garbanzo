@@ -3,15 +3,19 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
-    id: 'customs-rater-montreal',
+    id: 'customs-rater-sarnia',
     ref: 'CG-2026-002',
     title: 'Customs Rater',
-    location: 'Montreal, QC',
-    type: 'Full-time',
-    salary: 'Competitive',
+    location: 'Sarnia, ON',
+    type: 'Full-time · Onsite',
+    salary: '$50,000 - $60,000 CAD',
     summary:
-      'Handles documentation from importers, freight forwarders, airlines, and transports — verifying, entering, and updating customs files. Reports to the Brokerage Manager.',
+      'Handles documentation from importers, freight forwarders, airlines, and transports — verifying, entering, and updating customs files. Open to candidates in Sarnia, Windsor, or Mississauga.',
     description: `Reporting to the Brokerage Manager. The Customs Rater handles documentation received from importers, freight forwarders, airlines, and transports — verifying it, entering it into the customs system, and updating or creating files as needed. The role coordinates with importers to complete documentation and works closely with the internal customs and freight teams.
+
+**Locations**
+
+Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time onsite, Monday to Friday, day shift.
 
 **What you'll do**
 
@@ -23,15 +27,16 @@ const MOCK_JOBS: JobPosting[] = [
 
 **What we're looking for**
 
-- 1-2 years of customs and transportation experience
+- Minimum 1 year of experience in a Customs Rater capacity
+- International ocean customs experience required
 - Working knowledge of customs import regulations, freight forwarding, and HS tariff classification
 - Familiarity with local and national brokerage procedures
-- Shift flexibility (varied work schedule)
-- Strong attention to detail; able to work independently and in a team
+- CCS (Certified Customs Specialist) is a strong asset and supports the top end of the range
+- Candidates must be based in Canada
 
 **Compensation & benefits**
 
-- Competitive compensation
+- $50,000 - $60,000 CAD
 - Comprehensive health and dental
 - Equal opportunity employer`,
     responsibilities: [
@@ -42,11 +47,12 @@ const MOCK_JOBS: JobPosting[] = [
       'Apply HS tariff classification and local/national brokerage procedures',
     ],
     requirements: [
-      '1-2 years of customs and transportation experience',
+      'Minimum 1 year of experience in a Customs Rater capacity',
+      'International ocean customs experience required',
       'Working knowledge of customs import regulations, freight forwarding, and HS tariff classification',
       'Familiarity with local and national brokerage procedures',
-      'Shift flexibility (varied work schedule)',
-      'Strong attention to detail; able to work independently and in a team',
+      'CCS designation is a strong asset (supports the top end of the range)',
+      'Based in Canada — Sarnia, Windsor, or Mississauga preferred',
     ],
     createdAt: new Date().toISOString(),
   },
