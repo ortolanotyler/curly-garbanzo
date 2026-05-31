@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, AdvancedMarker, useMapsLibrary } from '@vis.gl/react-google-maps';
 import { JobPosting } from '../types';
 import * as jobService from '../services/jobService';
 
@@ -8,8 +8,6 @@ const hasValidKey = Boolean(API_KEY) && API_KEY !== 'YOUR_API_KEY';
 
 const HQ = { lat: 43.6532, lng: -79.3832, label: 'Toronto · HQ' };
 
-// Lightweight client-side geocoder. Add cities here as needed — this avoids
-// hitting the Google Geocoding API on every page load.
 const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
   'toronto,on': { lat: 43.6532, lng: -79.3832 },
   'montreal,qc': { lat: 45.5019, lng: -73.5674 },
@@ -86,6 +84,42 @@ const groupJobsByCity = (jobs: JobPosting[]): JobPin[] => {
   return Array.from(buckets.values());
 };
 
+// Renders the AdvancedMarkers only after google.maps.marker is loaded.
+// Without this gate, the markers try to construct AdvancedMarkerElement
+// before its library is available, which throws "dh is not a constructor"
+// (the minified name for AdvancedMarkerElement).
+const PinsLayer: React.FC<{ pins: JobPin[] }> = ({ pins }) => {
+  const markerLib = useMapsLibrary('marker');
+  if (!markerLib) return null;
+
+  return (
+    <>
+      <AdvancedMarker position={{ lat: HQ.lat, lng: HQ.lng }} title={HQ.label}>
+        <div className="w-3 h-3 bg-brand-steel border border-brand-silver"></div>
+      </AdvancedMarker>
+
+      {pins.map((pin) => (
+        <AdvancedMarker
+          key={pin.key}
+          position={{ lat: pin.lat, lng: pin.lng }}
+          title={pin.count > 1 ? `${pin.label} · ${pin.count} active` : pin.label}
+        >
+          <div className="relative flex items-center justify-center">
+            <div className="absolute w-8 h-8 rounded-full bg-brand-silver/20"></div>
+            <div className="relative w-4 h-4 rounded-full bg-white border-2 border-brand-silver flex items-center justify-center">
+              {pin.count > 1 && (
+                <span className="text-[8px] font-bold text-brand-dark leading-none">
+                  {pin.count}
+                </span>
+              )}
+            </div>
+          </div>
+        </AdvancedMarker>
+      ))}
+    </>
+  );
+};
+
 export default function LocationsMap() {
   const [jobs, setJobs] = useState<JobPosting[]>([]);
 
@@ -119,31 +153,7 @@ export default function LocationsMap() {
                 disableDefaultUI={true}
                 gestureHandling="cooperative"
               >
-                <AdvancedMarker
-                  position={{ lat: HQ.lat, lng: HQ.lng }}
-                  title={HQ.label}
-                >
-                  <div className="w-3 h-3 bg-brand-steel border border-brand-silver"></div>
-                </AdvancedMarker>
-
-                {pins.map((pin) => (
-                  <AdvancedMarker
-                    key={pin.key}
-                    position={{ lat: pin.lat, lng: pin.lng }}
-                    title={pin.count > 1 ? `${pin.label} · ${pin.count} active` : pin.label}
-                  >
-                    <div className="relative flex items-center justify-center">
-                      <div className="absolute w-8 h-8 rounded-full bg-brand-silver/20"></div>
-                      <div className="relative w-4 h-4 rounded-full bg-white border-2 border-brand-silver flex items-center justify-center">
-                        {pin.count > 1 && (
-                          <span className="text-[8px] font-bold text-brand-dark leading-none">
-                            {pin.count}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </AdvancedMarker>
-                ))}
+                <PinsLayer pins={pins} />
               </Map>
             </APIProvider>
           ) : (
