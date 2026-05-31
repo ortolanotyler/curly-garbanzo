@@ -3,6 +3,54 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'customs-rater-montreal',
+    ref: 'CG-2026-002',
+    title: 'Customs Rater',
+    location: 'Montreal, QC',
+    type: 'Full-time',
+    salary: 'Competitive',
+    summary:
+      'Handles documentation from importers, freight forwarders, airlines, and transports — verifying, entering, and updating customs files. Reports to the Brokerage Manager.',
+    description: `Reporting to the Brokerage Manager. The Customs Rater handles documentation received from importers, freight forwarders, airlines, and transports — verifying it, entering it into the customs system, and updating or creating files as needed. The role coordinates with importers to complete documentation and works closely with the internal customs and freight teams.
+
+**What you'll do**
+
+- Verify and enter customs documentation from importers, forwarders, airlines, and transports
+- Update existing files and open new ones as required
+- Request supporting documents from importers to complete files
+- Coordinate with internal customs and freight teams
+- Apply HS tariff classification and local/national brokerage procedures
+
+**What we're looking for**
+
+- 1-2 years of customs and transportation experience
+- Working knowledge of customs import regulations, freight forwarding, and HS tariff classification
+- Familiarity with local and national brokerage procedures
+- Shift flexibility (varied work schedule)
+- Strong attention to detail; able to work independently and in a team
+
+**Compensation & benefits**
+
+- Competitive compensation
+- Comprehensive health and dental
+- Equal opportunity employer`,
+    responsibilities: [
+      'Verify and enter customs documentation from importers, forwarders, airlines, and transports',
+      'Update existing files and open new ones as required',
+      'Request supporting documents from importers to complete files',
+      'Coordinate with internal customs and freight teams',
+      'Apply HS tariff classification and local/national brokerage procedures',
+    ],
+    requirements: [
+      '1-2 years of customs and transportation experience',
+      'Working knowledge of customs import regulations, freight forwarding, and HS tariff classification',
+      'Familiarity with local and national brokerage procedures',
+      'Shift flexibility (varied work schedule)',
+      'Strong attention to detail; able to work independently and in a team',
+    ],
+    createdAt: new Date().toISOString(),
+  },
+  {
     id: 'lrm-monroe',
     ref: 'CG-2026-001',
     title: 'Labor Relations Manager',
