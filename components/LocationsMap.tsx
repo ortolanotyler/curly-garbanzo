@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
 import { JobPosting } from '../types';
 import * as jobService from '../services/jobService';
+
+// World topojson at 110m resolution (small countries lost, fine for continent view)
+const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+// ISO-3166 numeric codes for North America countries we want to render
+const NA_COUNTRY_IDS = new Set(['124', '840', '484']); // Canada, USA, Mexico
 
 const HQ = { lat: 43.6532, lng: -79.3832 };
 
@@ -80,22 +86,6 @@ const groupJobsByCity = (jobs: JobPosting[]): JobPin[] => {
   return Array.from(buckets.values());
 };
 
-// Equirectangular projection (web Mercator's simple cousin). Good enough
-// for a static North America view — pins land within ~50 mi of correct
-// position on a continent-wide map.
-const MAP_BOUNDS = {
-  north: 60,
-  south: 24,
-  west: -135,
-  east: -65,
-};
-
-const project = (lat: number, lng: number) => {
-  const x = ((lng - MAP_BOUNDS.west) / (MAP_BOUNDS.east - MAP_BOUNDS.west)) * 100;
-  const y = ((MAP_BOUNDS.north - lat) / (MAP_BOUNDS.north - MAP_BOUNDS.south)) * 100;
-  return { x, y };
-};
-
 export default function LocationsMap() {
   const [jobs, setJobs] = useState<JobPosting[]>([]);
 
@@ -106,7 +96,6 @@ export default function LocationsMap() {
   const pins = groupJobsByCity(jobs);
   const totalShown = pins.reduce((sum, p) => sum + p.count, 0);
   const unmappedCount = jobs.length - totalShown;
-  const hqProjected = project(HQ.lat, HQ.lng);
 
   return (
     <section className="relative py-24 md:py-32 bg-brand-dark border-y border-white/5 overflow-hidden">
@@ -118,71 +107,60 @@ export default function LocationsMap() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="relative h-[420px] md:h-[500px] w-full rounded-sm overflow-hidden border border-white/10 bg-[#0a0f17]">
-          {/* SVG silhouette of North America — drawn as a subtle backdrop */}
-          <svg
-            viewBox="0 0 1000 700"
-            preserveAspectRatio="xMidYMid slice"
-            className="absolute inset-0 w-full h-full"
-            aria-hidden="true"
+          <ComposableMap
+            projection="geoAlbers"
+            projectionConfig={{ scale: 700, center: [-3, 38] }}
+            width={800}
+            height={500}
+            style={{ width: '100%', height: '100%' }}
           >
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2230" strokeWidth="1" />
-              </pattern>
-            </defs>
-            <rect width="1000" height="700" fill="url(#grid)" />
-            {/* Rough North America outline */}
-            <path
-              d="M 100 200 Q 80 150, 150 120 L 250 100 Q 350 80, 450 100 L 600 90 Q 700 80, 780 110 L 850 150 L 880 220 L 890 320 L 870 420 L 820 500 L 750 560 L 650 590 L 550 610 L 450 620 L 380 600 L 320 560 L 280 500 L 240 450 L 200 400 L 170 350 L 140 290 Z"
-              fill="#0e1721"
-              stroke="#1f2a38"
-              strokeWidth="1.5"
-            />
-          </svg>
+            <Geographies geography={GEO_URL}>
+              {({ geographies }: { geographies: Array<{ rsmKey: string; id?: string }> }) =>
+                geographies
+                  .filter((geo) => geo.id && NA_COUNTRY_IDS.has(geo.id))
+                  .map((geo) => (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      fill="#0e1721"
+                      stroke="#2a3340"
+                      strokeWidth={0.5}
+                      style={{
+                        default: { outline: 'none' },
+                        hover: { outline: 'none', fill: '#0e1721' },
+                        pressed: { outline: 'none' },
+                      }}
+                    />
+                  ))
+              }
+            </Geographies>
 
-          {/* HQ pin (small square) */}
-          <div
-            className="absolute"
-            style={{
-              left: `${hqProjected.x}%`,
-              top: `${hqProjected.y}%`,
-              transform: 'translate(-50%, -50%)',
-            }}
-            title="Toronto · HQ"
-          >
-            <div className="w-2.5 h-2.5 bg-brand-steel border border-brand-silver"></div>
-          </div>
+            {/* HQ marker */}
+            <Marker coordinates={[HQ.lng, HQ.lat]}>
+              <rect x={-3} y={-3} width={6} height={6} fill="#5B6C7F" stroke="#9FA8B5" strokeWidth={1} />
+            </Marker>
 
-          {/* Active-search pins */}
-          {pins.map((pin) => {
-            const { x, y } = project(pin.lat, pin.lng);
-            return (
-              <div
-                key={pin.key}
-                className="absolute group"
-                style={{
-                  left: `${x}%`,
-                  top: `${y}%`,
-                  transform: 'translate(-50%, -50%)',
-                }}
-                title={pin.count > 1 ? `${pin.label} · ${pin.count} active` : pin.label}
-              >
-                <div className="relative flex items-center justify-center">
-                  <div className="absolute w-8 h-8 rounded-full bg-brand-silver/20 animate-pulse"></div>
-                  <div className="relative w-3.5 h-3.5 rounded-full bg-white border border-brand-silver flex items-center justify-center">
-                    {pin.count > 1 && (
-                      <span className="text-[8px] font-bold text-brand-dark leading-none">
-                        {pin.count}
-                      </span>
-                    )}
-                  </div>
-                  <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.15em] text-white/70 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    {pin.label}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
+            {/* Active-search markers */}
+            {pins.map((pin) => (
+              <Marker key={pin.key} coordinates={[pin.lng, pin.lat]}>
+                <circle r={10} fill="#9FA8B5" fillOpacity={0.2} />
+                <circle r={5} fill="#FFFFFF" stroke="#9FA8B5" strokeWidth={1.5} />
+                {pin.count > 1 && (
+                  <text
+                    textAnchor="middle"
+                    y={2}
+                    fontSize={7}
+                    fontWeight={700}
+                    fill="#0E141E"
+                    style={{ fontFamily: 'system-ui, sans-serif' }}
+                  >
+                    {pin.count}
+                  </text>
+                )}
+                <title>{pin.count > 1 ? `${pin.label} · ${pin.count} active` : pin.label}</title>
+              </Marker>
+            ))}
+          </ComposableMap>
 
           {pins.length > 0 && (
             <div className="absolute bottom-6 left-6 right-6 md:left-8 md:right-auto md:max-w-xs bg-brand-dark/90 backdrop-blur-md border border-white/10 rounded-sm px-5 py-4 pointer-events-none">
