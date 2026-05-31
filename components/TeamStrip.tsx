@@ -40,12 +40,6 @@ const TeamStrip: React.FC = () => {
   return (
     <section className="relative py-20 md:py-28 bg-brand-dark border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="max-w-3xl mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-            Team.
-          </h2>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {team.map((member, idx) => (
             <article key={idx} className="flex flex-col gap-5">

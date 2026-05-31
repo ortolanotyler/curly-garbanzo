@@ -20,12 +20,6 @@ const HowWeWork: React.FC = () => {
   return (
     <section id={Section.HOW_WE_WORK} className="relative py-20 md:py-28 bg-brand-dark">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="max-w-3xl mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-            Process.
-          </h2>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5 border border-white/5 rounded-sm overflow-hidden">
           {steps.map((step) => (
             <div
