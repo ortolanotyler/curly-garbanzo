@@ -264,9 +264,9 @@ const Contact: React.FC = () => {
                   className={`${underlineInputClasses} resize-none`}
                   placeholder={
                     inquiryType === 'hiring'
-                      ? 'We&rsquo;re looking for a VP of Finance, ideally placed by Q3...'
+                      ? "We're looking for a VP of Finance, ideally placed by Q3..."
                       : inquiryType === 'candidate'
-                        ? 'I&rsquo;m a Director of Operations exploring CFO-track roles in the GTA...'
+                        ? "I'm a Director of Operations exploring CFO-track roles in the GTA..."
                         : 'How can we help?'
                   }
                 />
