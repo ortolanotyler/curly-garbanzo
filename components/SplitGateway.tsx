@@ -17,13 +17,13 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
   const candidatesVideoRef = useRef<HTMLVideoElement>(null);
 
   const videos = {
-    hire: 'https://res.cloudinary.com/dvbubqhpp/video/upload/q_auto,f_auto,w_1920/v1779914850/8347240-uhd_3840_2160_25fps_p5otir.mp4',
-    candidates: 'https://res.cloudinary.com/dvbubqhpp/video/upload/q_auto,f_auto,w_1280/v1779828360/2325093-hd_1920_1080_25fps_zxwiof.mp4',
+    hire: 'https://res.cloudinary.com/dvbubqhpp/video/upload/q_auto,f_auto,w_1920/v1779828360/2325093-hd_1920_1080_25fps_zxwiof.mp4',
+    candidates: 'https://res.cloudinary.com/dvbubqhpp/video/upload/q_auto,f_auto,w_1280/v1779914850/8347240-uhd_3840_2160_25fps_p5otir.mp4',
   };
 
   const posters = {
-    hire: 'https://res.cloudinary.com/dvbubqhpp/video/upload/so_0,w_1920,q_auto,f_auto/v1779914850/8347240-uhd_3840_2160_25fps_p5otir.jpg',
-    candidates: 'https://res.cloudinary.com/dvbubqhpp/video/upload/so_0,w_1280,q_auto,f_auto/v1779828360/2325093-hd_1920_1080_25fps_zxwiof.jpg',
+    hire: 'https://res.cloudinary.com/dvbubqhpp/video/upload/so_0,w_1920,q_auto,f_auto/v1779828360/2325093-hd_1920_1080_25fps_zxwiof.jpg',
+    candidates: 'https://res.cloudinary.com/dvbubqhpp/video/upload/so_0,w_1280,q_auto,f_auto/v1779914850/8347240-uhd_3840_2160_25fps_p5otir.jpg',
   };
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
               playsInline
               preload="auto"
               poster={posters.candidates}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-out ${hovered === 'sectors' ? 'opacity-60' : 'opacity-25'}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-out ${hovered === 'sectors' ? 'opacity-75' : 'opacity-40'}`}
               style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
             />
           ) : (
@@ -89,10 +89,10 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
               src={posters.candidates}
               alt=""
               aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover opacity-25"
+              className="absolute inset-0 w-full h-full object-cover opacity-40"
             />
           )}
-          <div className={`absolute inset-0 bg-black/40 transition-opacity duration-700 ${hovered === 'sectors' ? 'opacity-30' : 'opacity-100'}`}></div>
+          <div className={`absolute inset-0 bg-black/25 transition-opacity duration-700 ${hovered === 'sectors' ? 'opacity-30' : 'opacity-100'}`}></div>
           <div
             className="absolute inset-0 z-10 opacity-20 pointer-events-none transition-opacity duration-700"
             style={{
@@ -182,7 +182,7 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
               preload="auto"
               poster={posters.hire}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-out ${
-                hovered === 'wordmark' ? 'opacity-45' : 'opacity-25'
+                hovered === 'wordmark' ? 'opacity-60' : 'opacity-40'
               }`}
               style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
             />
@@ -191,11 +191,11 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
               src={posters.hire}
               alt=""
               aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover opacity-25"
+              className="absolute inset-0 w-full h-full object-cover opacity-40"
             />
           )}
 
-          <div className="absolute inset-0 bg-brand-dark/60"></div>
+          <div className="absolute inset-0 bg-brand-dark/45"></div>
           <div
             className="absolute inset-0 z-10 opacity-20 pointer-events-none"
             style={{
