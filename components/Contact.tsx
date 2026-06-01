@@ -10,6 +10,11 @@ const INQUIRY_OPTIONS: Array<{ key: InquiryType; label: string; sub: string }> =
   { key: 'other', label: 'Something else', sub: 'Press, partnerships, etc.' },
 ];
 
+// Background photo — reusing a Cloudinary frame extract from the gateway
+// videos so we don't add another asset. Heavily dimmed via overlay.
+const BG_IMAGE =
+  'https://res.cloudinary.com/dvbubqhpp/video/upload/so_0,w_1920,q_auto,f_auto/v1779828360/2325093-hd_1920_1080_25fps_zxwiof.jpg';
+
 const Contact: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [name, setName] = useState('');
@@ -81,25 +86,52 @@ const Contact: React.FC = () => {
     <section
       id={Section.CONTACT}
       ref={sectionRef}
-      className="relative py-24 md:py-32 bg-brand-dark border-t border-white/5 overflow-hidden"
+      className="relative bg-brand-dark overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-silver/[0.03] rounded-full blur-[140px] pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={BG_IMAGE}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover opacity-25 grayscale-[40%]"
+        />
+        <div className="absolute inset-0 bg-brand-dark/70"></div>
         <div
-          className={`max-w-3xl mb-12 md:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-        >
-          <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-            Get in touch.
-          </h2>
-        </div>
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+          }}
+        ></div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Sidebar — direct info */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 md:py-32 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* LEFT — Glass card */}
           <aside
-            className={`lg:col-span-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'}`}
+            className={`lg:col-span-5 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           >
-            <div className="bg-white/[0.02] border border-white/5 rounded-sm p-8 md:p-10 h-full flex flex-col gap-10">
+            <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-sm p-8 md:p-10 lg:p-12 flex flex-col gap-10 shadow-2xl">
+              {/* Brand block */}
+              <div className="flex flex-col">
+                <div className="flex items-center gap-3 mb-2">
+                  <img
+                    src="https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png"
+                    className="w-9 h-9 opacity-90"
+                    alt="Certus Logo"
+                    referrerPolicy="no-referrer"
+                  />
+                  <span className="font-sans font-bold text-2xl md:text-3xl tracking-tight text-white">
+                    CERTUS<span className="text-white/60">GROUP</span>
+                  </span>
+                </div>
+                <span className="text-white/40 text-[10px] uppercase tracking-[0.4em] font-bold ml-[48px]">
+                  Corporate Search
+                </span>
+              </div>
+
+              {/* Contact rows */}
               <div className="space-y-6">
                 <ContactRow icon={Building2} label="Headquarters">
                   91 Skyway Avenue, Suite 206
@@ -123,11 +155,12 @@ const Contact: React.FC = () => {
                 </ContactRow>
               </div>
 
+              {/* Social */}
               <a
                 href="https://www.linkedin.com/showcase/certus-supply-chain-search/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group mt-auto pt-6 border-t border-white/5 flex items-center justify-between"
+                className="group mt-auto pt-6 border-t border-white/10 flex items-center justify-between"
               >
                 <div className="flex flex-col">
                   <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-1">
@@ -141,21 +174,25 @@ const Contact: React.FC = () => {
                     />
                   </span>
                 </div>
-                <div className="w-10 h-10 rounded-sm border border-white/10 flex items-center justify-center text-white/60 group-hover:border-white/40 group-hover:text-white transition-all">
+                <div className="w-10 h-10 rounded-sm border border-white/10 flex items-center justify-center text-white/70 group-hover:border-white/40 group-hover:text-white transition-all">
                   <Linkedin size={16} strokeWidth={1.5} />
                 </div>
               </a>
             </div>
           </aside>
 
-          {/* Form */}
+          {/* RIGHT — Headline + form */}
           <div
-            className={`lg:col-span-8 transition-all duration-1000 delay-150 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'}`}
+            className={`lg:col-span-7 transition-all duration-1000 delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           >
-            <form
-              onSubmit={handleSubmit}
-              className="bg-white/[0.02] border border-white/5 rounded-sm p-8 md:p-10 space-y-7"
-            >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.05] mb-6">
+              Get in touch.
+            </h2>
+            <p className="text-base md:text-lg text-white/60 font-light leading-relaxed max-w-xl mb-10">
+              Hiring or job-hunting, send a note. We reply within one business day.
+            </p>
+
+            <form onSubmit={handleSubmit} className="space-y-7">
               <Field label="I am…" required>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {INQUIRY_OPTIONS.map((opt) => {
@@ -165,10 +202,10 @@ const Contact: React.FC = () => {
                         key={opt.key}
                         type="button"
                         onClick={() => setInquiryType(opt.key)}
-                        className={`group text-left p-4 rounded-sm border transition-all duration-200 ${
+                        className={`text-left p-4 rounded-sm border backdrop-blur-md transition-all duration-200 ${
                           selected
-                            ? 'border-brand-silver bg-brand-silver/10'
-                            : 'border-white/10 hover:border-white/30 bg-transparent'
+                            ? 'border-brand-silver bg-brand-silver/15'
+                            : 'border-white/15 hover:border-white/40 bg-white/[0.03]'
                         }`}
                       >
                         <div className={`text-sm font-medium transition-colors ${selected ? 'text-white' : 'text-white/80'}`}>
@@ -184,56 +221,56 @@ const Contact: React.FC = () => {
               </Field>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Field label="Name" required>
+                <UnderlineField label="Name" required>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className={inputClasses}
+                    className={underlineInputClasses}
                     placeholder="Jane Doe"
                   />
-                </Field>
-                <Field label="Email" required>
+                </UnderlineField>
+                <UnderlineField label="Email" required>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className={inputClasses}
+                    className={underlineInputClasses}
                     placeholder="jane.doe@example.com"
                   />
-                </Field>
+                </UnderlineField>
               </div>
 
-              <Field label="Company" hint="Optional">
+              <UnderlineField label="Company" hint="Optional">
                 <input
                   type="text"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
-                  className={inputClasses}
+                  className={underlineInputClasses}
                   placeholder="Acme Industries"
                 />
-              </Field>
+              </UnderlineField>
 
-              <Field
+              <UnderlineField
                 label="Message"
                 hint={inquiryType === 'hiring' ? 'Role, timing, sector' : 'Optional'}
               >
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  rows={4}
-                  className={`${inputClasses} resize-none`}
+                  rows={3}
+                  className={`${underlineInputClasses} resize-none`}
                   placeholder={
                     inquiryType === 'hiring'
-                      ? 'We’re looking for a VP of Finance, ideally placed by Q3...'
+                      ? 'We&rsquo;re looking for a VP of Finance, ideally placed by Q3...'
                       : inquiryType === 'candidate'
-                        ? 'I’m a Director of Operations exploring CFO-track roles in the GTA...'
+                        ? 'I&rsquo;m a Director of Operations exploring CFO-track roles in the GTA...'
                         : 'How can we help?'
                   }
                 />
-              </Field>
+              </UnderlineField>
 
               {status === 'error' && (
                 <div className="bg-red-500/10 border border-red-500/30 rounded-sm px-4 py-3">
@@ -253,7 +290,7 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full bg-white text-brand-dark hover:bg-brand-silver disabled:opacity-50 disabled:cursor-not-allowed py-4 font-bold uppercase tracking-[0.2em] text-xs rounded-sm transition-all duration-300 shadow-lg flex items-center justify-center gap-3"
+                className="w-full bg-brand-steel hover:bg-white text-white hover:text-brand-dark disabled:opacity-50 disabled:cursor-not-allowed py-4 font-bold uppercase tracking-[0.25em] text-xs rounded-sm transition-all duration-300 shadow-lg flex items-center justify-center gap-3 mt-2"
               >
                 {status === 'loading' ? (
                   <>
@@ -262,7 +299,7 @@ const Contact: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    Send message
+                    Request callback
                     <ArrowRight size={16} />
                   </>
                 )}
@@ -279,10 +316,9 @@ const Contact: React.FC = () => {
   );
 };
 
-// text-base (16px) on inputs prevents iOS Safari from auto-zooming when a
-// field is focused — a real mobile UX bug on anything text-sm or smaller.
-const inputClasses =
-  'w-full bg-brand-dark border border-white/10 rounded-sm px-4 py-3 text-white text-base md:text-sm placeholder-gray-700 focus:outline-none focus:border-brand-silver/60 transition-colors';
+// 16px on mobile to prevent iOS auto-zoom on focus.
+const underlineInputClasses =
+  'w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 py-3 text-white text-base md:text-base placeholder-white/30 focus:outline-none focus:border-brand-silver transition-colors';
 
 const Field: React.FC<{
   label: string;
@@ -290,13 +326,31 @@ const Field: React.FC<{
   hint?: string;
   children: React.ReactNode;
 }> = ({ label, required, hint, children }) => (
-  <div className="space-y-2">
+  <div className="space-y-3">
     <div className="flex items-baseline justify-between gap-3">
-      <label className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.25em]">
+      <label className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em]">
         {label}
         {required && <span className="text-brand-silver ml-1">*</span>}
       </label>
-      {hint && <span className="text-[10px] text-white/50 font-light">{hint}</span>}
+      {hint && <span className="text-[10px] text-white/40 font-light">{hint}</span>}
+    </div>
+    {children}
+  </div>
+);
+
+const UnderlineField: React.FC<{
+  label: string;
+  required?: boolean;
+  hint?: string;
+  children: React.ReactNode;
+}> = ({ label, required, hint, children }) => (
+  <div className="space-y-1">
+    <div className="flex items-baseline justify-between gap-3">
+      <label className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em]">
+        {label}
+        {required && <span className="text-brand-silver ml-1">*</span>}
+      </label>
+      {hint && <span className="text-[10px] text-white/40 font-light">{hint}</span>}
     </div>
     {children}
   </div>
@@ -308,14 +362,14 @@ const ContactRow: React.FC<{
   children: React.ReactNode;
 }> = ({ icon: Icon, label, children }) => (
   <div className="flex items-start gap-4">
-    <div className="w-10 h-10 rounded-sm border border-white/10 flex items-center justify-center text-brand-silver flex-shrink-0">
+    <div className="w-11 h-11 rounded-sm bg-brand-steel/40 border border-white/10 flex items-center justify-center text-brand-silver flex-shrink-0">
       <Icon size={16} strokeWidth={1.5} />
     </div>
     <div>
-      <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40 mb-1.5">
+      <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/70 mb-1.5">
         {label}
       </div>
-      <div className="text-sm text-gray-300 font-light leading-relaxed">{children}</div>
+      <div className="text-sm text-white/70 font-light leading-relaxed">{children}</div>
     </div>
   </div>
 );
