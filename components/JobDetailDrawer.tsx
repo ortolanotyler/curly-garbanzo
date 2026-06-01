@@ -77,7 +77,7 @@ const JobDetailDrawer: React.FC<JobDetailDrawerProps> = ({ job, isOpen, onClose,
             <div className="flex-shrink-0 px-8 py-6 border-b border-white/10 flex justify-between items-start bg-white/[0.02]">
               <div className="pr-8">
                 <div className="flex items-center gap-3 mb-3">
-                    <span className={`text-[10px] font-mono font-bold uppercase tracking-widest px-2 py-1 rounded-sm border ${theme.border} ${theme.accent} ${theme.bgSoft}`}>
+                    <span className={`text-[10px] font-bold uppercase tracking-[0.25em] px-2 py-1 rounded-sm border ${theme.border} ${theme.accent} ${theme.bgSoft}`}>
                         REF: {job.ref}
                     </span>
                 </div>

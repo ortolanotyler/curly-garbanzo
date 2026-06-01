@@ -226,7 +226,7 @@ const JobRowSkeleton: React.FC = () => (
                                     }`}
                                 >
                                     {cat.label}
-                                    <span className={`text-[9px] font-mono tabular-nums ${selected ? 'text-brand-dark/70' : 'text-white/40 group-hover:text-white/70'}`}>
+                                    <span className={`text-[10px] font-bold tabular-nums ${selected ? 'text-brand-dark/70' : 'text-white/40 group-hover:text-white/70'}`}>
                                         {count}
                                     </span>
                                 </button>
@@ -262,7 +262,7 @@ const JobRowSkeleton: React.FC = () => (
                                 <div className="absolute top-0 left-0 w-[2px] h-full bg-brand-silver scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
 
                                 <div className="flex-grow min-w-0 space-y-2">
-                                    <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">
+                                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-[0.25em]">
                                         {job.ref}
                                     </span>
                                     <h3 className="text-xl md:text-2xl font-medium text-white group-hover:text-brand-silver transition-colors leading-tight tracking-tight">

@@ -215,7 +215,7 @@ export default function LocationsMap() {
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">
                       {hoveredPin.label}
                     </span>
-                    <span className="ml-auto text-[10px] text-white/40 font-mono">
+                    <span className="ml-auto text-[10px] text-white/40 font-light tracking-wide">
                       {hoveredPin.jobs.length} {hoveredPin.jobs.length === 1 ? 'role' : 'roles'}
                     </span>
                   </div>

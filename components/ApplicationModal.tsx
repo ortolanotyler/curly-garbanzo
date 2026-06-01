@@ -164,7 +164,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
               <div className="flex items-center gap-2 mb-1.5">
                 <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-silver">Apply</span>
                 <span className="text-white/20">·</span>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-white/40">{job.ref}</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">{job.ref}</span>
               </div>
               <h3 className="text-base md:text-lg font-medium text-white tracking-tight leading-snug pr-6">{job.title}</h3>
            </div>
