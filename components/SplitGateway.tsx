@@ -17,13 +17,13 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
   const candidatesVideoRef = useRef<HTMLVideoElement>(null);
 
   const videos = {
-    hire: 'https://res.cloudinary.com/dvbubqhpp/video/upload/q_auto,f_auto,w_1280/v1774975858/13076629_3840_2160_60fps_nmqkal.mp4',
-    candidates: 'https://res.cloudinary.com/dvbubqhpp/video/upload/v1779319281/15294386_1080_1920_25fps_wzyx8f.mp4',
+    hire: 'https://res.cloudinary.com/dvbubqhpp/video/upload/q_auto,f_auto,w_1920/v1779914850/8347240-uhd_3840_2160_25fps_p5otir.mp4',
+    candidates: 'https://res.cloudinary.com/dvbubqhpp/video/upload/q_auto,f_auto,w_1280/v1779828360/2325093-hd_1920_1080_25fps_zxwiof.mp4',
   };
 
   const posters = {
-    hire: 'https://res.cloudinary.com/dvbubqhpp/video/upload/so_0,w_1280,q_auto,f_auto/v1774975858/13076629_3840_2160_60fps_nmqkal.jpg',
-    candidates: 'https://res.cloudinary.com/dvbubqhpp/video/upload/v1779319281/15294386_1080_1920_25fps_wzyx8f.mp4',
+    hire: 'https://res.cloudinary.com/dvbubqhpp/video/upload/so_0,w_1920,q_auto,f_auto/v1779914850/8347240-uhd_3840_2160_25fps_p5otir.jpg',
+    candidates: 'https://res.cloudinary.com/dvbubqhpp/video/upload/so_0,w_1280,q_auto,f_auto/v1779828360/2325093-hd_1920_1080_25fps_zxwiof.jpg',
   };
 
   useEffect(() => {
