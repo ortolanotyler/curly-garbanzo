@@ -185,12 +185,9 @@ const Contact: React.FC = () => {
           <div
             className={`lg:col-span-7 transition-all duration-1000 delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.05] mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.05] mb-10">
               Get in touch.
             </h2>
-            <p className="text-base md:text-lg text-white/60 font-light leading-relaxed max-w-xl mb-10">
-              Hiring or job-hunting, send a note. We reply within one business day.
-            </p>
 
             <form onSubmit={handleSubmit} className="space-y-7">
               <Field label="I am…" required>
