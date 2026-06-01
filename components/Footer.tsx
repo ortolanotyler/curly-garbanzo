@@ -22,8 +22,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit })
 
   const siteLinks: Array<{ label: string; onClick: () => void }> = [
     { label: 'Practice Sectors', onClick: () => handleNav(Section.INDUSTRIES) },
-    { label: 'How We Work', onClick: () => handleNav(Section.HOW_WE_WORK) },
-    { label: 'Insights', onClick: () => handleNav(Section.INSIGHTS) },
+    { label: 'Open Roles', onClick: () => onViewJobs?.() },
     { label: 'Contact', onClick: () => handleNav(Section.CONTACT) },
   ];
 

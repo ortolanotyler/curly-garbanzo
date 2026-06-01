@@ -45,17 +45,15 @@ const Header: React.FC<HeaderProps> = ({ onViewJobs, onViewSubmit, onNavigate })
   };
 
   const desktopLinks: Array<{ label: string; onClick: () => void }> = [
-    { label: 'For Companies', onClick: () => scrollTo(Section.HOW_WE_WORK) },
+    { label: 'For Companies', onClick: () => scrollTo(Section.INDUSTRIES) },
     { label: 'For Candidates', onClick: handleJobs },
     { label: 'Submit Resume', onClick: handleSubmit },
-    { label: 'Insights', onClick: () => scrollTo(Section.INSIGHTS) },
   ];
 
   const mobileLinks: Array<{ label: string; sub: string; onClick: () => void }> = [
-    { label: 'For Companies', sub: 'How we work · sectors', onClick: () => scrollTo(Section.HOW_WE_WORK) },
+    { label: 'For Companies', sub: 'How we work · sectors', onClick: () => scrollTo(Section.INDUSTRIES) },
     { label: 'Browse Open Roles', sub: 'For candidates', onClick: handleJobs },
     { label: 'Submit Your Resume', sub: 'Join the pipeline', onClick: handleSubmit },
-    { label: 'Insights', sub: 'Social feed', onClick: () => scrollTo(Section.INSIGHTS) },
     { label: 'Contact', sub: 'Start the conversation', onClick: () => scrollTo(Section.CONTACT) },
   ];
 
