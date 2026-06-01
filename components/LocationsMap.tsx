@@ -108,7 +108,6 @@ export default function LocationsMap() {
   }, []);
 
   const pins = groupJobsByCity(jobs);
-  const totalShown = pins.reduce((sum, p) => sum + p.jobs.length, 0);
   const hoveredPin = pins.find((p) => p.key === hoveredKey) || null;
 
   const handlePinEnter = (key: string) => {
@@ -269,12 +268,7 @@ export default function LocationsMap() {
           <br />
           Recruiting across North America.
         </h2>
-        <p className="mt-5 text-white/60 text-xs font-light uppercase tracking-[0.3em]">
-          {totalShown > 0
-            ? `${totalShown} active ${totalShown === 1 ? 'search' : 'searches'} · ${pins.length} ${pins.length === 1 ? 'city' : 'cities'}`
-            : ''}
-        </p>
-        <p className="mt-3 text-white/40 text-[10px] font-light uppercase tracking-[0.3em]">
+        <p className="mt-5 text-white/40 text-[10px] font-light uppercase tracking-[0.3em]">
           Hover a pin to view roles
         </p>
       </div>
