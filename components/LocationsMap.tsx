@@ -97,7 +97,12 @@ const groupJobsByCity = (jobs: JobPosting[]): JobPin[] => {
 const SVG_WIDTH = 1000;
 const SVG_HEIGHT = 700;
 
-const INITIAL_VIEW = { coordinates: [-3, 42] as [number, number], zoom: 1 };
+// ZoomableGroup's `center` is in SVG pixel coordinates (not lat/lng).
+// The natural projection center is the middle of the viewBox.
+const INITIAL_VIEW = {
+  coordinates: [SVG_WIDTH / 2, SVG_HEIGHT / 2] as [number, number],
+  zoom: 1,
+};
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 6;
 const ZOOM_STEP = 1.5;
