@@ -9,7 +9,7 @@ const IndustriesServed: React.FC = () => {
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1000"
     },
     {
-      category: "Operations & Logistics",
+      category: "Operations",
       description: "Director of Operations, Warehouse Solutions Designer, Customs Manager, Logistics Coordinator.",
       image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1000"
     },
