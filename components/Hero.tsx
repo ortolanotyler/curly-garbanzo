@@ -6,19 +6,34 @@ interface HeroProps {
   onNavigate: (sectionId: string) => void;
 }
 
-// Thin landing-page intro band. Sits below SplitGateway as a quiet
-// section header for the rest of the page. No video, no CTAs, no
-// stats. The split gateway is the real hero.
+// Landing-page intro hero. Sits below SplitGateway and above the rest of
+// the landing flow. Bigger and quieter than the gateway — no CTAs, no
+// video, just typography and a faint backdrop.
 const Hero: React.FC<HeroProps> = () => {
   return (
     <section
       id={Section.HERO}
-      className="bg-brand-dark border-b border-white/5 py-16 md:py-20"
+      className="relative bg-brand-dark border-b border-white/5 py-24 md:py-36 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <p className="text-lg md:text-2xl text-white font-light leading-snug tracking-tight max-w-3xl">
-          Certus Corporate Search places senior finance, operations, and IT leaders at
-          corporate clients across North America.
+      {/* Subtle dot grid backdrop */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Faint top-left silver glow */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-silver/[0.04] rounded-full blur-[140px] pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-white tracking-tight leading-[1.05] max-w-4xl">
+          Senior finance, operations, and IT placements.
+        </h1>
+        <p className="mt-6 md:mt-8 text-base md:text-xl text-white/60 font-light leading-relaxed max-w-2xl">
+          Executive search for corporate clients across North America.
         </p>
       </div>
     </section>
