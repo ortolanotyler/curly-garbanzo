@@ -129,7 +129,7 @@ export default function LocationsMap() {
       <div className="absolute inset-0">
         <ComposableMap
           projection="geoAlbers"
-          projectionConfig={{ scale: 900, center: [-3, 42] }}
+          projectionConfig={{ scale: 1200, center: [4, 42] }}
           width={SVG_WIDTH}
           height={SVG_HEIGHT}
           style={{ width: '100%', height: '100%' }}
