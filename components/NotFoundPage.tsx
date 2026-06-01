@@ -12,7 +12,7 @@ const NotFoundPage: React.FC<NotFoundPageProps> = ({ onBack, onViewJobs }) => {
     window.scrollTo(0, 0);
     document.title = '404 — Page not found · Certus Corporate Search';
     return () => {
-      document.title = 'Certus Group | Supply Chain Search & Specialized Recruitment';
+      document.title = 'Certus Corporate Search | Shared services executive search';
     };
   }, []);
 

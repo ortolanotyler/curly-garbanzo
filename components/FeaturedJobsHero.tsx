@@ -85,7 +85,7 @@ const FeaturedJobsHero: React.FC<FeaturedJobsHeroProps> = ({ onViewJobs }) => {
         ) : (
           <div className="space-y-6">
             {allJobs.map((job) => (
-              <SEO key={`seo-${job.id}`} job={job} title={`${job.title} in ${job.location}`} />
+              <SEO key={`seo-${job.id}`} job={job} schemaOnly={true} />
             ))}
 
             <div className="space-y-3">

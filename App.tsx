@@ -170,9 +170,9 @@ const App: React.FC = () => {
             onNavigate={handleNavigate}
           />
           <IndustriesServed />
-          <LinkedInFeed />
           <LocationsMap />
           <FeaturedJobsHero onViewJobs={() => setView('jobs')} />
+          <LinkedInFeed />
           <Contact />
         </main>
 
