@@ -56,7 +56,7 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
     return 'none';
   };
 
-  const sectors = ['Finance', 'Operations', 'IT Leadership', 'Executive'];
+  const sectors = ['Finance & HR', 'Operations', 'IT Leadership', 'Executive'];
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-brand-dark font-sans selection:bg-brand-silver selection:text-black">

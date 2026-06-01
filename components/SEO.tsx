@@ -61,8 +61,8 @@ const getBaseUrl = (): string => {
 
 const SEO: React.FC<SEOProps> = ({
   title,
-  description = 'Executive search for senior finance, operations, and IT roles at corporate clients across North America. Part of The Certus Group.',
-  keywords = 'executive search, finance recruitment, operations recruitment, IT leadership recruitment, CFO search, COO search, CIO search, corporate search, North America',
+  description = 'Shared services executive search. Senior finance, HR, operations, and IT placements at corporate clients across North America. Part of The Certus Group.',
+  keywords = 'shared services executive search, finance recruitment, HR recruitment, operations recruitment, IT leadership recruitment, CFO search, CHRO search, COO search, CIO search, corporate search, North America',
   canonical,
   ogImage = LOGO_URL,
   ogType = 'website',
@@ -77,12 +77,12 @@ const SEO: React.FC<SEOProps> = ({
   const finalTitle = job
     ? `${job.title} · ${SITE_NAME}`
     : isGateway
-      ? `${SITE_NAME} | Executive search — finance, operations, IT`
+      ? `${SITE_NAME} | Shared services executive search`
       : title
         ? title.includes(SITE_NAME)
           ? title
           : `${title} · ${SITE_NAME}`
-        : `${SITE_NAME} | Executive search — finance, operations, IT`;
+        : `${SITE_NAME} | Shared services executive search`;
 
   const finalDescription = job
     ? `${job.title} · ${job.location}${job.salary ? ` · ${job.salary}` : ''}. ${job.summary || ''}`.slice(0, 300)
@@ -98,7 +98,7 @@ const SEO: React.FC<SEOProps> = ({
     logo: LOGO_URL,
     image: LOGO_URL,
     description:
-      'Certus Corporate Search runs executive search engagements for senior finance, operations, and IT roles at corporate clients across North America.',
+      'Certus Corporate Search runs shared services executive search engagements — senior finance, HR, operations, and IT placements at corporate clients across North America.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '91 Skyway Avenue, Suite 206',
@@ -117,7 +117,7 @@ const SEO: React.FC<SEOProps> = ({
     },
     sameAs: ['https://www.linkedin.com/showcase/certus-supply-chain-search/'],
     areaServed: ['Canada', 'United States'],
-    knowsAbout: ['Finance recruitment', 'Operations recruitment', 'IT leadership recruitment', 'Executive search'],
+    knowsAbout: ['Shared services executive search', 'Finance recruitment', 'HR recruitment', 'Operations recruitment', 'IT leadership recruitment'],
   };
 
   const websiteSchema = {

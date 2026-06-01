@@ -30,10 +30,10 @@ const Hero: React.FC<HeroProps> = () => {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-white tracking-tight leading-[1.05] max-w-4xl">
-          Senior finance, operations, and IT placements.
+          Shared services executive search.
         </h1>
         <p className="mt-6 md:mt-8 text-base md:text-xl text-white/60 font-light leading-relaxed max-w-2xl">
-          Executive search for corporate clients across North America.
+          Senior finance, HR, operations, and IT placements at corporate clients across North America.
         </p>
       </div>
     </section>

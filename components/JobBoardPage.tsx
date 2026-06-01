@@ -177,11 +177,11 @@ const JobRowSkeleton: React.FC = () => (
         <main className="flex-grow pt-24 pb-24 px-6 lg:px-8 z-10">
             <SEO
                 title="Open roles"
-                description="Active executive search mandates from Certus Corporate Search. Senior finance, operations, and IT roles across North America."
-                keywords="finance jobs, operations jobs, IT jobs, executive jobs, CFO jobs, COO jobs, CIO jobs, VP finance, VP operations, North America"
+                description="Active shared services executive search mandates from Certus Corporate Search. Senior finance, HR, operations, and IT roles across North America."
+                keywords="finance jobs, HR jobs, operations jobs, IT jobs, executive jobs, CFO jobs, CHRO jobs, COO jobs, CIO jobs, VP finance, VP operations, shared services, North America"
             />
             <div className="max-w-7xl mx-auto">
-                <h1 className="sr-only">Certus Group Supply Chain Search - Job Board</h1>
+                <h1 className="sr-only">Certus Corporate Search — Open Roles</h1>
                 <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
                     <div>
                         <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
