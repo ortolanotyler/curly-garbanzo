@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps';
-import { ArrowRight, MapPin, DollarSign, Plus, Minus, Maximize2 } from 'lucide-react';
+import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
+import { ArrowRight, MapPin, DollarSign } from 'lucide-react';
 import { JobPosting } from '../types';
 import * as jobService from '../services/jobService';
 import ApplicationModal from './ApplicationModal';
@@ -97,32 +97,11 @@ const groupJobsByCity = (jobs: JobPosting[]): JobPin[] => {
 const SVG_WIDTH = 1000;
 const SVG_HEIGHT = 700;
 
-// ZoomableGroup's `center` is in [lng, lat] — the lib calls
-// projection([lon, lat]) on it internally to compute the SVG offset.
-// Use the same point as projectionConfig.center so the initial view
-// matches the un-zoomed map exactly.
-const INITIAL_VIEW = {
-  coordinates: [-3, 42] as [number, number],
-  zoom: 1,
-};
-const MIN_ZOOM = 1;
-const MAX_ZOOM = 6;
-const ZOOM_STEP = 1.5;
-
 export default function LocationsMap() {
   const [jobs, setJobs] = useState<JobPosting[]>([]);
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
   const [applyingTo, setApplyingTo] = useState<JobPosting | null>(null);
-  const [view, setView] = useState(INITIAL_VIEW);
   const closeTimer = useRef<number | null>(null);
-
-  const handleZoomIn = () => {
-    setView((v) => ({ ...v, zoom: Math.min(v.zoom * ZOOM_STEP, MAX_ZOOM) }));
-  };
-  const handleZoomOut = () => {
-    setView((v) => ({ ...v, zoom: Math.max(v.zoom / ZOOM_STEP, MIN_ZOOM) }));
-  };
-  const handleReset = () => setView(INITIAL_VIEW);
 
   useEffect(() => {
     jobService.getJobsByDomain().then(setJobs);
@@ -155,20 +134,6 @@ export default function LocationsMap() {
           height={SVG_HEIGHT}
           style={{ width: '100%', height: '100%' }}
         >
-          <ZoomableGroup
-            center={view.coordinates}
-            zoom={view.zoom}
-            minZoom={MIN_ZOOM}
-            maxZoom={MAX_ZOOM}
-            onMoveEnd={(position) => setView(position)}
-            // Only zoom on ctrl/cmd+wheel so plain scrolling doesn't get
-            // hijacked by the map while reading the page. Pinch + drag
-            // still work; the +/- buttons cover desktop users.
-            filterZoomEvent={(event) => {
-              if (event.type === 'wheel') return event.ctrlKey || event.metaKey;
-              return true;
-            }}
-          >
           <Geographies geography={GEO_URL}>
             {({ geographies }: { geographies: Array<{ rsmKey: string; id?: string }> }) =>
               geographies
@@ -230,12 +195,9 @@ export default function LocationsMap() {
 
           {/* Hover popup — rendered AFTER pins so it z-orders on top.
               foreignObject lets us put real HTML inside the SVG, so the popup
-              uses the same projection as the markers (no alignment math).
-              Counter-scaled via the outer <g> so the popup stays visually the
-              same size and screen-distance from the pin at any zoom level. */}
+              uses the same projection as the markers (no alignment math). */}
           {hoveredPin && (
             <Marker coordinates={[hoveredPin.lng, hoveredPin.lat]}>
-              <g transform={`scale(${1 / view.zoom})`}>
               <foreignObject
                 x={-140}
                 y={-(Math.min(hoveredPin.jobs.length, 3) * 56 + 60)}
@@ -291,10 +253,8 @@ export default function LocationsMap() {
                   </div>
                 </div>
               </foreignObject>
-              </g>
             </Marker>
           )}
-          </ZoomableGroup>
         </ComposableMap>
 
         {/* Subtle vignette to push the map back, content forward */}
@@ -315,38 +275,8 @@ export default function LocationsMap() {
             : ''}
         </p>
         <p className="mt-3 text-white/40 text-[10px] font-light uppercase tracking-[0.3em]">
-          Hover a pin to view roles · drag to pan · ⌘/Ctrl + scroll to zoom
+          Hover a pin to view roles
         </p>
-      </div>
-
-      {/* Zoom controls */}
-      <div className="absolute bottom-6 right-6 z-20 flex flex-col gap-1.5 pointer-events-auto">
-        <button
-          type="button"
-          onClick={handleZoomIn}
-          disabled={view.zoom >= MAX_ZOOM}
-          aria-label="Zoom in"
-          className="w-10 h-10 flex items-center justify-center bg-brand-dark/90 backdrop-blur-md border border-white/15 rounded-sm text-white/80 hover:text-white hover:border-white/40 hover:bg-brand-dark transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-        >
-          <Plus size={16} strokeWidth={1.75} />
-        </button>
-        <button
-          type="button"
-          onClick={handleZoomOut}
-          disabled={view.zoom <= MIN_ZOOM}
-          aria-label="Zoom out"
-          className="w-10 h-10 flex items-center justify-center bg-brand-dark/90 backdrop-blur-md border border-white/15 rounded-sm text-white/80 hover:text-white hover:border-white/40 hover:bg-brand-dark transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-        >
-          <Minus size={16} strokeWidth={1.75} />
-        </button>
-        <button
-          type="button"
-          onClick={handleReset}
-          aria-label="Reset view"
-          className="w-10 h-10 flex items-center justify-center bg-brand-dark/90 backdrop-blur-md border border-white/15 rounded-sm text-white/80 hover:text-white hover:border-white/40 hover:bg-brand-dark transition-all"
-        >
-          <Maximize2 size={14} strokeWidth={1.75} />
-        </button>
       </div>
 
       {applyingTo && (
