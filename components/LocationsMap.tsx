@@ -97,10 +97,12 @@ const groupJobsByCity = (jobs: JobPosting[]): JobPin[] => {
 const SVG_WIDTH = 1000;
 const SVG_HEIGHT = 700;
 
-// ZoomableGroup's `center` is in SVG pixel coordinates (not lat/lng).
-// The natural projection center is the middle of the viewBox.
+// ZoomableGroup's `center` is in [lng, lat] — the lib calls
+// projection([lon, lat]) on it internally to compute the SVG offset.
+// Use the same point as projectionConfig.center so the initial view
+// matches the un-zoomed map exactly.
 const INITIAL_VIEW = {
-  coordinates: [SVG_WIDTH / 2, SVG_HEIGHT / 2] as [number, number],
+  coordinates: [-3, 42] as [number, number],
   zoom: 1,
 };
 const MIN_ZOOM = 1;
@@ -233,7 +235,7 @@ export default function LocationsMap() {
               same size and screen-distance from the pin at any zoom level. */}
           {hoveredPin && (
             <Marker coordinates={[hoveredPin.lng, hoveredPin.lat]}>
-              <g style={{ transform: `scale(${1 / view.zoom})` }}>
+              <g transform={`scale(${1 / view.zoom})`}>
               <foreignObject
                 x={-140}
                 y={-(Math.min(hoveredPin.jobs.length, 3) * 56 + 60)}
