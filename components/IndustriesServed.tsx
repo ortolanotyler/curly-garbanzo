@@ -14,8 +14,8 @@ const IndustriesServed: React.FC = () => {
       image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1000"
     },
     {
-      category: "Information Technology",
-      description: "CIO, Salesforce Developer, Business Intelligence Analyst, Solutions Architect, EDI Manager.",
+      category: "IT & Engineering",
+      description: "CIO, Solutions Architect, Salesforce Developer, BI Analyst, EDI Manager, Engineering Director, Project Engineer.",
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000"
     },
     {

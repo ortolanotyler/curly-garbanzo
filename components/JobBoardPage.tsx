@@ -34,7 +34,7 @@ const CATEGORIES: Array<{ key: CategoryKey; label: string; match: (job: JobPosti
   },
   {
     key: 'it',
-    label: 'IT & Tech',
+    label: 'IT & Engineering',
     match: (job) =>
       /\b(it|cio|cto|engineer(?:ing)?|software|data|technology|developer|salesforce|edi|architect|systems|bi)\b/i.test(
         `${job.title} ${job.summary || ''}`
@@ -177,7 +177,7 @@ const JobRowSkeleton: React.FC = () => (
         <main className="flex-grow pt-24 pb-24 px-6 lg:px-8 z-10">
             <SEO
                 title="Open roles"
-                description="Active shared services executive search mandates from Certus Corporate Search. Senior finance, HR, operations, and IT roles across North America."
+                description="Active shared services executive search mandates from Certus Corporate Search. Senior finance, HR, operations, IT, and engineering roles across North America."
                 keywords="finance jobs, HR jobs, operations jobs, IT jobs, executive jobs, CFO jobs, CHRO jobs, COO jobs, CIO jobs, VP finance, VP operations, shared services, North America"
             />
             <div className="max-w-7xl mx-auto">

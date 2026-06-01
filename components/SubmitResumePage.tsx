@@ -136,7 +136,7 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
     <div className="min-h-screen bg-[#0F151E] text-slate-100 flex flex-col font-sans">
       <SEO
         title="Submit your resume"
-        description="Join the Certus Corporate Search pipeline for senior shared services roles: finance, HR, operations, and IT."
+        description="Join the Certus Corporate Search pipeline for senior shared services roles: finance, HR, operations, IT, and engineering."
         keywords="submit resume, executive recruitment pipeline, shared services, finance jobs, HR jobs, operations jobs, IT leadership jobs, talent network"
       />
       <header className="sticky top-0 z-50 bg-[#0F151E]/80 backdrop-blur-xl border-b border-white/5">

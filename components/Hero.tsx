@@ -33,7 +33,7 @@ const Hero: React.FC<HeroProps> = () => {
           Shared services executive search.
         </h1>
         <p className="mt-6 md:mt-8 text-base md:text-xl text-white/60 font-light leading-relaxed max-w-2xl">
-          Senior finance, HR, operations, and IT placements at corporate clients across North America.
+          Senior finance, HR, operations, IT, and engineering placements at corporate clients across North America.
         </p>
       </div>
     </section>

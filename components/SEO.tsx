@@ -61,8 +61,8 @@ const getBaseUrl = (): string => {
 
 const SEO: React.FC<SEOProps> = ({
   title,
-  description = 'Shared services executive search. Senior finance, HR, operations, and IT placements at corporate clients across North America. Part of The Certus Group.',
-  keywords = 'shared services executive search, finance recruitment, HR recruitment, operations recruitment, IT leadership recruitment, CFO search, CHRO search, COO search, CIO search, corporate search, North America',
+  description = 'Shared services executive search. Senior finance, HR, operations, IT, and engineering placements at corporate clients across North America. Part of The Certus Group.',
+  keywords = 'shared services executive search, finance recruitment, HR recruitment, operations recruitment, IT leadership recruitment, engineering recruitment, CFO search, CHRO search, COO search, CIO search, corporate search, North America',
   canonical,
   ogImage = LOGO_URL,
   ogType = 'website',
@@ -98,7 +98,7 @@ const SEO: React.FC<SEOProps> = ({
     logo: LOGO_URL,
     image: LOGO_URL,
     description:
-      'Certus Corporate Search runs shared services executive search engagements — senior finance, HR, operations, and IT placements at corporate clients across North America.',
+      'Certus Corporate Search runs shared services executive search engagements — senior finance, HR, operations, IT, and engineering placements at corporate clients across North America.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '91 Skyway Avenue, Suite 206',
@@ -117,7 +117,7 @@ const SEO: React.FC<SEOProps> = ({
     },
     sameAs: ['https://www.linkedin.com/showcase/certus-supply-chain-search/'],
     areaServed: ['Canada', 'United States'],
-    knowsAbout: ['Shared services executive search', 'Finance recruitment', 'HR recruitment', 'Operations recruitment', 'IT leadership recruitment'],
+    knowsAbout: ['Shared services executive search', 'Finance recruitment', 'HR recruitment', 'Operations recruitment', 'IT leadership recruitment', 'Engineering recruitment'],
   };
 
   const websiteSchema = {
