@@ -4,55 +4,49 @@ import sgMail from "@sendgrid/mail";
 import dotenv from "dotenv";
 import { fileURLToPath } from 'url';
 import fs from 'fs';
-import admin from 'firebase-admin';
-import { getFirestore } from 'firebase-admin/firestore';
 import { handleUpload, type HandleUploadBody } from '@vercel/blob/client';
+import { BLOG_POSTS } from './services/blogService.js';
+import { getJobs } from './services/jobService.js';
 
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load Firebase config for server-side admin
-const firebaseConfigPath = path.join(process.cwd(), 'firebase-applet-config.json');
-let dbAdmin: any;
-
-try {
-  const firebaseConfig = JSON.parse(fs.readFileSync(firebaseConfigPath, 'utf8'));
-  
-  if (!admin.apps.length) {
-    admin.initializeApp({
-      projectId: firebaseConfig.projectId,
-    });
-  }
-  
-  // Use the specific database if provided, otherwise default
-  dbAdmin = getFirestore(firebaseConfig.firestoreDatabaseId || '(default)');
-  console.log(`Firebase Admin initialized with database: ${firebaseConfig.firestoreDatabaseId || '(default)'}`);
-} catch (error) {
-  console.error("Error initializing Firebase Admin:", error);
-}
-
 const app = express();
 
-// Static sitemap covering the known SPA routes. Per-job URLs are discovered
-// by Google via the JobPosting structured data emitted on /jobs, so we don't
-// need to enumerate them here.
-app.get("/sitemap.xml", (req, res) => {
+// Sitemap covering the known SPA routes, every prerendered per-job page, and
+// every blog post. Per-job pages are statically generated (scripts/prerender-jobs.ts)
+// at dist/jobs/<id>/index.html, so we enumerate them here for indexing.
+app.get("/sitemap.xml", async (req, res) => {
   const baseUrl = process.env.APP_URL || `https://${req.get('host')}`;
   const today = new Date().toISOString().split('T')[0];
+  const jobs = await getJobs();
 
-  const routes = [
+  const routes: { loc: string; priority: string; changefreq: string; lastmod?: string }[] = [
     { loc: '/', priority: '1.0', changefreq: 'weekly' },
     { loc: '/jobs', priority: '0.9', changefreq: 'daily' },
+    { loc: '/blog', priority: '0.8', changefreq: 'weekly' },
     { loc: '/submit-resume', priority: '0.7', changefreq: 'monthly' },
+    ...jobs.map((job) => ({
+      loc: `/jobs/${job.id}`,
+      priority: '0.8',
+      changefreq: 'weekly',
+      lastmod: (job.updatedAt || job.createdAt || '').split('T')[0] || today,
+    })),
+    ...BLOG_POSTS.map((post) => ({
+      loc: `/blog/${post.slug}`,
+      priority: '0.7',
+      changefreq: 'monthly',
+      lastmod: post.date,
+    })),
   ];
 
   const body = routes
     .map(
       (r) => `  <url>
     <loc>${baseUrl}${r.loc}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${r.lastmod || today}</lastmod>
     <changefreq>${r.changefreq}</changefreq>
     <priority>${r.priority}</priority>
   </url>`
@@ -135,7 +129,7 @@ app.post("/api/blob-upload", async (req, res) => {
         tokenPayload: JSON.stringify({ pathname }),
       }),
       onUploadCompleted: async () => {
-        // Hook for follow-up work (e.g. log to Firestore). No-op for now.
+        // Hook for follow-up work after a successful upload. No-op for now.
       },
     });
     res.json(jsonResponse);

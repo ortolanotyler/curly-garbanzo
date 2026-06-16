@@ -7,7 +7,7 @@ interface SubmitResumePageProps {
   onBack: () => void;
 }
 
-const INTEREST_OPTIONS = ['Finance', 'Operations', 'IT & Technology', 'Executive'] as const;
+const INTEREST_OPTIONS = ['Finance', 'Sales', 'Human Resources', 'Executive'] as const;
 
 const MAX_FILE_BYTES = 25 * 1024 * 1024;
 const MAX_FILE_LABEL = '25MB';
@@ -136,8 +136,8 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
     <div className="min-h-screen bg-[#0F151E] text-slate-100 flex flex-col font-sans">
       <SEO
         title="Submit your resume"
-        description="Join the Certus Corporate Search pipeline for senior shared services roles: finance, HR, operations, IT, and engineering."
-        keywords="submit resume, executive recruitment pipeline, shared services, finance jobs, HR jobs, operations jobs, IT leadership jobs, talent network"
+        description="Join the Certus Corporate Search pipeline for senior shared services roles: finance, HR, sales, and executive."
+        keywords="submit resume, executive recruitment pipeline, shared services, finance jobs, HR jobs, sales jobs, executive jobs, talent network"
       />
       <header className="sticky top-0 z-50 bg-[#0F151E]/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -174,7 +174,7 @@ const SubmitResumePage: React.FC<SubmitResumePageProps> = ({ onBack }) => {
         <div className="max-w-3xl mx-auto">
           <div className="mb-12">
             <h1 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-              Submit your resume.
+              Submit your resume
             </h1>
           </div>
 

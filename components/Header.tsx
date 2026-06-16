@@ -160,7 +160,7 @@ const Header: React.FC<HeaderProps> = ({ onViewJobs, onViewSubmit, onNavigate })
 
           <div className="mt-auto pt-10 border-t border-white/5 flex flex-col gap-6">
             <p className="text-[10px] text-white/20 uppercase tracking-[0.3em] text-center">
-              © {new Date().getFullYear()} Certus Group Corporate Search
+              © 2008 Certus Group Corporate Search
             </p>
           </div>
         </div>

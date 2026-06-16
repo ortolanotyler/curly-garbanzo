@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowUpRight, Loader2, X, ChevronLeft, ChevronRight, Linkedin } from 'lucide-react';
 import { Section, LinkedInPost } from '../types';
 import * as jobService from '../services/jobService';
@@ -6,6 +6,7 @@ import { motion } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
+import { useDialogA11y } from './useDialogA11y';
 
 const COMPANY_LINKEDIN_URL = 'https://www.linkedin.com/showcase/certus-supply-chain-search/';
 
@@ -22,6 +23,9 @@ const LinkedInFeed: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<LinkedInPost | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(3);
+  const postModalRef = useRef<HTMLDivElement>(null);
+  // Never reserve more columns than there are posts (avoids the 2-in-3 dead gap).
+  const cols = Math.max(1, Math.min(visibleItems, posts.length || 1));
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -44,22 +48,22 @@ const LinkedInFeed: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const maxIdx = Math.max(0, posts.length - visibleItems);
+    const maxIdx = Math.max(0, posts.length - cols);
     if (currentIndex > maxIdx) setCurrentIndex(maxIdx);
-  }, [visibleItems, posts.length, currentIndex]);
+  }, [cols, posts.length, currentIndex]);
 
   const nextPost = () => {
-    if (posts.length <= visibleItems) return;
+    if (posts.length <= cols) return;
     setCurrentIndex((prev) => {
-      const maxIdx = posts.length - visibleItems;
+      const maxIdx = posts.length - cols;
       return prev >= maxIdx ? 0 : prev + 1;
     });
   };
 
   const prevPost = () => {
-    if (posts.length <= visibleItems) return;
+    if (posts.length <= cols) return;
     setCurrentIndex((prev) => {
-      const maxIdx = posts.length - visibleItems;
+      const maxIdx = posts.length - cols;
       return prev <= 0 ? maxIdx : prev - 1;
     });
   };
@@ -78,7 +82,9 @@ const LinkedInFeed: React.FC = () => {
     };
   }, [selectedPost]);
 
-  const canPaginate = posts.length > visibleItems;
+  useDialogA11y(!!selectedPost, () => setSelectedPost(null), postModalRef);
+
+  const canPaginate = posts.length > cols;
 
   return (
     <section
@@ -90,7 +96,7 @@ const LinkedInFeed: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-            Recent posts.
+            Recent posts
           </h2>
 
           <a
@@ -115,8 +121,8 @@ const LinkedInFeed: React.FC = () => {
           <div className="relative">
             <div className="overflow-hidden touch-pan-y">
               <motion.div
-                className="flex cursor-grab active:cursor-grabbing"
-                drag="x"
+                className={`flex ${canPaginate ? 'cursor-grab active:cursor-grabbing' : ''}`}
+                drag={canPaginate ? 'x' : false}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.1}
                 onDragEnd={onDragEnd}
@@ -124,7 +130,7 @@ const LinkedInFeed: React.FC = () => {
                 transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
                 style={{
                   display: 'flex',
-                  width: `${(posts.length * 100) / visibleItems}%`,
+                  width: `${(posts.length * 100) / cols}%`,
                 }}
               >
                 {posts.map((post) => (
@@ -162,7 +168,7 @@ const LinkedInFeed: React.FC = () => {
                           <div className="mt-auto -mx-6 md:-mx-7 -mb-6 md:-mb-7 border-t border-white/5 overflow-hidden">
                             <img
                               src={post.image}
-                              alt=""
+                              alt={post.content.split('\n')[0].slice(0, 80) || 'Certus LinkedIn post'}
                               className="w-full h-auto object-cover max-h-48 grayscale-[20%] group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-700"
                               referrerPolicy="no-referrer"
                             />
@@ -186,7 +192,7 @@ const LinkedInFeed: React.FC = () => {
             {canPaginate && (
               <div className="flex justify-between items-center mt-10 pt-6 border-t border-white/5">
                 <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
-                  {currentIndex + 1} – {Math.min(currentIndex + visibleItems, posts.length)} of {posts.length}
+                  {currentIndex + 1} – {Math.min(currentIndex + cols, posts.length)} of {posts.length}
                 </div>
                 <div className="flex items-center gap-3">
                   <button
@@ -216,7 +222,12 @@ const LinkedInFeed: React.FC = () => {
           onClick={() => setSelectedPost(null)}
         >
           <div
-            className="bg-brand-dark border border-white/10 w-full max-w-2xl max-h-[88vh] rounded-sm shadow-2xl flex flex-col overflow-hidden animate-[scaleUp_0.3s_ease-out]"
+            ref={postModalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="LinkedIn post"
+            tabIndex={-1}
+            className="bg-brand-dark border border-white/10 w-full max-w-2xl max-h-[88vh] rounded-sm shadow-2xl flex flex-col overflow-hidden animate-[scaleUp_0.3s_ease-out] focus:outline-none"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="px-6 md:px-8 py-5 border-b border-white/10 flex justify-between items-center bg-white/[0.02] flex-shrink-0">
@@ -249,7 +260,7 @@ const LinkedInFeed: React.FC = () => {
                 <div className="mt-8 rounded-sm overflow-hidden border border-white/10 bg-black/20">
                   <img
                     src={selectedPost.image}
-                    alt=""
+                    alt={selectedPost.content.split('\n')[0].slice(0, 80) || 'Certus LinkedIn post'}
                     className="w-full h-auto object-contain max-h-[50vh] mx-auto"
                     referrerPolicy="no-referrer"
                   />

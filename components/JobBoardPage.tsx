@@ -12,7 +12,7 @@ interface JobBoardPageProps {
   initialJobId?: string | null;
 }
 
-type CategoryKey = 'all' | 'finance' | 'operations' | 'it' | 'executive';
+type CategoryKey = 'all' | 'finance' | 'sales' | 'hr' | 'executive';
 
 const CATEGORIES: Array<{ key: CategoryKey; label: string; match: (job: JobPosting) => boolean }> = [
   { key: 'all', label: 'All', match: () => true },
@@ -25,18 +25,18 @@ const CATEGORIES: Array<{ key: CategoryKey; label: string; match: (job: JobPosti
       ),
   },
   {
-    key: 'operations',
-    label: 'Operations',
+    key: 'sales',
+    label: 'Sales',
     match: (job) =>
-      /\b(operations?|coo|supply\s?chain|logistics|warehouse|plant|3pl|freight|procurement|fulfilment|fulfillment)\b/i.test(
+      /\b(sales|account executive|account manager|business development|sales rep|sales representative|territory|quota|revenue|sdr|bdr)\b/i.test(
         `${job.title} ${job.summary || ''}`
       ),
   },
   {
-    key: 'it',
-    label: 'IT & Engineering',
+    key: 'hr',
+    label: 'Human Resources',
     match: (job) =>
-      /\b(it|cio|cto|engineer(?:ing)?|software|data|technology|developer|salesforce|edi|architect|systems|bi)\b/i.test(
+      /\b(hr|human resources|recruit(?:er|ment|ing)?|talent|people|compensation|benefits|hris|employee relations|labou?r relations|payroll|chro|cnesst|wsib)\b/i.test(
         `${job.title} ${job.summary || ''}`
       ),
   },
@@ -175,17 +175,22 @@ const JobRowSkeleton: React.FC = () => (
 
         {/* Roles Grid */}
         <main className="flex-grow pt-24 pb-24 px-6 lg:px-8 z-10">
-            <SEO
-                title="Open roles"
-                description="Active shared services executive search mandates from Certus Corporate Search. Senior finance, HR, operations, IT, and engineering roles across North America."
-                keywords="finance jobs, HR jobs, operations jobs, IT jobs, executive jobs, CFO jobs, CHRO jobs, COO jobs, CIO jobs, VP finance, VP operations, shared services, North America"
-            />
+            {selectedJob ? (
+                // Deep link /jobs/:id — give the open role its own title/canonical/OG.
+                <SEO job={selectedJob} />
+            ) : (
+                <SEO
+                    title="Open roles"
+                    description="Active shared services executive search mandates from Certus Corporate Search. Finance, HR, sales, and executive roles across North America."
+                    keywords="finance jobs, HR jobs, sales jobs, executive jobs, CFO jobs, CHRO jobs, COO jobs, VP finance, VP sales, shared services, North America"
+                />
+            )}
             <div className="max-w-7xl mx-auto">
                 <h1 className="sr-only">Certus Corporate Search — Open Roles</h1>
                 <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
                     <div>
                         <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-                            Open roles.
+                            Open roles
                         </h2>
                         <p className="mt-3 text-white/50 text-xs font-light uppercase tracking-[0.25em]">
                             {visibleJobs.length === jobs.length
@@ -240,10 +245,13 @@ const JobRowSkeleton: React.FC = () => (
                     </div>
                 ) : visibleJobs.length > 0 ? (
                     <div className="space-y-3">
-                        {/* JobPosting Structured Data — emit for all jobs so search engines index them */}
-                        {jobs.map((job) => (
-                            <SEO key={`seo-${job.id}`} job={job} schemaOnly={true} />
-                        ))}
+                        {/* JobPosting Structured Data — emit for all jobs so search engines index them.
+                            The selected job's schema comes from its full <SEO job> above, so skip it here. */}
+                        {jobs
+                            .filter((job) => !selectedJob || String(job.id) !== String(selectedJob.id))
+                            .map((job) => (
+                                <SEO key={`seo-${job.id}`} job={job} schemaOnly={true} />
+                            ))}
                         {visibleJobs.map((job) => (
                             <div
                                 key={job.id}

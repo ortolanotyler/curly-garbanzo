@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { JobPosting } from '../types';
 import { X, Upload, Check, Loader2, Linkedin } from 'lucide-react';
 import { upload } from '@vercel/blob/client';
+import { useDialogA11y } from './useDialogA11y';
 
 interface ApplicationModalProps {
   job: JobPosting;
@@ -22,6 +23,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
     linkedin: ''
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -32,6 +34,8 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
         setFormData({ firstName: '', lastName: '', email: '', linkedin: '' });
     }
   }, [isOpen]);
+
+  useDialogA11y(isOpen, onClose, panelRef);
 
   const MAX_FILE_BYTES = 25 * 1024 * 1024;
   const MAX_FILE_LABEL = '25MB';
@@ -150,7 +154,14 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ job, isOpen, onClos
       ></div>
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-lg bg-brand-dark border border-white/10 rounded-sm shadow-2xl overflow-hidden animate-[scaleIn_0.3s_ease-out]">
+      <div
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Apply — ${job.title}`}
+        tabIndex={-1}
+        className="relative w-full max-w-lg bg-brand-dark border border-white/10 rounded-sm shadow-2xl overflow-hidden animate-[scaleIn_0.3s_ease-out] focus:outline-none"
+      >
         <style>{`
           @keyframes scaleIn {
             from { opacity: 0; transform: scale(0.96) translateY(8px); }

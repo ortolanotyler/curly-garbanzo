@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { JobPosting } from '../types';
+import { JobPosting, BlogPost } from '../types';
+import { buildJobPostingSchema } from './jobSchema';
 
 interface SEOProps {
   title?: string;
@@ -8,8 +9,9 @@ interface SEOProps {
   keywords?: string;
   canonical?: string;
   ogImage?: string;
-  ogType?: 'website' | 'article' | 'jobPosting';
+  ogType?: 'website' | 'article';
   job?: JobPosting;
+  post?: BlogPost;
   isGateway?: boolean;
   schemaOnly?: boolean;
   noindex?: boolean;
@@ -22,35 +24,8 @@ const ORG_LEGAL_NAME = 'The Certus Group of Companies Inc.';
 const LOGO_URL =
   'https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png';
 
-// Pull a number out of a salary string. "$180,000 - $220,000" → [180000, 220000].
-// "$120k" → [120000]. Returns up to two numbers (min, max).
-const parseSalary = (raw?: string): number[] => {
-  if (!raw) return [];
-  const matches = raw.match(/(\d+[\d,.]*)\s*(k|m)?/gi) || [];
-  return matches
-    .map((m) => {
-      const num = parseFloat(m.replace(/[^\d.]/g, ''));
-      if (isNaN(num)) return NaN;
-      if (/k$/i.test(m)) return num * 1000;
-      if (/m$/i.test(m)) return num * 1_000_000;
-      return num;
-    })
-    .filter((n) => !isNaN(n) && n > 0)
-    .slice(0, 2);
-};
-
-// Best-guess country from a "City, ST" string. Defaults to CA (HQ market).
-const guessCountry = (location?: string): string => {
-  if (!location) return 'CA';
-  const region = location.split(',')[1]?.trim().toUpperCase() || '';
-  const usStates = new Set([
-    'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME',
-    'MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA',
-    'RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC',
-  ]);
-  if (usStates.has(region)) return 'US';
-  return 'CA';
-};
+// Salary / country / JobPosting-schema helpers live in ./jobSchema — shared with
+// the post-build static injector so crawler HTML and the hydrated DOM never drift.
 
 const getBaseUrl = (): string => {
   if (typeof window !== 'undefined' && window.location?.origin) {
@@ -61,12 +36,13 @@ const getBaseUrl = (): string => {
 
 const SEO: React.FC<SEOProps> = ({
   title,
-  description = 'Shared services executive search. Senior finance, HR, operations, IT, and engineering placements at corporate clients across North America. Part of The Certus Group.',
-  keywords = 'shared services executive search, finance recruitment, HR recruitment, operations recruitment, IT leadership recruitment, engineering recruitment, CFO search, CHRO search, COO search, CIO search, corporate search, North America',
+  description = 'Shared services executive search. Finance, HR, sales, and executive placements at corporate clients across North America. Part of The Certus Group.',
+  keywords = 'shared services executive search, finance recruitment, HR recruitment, sales recruitment, executive search, CFO search, CHRO search, COO search, corporate search, North America',
   canonical,
   ogImage = LOGO_URL,
   ogType = 'website',
   job,
+  post,
   isGateway = false,
   schemaOnly = false,
   noindex = false,
@@ -76,17 +52,25 @@ const SEO: React.FC<SEOProps> = ({
 
   const finalTitle = job
     ? `${job.title} · ${SITE_NAME}`
-    : isGateway
-      ? `${SITE_NAME} | Shared services executive search`
-      : title
-        ? title.includes(SITE_NAME)
-          ? title
-          : `${title} · ${SITE_NAME}`
-        : `${SITE_NAME} | Shared services executive search`;
+    : post
+      ? `${post.title} · ${SITE_NAME}`
+      : isGateway
+        ? `${SITE_NAME} | Shared services executive search`
+        : title
+          ? title.includes(SITE_NAME)
+            ? title
+            : `${title} · ${SITE_NAME}`
+          : `${SITE_NAME} | Shared services executive search`;
 
   const finalDescription = job
     ? `${job.title} · ${job.location}${job.salary ? ` · ${job.salary}` : ''}. ${job.summary || ''}`.slice(0, 300)
-    : description;
+    : post
+      ? post.excerpt
+      : description;
+
+  const effectiveOgType = post ? 'article' : ogType;
+  const effectiveOgImage = post?.coverImage || ogImage;
+  const effectiveKeywords = post?.tags?.length ? post.tags.join(', ') : keywords;
 
   const organizationSchema = {
     '@context': 'https://schema.org',
@@ -98,7 +82,7 @@ const SEO: React.FC<SEOProps> = ({
     logo: LOGO_URL,
     image: LOGO_URL,
     description:
-      'Certus Corporate Search runs shared services executive search engagements — senior finance, HR, operations, IT, and engineering placements at corporate clients across North America.',
+      'Certus Corporate Search runs shared services executive search engagements — finance, HR, sales, and executive placements at corporate clients across North America.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '91 Skyway Avenue, Suite 206',
@@ -117,7 +101,7 @@ const SEO: React.FC<SEOProps> = ({
     },
     sameAs: ['https://www.linkedin.com/showcase/certus-supply-chain-search/'],
     areaServed: ['Canada', 'United States'],
-    knowsAbout: ['Shared services executive search', 'Finance recruitment', 'HR recruitment', 'Operations recruitment', 'IT leadership recruitment', 'Engineering recruitment'],
+    knowsAbout: ['Shared services executive search', 'Finance recruitment', 'HR recruitment', 'Sales recruitment', 'Executive search'],
   };
 
   const websiteSchema = {
@@ -132,74 +116,34 @@ const SEO: React.FC<SEOProps> = ({
     },
   };
 
-  // JobPosting schema — Google for Jobs spec
-  // https://developers.google.com/search/docs/appearance/structured-data/job-posting
-  let jobSchema: Record<string, unknown> | null = null;
-  if (job) {
-    const datePosted = job.createdAt || new Date().toISOString();
-    const validThrough = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString();
-    const country = guessCountry(job.location);
-    const salaryNums = parseSalary(job.salary);
+  // JobPosting schema — Google for Jobs spec (builder shared with ./jobSchema).
+  const jobSchema: Record<string, unknown> | null = job
+    ? buildJobPostingSchema(job, baseUrl)
+    : null;
 
-    const baseSalary = salaryNums.length
-      ? {
-          '@type': 'MonetaryAmount',
-          currency: country === 'CA' ? 'CAD' : 'USD',
-          value: {
-            '@type': 'QuantitativeValue',
-            unitText: 'YEAR',
-            ...(salaryNums.length === 2
-              ? { minValue: salaryNums[0], maxValue: salaryNums[1] }
-              : { value: salaryNums[0] }),
-          },
-        }
-      : undefined;
-
-    const descriptionHtml = job.description
-      ? job.description
-      : `
-          <p>${job.summary || ''}</p>
-          ${job.responsibilities?.length ? `<h3>Responsibilities</h3><ul>${job.responsibilities.map((r) => `<li>${r}</li>`).join('')}</ul>` : ''}
-          ${job.requirements?.length ? `<h3>Requirements</h3><ul>${job.requirements.map((r) => `<li>${r}</li>`).join('')}</ul>` : ''}
-        `.trim();
-
-    jobSchema = {
+  // BlogPosting schema — https://developers.google.com/search/docs/appearance/structured-data/article
+  let postSchema: Record<string, unknown> | null = null;
+  if (post) {
+    postSchema = {
       '@context': 'https://schema.org',
-      '@type': 'JobPosting',
-      title: job.title,
-      description: descriptionHtml,
-      identifier: {
-        '@type': 'PropertyValue',
-        name: ORG_NAME,
-        value: String(job.ref || job.id),
-      },
-      datePosted,
-      validThrough,
-      employmentType: job.type
-        ? job.type.toUpperCase().replace(/[\s-]/g, '_')
-        : 'FULL_TIME',
-      hiringOrganization: {
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.excerpt,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: { '@type': 'Person', name: post.author },
+      publisher: {
         '@type': 'Organization',
         name: ORG_NAME,
-        sameAs: baseUrl,
-        logo: LOGO_URL,
+        logo: { '@type': 'ImageObject', url: LOGO_URL },
       },
-      jobLocation: {
-        '@type': 'Place',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: job.location?.split(',')[0]?.trim() || 'Toronto',
-          addressRegion: job.location?.split(',')[1]?.trim() || 'ON',
-          addressCountry: country,
-        },
+      image: post.coverImage || LOGO_URL,
+      url: `${baseUrl}/blog/${post.slug}`,
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `${baseUrl}/blog/${post.slug}`,
       },
-      applicantLocationRequirements: {
-        '@type': 'Country',
-        name: country === 'CA' ? 'Canada' : 'United States',
-      },
-      directApply: true,
-      url: `${baseUrl}/jobs/${job.id}`,
-      ...(baseSalary ? { baseSalary } : {}),
+      ...(post.tags?.length ? { keywords: post.tags.join(', ') } : {}),
     };
   }
 
@@ -229,6 +173,22 @@ const SEO: React.FC<SEOProps> = ({
             },
           ]
         : []),
+      ...(post
+        ? [
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Insights',
+              item: `${baseUrl}/blog`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: post.title,
+              item: `${baseUrl}/blog/${post.slug}`,
+            },
+          ]
+        : []),
     ],
   };
 
@@ -240,35 +200,45 @@ const SEO: React.FC<SEOProps> = ({
         <>
           <title>{finalTitle}</title>
           <meta name="description" content={finalDescription} />
-          <meta name="keywords" content={keywords} />
+          <meta name="keywords" content={effectiveKeywords} />
           <meta name="robots" content={robotsValue} />
           <link rel="canonical" href={resolvedCanonical} />
 
-          <meta property="og:type" content={ogType} />
+          <meta property="og:type" content={effectiveOgType} />
           <meta property="og:url" content={resolvedCanonical} />
           <meta property="og:title" content={finalTitle} />
           <meta property="og:description" content={finalDescription} />
-          <meta property="og:image" content={ogImage} />
+          <meta property="og:image" content={effectiveOgImage} />
           <meta property="og:site_name" content={SITE_NAME} />
+
+          {post && <meta property="article:published_time" content={post.date} />}
+          {post && <meta property="article:author" content={post.author} />}
 
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:url" content={resolvedCanonical} />
           <meta name="twitter:title" content={finalTitle} />
           <meta name="twitter:description" content={finalDescription} />
-          <meta name="twitter:image" content={ogImage} />
+          <meta name="twitter:image" content={effectiveOgImage} />
         </>
       )}
 
-      {!schemaOnly && !job && (
+      {!schemaOnly && !job && !post && (
         <>
           <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
           <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>
-          <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         </>
+      )}
+
+      {!schemaOnly && (
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       )}
 
       {jobSchema && (
         <script type="application/ld+json">{JSON.stringify(jobSchema)}</script>
+      )}
+
+      {postSchema && (
+        <script type="application/ld+json">{JSON.stringify(postSchema)}</script>
       )}
     </Helmet>
   );

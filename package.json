@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx server.ts",
     "start": "node server.ts",
-    "build": "vite build",
+    "build": "vite build && tsx scripts/prerender-jobs.ts",
     "preview": "vite preview",
     "lint": "tsc --noEmit"
   },
@@ -21,8 +21,6 @@
     "d3-geo": "^3.1.1",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "firebase": "^12.11.0",
-    "firebase-admin": "^13.7.0",
     "lucide-react": "0.378.0",
     "motion": "^12.38.0",
     "react": "18.3.1",

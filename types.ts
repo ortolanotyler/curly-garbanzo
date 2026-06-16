@@ -5,11 +5,10 @@ export enum Section {
   HOW_WE_WORK = 'how-we-work',
   INSIGHTS = 'insights',
   CONTACT = 'contact',
-  JOB_BOARD = 'job-board',
-  ADMIN = 'admin'
+  JOB_BOARD = 'job-board'
 }
 
-export type View = 'gateway' | 'landing' | 'jobs' | 'submit' | 'admin' | 'not-found';
+export type View = 'gateway' | 'landing' | 'jobs' | 'submit' | 'blog' | 'not-found';
 
 export interface JobPosting {
   id: string | number;
@@ -27,6 +26,17 @@ export interface JobPosting {
   updatedAt?: string;
 }
 
+export interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string; // ISO date (YYYY-MM-DD)
+  tags?: string[];
+  coverImage?: string;
+  content: string; // Markdown
+}
+
 export interface LinkedInPost {
   id: string;
   author: string;
@@ -37,9 +47,4 @@ export interface LinkedInPost {
   image?: string;
   createdAt?: string;
   updatedAt?: string;
-}
-
-export interface AdminCredentials {
-  username: string;
-  password: string;
 }

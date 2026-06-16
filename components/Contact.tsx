@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Section } from '../types';
-import { Building2, Phone, Mail, ArrowRight, Loader2, ArrowUpRight, Linkedin } from 'lucide-react';
+import { Building2, Phone, Mail, ArrowRight, Loader2, ArrowUpRight, Linkedin, type LucideIcon } from 'lucide-react';
 
 type InquiryType = 'hiring' | 'candidate' | 'other';
 
@@ -186,7 +186,7 @@ const Contact: React.FC = () => {
             className={`lg:col-span-7 transition-all duration-1000 delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.05] mb-10">
-              Get in touch.
+              Get in touch
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-7">
@@ -354,7 +354,7 @@ const UnderlineField: React.FC<{
 );
 
 const ContactRow: React.FC<{
-  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+  icon: LucideIcon;
   label: string;
   children: React.ReactNode;
 }> = ({ icon: Icon, label, children }) => (

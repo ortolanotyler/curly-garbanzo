@@ -6,9 +6,10 @@ interface FooterProps {
   onNavigate?: (id: string) => void;
   onViewJobs?: () => void;
   onViewSubmit?: () => void;
+  onViewBlog?: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit }) => {
+const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit, onViewBlog }) => {
   const handleNav = (id: string) => {
     if (onNavigate) onNavigate(id);
     else document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -23,6 +24,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit })
   const siteLinks: Array<{ label: string; onClick: () => void }> = [
     { label: 'Practice Sectors', onClick: () => handleNav(Section.INDUSTRIES) },
     { label: 'Open Roles', onClick: () => onViewJobs?.() },
+    { label: 'Insights', onClick: () => onViewBlog?.() },
     { label: 'Contact', onClick: () => handleNav(Section.CONTACT) },
   ];
 
@@ -63,7 +65,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit })
             </div>
 
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm font-light">
-              Specialized executive search for high-impact Finance, Operations, and IT roles
+              Specialized executive search for high-impact Finance, HR, Sales, and Executive roles
               within fast-paced corporate environments across North America.
             </p>
 
@@ -155,14 +157,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit })
         {/* Bottom bar */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-gray-600 text-xs tracking-wide font-light">
-            © {new Date().getFullYear()} Certus Group. All rights reserved.
+            © 2008 Certus Group. All rights reserved.
           </p>
-          <button
-            onClick={() => handleNav(Section.ADMIN)}
-            className="text-gray-700 hover:text-white text-[10px] font-bold uppercase tracking-[0.3em] transition-colors"
-          >
-            Admin
-          </button>
         </div>
       </div>
     </footer>

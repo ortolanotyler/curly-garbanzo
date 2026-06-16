@@ -1,8 +1,9 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { JobPosting } from '../types';
 import { X, MapPin, DollarSign, Check, ArrowRight, Share2 } from 'lucide-react';
 import ApplicationModal from './ApplicationModal';
+import { useDialogA11y } from './useDialogA11y';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
@@ -18,12 +19,15 @@ const JobDetailDrawer: React.FC<JobDetailDrawerProps> = ({ job, isOpen, onClose,
   const [visible, setVisible] = useState(false);
   const [isApplying, setIsApplying] = useState(false);
   const [copied, setCopied] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
       setVisible(true);
       document.body.style.overflow = 'hidden';
     } else {
+      // Reset the nested Apply state so reopening a job never auto-opens Apply.
+      setIsApplying(false);
       const timer = setTimeout(() => setVisible(false), 300);
       document.body.style.overflow = '';
       return () => clearTimeout(timer);
@@ -32,6 +36,9 @@ const JobDetailDrawer: React.FC<JobDetailDrawerProps> = ({ job, isOpen, onClose,
       document.body.style.overflow = '';
     };
   }, [isOpen]);
+
+  // Escape / focus-trap for the drawer; suspended while the nested Apply modal is open.
+  useDialogA11y(isOpen && !isApplying, onClose, panelRef);
 
   const handleShare = () => {
     if (!job) return;
@@ -64,9 +71,14 @@ const JobDetailDrawer: React.FC<JobDetailDrawerProps> = ({ job, isOpen, onClose,
       ></div>
 
       {/* Popup Panel */}
-      <div 
+      <div
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={job ? job.title : 'Job details'}
+        tabIndex={-1}
         className={`
-          relative w-full max-w-3xl bg-brand-dark border border-white/10 rounded-sm shadow-2xl flex flex-col max-h-[90vh]
+          relative w-full max-w-3xl bg-brand-dark border border-white/10 rounded-sm shadow-2xl flex flex-col max-h-[90vh] focus:outline-none
           transform transition-all duration-300 ease-out
           ${isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4'}
         `}

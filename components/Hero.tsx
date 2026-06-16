@@ -30,10 +30,15 @@ const Hero: React.FC<HeroProps> = () => {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-white tracking-tight leading-[1.05] max-w-4xl">
-          Shared services executive search.
+          Shared services executive search
         </h1>
-        <p className="mt-6 md:mt-8 text-base md:text-xl text-white/60 font-light leading-relaxed max-w-2xl">
-          Senior finance, HR, operations, IT, and engineering placements at corporate clients across North America.
+        <p className="mt-6 md:mt-8 text-[15px] md:text-lg text-white/60 font-light leading-relaxed max-w-3xl">
+          Certus Corporate Search is part of The Certus Group of Companies Inc. Founded in 2008,
+          The Certus Group has been operating in the recruitment and search space for over 15 years.
+          Our Corporate division specializes in connecting finance, HR, sales, and executive
+          professionals with leading employers across North America. We understand the urgency,
+          confidentiality, and business-critical demands of leadership hiring, and we deliver talent
+          that keeps teams performing and organizations growing.
         </p>
       </div>
     </section>

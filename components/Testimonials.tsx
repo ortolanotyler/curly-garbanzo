@@ -22,7 +22,7 @@ const Testimonials: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="max-w-3xl mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-            What clients say.
+            What clients say
           </h2>
         </div>
 

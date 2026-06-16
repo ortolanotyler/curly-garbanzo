@@ -67,7 +67,7 @@ const FeaturedJobsHero: React.FC<FeaturedJobsHeroProps> = ({ onViewJobs }) => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05]">
-            Active searches.
+            Active searches
           </h2>
 
           <button
@@ -106,10 +106,10 @@ const FeaturedJobsHero: React.FC<FeaturedJobsHeroProps> = ({ onViewJobs }) => {
                     </h3>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-5 md:gap-8 shrink-0">
-                    <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.15em] text-white/60">
-                      <MapPin size={14} className="text-brand-silver" strokeWidth={1.5} />
-                      <span>{job.location}</span>
+                  <div className="flex items-center justify-between w-full gap-4 md:w-auto md:justify-start md:flex-wrap md:gap-8 md:shrink-0">
+                    <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.15em] text-white/60 min-w-0">
+                      <MapPin size={14} className="text-brand-silver shrink-0" strokeWidth={1.5} />
+                      <span className="truncate">{job.location}</span>
                     </div>
                     <div className="hidden sm:flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.15em] text-white/60">
                       <DollarSign size={14} className="text-brand-silver" strokeWidth={1.5} />
@@ -122,7 +122,7 @@ const FeaturedJobsHero: React.FC<FeaturedJobsHeroProps> = ({ onViewJobs }) => {
                         e.stopPropagation();
                         setApplyingTo(job);
                       }}
-                      className="inline-flex items-center gap-2 bg-white text-brand-dark hover:bg-brand-silver px-5 py-3 min-h-[44px] rounded-sm text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300"
+                      className="inline-flex items-center gap-2 shrink-0 bg-white text-brand-dark hover:bg-brand-silver px-5 py-3 min-h-[44px] rounded-sm text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300"
                     >
                       Apply
                       <ArrowRight size={14} />
