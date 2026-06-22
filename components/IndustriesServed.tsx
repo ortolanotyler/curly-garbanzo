@@ -66,8 +66,9 @@ const IndustriesServed: React.FC = () => {
                 <h3 className="text-xl md:text-2xl font-bold text-white leading-tight tracking-tight">
                   {cat.category}
                 </h3>
-                {/* Roles we recruit for — collapse-reveal / slide up under the title on hover */}
-                <ul className="mt-2 sm:mt-3 space-y-1 sm:space-y-1.5 max-h-0 opacity-0 overflow-hidden group-hover:max-h-60 group-hover:opacity-100 transition-all duration-500 ease-out">
+                {/* Roles we recruit for — slide-reveal under the title on hover (sm+ only;
+                    on mobile there's no hover and the short cards have no room, so stay collapsed) */}
+                <ul className="sm:mt-3 space-y-1 sm:space-y-1.5 max-h-0 opacity-0 overflow-hidden sm:group-hover:max-h-60 sm:group-hover:opacity-100 transition-all duration-500 ease-out">
                   {cat.roles.map((role) => (
                     <li
                       key={role}
