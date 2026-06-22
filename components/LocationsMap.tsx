@@ -315,12 +315,12 @@ export default function LocationsMap() {
         <div className="absolute inset-x-0 bottom-0 h-40 md:h-56 bg-gradient-to-t from-brand-dark via-brand-dark/55 to-transparent pointer-events-none"></div>
       </div>
 
-      {/* Headline overlay — anchored bottom-right, aligned to the content gutter */}
+      {/* Headline overlay — anchored bottom-left so it clears Florida (bottom-right of the map) */}
       <div className="absolute inset-x-0 bottom-0 z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-12 md:pb-16 pointer-events-none">
-        <div className="ml-auto max-w-xl text-right relative">
-          {/* Soft right-weighted backdrop so the headline reads cleanly over any
+        <div className="mr-auto max-w-xl text-left relative">
+          {/* Soft left-weighted backdrop so the headline reads cleanly over any
               pin sitting behind it, without dimming pins elsewhere on the map */}
-          <div className="pointer-events-none absolute -inset-x-10 -top-10 -bottom-6 bg-gradient-to-l from-brand-dark/90 via-brand-dark/55 to-transparent blur-md"></div>
+          <div className="pointer-events-none absolute -inset-x-10 -top-10 -bottom-6 bg-gradient-to-r from-brand-dark/90 via-brand-dark/55 to-transparent blur-md"></div>
           <h2 className="relative text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.05] drop-shadow-2xl">
             Recruiting across North America
           </h2>
