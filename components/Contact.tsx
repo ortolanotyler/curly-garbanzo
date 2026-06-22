@@ -10,10 +10,10 @@ const INQUIRY_OPTIONS: Array<{ key: InquiryType; label: string; sub: string }> =
   { key: 'other', label: 'Something else', sub: 'Press, partnerships, etc.' },
 ];
 
-// Background photo — reusing a Cloudinary frame extract from the gateway
-// videos so we don't add another asset. Heavily dimmed via overlay.
+// Background photo for the contact section — heavily dimmed via the overlay below.
+// f_auto,q_auto let Cloudinary serve an optimized format/quality.
 const BG_IMAGE =
-  'https://res.cloudinary.com/dvbubqhpp/video/upload/so_0,w_1920,q_auto,f_auto/v1779828360/2325093-hd_1920_1080_25fps_zxwiof.jpg';
+  'https://res.cloudinary.com/dvbubqhpp/image/upload/f_auto,q_auto/v1781293969/IMG_5018-edit-1024x683_gwedcu.jpg';
 
 const Contact: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
