@@ -5,22 +5,22 @@ const IndustriesServed: React.FC = () => {
   const categories = [
     {
       category: "Finance",
-      description: "CFO, Controller, Director of Finance, FP&A Manager, Insurance Advisor, Payroll Manager.",
+      roles: ["CFO", "VP of Finance", "Director of Finance", "Controller", "FP&A Manager", "Finance Manager"],
       image: "/finance.jpg"
     },
     {
       category: "Sales",
-      description: "VP of Sales, Account Executive, Business Development Manager, Sales Director, Regional Sales Manager.",
+      roles: ["VP of Sales", "Sales Director", "Regional Sales Manager", "BD Manager", "Key Account Manager", "Account Executive"],
       image: "/sales.jpg"
     },
     {
       category: "Human Resources",
-      description: "CHRO, HR Business Partner, Talent Acquisition Lead, Compensation & Benefits Manager, HRIS Analyst, Labor Relations Manager.",
+      roles: ["CHRO", "HR Director", "HR Manager", "HR Business Partner", "Talent Acquisition Lead", "Labor Relations Manager"],
       image: "/human-resources.jpg"
     },
     {
       category: "Executive Leadership",
-      description: "VP of Sales, VP of Data Science, Product Head, Global Logistics Directors.",
+      roles: ["CEO", "COO", "President", "Managing Director", "General Manager", "VP of Operations"],
       image: "/executive-leadership.jpg"
     }
   ];
@@ -66,6 +66,18 @@ const IndustriesServed: React.FC = () => {
                 <h3 className="text-xl md:text-2xl font-bold text-white leading-tight tracking-tight">
                   {cat.category}
                 </h3>
+                {/* Roles we recruit for — collapse-reveal / slide up under the title on hover */}
+                <ul className="mt-2 sm:mt-3 space-y-1 sm:space-y-1.5 max-h-0 opacity-0 overflow-hidden group-hover:max-h-60 group-hover:opacity-100 transition-all duration-500 ease-out">
+                  {cat.roles.map((role) => (
+                    <li
+                      key={role}
+                      className="flex items-center gap-2 text-[11px] sm:text-xs text-white/75 font-light tracking-wide"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-brand-silver flex-shrink-0"></span>
+                      {role}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-silver scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 z-30"></div>

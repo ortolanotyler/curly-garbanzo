@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, Loader2, X, ChevronLeft, ChevronRight, Linkedin } from 'lucide-react';
+import { ArrowUpRight, Loader2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Section, LinkedInPost } from '../types';
 import * as jobService from '../services/jobService';
 import { motion } from 'motion/react';
@@ -142,47 +142,28 @@ const LinkedInFeed: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setSelectedPost(post)}
-                      className="group relative w-full h-full text-left bg-white/[0.02] border border-white/5 rounded-sm overflow-hidden flex flex-col hover:border-brand-silver/30 hover:bg-white/[0.04] transition-all duration-500"
+                      aria-label="Open LinkedIn post"
+                      className="group relative block w-full aspect-square overflow-hidden rounded-sm border border-white/5 bg-white/[0.02] hover:border-brand-silver/40 transition-colors duration-500"
                     >
-                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-brand-silver scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 z-20"></div>
-
-                      <div className="p-6 md:p-7 flex items-center justify-between border-b border-white/5">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
-                          {formatDate(post.createdAt || post.date)}
-                        </span>
-                        <Linkedin
-                          size={14}
-                          className="text-white/30 group-hover:text-brand-silver transition-colors"
-                          strokeWidth={1.75}
+                      {typeof post.image === 'string' && post.image.trim() !== '' ? (
+                        <img
+                          src={post.image}
+                          alt={post.content.split('\n')[0].slice(0, 80) || 'Certus LinkedIn post'}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                          referrerPolicy="no-referrer"
                         />
-                      </div>
-
-                      <div className="p-6 md:p-7 flex-grow flex flex-col gap-5">
-                        <div className="text-gray-300 text-sm font-light leading-relaxed line-clamp-[7] prose prose-invert prose-sm max-w-none whitespace-pre-wrap [&_p]:my-0">
-                          <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
-                            {post.content.replace(/\n\s*\n/g, '\n\n&nbsp;\n\n')}
-                          </ReactMarkdown>
-                        </div>
-
-                        {typeof post.image === 'string' && post.image.trim() !== '' && (
-                          <div className="mt-auto -mx-6 md:-mx-7 -mb-6 md:-mb-7 border-t border-white/5 overflow-hidden">
-                            <img
-                              src={post.image}
-                              alt={post.content.split('\n')[0].slice(0, 80) || 'Certus LinkedIn post'}
-                              className="w-full h-auto object-cover max-h-48 grayscale-[20%] group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-700"
-                              referrerPolicy="no-referrer"
-                            />
+                      ) : (
+                        <div className="absolute inset-0 p-7 flex flex-col justify-between text-left">
+                          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
+                            {formatDate(post.createdAt || post.date)}
+                          </span>
+                          <div className="text-gray-300 text-sm font-light leading-relaxed line-clamp-[8] prose prose-invert prose-sm max-w-none [&_p]:my-0">
+                            <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+                              {post.content}
+                            </ReactMarkdown>
                           </div>
-                        )}
-                      </div>
-
-                      <div className="px-6 md:px-7 py-4 border-t border-white/5 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.25em] text-white/40 group-hover:text-white transition-colors">
-                        <span>Read full post</span>
-                        <ArrowUpRight
-                          size={14}
-                          className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                        />
-                      </div>
+                        </div>
+                      )}
                     </button>
                   </div>
                 ))}
@@ -250,9 +231,9 @@ const LinkedInFeed: React.FC = () => {
             </div>
 
             <div className="overflow-y-auto p-6 md:p-10 custom-scrollbar flex-grow">
-              <div className="text-gray-200 text-base md:text-[17px] font-light leading-relaxed prose prose-invert max-w-none whitespace-pre-wrap">
+              <div className="text-gray-200 text-base md:text-[17px] font-light leading-relaxed prose prose-invert max-w-none [&_p]:my-3">
                 <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
-                  {selectedPost.content.replace(/\n\s*\n/g, '\n\n&nbsp;\n\n')}
+                  {selectedPost.content}
                 </ReactMarkdown>
               </div>
 

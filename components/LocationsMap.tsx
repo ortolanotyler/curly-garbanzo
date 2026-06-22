@@ -10,6 +10,7 @@ const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
 const NA_COUNTRY_IDS = new Set(['124', '840', '484']); // Canada, USA, Mexico
 
 const HQ = { lat: 43.6532, lng: -79.3832 };
+const CERTUS_LOGO = 'https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png';
 
 const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
   'toronto,on': { lat: 43.6532, lng: -79.3832 },
@@ -52,7 +53,7 @@ const normalizeLocation = (raw: string): string | null => {
   return `${city},${region}`;
 };
 
-type JobPin = { lat: number; lng: number; key: string; label: string; jobs: JobPosting[]; cluster?: boolean };
+type JobPin = { lat: number; lng: number; key: string; label: string; jobs: JobPosting[]; cluster?: boolean; hq?: boolean };
 
 // Remote roles have no city, so they normally don't pin. Anchor specific ones
 // to a representative hub (the role still reads "Remote ..." on the board).
@@ -138,8 +139,31 @@ const clusterPins = (cityPins: JobPin[]): JobPin[] => {
       cluster: true,
     });
   }
-  return out;
+  // Anchor the GTA roles (the Toronto-containing pin) at HQ/Toronto so they sit
+  // under the Certus logo dot, which becomes their interactive marker.
+  return out.map((p) =>
+    p.key.split('+').includes('toronto,on')
+      ? { ...p, lat: HQ.lat, lng: HQ.lng, hq: true, label: p.cluster ? 'Greater Toronto Area' : p.label }
+      : p,
+  );
 };
+
+// HQ / GTA marker — the Certus logo dot with a white border, slightly larger than
+// the role pins. Rendered in place of the blue dot for the pin flagged `hq`.
+const HqLogo: React.FC<{ hovered: boolean }> = ({ hovered }) => (
+  <>
+    <circle r={hovered ? 10 : 9} fill="#FFFFFF" pointerEvents="none" />
+    <image
+      href={CERTUS_LOGO}
+      x={hovered ? -9 : -8}
+      y={hovered ? -9 : -8}
+      width={hovered ? 18 : 16}
+      height={hovered ? 18 : 16}
+      preserveAspectRatio="xMidYMid meet"
+      pointerEvents="none"
+    />
+  </>
+);
 
 export default function LocationsMap() {
   const [jobs, setJobs] = useState<JobPosting[]>([]);
@@ -223,15 +247,17 @@ export default function LocationsMap() {
             }
           </Geographies>
 
-          {/* HQ */}
-          <Marker coordinates={[HQ.lng, HQ.lat]}>
-            <rect x={-3.5} y={-3.5} width={7} height={7} fill="#5B6C7F" stroke="#9FA8B5" strokeWidth={1} />
-          </Marker>
+          {/* HQ logo renders on the GTA pin below; this is a fallback for the rare
+              case where no GTA roles exist to carry it. */}
+          {!pins.some((p) => p.hq) && (
+            <Marker coordinates={[HQ.lng, HQ.lat]}>
+              <HqLogo hovered={false} />
+            </Marker>
+          )}
 
           {/* Active-search pins (rendered first so popup overlays them) */}
           {pins.map((pin) => {
             const isHovered = hoveredKey === pin.key;
-            const multi = pin.jobs.length > 1;
             return (
               <Marker
                 key={pin.key}
@@ -252,22 +278,28 @@ export default function LocationsMap() {
               >
                 {/* Enlarged invisible hit target so pins are tappable on touch */}
                 <circle r={16} fill="transparent" pointerEvents="all" />
-                {/* White glow */}
-                <circle
-                  r={(isHovered ? 9 : 7) + (multi ? 1.5 : 0)}
-                  fill="#FFFFFF"
-                  opacity={isHovered ? 0.6 : 0.4}
-                  filter="url(#pinGlow)"
-                  pointerEvents="none"
-                />
-                {/* Certus-blue center with a crisp white outline */}
-                <circle
-                  r={(isHovered ? 6 : 5) + (multi ? 2 : 0)}
-                  fill="#0d2444"
-                  stroke="#FFFFFF"
-                  strokeWidth={isHovered ? 2 : 1.5}
-                  pointerEvents="none"
-                />
+                {pin.hq ? (
+                  <HqLogo hovered={isHovered} />
+                ) : (
+                  <>
+                    {/* White glow */}
+                    <circle
+                      r={isHovered ? 9 : 7}
+                      fill="#FFFFFF"
+                      opacity={isHovered ? 0.6 : 0.4}
+                      filter="url(#pinGlow)"
+                      pointerEvents="none"
+                    />
+                    {/* Certus-blue center with a crisp white outline */}
+                    <circle
+                      r={isHovered ? 6 : 5}
+                      fill="#0d2444"
+                      stroke="#FFFFFF"
+                      strokeWidth={isHovered ? 2 : 1.5}
+                      pointerEvents="none"
+                    />
+                  </>
+                )}
               </Marker>
             );
           })}
