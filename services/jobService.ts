@@ -3,6 +3,115 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'hse-specialist-gta',
+    ref: 'CG-2026-063',
+    title: 'Health, Safety & Environmental Specialist',
+    location: 'Remote (GTA-based)',
+    type: 'Full-time \u00b7 Remote \u00b7 Permanent',
+    salary: '$80,000 - $90,000 CAD',
+    summary:
+      'HSE specialist owning the Ontario region for a material-handling and warehouse-automation provider. Rolling out safety initiatives, training technicians and leading safety talks - a practitioner role, not an administrative one. Remote, but GTA-based to attend the Mississauga office a few times a month.',
+    description: `A Health, Safety and Environmental Specialist role covering the Central region - Ontario - for a material-handling, storage and warehouse-automation provider. You would join a team of three specialists reporting to the Director of Health, Safety & Environment, each owning their own region.
+
+This is a hands-on practitioner role. You would spend your time rolling out safety initiatives, delivering training to technicians and leading safety talks - not maintaining a binder.
+
+**Schedule & location**
+
+Monday to Friday, 8:00am-5:00pm. Remote, but you must be GTA-based and able to attend the Mississauga head office roughly three to four times a month or as needed.
+
+**What you'll be doing**
+
+- Identify health and safety training needs, then develop, source and deliver the training - in person or virtually
+- Guide and support managers on safety programs, policies and procedures to ensure legislative compliance
+- Act as a resource for Joint Health and Safety Committees across the region
+- Support compliance with provincial environmental legislation, including waste and hazardous waste management and emergency response protocols
+- Administer WCB claims and coordinate with the third-party provider and management
+- Perform internal health and safety audits and gap analysis against applicable standards
+- Oversee the contractor management program - pre-qualification, monitoring and reporting
+- Assist with accident, incident and illness investigations and track corrective actions to closure
+- Monitor health and safety system performance and report against targets monthly
+
+**What we're looking for**
+
+- 3-5 years in a health and safety role - a practitioner, not solely an administrator
+- Strong communication skills; you will be training technicians and advising managers directly
+- Working knowledge of OHSA and provincial environmental regulations
+- OH&S diploma or certificate is a strong asset, but candidates who have worked their way up are welcome
+- CRSP or CRST designation is an asset
+- GTA-based, with a valid driver's licence
+
+Multi-site experience is not required, and the employer is open to most industries - blue-collar environments such as warehousing, distribution, manufacturing, construction or transportation are ideal.
+
+**Compensation & benefits**
+
+- $80,000 - $90,000 CAD
+- Competitive benefits package
+- Incentive program
+- Learning and development support`,
+    responsibilities: [
+      'Develop, source and deliver EHS training for technicians and managers',
+      'Guide managers on safety programs, policies and legislative compliance',
+      'Act as a resource for Joint Health and Safety Committees across Ontario',
+      'Run internal health and safety audits and gap analysis',
+      'Oversee contractor pre-qualification, monitoring and reporting',
+      'Administer WCB claims and support incident investigations',
+      'Report health and safety performance against monthly targets',
+    ],
+    requirements: [
+      '3-5 years in a health and safety role, as a practitioner rather than an administrator',
+      'Strong communication skills - training delivery and management advisory',
+      'Working knowledge of OHSA and provincial environmental legislation',
+      'OH&S diploma or certificate an asset; equivalent hands-on experience welcome',
+      'CRSP or CRST designation an asset',
+      'GTA-based and able to attend a Mississauga office a few times a month',
+    ],
+    createdAt: new Date('2026-08-25T09:00:00.000Z').toISOString(),
+  },
+  {
+    id: 'load-booking-agent-hamilton',
+    ref: 'CG-2026-062',
+    title: 'Load Booking Agent',
+    location: 'Hamilton, ON',
+    type: 'Full-time · Onsite · Permanent',
+    salary: '$65,000 CAD',
+    summary:
+      'Booking agent for a global freight forwarder growing its Hamilton office — booking cross-border and domestic US loads with approved carriers, negotiating rates and keeping shipments on schedule.',
+    description: `An onsite Hamilton role with a global freight forwarder and 3PL expanding their office. You would book freight with approved carriers, negotiate rates and keep shipments moving across cross-border and domestic US lanes.
+
+**Schedule & location**
+
+Onsite in Hamilton, Monday to Friday, 9:00am-5:30pm. After-hours coverage on a rotation basis.
+
+**What you'll be doing**
+
+- Book freight loads with approved carriers
+- Negotiate competitive freight rates while maintaining service quality
+- Coordinate pickup and delivery schedules with carriers
+- Monitor shipment status and proactively communicate delays or issues
+- Ensure all shipment information is entered accurately into the TMS
+- Maintain regular communication with dispatchers, carriers and internal operations
+- Build and maintain strong carrier and transportation-partner relationships
+- Verify carrier compliance — insurance, safety ratings and contracts
+- Resolve appointment changes, delays, detention and service failures
+- Support capacity planning through peak periods
+
+**What we're looking for**
+
+- At least three years booking cross-border and domestic US loads
+- Confident negotiator who holds service quality while working the rate
+- Strong written and email communication
+- Comfortable in office five days a week and with after-hours rotation
+
+**What's offered**
+
+- Around $65,000 to start
+- A growing office with an established global network behind it`,
+    responsibilities: [],
+    requirements: [],
+    createdAt: new Date('2026-08-18T09:05:00.000Z').toISOString(),
+  },
+
+  {
     id: 'project-coordinator-hamilton',
     ref: 'CG-2026-039',
     title: 'Project Coordinator (Logistics)',
@@ -61,7 +170,7 @@ Onsite in Hamilton, ON, Monday to Friday, 8:30am-5:00pm. Comfort with occasional
       'High school diploma; customer service experience',
       'Bilingual English/French an asset',
     ],
-    createdAt: new Date('2026-03-22').toISOString(),
+    createdAt: new Date('2026-08-09T15:39:00.000Z').toISOString(),
   },
   {
     id: 'hr-manager-columbus',
@@ -128,7 +237,7 @@ Onsite in Hamilton, ON, Monday to Friday, 8:30am-5:00pm. Comfort with occasional
       'Intermediate-to-advanced MS Office and HRIS experience (ADP Workforce Now a plus)',
       'Bachelor’s degree preferred; PHR or SPHR preferred',
     ],
-    createdAt: new Date('2026-06-15').toISOString(),
+    createdAt: new Date('2026-08-17T12:35:00.000Z').toISOString(),
   },
   {
     id: 'hr-generalist-york-pa',
@@ -187,7 +296,7 @@ Onsite in Hamilton, ON, Monday to Friday, 8:30am-5:00pm. Comfort with occasional
       'Strong employee-relations, conflict-resolution, and confidentiality',
       'Bachelor’s in HR or related field preferred; HS diploma/GED required',
     ],
-    createdAt: new Date('2026-06-15').toISOString(),
+    createdAt: new Date('2026-08-17T07:29:00.000Z').toISOString(),
   },
   {
     id: 'bd-exec-trade-buffalo',
@@ -237,7 +346,7 @@ Onsite in Hamilton, ON, Monday to Friday, 8:30am-5:00pm. Comfort with occasional
       'Strong CRM (e.g., Salesforce) and MS Office proficiency',
       'Associate’s degree or post-secondary education required; bachelor’s preferred',
     ],
-    createdAt: new Date('2026-06-08').toISOString(),
+    createdAt: new Date('2026-08-14T18:12:00.000Z').toISOString(),
   },
   {
     id: 'cad-designer-montreal',
@@ -293,7 +402,7 @@ Primarily remote/work-from-home after an initial onsite training period (~1-2 mo
       'Strong organization, time management, and follow-up across stakeholders',
       'Knowledge of pallet racking, warehouse layout, and material flow is a major asset',
     ],
-    createdAt: new Date('2026-06-04').toISOString(),
+    createdAt: new Date('2026-08-13T16:40:00.000Z').toISOString(),
   },
   {
     id: 'bd-exec-trade-vancouver',
@@ -343,7 +452,7 @@ Primarily remote/work-from-home after an initial onsite training period (~1-2 mo
       'Strong CRM (e.g., Salesforce) and MS Office proficiency',
       'Associate’s degree or post-secondary education required; bachelor’s preferred',
     ],
-    createdAt: new Date('2026-05-26').toISOString(),
+    createdAt: new Date('2026-08-11T23:49:00.000Z').toISOString(),
   },
   {
     id: 'customs-rater-sarnia',
@@ -398,7 +507,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Extremely detail-oriented and organized; strong problem-solving skills',
       'Authorized to work in Canada; CCS designation is an asset',
     ],
-    createdAt: new Date('2026-05-28').toISOString(),
+    createdAt: new Date('2026-08-12T10:02:00.000Z').toISOString(),
   },
   {
     id: 'director-bd-trade-central-us',
@@ -449,7 +558,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong CRM (e.g., Salesforce) and MS Office proficiency',
       'Associate’s degree or post-secondary education required; bachelor’s preferred',
     ],
-    createdAt: new Date('2026-04-08').toISOString(),
+    createdAt: new Date('2026-08-10T12:04:00.000Z').toISOString(),
   },
   {
     id: 'bd-exec-trade-toronto',
@@ -499,7 +608,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong CRM (e.g., Salesforce) and MS Office proficiency',
       'Associate’s degree or post-secondary education required; bachelor’s preferred',
     ],
-    createdAt: new Date('2026-04-08').toISOString(),
+    createdAt: new Date('2026-08-10T06:58:00.000Z').toISOString(),
   },
   {
     id: 'bd-exec-trade-northern-la',
@@ -549,7 +658,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong CRM (e.g., Salesforce) and MS Office proficiency',
       'Associate’s degree or post-secondary education required; bachelor’s preferred',
     ],
-    createdAt: new Date('2026-04-08').toISOString(),
+    createdAt: new Date('2026-08-10T01:52:00.000Z').toISOString(),
   },
   {
     id: 'it-account-exec-gta',
@@ -659,7 +768,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong organizational skills and ability to meet tight deadlines',
       'Comfortable with a variety of systems and platforms (D365 and SharePoint an asset)',
     ],
-    createdAt: new Date('2026-05-12').toISOString(),
+    createdAt: new Date('2026-08-11T13:36:00.000Z').toISOString(),
   },
   {
     id: 'hs-compliance-manager-us',
@@ -730,7 +839,7 @@ Fully onsite, based in Carlisle, PA or Columbus, OH. Approximately 30% travel fo
       'Bachelor’s in Occupational Safety, Environmental Health, or related field (or equivalent)',
       'CSP, ASP, CHMM, or OSHA 30/50 certifications preferred',
     ],
-    createdAt: new Date('2026-05-11').toISOString(),
+    createdAt: new Date('2026-08-11T08:30:00.000Z').toISOString(),
   },
   {
     id: 'bilingual-hr-specialist-lachine',
@@ -789,7 +898,7 @@ Fully onsite, based in Carlisle, PA or Columbus, OH. Approximately 30% travel fo
       'Strong organizational and multitasking skills, high attention to detail',
       'General knowledge of Canadian and/or US employment legislation is an asset',
     ],
-    createdAt: new Date('2026-05-19').toISOString(),
+    createdAt: new Date('2026-08-11T18:43:00.000Z').toISOString(),
   },
   {
     id: 'hr-coordinator-brantford',
@@ -851,7 +960,7 @@ Fully onsite, based in Carlisle, PA or Columbus, OH. Approximately 30% travel fo
       'HRIS / timekeeping familiarity (ADP Workforce Now is an asset)',
       'CHRP designation or working toward it is an asset',
     ],
-    createdAt: new Date('2026-05-27').toISOString(),
+    createdAt: new Date('2026-08-12T04:55:00.000Z').toISOString(),
   },
   {
     id: 'hr-ops-manager-mississauga',
@@ -914,7 +1023,7 @@ Reports to the CHRO. No direct reports; works closely with the HR Coordinator an
       'Strong analytical, organizational, and communication skills',
       'Ability to handle confidential information with discretion',
     ],
-    createdAt: new Date('2026-04-30').toISOString(),
+    createdAt: new Date('2026-08-11T03:23:00.000Z').toISOString(),
   },
   {
     id: 'sales-coordinator-hamilton',
@@ -972,7 +1081,7 @@ Reports to the CHRO. No direct reports; works closely with the HR Coordinator an
       'Customer-focused, proactive mindset',
       'Comfortable with CRM tools in a fast-paced, team-oriented environment',
     ],
-    createdAt: new Date('2026-03-31').toISOString(),
+    createdAt: new Date('2026-08-09T20:45:00.000Z').toISOString(),
   },
   {
     id: 'ap-specialist-sarnia',
@@ -1085,7 +1194,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Teamsters experience a strong asset',
       'PHR, SPHR, SHRM-CP, or SHRM-SCP preferred',
     ],
-    createdAt: new Date('2026-04-17').toISOString(),
+    createdAt: new Date('2026-08-10T17:11:00.000Z').toISOString(),
   },
 
   // ── Logistics / freight sales (general mandates, multiple markets) ───────
@@ -1139,7 +1248,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'CRM discipline (e.g., Salesforce) and strong communication',
       'An existing book of shipper relationships is a plus',
     ],
-    createdAt: new Date('2026-03-22').toISOString(),
+    createdAt: new Date('2026-08-09T10:32:00.000Z').toISOString(),
   },
   {
     id: 'logistics-sales-tampa',
@@ -1191,7 +1300,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'CRM discipline (e.g., Salesforce) and strong communication',
       'An existing book of shipper relationships is a plus',
     ],
-    createdAt: new Date('2026-03-22').toISOString(),
+    createdAt: new Date('2026-08-09T05:26:00.000Z').toISOString(),
   },
   {
     id: 'logistics-sales-chattanooga',
@@ -1243,7 +1352,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'CRM discipline (e.g., Salesforce) and strong communication',
       'An existing book of shipper relationships is a plus',
     ],
-    createdAt: new Date('2026-03-22').toISOString(),
+    createdAt: new Date('2026-08-09T00:20:00.000Z').toISOString(),
   },
   {
     id: 'logistics-sales-chicago',
@@ -1295,7 +1404,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'CRM discipline (e.g., Salesforce) and strong communication',
       'An existing book of shipper relationships is a plus',
     ],
-    createdAt: new Date('2026-03-22').toISOString(),
+    createdAt: new Date('2026-08-08T19:13:00.000Z').toISOString(),
   },
   {
     id: 'logistics-sales-new-york',
@@ -1347,7 +1456,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'CRM discipline (e.g., Salesforce) and strong communication',
       'An existing book of shipper relationships is a plus',
     ],
-    createdAt: new Date('2026-03-22').toISOString(),
+    createdAt: new Date('2026-08-08T14:07:00.000Z').toISOString(),
   },
   {
     id: 'logistics-sales-us-remote',
@@ -1399,7 +1508,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'CRM discipline (e.g., Salesforce) and strong communication',
       'An existing book of shipper relationships is a plus',
     ],
-    createdAt: new Date('2026-04-20').toISOString(),
+    createdAt: new Date('2026-08-10T22:17:00.000Z').toISOString(),
   },
 
   // ── Phantom / pipeline placeholder roles (demo) ──────────────────────────
@@ -1454,7 +1563,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Advanced Excel and mid-market ERP experience',
       'High attention to detail and a continuous-improvement mindset',
     ],
-    createdAt: new Date('2026-06-09').toISOString(),
+    createdAt: new Date('2026-08-14T23:18:00.000Z').toISOString(),
   },
   {
     id: 'director-sales-vancouver',
@@ -1507,7 +1616,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong consultative and enterprise/strategic selling skills',
       'Excellent forecasting and CRM (e.g., Salesforce) discipline',
     ],
-    createdAt: new Date('2026-06-08').toISOString(),
+    createdAt: new Date('2026-08-14T13:06:00.000Z').toISOString(),
   },
   {
     id: 'vp-finance-seattle',
@@ -1560,7 +1669,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Experience scaling finance functions in growth environments',
       'Excellent business partnering and communication skills',
     ],
-    createdAt: new Date('2026-06-07').toISOString(),
+    createdAt: new Date('2026-08-14T07:59:00.000Z').toISOString(),
   },
   {
     id: 'hr-business-partner-winnipeg',
@@ -1613,7 +1722,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Highly organized and discreet with sensitive information',
       'CPHR designation (or working toward it) an asset',
     ],
-    createdAt: new Date('2026-06-06').toISOString(),
+    createdAt: new Date('2026-08-14T02:53:00.000Z').toISOString(),
   },
   {
     id: 'cfo-nyc',
@@ -1666,7 +1775,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Track record scaling finance in high-growth companies',
       'Strong M&A and capital-markets exposure',
     ],
-    createdAt: new Date('2026-06-05').toISOString(),
+    createdAt: new Date('2026-08-13T21:46:00.000Z').toISOString(),
   },
   {
     id: 'fpa-manager-alpharetta',
@@ -1719,7 +1828,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong business partnering and communication skills',
       'CPA/CFA/MBA preferred',
     ],
-    createdAt: new Date('2026-06-04').toISOString(),
+    createdAt: new Date('2026-08-13T11:34:00.000Z').toISOString(),
   },
   {
     id: 'director-hr-tampa',
@@ -1772,7 +1881,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong employee-relations and business-partnering skills',
       'SHRM-CP/SHRM-SCP or PHR/SPHR preferred',
     ],
-    createdAt: new Date('2026-06-03').toISOString(),
+    createdAt: new Date('2026-08-13T06:27:00.000Z').toISOString(),
   },
   {
     id: 'regional-sales-manager-chattanooga',
@@ -1825,7 +1934,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Disciplined pipeline management and CRM (e.g., Salesforce) use',
       'Willingness to travel within the region',
     ],
-    createdAt: new Date('2026-06-02').toISOString(),
+    createdAt: new Date('2026-08-13T01:21:00.000Z').toISOString(),
   },
   {
     id: 'finance-manager-buffalo',
@@ -1878,7 +1987,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Advanced Excel and ERP experience',
       'CPA preferred',
     ],
-    createdAt: new Date('2026-06-01').toISOString(),
+    createdAt: new Date('2026-08-12T20:15:00.000Z').toISOString(),
   },
   {
     id: 'vp-hr-nyc',
@@ -1931,7 +2040,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Proven org-design, talent, and culture-building track record',
       'SHRM-SCP/SPHR preferred',
     ],
-    createdAt: new Date('2026-05-31').toISOString(),
+    createdAt: new Date('2026-08-12T15:08:00.000Z').toISOString(),
   },
 
   // ── Phantom / pipeline placeholder roles, batch 2 (demo) ─────────────────
@@ -1986,7 +2095,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Advanced Excel and ERP experience (NetSuite, Sage, Dynamics)',
       'High attention to detail and a continuous-improvement mindset',
     ],
-    createdAt: new Date('2026-06-12').toISOString(),
+    createdAt: new Date('2026-08-17T02:22:00.000Z').toISOString(),
   },
   {
     id: 'enterprise-ae-chicago',
@@ -2039,7 +2148,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Disciplined pipeline management and CRM (e.g., Salesforce) use',
       'Executive presence and strong negotiation skills',
     ],
-    createdAt: new Date('2026-06-12').toISOString(),
+    createdAt: new Date('2026-08-16T21:16:00.000Z').toISOString(),
   },
   {
     id: 'talent-acquisition-manager-boston',
@@ -2092,7 +2201,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong ATS (Greenhouse, Lever) and recruiting analytics',
       'Excellent stakeholder management and communication',
     ],
-    createdAt: new Date('2026-06-11').toISOString(),
+    createdAt: new Date('2026-08-16T16:09:00.000Z').toISOString(),
   },
   {
     id: 'coo-boston',
@@ -2145,7 +2254,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Experience building teams, processes, and operating systems',
       'Executive presence and strong cross-functional leadership',
     ],
-    createdAt: new Date('2026-06-11').toISOString(),
+    createdAt: new Date('2026-08-16T11:03:00.000Z').toISOString(),
   },
   {
     id: 'director-finance-dallas',
@@ -2197,7 +2306,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Experience partnering with business and executive leaders',
       'Advanced systems and analytical skills',
     ],
-    createdAt: new Date('2026-06-11').toISOString(),
+    createdAt: new Date('2026-08-16T05:57:00.000Z').toISOString(),
   },
   {
     id: 'regional-sales-director-dallas',
@@ -2250,7 +2359,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong forecasting and CRM (e.g., Salesforce) discipline',
       'Consultative, value-based selling background',
     ],
-    createdAt: new Date('2026-06-11').toISOString(),
+    createdAt: new Date('2026-08-16T00:50:00.000Z').toISOString(),
   },
   {
     id: 'hr-director-denver',
@@ -2303,7 +2412,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong employee-relations and business-partnering skills',
       'SHRM-CP/SHRM-SCP or PHR/SPHR preferred',
     ],
-    createdAt: new Date('2026-06-10').toISOString(),
+    createdAt: new Date('2026-08-15T19:44:00.000Z').toISOString(),
   },
   {
     id: 'bdm-denver',
@@ -2356,7 +2465,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Disciplined CRM (e.g., Salesforce) and outbound habits',
       'Self-motivated, hunter mentality',
     ],
-    createdAt: new Date('2026-06-10').toISOString(),
+    createdAt: new Date('2026-08-15T14:38:00.000Z').toISOString(),
   },
   {
     id: 'controller-charlotte',
@@ -2409,7 +2518,7 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Advanced ERP and Excel skills',
       'High attention to detail and a process-improvement mindset',
     ],
-    createdAt: new Date('2026-06-10').toISOString(),
+    createdAt: new Date('2026-08-15T09:31:00.000Z').toISOString(),
   },
   {
     id: 'cro-charlotte',
@@ -2462,7 +2571,233 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Excellent forecasting and operating discipline',
       'Executive presence and board-level communication',
     ],
-    createdAt: new Date('2026-06-10').toISOString(),
+    createdAt: new Date('2026-08-15T04:25:00.000Z').toISOString(),
+  },
+  {
+    id: 'bi-analyst-gta',
+    ref: 'CG-2026-046',
+    title: 'Business Intelligence Analyst',
+    location: 'Remote (GTA-based)',
+    type: 'Full-time · Remote · Permanent',
+    salary: '$80,000 - $90,000 CAD',
+    summary:
+      'Techno-functional BI analyst on a national IT team for a material-handling and automation provider. You will sit between business users and the data — gathering requirements, writing SQL against an ERP, modelling data, and building and enhancing Power BI dashboards. Remote, but GTA-based to attend the Mississauga office as needed.',
+    description: `A techno-functional Business Intelligence Analyst role on the national IT team of a material-handling and warehouse-automation provider. This is deliberately not a data scientist or data engineer position — the emphasis is on someone who understands the business problem first, then builds the reporting solution.
+
+Your day looks like talking to business users, writing SQL, extracting data from an ERP, building dashboards, and translating requirements into reports that people actually use.
+
+**Schedule & location**
+
+Monday to Friday, 8:00am-5:00pm. Remote, but you must be GTA-based and able to attend the Mississauga office from time to time as required.
+
+**What you'll be doing**
+
+- Work directly with business stakeholders to understand reporting requirements
+- Extract data from legacy systems and ERP platforms
+- Write SQL queries and develop data models
+- Build and enhance dashboards and reports in Power BI
+- Ensure data quality and troubleshoot reporting issues
+- Support integrations between the ERP and other applications
+- Train end users and document reporting solutions
+
+**What we're looking for**
+
+- 3-5 years with Power BI and very strong SQL (minimum 3 years in a similar capacity)
+- Data modelling, ETL, Power Query and DAX
+- Advanced Microsoft Excel and solid database fundamentals
+- ERP reporting experience — any major platform transfers (SAP, Oracle, Dynamics, Epicor, Infor, NetSuite, Sage, JD Edwards)
+- Requirements gathering, stakeholder management and business analysis
+- Comfortable running user training and writing documentation
+
+**Compensation & benefits**
+
+- $80,000 - $90,000 CAD
+- 2-3 weeks vacation
+- Benefits after 3 months
+- Pension plan after 24 months`,
+    responsibilities: [
+      'Gather reporting requirements directly from business stakeholders',
+      'Write SQL and build data models against ERP and legacy systems',
+      'Build and enhance Power BI dashboards and reports',
+      'Ensure data quality and troubleshoot reporting issues',
+      'Support ERP integrations with other applications',
+      'Train end users and document reporting solutions',
+    ],
+    requirements: [
+      '3-5 years of Power BI development and very strong SQL',
+      'Data modelling, ETL, Power Query and DAX',
+      'Advanced Excel and solid database fundamentals',
+      'ERP reporting experience on any major platform',
+      'Strong requirements gathering and stakeholder management',
+      'GTA-based and able to attend a Mississauga office as needed',
+    ],
+    createdAt: new Date('2026-08-18T09:00:00.000Z').toISOString(),
+  },
+  {
+    id: 'pm-automated-systems-gta',
+    ref: 'CG-2026-047',
+    title: 'Project Manager — Automated Systems',
+    location: 'Remote / Field (GTA)',
+    type: 'Full-time · Remote · Permanent',
+    salary: '$85,000 - $90,000 CAD',
+    summary:
+      'Customer-facing Project Manager delivering warehouse automation and material-handling projects from kickoff to closeout for a national provider. Multiple concurrent projects, full budget and schedule ownership, vendor and subcontractor coordination, and regular travel to customer sites. Company vehicle, gas card and overtime on top of base.',
+    description: `A customer-facing Project Manager role delivering warehouse automation and material-handling projects end to end — kickoff through completion — for a national provider. This is explicitly not an engineering or design role; it suits someone who wants to build a long-term career in automation delivery rather than move toward a P.Eng. designation.
+
+**Schedule & location**
+
+Monday to Friday, 8:00am-5:00pm. Remote and field-based across the GTA, with travel to customer sites throughout project execution.
+
+**What you'll be doing**
+
+- Manage multiple concurrent projects of varying sizes
+- Serve as the primary customer contact throughout delivery
+- Coordinate vendors, subcontractors and internal departments daily
+- Own budgets, schedules, scope, change orders and project documentation
+- Lead meetings and present project updates
+- Troubleshoot issues and manage project risk
+- Work within an established PMO methodology and governance model
+
+**What we're looking for**
+
+- 4-5 years of project management experience running multiple concurrent projects
+- Strong budget, schedule, scope and change-order management
+- Genuinely strong customer-facing skills — running meetings, managing expectations, handling difficult conversations and escalations
+- Daily coordination across vendors, subcontractors, sales, operations, installation, service and health & safety
+- Comfortable with project schedules, action logs, meeting minutes, status reports, PM software, Teams and Excel
+- Ideal backgrounds: warehouse automation, intralogistics, material handling, conveyors, robotics or ASRS. Also strong: industrial construction, mechanical or electrical contracting, industrial installations. Also considered: manufacturing, facilities, capital equipment and packaging
+
+**Compensation & benefits**
+
+- $85,000 - $90,000 CAD depending on experience
+- Overtime on top of base (typically $5,000-$6,000 annually)
+- Company vehicle, insurance and gas card, with reasonable personal use
+- Benefits after 3 months
+- Pension plan after 24 months`,
+    responsibilities: [
+      'Deliver multiple concurrent automation projects from kickoff to closeout',
+      'Act as the primary customer contact throughout delivery',
+      'Coordinate vendors, subcontractors and internal departments',
+      'Own budgets, schedules, scope, change orders and documentation',
+      'Lead meetings, present updates and manage escalations',
+      'Travel to customer sites throughout project execution',
+    ],
+    requirements: [
+      '4-5 years of project management on concurrent projects',
+      'Budget, schedule, scope and change-order management',
+      'Excellent customer-facing and escalation-handling skills',
+      'Experience coordinating vendors and subcontractors',
+      'Automation, intralogistics, material handling or industrial construction background preferred',
+      'Willing to travel to customer sites across the GTA',
+    ],
+    createdAt: new Date('2026-08-18T03:54:00.000Z').toISOString(),
+  },
+  {
+    id: 'national-buyer-gta',
+    ref: 'CG-2026-048',
+    title: 'National Buyer',
+    location: 'Greater Toronto Area',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: 'Competitive',
+    summary:
+      'National Buyer leading the full procurement process for assigned categories at a well-established material-handling company. Strategic sourcing, RFQs/RFIs/RFPs, vendor performance and cost-saving programs supporting branches across Canada, with scope to help shape an evolving national procurement function.',
+    description: `A National Buyer role owning the end-to-end procurement process for assigned categories at a well-established material-handling company. You'll lead strategic sourcing to deliver cost effectiveness and best overall value, while supporting branches across Canada — and you'll have real input into how the national procurement function evolves.
+
+**What you'll be doing**
+
+- Lead strategic sourcing for goods and services within assigned categories
+- Develop and execute procurement programs aligned to company objectives
+- Manage the procurement process for products and services for accuracy and timeliness
+- Analyze quotes for best terms, conditions and cost
+- Submit RFQs, RFIs and national RFPs as required
+- Monitor vendor performance and compliance, and identify improvement and cost-saving opportunities
+- Perform market research and benchmarking
+- Maintain cooperative internal and supplier relationships
+- Receive, monitor and track products and deliveries for employees across all Canadian branches
+
+**What we're looking for**
+
+- Solid grounding in procurement fundamentals and methodologies, with a feel for where the pitfalls are
+- Strong analytical skills and a detail-oriented, organized approach
+- An effective communicator able to manage multiple requests and corporate projects at once
+- Ready to step up a level and take on national scope
+
+**What's on offer**
+
+- A stable, well-established business with a long track record
+- Competitive compensation
+- Work/life balance
+- Room to expand your professional and personal skills with a national leader in material handling`,
+    responsibilities: [
+      'Lead strategic sourcing for assigned product and service categories',
+      'Develop and execute procurement programs aligned to company objectives',
+      'Submit and evaluate RFQs, RFIs and national RFPs',
+      'Monitor vendor performance, compliance and cost-saving opportunities',
+      'Perform market research and benchmarking',
+      'Track products and deliveries across all Canadian branches',
+    ],
+    requirements: [
+      'Strong grounding in procurement fundamentals and methodologies',
+      'Analytical, organized and detail-oriented',
+      'Effective communicator across internal teams and suppliers',
+      'Able to manage multiple concurrent requests and projects',
+      'Ready for national-scope category ownership',
+    ],
+    createdAt: new Date('2026-08-17T22:48:00.000Z').toISOString(),
+  },
+  {
+    id: 'accountant-lachine',
+    ref: 'CG-2026-049',
+    title: 'Accountant / Senior Accountant',
+    location: 'Lachine, QC',
+    type: 'Full-time · Onsite · Permanent',
+    salary: '$65,000 - $85,000 CAD',
+    summary:
+      'Newly created accounting role at a growing transportation company, reporting to the Controller. Month-end close, reconciliations, fixed assets, intercompany and government remittances — no AP/AR ownership. Open at either Accountant or Senior Accountant level depending on experience. Fully onsite in Lachine.',
+    description: `A newly created position on a growing finance team at a transportation company, reporting directly to the Controller. The role can be filled at either Accountant or Senior Accountant level depending on your experience and ability to work independently.
+
+The finance function today runs VP of Finance, Controller, Accounts Payable, Accounts Receivable and an Accounting Technician. This role is being added so the Controller can delegate more of the work they currently handle personally — you would work closely with the Accounting Technician, who is earlier in their career.
+
+**Schedule & location**
+
+Monday to Friday, fully onsite at Lachine, QC. Not a hybrid role, though there's reasonable flexibility for the occasional exception.
+
+**What you'll be doing**
+
+- Month-end close, including preparing the groundwork the Controller currently owns
+- Accruals, amortization and depreciation
+- General ledger reconciliations
+- Fixed assets and intercompany accounting
+- Government remittances
+- Audit preparation and financial reporting support
+
+You would not own Accounts Payable or Accounts Receivable, beyond occasional support if needed.
+
+**What we're looking for**
+
+- Solid accounting fundamentals across month-end, reconciliations and reporting
+- Comfortable working onsite as part of a small, collaborative finance team
+- You don't need to arrive fully independent — the Controller is looking for someone who wants to learn, is willing to ask questions, and grows into more responsibility over time
+
+**Compensation**
+
+- $65,000 - $75,000 CAD at the Accountant level
+- $75,000 - $85,000 CAD at the Senior Accountant level`,
+    responsibilities: [
+      'Prepare and support month-end close',
+      'Handle accruals, amortization and depreciation',
+      'Complete general ledger reconciliations',
+      'Maintain fixed assets and intercompany accounting',
+      'Prepare government remittances',
+      'Support audit preparation and financial reporting',
+    ],
+    requirements: [
+      'Accounting experience covering month-end, reconciliations and reporting',
+      'Able to work fully onsite in Lachine, QC',
+      'Willingness to learn and grow into greater responsibility',
+      'Collaborative approach working alongside an Accounting Technician',
+    ],
+    createdAt: new Date('2026-08-17T17:41:00.000Z').toISOString(),
   },
 ];
 
@@ -2486,7 +2821,7 @@ They're buying responsiveness, reliability, trust, and execution when timelines 
 Hiring across Canada.
 Confidential conversations welcomed.`,
     date: 'Just now',
-    avatar: 'https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png',
+    avatar: 'https://corp.certusgroup.com/CertusLOGO_green_circle.png',
     image: '/linkedin-freight-forwarding-bde.jpg',
     createdAt: new Date().toISOString()
   },
@@ -2508,7 +2843,7 @@ If you're interested in learning more, please feel free to reach out directly fo
 
 #certusgroup #hiringHR #humanresourcesjobs #brantford`,
     date: 'Just now',
-    avatar: 'https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png',
+    avatar: 'https://corp.certusgroup.com/CertusLOGO_green_circle.png',
     image: '/linkedin-hr-coordinator-brantford.jpg',
     createdAt: new Date().toISOString()
   }
