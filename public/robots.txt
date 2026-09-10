@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://certusgroup.com/sitemap.xml
+Sitemap: https://corp.certusgroup.com/sitemap.xml
