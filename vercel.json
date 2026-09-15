@@ -8,7 +8,9 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
@@ -19,6 +21,118 @@
     {
       "src": "/sitemap.xml",
       "dest": "server.ts"
+    },
+    {
+      "src": "/jobs/load-booking-agent-hamilton/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/load-booking-agent-hamilton/"
+      }
+    },
+    {
+      "src": "/jobs/project-coordinator-hamilton/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/project-coordinator-hamilton/"
+      }
+    },
+    {
+      "src": "/jobs/bd-exec-trade-buffalo/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/bd-exec-trade-buffalo/"
+      }
+    },
+    {
+      "src": "/jobs/bd-exec-trade-vancouver/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/bd-exec-trade-vancouver/"
+      }
+    },
+    {
+      "src": "/jobs/customs-rater-sarnia/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/customs-rater-sarnia/"
+      }
+    },
+    {
+      "src": "/jobs/director-bd-trade-central-us/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/director-bd-trade-central-us/"
+      }
+    },
+    {
+      "src": "/jobs/bd-exec-trade-toronto/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/bd-exec-trade-toronto/"
+      }
+    },
+    {
+      "src": "/jobs/bd-exec-trade-northern-la/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/bd-exec-trade-northern-la/"
+      }
+    },
+    {
+      "src": "/jobs/logistics-sales-miami/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/logistics-sales-miami/"
+      }
+    },
+    {
+      "src": "/jobs/logistics-sales-tampa/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/logistics-sales-tampa/"
+      }
+    },
+    {
+      "src": "/jobs/logistics-sales-chattanooga/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/logistics-sales-chattanooga/"
+      }
+    },
+    {
+      "src": "/jobs/logistics-sales-chicago/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/logistics-sales-chicago/"
+      }
+    },
+    {
+      "src": "/jobs/logistics-sales-new-york/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/logistics-sales-new-york/"
+      }
+    },
+    {
+      "src": "/jobs/logistics-sales-us-remote/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://logistics.certusgroup.com/jobs/logistics-sales-us-remote/"
+      }
+    },
+    {
+      "src": "/blog/true-cost-of-a-bad-executive-hire/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://corp.certusgroup.com/blog"
+      }
+    },
+    {
+      "src": "/blog/questions-before-your-next-finance-hire/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://corp.certusgroup.com/blog"
+      }
     },
     {
       "handle": "filesystem"
