@@ -223,6 +223,7 @@ function buildBlogIndexBodyHtml(posts: BlogPost[]): string {
 const HOMEPAGE_BODY_HTML = `<div id="root"><main>
       <h1>Shared services executive search</h1>
       <p>Certus Corporate Search is part of The Certus Group of Companies Inc. Founded in 2008, The Certus Group has been operating in the recruitment and search space for over 15 years. Our Corporate division specializes in connecting finance, HR, sales, and executive professionals with leading employers across North America. We understand the urgency, confidentiality, and business-critical demands of leadership hiring, and we deliver talent that keeps teams performing and organizations growing.</p>
+      <p><a href="/jobs">View open roles</a> &middot; <a href="/submit-resume">Submit your resume</a> &middot; <a href="/blog">Insights</a></p>
     </main></div>`;
 
 async function main() {
