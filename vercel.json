@@ -135,6 +135,13 @@
       }
     },
     {
+      "src": "/blog/ontario-50000-pay-range-rule-finance-hiring/?",
+      "status": 301,
+      "headers": {
+        "Location": "https://corp.certusgroup.com/blog"
+      }
+    },
+    {
       "handle": "filesystem"
     },
     {
