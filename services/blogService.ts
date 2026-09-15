@@ -14,90 +14,72 @@ import { BlogPost } from '../types';
 
 const POSTS: BlogPost[] = [
   {
-    slug: 'true-cost-of-a-bad-executive-hire',
-    title: 'The True Cost of a Bad Executive Hire — And How to Avoid It',
+    slug: 'ontario-50000-pay-range-rule-finance-hiring',
+    title: 'Ontario\'s $50,000 Rule: Why Your CFO Search Is Exempt and Your Controller Search Is Not',
     excerpt:
-      "A mis-hire at the leadership level rarely shows up as a single line on a P&L. Here's what it actually costs, and the search discipline that prevents it.",
-    author: 'Tyler Ortolano',
-    date: '2026-06-10',
-    tags: ['Executive Search', 'Hiring', 'Leadership'],
+      'Since 1 January 2026 an advertised range in Ontario cannot span more than $50,000, while postings above $200,000 are exempt entirely. Disclosure in Ontario jumped from 49% to 71% while the rest of Canada stayed flat. What that means for pricing a finance role.',
+    author: 'Certus Corporate Search',
+    date: '2026-09-01',
+    tags: ['Pay Transparency', 'Finance Hiring', 'Ontario', 'Compensation'],
     coverImage:
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600',
-    content: `The most expensive hire your company will ever make isn't the one with the biggest salary — it's the leader who looks right on paper, clears every interview, and quietly costs you eighteen months of momentum before anyone admits it isn't working.
+      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1600',
+    content: `Here is a problem that didn't exist in Ontario eighteen months ago. You're hiring a Controller. Your internal band for the role spans more than $50,000, because it always has, because the gap between a Controller who can close the books and a Controller who can rebuild the close process is worth more than fifty thousand dollars.
 
-Executive mis-hires rarely announce themselves. They compound.
+As of 1 January 2026, you can't advertise that band. Ontario caps the spread on a publicly advertised range at $50,000.
 
-## What a bad executive hire actually costs
+Now hold that against the other half of the rule. Postings where expected compensation exceeds $200,000 are exempt entirely. So the CFO search escapes the requirement, and the Controller search doesn't.
 
-The salary is the smallest line item. The real cost shows up across four areas:
+That inversion is worth sitting with. The role where you have the most pricing flexibility is the one the law now makes you commit on, and the role where you would most like to keep your options open is free.
 
-- **Direct cost** — base, bonus, signing, equity, and severance. Replacing a six-figure leader routinely runs 1.5–2× annual compensation once you add the search, onboarding, and exit.
-- **Opportunity cost** — the deals not closed, the function not built, the roadmap that slipped while the seat was effectively empty.
-- **Team cost** — strong performers don't wait around for a struggling leader. Your best people leave first, and they're the hardest to replace.
-- **Momentum cost** — the hardest to quantify and the most damaging. A year of drift at the leadership level is a year your competitors didn't take off.
+*Current as of September 2026. This is a summary for hiring managers, not legal advice.*
 
-In our experience the number is almost always higher than leadership expects — because the momentum cost never makes it onto a spreadsheet.
+## What the rule actually says
 
-## Why good companies still get it wrong
+The requirements live in Part III.1 of the Employment Standards Act, sections 8.2 through 8.6, with the detail in Ontario Regulation 476/24. In plain terms, a publicly advertised job posting must include the expected compensation or a range, and that range may not exceed $50,000 in width.
 
-Most mis-hires aren't a failure of evaluation. They're a failure of definition.
+Two things employers get wrong. The obligation attaches to *publicly advertised* postings, so the analysis changes for roles filled through a search firm or a private network. And the $200,000 exemption is a threshold on expected compensation, not a general escape hatch for senior roles.
 
-The role was never scoped clearly. The interview tested for likeability and pedigree instead of the two or three outcomes that actually matter in the first year. The process moved too fast under pressure to fill the seat — or too slow, and the best candidate took another offer.
+## It's already changing what Ontario looks like
 
-> The candidate who interviews best is not always the candidate who performs best. The job of a search is to tell the difference.
+The interesting evidence isn't the law, it's what happened after.
 
-## How to avoid it
+Indeed's Hiring Lab measured the share of Canadian job postings that disclose pay. In Ontario, that share went from **49% to 71%**. In the rest of the country it stayed roughly flat, around 40%.
 
-A disciplined search isn't about seeing more résumés. It comes down to a few non-negotiables:
+That's a real behavioural shift in one province in about a year, and it means something specific for you: a candidate scanning Ontario postings now sees pay on roughly seven of ten. Yours being the exception is a signal, not a neutral omission.
 
-1. **Define the first-year outcomes, not the job description.** What does success look like in 12 months? If leadership can't agree, no candidate can deliver it.
-2. **Calibrate on a real shortlist early.** Two or three strong, benchmarked candidates tell you more about the market — and your own bar — than fifty inbound applications.
-3. **Reference for patterns, not praise.** Anyone can supply three happy references. Ask how they operate under pressure, how they build teams, and what they'd do differently.
-4. **Protect the timeline.** Senior candidates have options. A process that drags signals indecision and loses the people you most want.
+## What disclosure does to your wage bill
 
-## The bottom line
+This is where most commentary goes wrong, in both directions. It's neither free nor catastrophic.
 
-You don't avoid a bad executive hire by being more cautious. You avoid it by being more precise — about the outcomes you need, the market that can deliver them, and the process that keeps your best option engaged until they say yes.
+The most careful work on this is an NBER paper by Arnold, Quach and Taska (working paper 34480), which finds pay transparency associated with wage increases in the range of **1.3% to 3.6%**, and, importantly, **no measurable effect on pay dispersion.**
 
-That precision is the entire job of a search partner. Done right, it's the cheapest insurance you'll ever buy.`,
-  },
-  {
-    slug: 'questions-before-your-next-finance-hire',
-    title: '5 Questions to Ask Before Your Next Senior Finance Hire',
-    excerpt:
-      "Before you open a Controller or VP Finance search, get clear on these five things. They decide whether you hire in 30 days or 130.",
-    author: 'Tyler Ortolano',
-    date: '2026-06-05',
-    tags: ['Finance', 'Hiring', 'Recruitment'],
-    coverImage:
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1600',
-    content: `Most finance searches that stall don't stall because the talent isn't out there. They stall because the search started before the company was ready to hire.
+Read that second finding carefully, because it contradicts the thing employers most fear. The common worry is that publishing ranges compresses your internal structure, that everyone migrates to the top of the band and your differentials collapse. The evidence doesn't show that. What it shows is a modest upward drift in the level.
 
-Before you open a Controller, Director of Finance, or VP Finance search, get clear on these five questions. They're the difference between a 30-day hire and a 130-day one.
+So the honest budgeting posture is: assume a low single-digit percentage increase on newly posted roles, and stop worrying about your existing structure detonating.
 
-## 1. Is this a builder or an operator?
+## The practical decisions this forces
 
-A finance leader who thrives building a function from scratch — first close, first system, first team — is often miserable maintaining a mature one, and vice versa. Decide which problem you're hiring to solve before you write the spec. The strongest résumés are useless if they're the wrong shape for the work.
+**Decide whether the range is real before you post it.** A $50,000 window is enough to be meaningful and not enough to hide in. If you post $110,000 to $160,000 and never intend to pay above $125,000, you will spend your time interviewing people you can't close, and they will remember.
 
-## 2. What are the three numbers this person owns in year one?
+**Split the role, or narrow the band honestly.** If your true band is wider than $50,000, that's usually because you haven't decided which of two jobs you're hiring. Sometimes the right response to the constraint is to accept that a senior Controller and a hands-on Controller are separate searches with separate ranges.
 
-Not "manage finance." Specifics: a clean close in five days, a board-ready forecast, a cash model leadership trusts. If you can name the three outcomes, you can interview for them. If you can't, you'll interview for vibes.
+**Don't use the $200,000 exemption as a workaround.** Structuring a posting to clear the threshold in order to avoid disclosure is the kind of thing that reads badly later, to candidates and to regulators.
 
-## 3. Where does this role actually sit?
+**Check what your competitors are showing.** Seven in ten Ontario postings now disclose. That's free market data on your own roles, and it's a better comparator than any salary aggregator, which routinely disagree with each other by wide margins on the same title.
 
-Reporting line, team size, and decision rights shape the candidate pool more than salary does. A Controller reporting to a CFO is a different hire — and a different person — than a Controller who **is** the senior-most finance leader. Be honest about the seat.
+## One more thing worth knowing before you set the office policy
 
-## 4. What can you pay, really?
+While you're rewriting postings, the other lever you're probably pulling is office attendance, and there's a finance-specific number worth having.
 
-Comp benchmarks move fast, and finance talent reads the market well. A range that was competitive eighteen months ago may be 15–20% light today. Pressure-test your band against live offers before you go to market, not after you lose a finalist.
+ACCA's Global Talent Trends 2026, which surveyed 11,389 people across 160 countries between October 2025 and February 2026, found that **44% of Gen Y finance professionals would consider leaving if required to spend more time in the office.** The same survey found **66% agree employers should require a set number of office days.**
 
-## 5. How fast can you actually move?
+Those aren't in conflict, and the combination is the useful part. People broadly accept a defined in-office expectation. What they leave over is a *change* to it. If you're tightening attendance in the same quarter you're trying to hire a finance team, you're competing against yourself.
 
-This is the one companies underestimate. Strong finance candidates are typically employed, already in process elsewhere, or both. A two-week gap between interview rounds is often enough to lose them. Map your process — and your decision-makers' calendars — before the first interview, not during.
+A note on rigour: the North American subset of that survey is small and self-selected, so treat it as directional rather than as a benchmark for your own population.
 
-## The takeaway
+---
 
-The best finance hires happen when the company has done its own homework first. Answer these five questions honestly and you've already done the hardest part of the search. The rest is finding the right person — which is where a specialized partner earns their keep.`,
+*Certus Corporate Search places finance, HR and shared-services leadership across Canada and the United States. If you're pricing a role against a $50,000 window and aren't sure where the market actually sits, we are happy to tell you what we are seeing.*`,
   },
 ];
 
