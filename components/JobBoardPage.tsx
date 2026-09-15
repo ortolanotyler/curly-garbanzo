@@ -157,7 +157,7 @@ const JobRowSkeleton: React.FC = () => (
                 <div className="flex flex-col items-end cursor-pointer group select-none" onClick={onBack}>
                     <div className="flex items-center gap-3">
                         <img 
-                            src="https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png" 
+                            src="https://corp.certusgroup.com/CertusLOGO_burgundy_circle.png" 
                             className="w-6 h-6 opacity-90"
                             alt="Certus Logo"
                             referrerPolicy="no-referrer"

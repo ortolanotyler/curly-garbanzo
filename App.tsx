@@ -21,10 +21,9 @@ const BlogPage = lazy(() => import('./components/BlogPage'));
 const BlogPostPage = lazy(() => import('./components/BlogPostPage'));
 const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
 
-// Heavy landing-only sections (map: react-simple-maps/d3-geo, feed: motion/markdown)
-// — split out so the gateway/initial bundle doesn't carry them.
+// Heavy landing-only section (map: react-simple-maps/d3-geo) — split out so the
+// gateway/initial bundle doesn't carry it.
 const LocationsMap = lazy(() => import('./components/LocationsMap'));
-const LinkedInFeed = lazy(() => import('./components/LinkedInFeed'));
 
 const RouteLoader: React.FC = () => (
   <div className="min-h-screen bg-brand-dark flex items-center justify-center">
@@ -133,6 +132,7 @@ const App: React.FC = () => {
             onSelect={handleGatewaySelect}
             onViewJobs={() => setView('jobs')}
             onNavigate={handleNavigate}
+            onViewSubmit={() => setView('submit')}
           />
         </>
       );
@@ -219,11 +219,6 @@ const App: React.FC = () => {
           </Reveal>
           <Reveal>
             <FeaturedJobsHero onViewJobs={() => setView('jobs')} />
-          </Reveal>
-          <Reveal>
-            <Suspense fallback={<div className="py-24" />}>
-              <LinkedInFeed />
-            </Suspense>
           </Reveal>
           <Reveal>
             <Contact />

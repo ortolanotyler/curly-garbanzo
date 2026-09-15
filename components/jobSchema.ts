@@ -6,7 +6,7 @@ import { JobPosting } from '../types';
 
 const ORG_NAME = 'Certus Corporate Search';
 const LOGO_URL =
-  'https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png';
+  'https://corp.certusgroup.com/CertusLOGO_green_circle.png';
 
 const US_STATES = new Set([
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME',
@@ -52,13 +52,26 @@ const mapEmploymentType = (type?: string): string => {
 export function buildJobPostingSchema(job: JobPosting, baseUrl: string): Record<string, unknown> {
   const datePosted = job.createdAt || new Date().toISOString();
   // Deterministic 60-day window anchored to the posting date (not "now").
-  const validThrough = new Date(new Date(datePosted).getTime() + 60 * 24 * 60 * 60 * 1000).toISOString();
+  // validThrough must be the later of (posted + 60d) and (build + 60d). Posting
+  // dates are staggered back over several weeks so the board does not look like
+  // it was published in one batch, and a plain posted+60 would have expired the
+  // oldest of them within days -- Google drops an expired posting from Jobs
+  // while the page itself still indexes fine, which is invisible unless you go
+  // looking. These pages are prerendered, so "build" is the deploy.
+  const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
+  const validThrough = new Date(
+    Math.max(new Date(datePosted).getTime() + SIXTY_DAYS, Date.now() + SIXTY_DAYS),
+  ).toISOString();
   const country = guessCountry(job.location);
   const salaryNums = parseSalary(job.salary);
   const isRemote = /\bremote\b/i.test(job.location || '');
   const locality = job.location?.split(',')[0]?.trim() || '';
   // A real, mappable city — not a "Remote (US)"-style string with no city.
-  const hasPhysicalLocation = !!job.location?.includes(',') && !/^remote/i.test(locality);
+  // A location does NOT need a comma to be a real place: "Greater Toronto Area"
+  // and "Ontario" are both mappable, and requiring one emitted a JobPosting with
+  // neither jobLocation nor jobLocationType -- invalid, so Google Jobs drops it.
+  // Anything that isn't a remote-only string is treated as a physical location.
+  const hasPhysicalLocation = !!locality && !/^remote/i.test(locality);
   const addressRegion = (job.location?.split(',')[1] || '').replace(/[^a-zA-Z]/g, '').slice(0, 2).toUpperCase();
   const applicantCountry = { '@type': 'Country', name: country === 'CA' ? 'Canada' : 'United States' };
 

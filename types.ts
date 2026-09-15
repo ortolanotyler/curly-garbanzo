@@ -13,6 +13,9 @@ export type View = 'gateway' | 'landing' | 'jobs' | 'submit' | 'blog' | 'not-fou
 export interface JobPosting {
   id: string | number;
   ref: string;
+  /** Which Certus site owns this role. Guards against a logistics role
+   *  being pasted onto the corporate site, which happened 14 times. */
+  discipline?: 'corporate' | 'supply-chain' | 'technical';
   title: string;
   location: string;
   type: string;

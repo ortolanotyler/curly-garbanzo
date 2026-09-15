@@ -88,7 +88,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ slug, onBack, onBackToBlog,
 
         <button onClick={onBack} className="flex items-center gap-3 select-none group">
           <img
-            src="https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png"
+            src="https://corp.certusgroup.com/CertusLOGO_burgundy_circle.png"
             className="w-6 h-6 opacity-90"
             alt="Certus Logo"
             referrerPolicy="no-referrer"

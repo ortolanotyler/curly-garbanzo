@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ onViewJobs, onViewSubmit, onNavigate })
               aria-label="Scroll to top"
             >
               <img
-                src="https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png"
+                src="https://corp.certusgroup.com/CertusLOGO_burgundy_circle.png"
                 className="w-10 h-10 mr-3 opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                 alt="Certus Logo"
                 referrerPolicy="no-referrer"

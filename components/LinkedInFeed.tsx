@@ -8,7 +8,7 @@ import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
 import { useDialogA11y } from './useDialogA11y';
 
-const COMPANY_LINKEDIN_URL = 'https://www.linkedin.com/showcase/certus-supply-chain-search/';
+const COMPANY_LINKEDIN_URL = 'https://www.linkedin.com/company/thecertusgroupofcompanies';
 
 const formatDate = (raw?: string) => {
   if (!raw) return '';

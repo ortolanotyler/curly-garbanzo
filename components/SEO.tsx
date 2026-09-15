@@ -17,12 +17,12 @@ interface SEOProps {
   noindex?: boolean;
 }
 
-const DEFAULT_SITE_URL = 'https://certusgroup.com';
+const DEFAULT_SITE_URL = 'https://corp.certusgroup.com';
 const SITE_NAME = 'Certus Corporate Search';
 const ORG_NAME = 'Certus Corporate Search';
 const ORG_LEGAL_NAME = 'The Certus Group of Companies Inc.';
 const LOGO_URL =
-  'https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png';
+  'https://corp.certusgroup.com/CertusLOGO_burgundy_circle.png';
 
 // Salary / country / JobPosting-schema helpers live in ./jobSchema — shared with
 // the post-build static injector so crawler HTML and the hydrated DOM never drift.
@@ -93,13 +93,13 @@ const SEO: React.FC<SEOProps> = ({
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+1-437-295-1799',
+      telephone: '+1-855-323-7887',
       contactType: 'business inquiries',
       email: 'info@certusgroup.com',
       areaServed: ['CA', 'US'],
       availableLanguage: ['English', 'French'],
     },
-    sameAs: ['https://www.linkedin.com/showcase/certus-supply-chain-search/'],
+    sameAs: ['https://www.linkedin.com/company/thecertusgroupofcompanies'],
     areaServed: ['Canada', 'United States'],
     knowsAbout: ['Shared services executive search', 'Finance recruitment', 'HR recruitment', 'Sales recruitment', 'Executive search'],
   };

@@ -7,9 +7,10 @@ interface SplitGatewayProps {
   onSelect: (target: 'landing' | 'sectors' | 'hire') => void;
   onViewJobs: () => void;
   onNavigate?: (sectionId: string) => void;
+  onViewSubmit?: () => void;
 }
 
-const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNavigate }) => {
+const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNavigate, onViewSubmit }) => {
   const [hovered, setHovered] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [shouldRenderVideos, setShouldRenderVideos] = useState(false);
@@ -60,7 +61,7 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-brand-dark font-sans selection:bg-brand-silver selection:text-black">
-      <Header onViewJobs={onViewJobs} onNavigate={onNavigate} />
+      <Header onViewJobs={onViewJobs} onNavigate={onNavigate} onViewSubmit={onViewSubmit} />
 
       {/* RIGHT SIDE — Sectors panel (renders first so the wordmark side clips on top) */}
       <div
@@ -217,13 +218,13 @@ const SplitGateway: React.FC<SplitGatewayProps> = ({ onSelect, onViewJobs, onNav
           }`}
         >
           <div className="space-y-0 drop-shadow-2xl">
-            <h1 className="text-[18vw] sm:text-[14vw] md:text-[11vw] lg:text-[10rem] xl:text-[12rem] font-medium text-white leading-[0.85] tracking-tighter">
+            <div className="mb-3 md:mb-4 text-base sm:text-lg md:text-xl lg:text-2xl font-medium uppercase tracking-[0.35em] text-brand-silver">
               Certus
-            </h1>
-            <h1 className="text-[14vw] sm:text-[11vw] md:text-[8.5vw] lg:text-[7.5rem] xl:text-[9rem] font-medium text-white leading-[0.85] tracking-tighter">
+            </div>
+            <h1 className="text-[16vw] sm:text-[13vw] md:text-[8.5vw] lg:text-[7rem] xl:text-[8.5rem] font-medium text-white leading-[0.85] tracking-tighter">
               Corporate
             </h1>
-            <h1 className="text-[16vw] sm:text-[12vw] md:text-[10vw] lg:text-[9rem] xl:text-[11rem] font-serif italic font-light text-brand-silver leading-[0.85] tracking-tight -mt-1 md:-mt-2">
+            <h1 className="text-[14vw] sm:text-[11vw] md:text-[8vw] lg:text-[6.5rem] xl:text-[8rem] font-medium text-white leading-[0.85] tracking-tighter -mt-1 md:-mt-2">
               Search
             </h1>
           </div>

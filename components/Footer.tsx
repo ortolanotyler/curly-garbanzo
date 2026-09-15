@@ -16,7 +16,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit, o
   };
 
   const audienceLinks: Array<{ label: string; onClick: () => void }> = [
-    { label: 'For Companies', onClick: () => handleNav(Section.HOW_WE_WORK) },
+    { label: 'For Companies', onClick: () => handleNav(Section.INDUSTRIES) },
     { label: 'For Candidates', onClick: () => (onViewJobs ? onViewJobs() : handleNav(Section.HERO)) },
     { label: 'Submit Resume', onClick: () => onViewSubmit?.() },
   ];
@@ -24,8 +24,23 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit, o
   const siteLinks: Array<{ label: string; onClick: () => void }> = [
     { label: 'Practice Sectors', onClick: () => handleNav(Section.INDUSTRIES) },
     { label: 'Open Roles', onClick: () => onViewJobs?.() },
+    // Un-hidden 2026-08-31. It was commented out, so /blog had NO internal link
+    // pointing at it from anywhere on the site -- an orphan page. Search engines
+    // weight internal links heavily when deciding what to crawl, so the articles
+    // were effectively invisible even once the sitemap was correct.
     { label: 'Insights', onClick: () => onViewBlog?.() },
     { label: 'Contact', onClick: () => handleNav(Section.CONTACT) },
+  ];
+
+  // The Certus Group of Companies — each practice links to its own site.
+  // Each division ships its own coloured mark: burgundy for Corporate, grey for Technical.
+  const FAMILY_LOGO = 'https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png';
+  const CORPORATE_LOGO = 'https://corp.certusgroup.com/CertusLOGO_burgundy_circle.png';
+  const TECHNICAL_LOGO = 'https://technical.certusgroup.com/CertusLOGO_grey_circle.png';
+  const familyCompanies: Array<{ name: string; href: string; logo: string; gray?: boolean }> = [
+    { name: 'Certus Supply Chain Search', href: 'https://logistics.certusgroup.com', logo: FAMILY_LOGO },
+    { name: 'Certus Corporate Search', href: 'https://corp.certusgroup.com', logo: CORPORATE_LOGO },
+    { name: 'Certus Technical Search', href: 'https://technical.certusgroup.com', logo: TECHNICAL_LOGO },
   ];
 
   return (
@@ -40,8 +55,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit, o
         </div>
       </div>
 
-      {/* Ambient glow */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-silver/[0.03] rounded-full blur-[140px] pointer-events-none z-0"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-20">
@@ -50,7 +63,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit, o
             <div className="flex flex-col">
               <div className="flex items-center gap-3 mb-2">
                 <img
-                  src="https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png"
+                  src="https://corp.certusgroup.com/CertusLOGO_burgundy_circle.png"
                   className="w-10 h-10 opacity-90"
                   alt="Certus Logo"
                   referrerPolicy="no-referrer"
@@ -71,7 +84,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit, o
 
             <div className="flex gap-3">
               <a
-                href="https://www.linkedin.com/showcase/certus-supply-chain-search/"
+                href="https://www.linkedin.com/company/thecertusgroupofcompanies"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-11 h-11 flex items-center justify-center border border-white/10 hover:border-white/40 hover:bg-white/5 text-white/70 hover:text-white rounded-sm transition-all duration-300"
@@ -145,20 +158,47 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit, o
                 Toronto, ON · M9W 6R5
               </p>
               <a
-                href="tel:+14372951799"
+                href="tel:+18553237887"
                 className="inline-block mt-3 text-sm text-gray-400 hover:text-brand-silver transition-colors font-light"
               >
-                (437) 295 1799
+                (1 855) 323 7887
               </a>
             </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-gray-600 text-xs tracking-wide font-light">
             © 2008 Certus Group. All rights reserved.
           </p>
+
+          {/* The Certus Group of Companies */}
+          <div className="flex flex-col items-center md:items-end gap-2.5">
+            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
+              The Certus Group of Companies
+            </span>
+            <div className="flex items-center gap-3">
+              {familyCompanies.map((c) => (
+                <a
+                  key={c.href}
+                  href={c.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={c.name}
+                  title={c.name}
+                  className="opacity-60 hover:opacity-100 transition-opacity"
+                >
+                  <img
+                    src={c.logo}
+                    alt={c.name}
+                    referrerPolicy="no-referrer"
+                    className="w-8 h-8"
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </footer>

@@ -5,6 +5,7 @@ const MOCK_JOBS: JobPosting[] = [
   {
     id: 'hse-specialist-gta',
     ref: 'CG-2026-063',
+    discipline: 'corporate',
     title: 'Health, Safety & Environmental Specialist',
     location: 'Remote (GTA-based)',
     type: 'Full-time \u00b7 Remote \u00b7 Permanent',
@@ -65,116 +66,12 @@ Multi-site experience is not required, and the employer is open to most industri
       'CRSP or CRST designation an asset',
       'GTA-based and able to attend a Mississauga office a few times a month',
     ],
-    createdAt: new Date('2026-08-25T09:00:00.000Z').toISOString(),
-  },
-  {
-    id: 'load-booking-agent-hamilton',
-    ref: 'CG-2026-062',
-    title: 'Load Booking Agent',
-    location: 'Hamilton, ON',
-    type: 'Full-time · Onsite · Permanent',
-    salary: '$65,000 CAD',
-    summary:
-      'Booking agent for a global freight forwarder growing its Hamilton office — booking cross-border and domestic US loads with approved carriers, negotiating rates and keeping shipments on schedule.',
-    description: `An onsite Hamilton role with a global freight forwarder and 3PL expanding their office. You would book freight with approved carriers, negotiate rates and keep shipments moving across cross-border and domestic US lanes.
-
-**Schedule & location**
-
-Onsite in Hamilton, Monday to Friday, 9:00am-5:30pm. After-hours coverage on a rotation basis.
-
-**What you'll be doing**
-
-- Book freight loads with approved carriers
-- Negotiate competitive freight rates while maintaining service quality
-- Coordinate pickup and delivery schedules with carriers
-- Monitor shipment status and proactively communicate delays or issues
-- Ensure all shipment information is entered accurately into the TMS
-- Maintain regular communication with dispatchers, carriers and internal operations
-- Build and maintain strong carrier and transportation-partner relationships
-- Verify carrier compliance — insurance, safety ratings and contracts
-- Resolve appointment changes, delays, detention and service failures
-- Support capacity planning through peak periods
-
-**What we're looking for**
-
-- At least three years booking cross-border and domestic US loads
-- Confident negotiator who holds service quality while working the rate
-- Strong written and email communication
-- Comfortable in office five days a week and with after-hours rotation
-
-**What's offered**
-
-- Around $65,000 to start
-- A growing office with an established global network behind it`,
-    responsibilities: [],
-    requirements: [],
-    createdAt: new Date('2026-08-18T09:05:00.000Z').toISOString(),
-  },
-
-  {
-    id: 'project-coordinator-hamilton',
-    ref: 'CG-2026-039',
-    title: 'Project Coordinator (Logistics)',
-    location: 'Hamilton, ON',
-    type: 'Full-time · Onsite · Permanent',
-    salary: '$60,000 - $65,000 CAD',
-    summary:
-      'Customer-facing project coordinator on a growing logistics/3PL operations team, coordinating multiple simultaneous projects supporting U.S. retail-sector logistics. Owns timelines, installation schedules, vendor relationships, and client communication.',
-    description: `An onsite Hamilton role on a fast-growing logistics/3PL operations team. You'll coordinate and support multiple projects at once — keeping timelines, installation schedules, and service expectations on track — primarily supporting U.S. retail-sector logistics. A strong opportunity to grow within the logistics field.
-
-**Schedule & location**
-
-Onsite in Hamilton, ON, Monday to Friday, 8:30am-5:00pm. Comfort with occasional after-hours phone support is needed. Company-paid on-site parking.
-
-**What you'll be doing**
-
-- Coordinate project timelines, installation schedules, and service expectations directly with customers
-- Manage multiple high-priority projects simultaneously in a fast-paced environment
-- Handle high volumes of email and after-hours phone support
-- Keep clients updated via Teams and professional correspondence
-- Track milestones, task assignments, and reporting in Excel
-- Build and maintain strong vendor relationships
-- Prepare shipping documentation and handle minor accounting and data entry
-
-**What we're looking for**
-
-- Customer-facing and/or project-coordination experience (3PL or logistics an asset, not required)
-- Strong communication and interpersonal skills with a professional phone manner
-- High level of multitasking, organization, and detail orientation under deadlines
-- Comfortable resolving issues as they arise
-- Proficiency with Microsoft Excel
-- High school diploma; customer service experience
-- Bilingual English/French is an asset
-- Open to newer grads with a hunger to learn, or candidates from sales / account management
-
-**Compensation & benefits**
-
-- $60,000 - $65,000 CAD
-- Medical and dental benefits, life/AD&D, long-term disability
-- Paid vacation (2 weeks; 3 potentially negotiable) plus personal/volunteer time
-- Company-paid on-site parking
-- Permanent, full-time, Monday to Friday`,
-    responsibilities: [
-      'Coordinate project timelines, installation schedules, and service expectations with customers',
-      'Manage multiple high-priority projects simultaneously',
-      'Handle high volumes of email and after-hours phone support',
-      'Keep clients updated via Teams and track milestones in Excel',
-      'Build and maintain vendor relationships',
-      'Prepare shipping documentation and handle minor accounting/data entry',
-    ],
-    requirements: [
-      'Customer-facing and/or project-coordination experience (3PL/logistics an asset)',
-      'Strong communication and interpersonal skills; professional phone manner',
-      'High multitasking, organization, and attention to detail under deadlines',
-      'Proficiency with Microsoft Excel',
-      'High school diploma; customer service experience',
-      'Bilingual English/French an asset',
-    ],
-    createdAt: new Date('2026-08-09T15:39:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-29T09:00:00.000Z').toISOString(),
   },
   {
     id: 'hr-manager-columbus',
     ref: 'CG-2026-033',
+    discipline: 'corporate',
     title: 'Human Resources Manager',
     location: 'Columbus, OH',
     type: 'Full-time · Onsite',
@@ -237,11 +134,12 @@ Onsite in Hamilton, ON, Monday to Friday, 8:30am-5:00pm. Comfort with occasional
       'Intermediate-to-advanced MS Office and HRIS experience (ADP Workforce Now a plus)',
       'Bachelor’s degree preferred; PHR or SPHR preferred',
     ],
-    createdAt: new Date('2026-08-17T12:35:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-26T12:21:00.000Z').toISOString(),
   },
   {
     id: 'hr-generalist-york-pa',
     ref: 'CG-2026-032',
+    discipline: 'corporate',
     title: 'HR Generalist (Bilingual English/Spanish)',
     location: 'York, PA',
     type: 'Full-time · Onsite · Permanent',
@@ -296,61 +194,12 @@ Onsite in Hamilton, ON, Monday to Friday, 8:30am-5:00pm. Comfort with occasional
       'Strong employee-relations, conflict-resolution, and confidentiality',
       'Bachelor’s in HR or related field preferred; HS diploma/GED required',
     ],
-    createdAt: new Date('2026-08-17T07:29:00.000Z').toISOString(),
-  },
-  {
-    id: 'bd-exec-trade-buffalo',
-    ref: 'CG-2026-037',
-    title: 'Business Development Executive — Customs & Trade',
-    location: 'Buffalo, NY (Remote)',
-    type: 'Full-time · Remote · Permanent',
-    salary: '$100,000 base + uncapped commission',
-    summary:
-      'Remote hunter sales role winning net-new B2B business for a global customs brokerage and trade-services organization. Owns a defined local territory: prospecting, needs assessments, RFPs, and closing across customs, trade compliance, and freight solutions. ~25% local travel.',
-    description: `A remote, hunter B2B sales role for a global customs brokerage, trade-consulting, and freight-services organization. You'll own a defined local territory — building relationships, presenting solutions, and winning net-new business — with uncapped commission and approximately 25% local travel.
-
-**What you'll be doing**
-
-- Develop a strategic territory plan and identify high- and medium-potential accounts
-- Proactively introduce customs, trade-compliance, and freight solutions to new clients
-- Conduct thorough needs assessments and uncover additional opportunities
-- Draft RFPs with internal teams and ensure timely delivery
-- Negotiate pricing and contract terms; finalize contracts cross-functionally
-- Achieve or exceed assigned sales targets and keep CRM current
-
-**What we're looking for**
-
-- 5+ years of related B2B sales experience
-- Demonstrated ability to open and close business and exceed targets
-- Excellent communication, interpersonal, and key-account skills
-- Strong CRM (e.g., Salesforce) and MS Office proficiency
-- High-initiative, self-motivated, and results-oriented
-- Associate's degree or post-secondary education required; bachelor's preferred
-
-**Compensation & benefits**
-
-- $100,000 base + uncapped monthly commission
-- Remote, territory-based (~25% local travel)
-- Full benefits`,
-    responsibilities: [
-      'Develop a strategic territory plan and identify target accounts',
-      'Introduce customs, trade-compliance, and freight solutions to new clients',
-      'Conduct needs assessments and uncover opportunities',
-      'Draft RFPs and negotiate pricing and contract terms',
-      'Achieve or exceed sales targets and maintain CRM discipline',
-    ],
-    requirements: [
-      '5+ years of related B2B sales experience',
-      'Demonstrated ability to open and close business and exceed targets',
-      'Excellent communication, interpersonal, and key-account skills',
-      'Strong CRM (e.g., Salesforce) and MS Office proficiency',
-      'Associate’s degree or post-secondary education required; bachelor’s preferred',
-    ],
-    createdAt: new Date('2026-08-14T18:12:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-25T13:28:00.000Z').toISOString(),
   },
   {
     id: 'cad-designer-montreal',
     ref: 'CG-2026-031',
+    discipline: 'corporate',
     title: 'Designer — Storage Systems (CAD)',
     location: 'South Shore Montreal, QC',
     type: 'Full-time · Remote (onsite training) · Permanent',
@@ -402,267 +251,12 @@ Primarily remote/work-from-home after an initial onsite training period (~1-2 mo
       'Strong organization, time management, and follow-up across stakeholders',
       'Knowledge of pallet racking, warehouse layout, and material flow is a major asset',
     ],
-    createdAt: new Date('2026-08-13T16:40:00.000Z').toISOString(),
-  },
-  {
-    id: 'bd-exec-trade-vancouver',
-    ref: 'CG-2026-036',
-    title: 'Business Development Executive — Customs & Trade',
-    location: 'Vancouver, BC (Remote)',
-    type: 'Full-time · Remote · Permanent',
-    salary: '$100,000 CAD + uncapped commission',
-    summary:
-      'Remote hunter sales role winning net-new B2B business for a global customs brokerage and trade-services organization. Owns a defined local territory: prospecting, needs assessments, RFPs, and closing across customs, trade compliance, and freight solutions. ~25% local travel.',
-    description: `A remote, hunter B2B sales role for a global customs brokerage, trade-consulting, and freight-services organization. You'll own a defined local territory — building relationships, presenting solutions, and winning net-new business — with uncapped commission and approximately 25% local travel.
-
-**What you'll be doing**
-
-- Develop a strategic territory plan and identify high- and medium-potential accounts
-- Proactively introduce customs, trade-compliance, and freight solutions to new clients
-- Conduct thorough needs assessments and uncover additional opportunities
-- Draft RFPs with internal teams and ensure timely delivery
-- Negotiate pricing and contract terms; finalize contracts cross-functionally
-- Achieve or exceed assigned sales targets and keep CRM current
-
-**What we're looking for**
-
-- 5+ years of related B2B sales experience
-- Demonstrated ability to open and close business and exceed targets
-- Excellent communication, interpersonal, and key-account skills
-- Strong CRM (e.g., Salesforce) and MS Office proficiency
-- High-initiative, self-motivated, and results-oriented
-- Associate's degree or post-secondary education required; bachelor's preferred
-
-**Compensation & benefits**
-
-- $100,000 CAD base + uncapped monthly commission
-- Remote, territory-based (~25% local travel)
-- Full benefits`,
-    responsibilities: [
-      'Develop a strategic territory plan and identify target accounts',
-      'Introduce customs, trade-compliance, and freight solutions to new clients',
-      'Conduct needs assessments and uncover opportunities',
-      'Draft RFPs and negotiate pricing and contract terms',
-      'Achieve or exceed sales targets and maintain CRM discipline',
-    ],
-    requirements: [
-      '5+ years of related B2B sales experience',
-      'Demonstrated ability to open and close business and exceed targets',
-      'Excellent communication, interpersonal, and key-account skills',
-      'Strong CRM (e.g., Salesforce) and MS Office proficiency',
-      'Associate’s degree or post-secondary education required; bachelor’s preferred',
-    ],
-    createdAt: new Date('2026-08-11T23:49:00.000Z').toISOString(),
-  },
-  {
-    id: 'customs-rater-sarnia',
-    ref: 'CG-2026-030',
-    title: 'Customs Rater',
-    location: 'Sarnia / Windsor / Mississauga, ON',
-    type: 'Full-time · Onsite · Permanent',
-    salary: '$50,000 - $60,000 CAD',
-    summary:
-      'Process and verify customs documentation for a customs brokerage and freight-forwarding operation. Reviews and enters import files, requests missing documents, and partners with customs and freight teams. International ocean/sea import experience required.',
-    description: `Reporting to the Brokerage Manager, the Customs Rater verifies and enters documentation received from importers, freight forwarders, airlines, and carriers, creates and updates files, and requests missing documents to complete each file. Works closely with the customs and freight teams to deliver accurate, on-time service to clients.
-
-**Location & schedule**
-
-Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time, onsite. Day shift, Monday to Friday for ocean lanes; alternate shifts may apply for road-only lanes. Candidates must be authorized to work in Canada.
-
-**What you'll be doing**
-
-- Verify and enter customs documentation from importers, forwarders, airlines, and carriers
-- Create new files and update previously opened files in the brokerage system
-- Request and follow up on documents needed to complete files
-- Apply H.S. tariff classification and customs release/rating procedures
-- Coordinate with the customs and freight departments to resolve issues
-- Provide accurate, responsive service to clients
-
-**What we're looking for**
-
-- 1-2 years of experience in customs and transportation, in a customs rating/release capacity
-- Working knowledge of local and national brokerage procedures and customs regulations
-- International ocean/sea import experience required
-- Knowledge of freight-forwarding processes and H.S. tariff classification
-- Extremely detail-oriented and organized; strong problem-solving skills
-- Able to work both independently and as part of a team
-- Schedule flexibility; CCS (Certified Customs Specialist) is an asset
-
-**Compensation & benefits**
-
-- $50,000 - $60,000 CAD (CCS designation supports the top of the range)
-- Comprehensive health and dental
-- Equal opportunity employer`,
-    responsibilities: [
-      'Verify and enter customs documentation from importers, forwarders, airlines, and carriers',
-      'Create and update import files in the brokerage system',
-      'Request and follow up on documents needed to complete files',
-      'Apply H.S. tariff classification and customs release/rating procedures',
-      'Coordinate with customs and freight departments to resolve issues',
-    ],
-    requirements: [
-      '1-2 years in customs and transportation, in a customs rating/release capacity',
-      'International ocean/sea import experience required',
-      'Working knowledge of brokerage procedures, customs regulations, and H.S. classification',
-      'Extremely detail-oriented and organized; strong problem-solving skills',
-      'Authorized to work in Canada; CCS designation is an asset',
-    ],
-    createdAt: new Date('2026-08-12T10:02:00.000Z').toISOString(),
-  },
-  {
-    id: 'director-bd-trade-central-us',
-    ref: 'CG-2026-034',
-    title: 'Director, Business Development — Customs & Trade',
-    location: 'Remote (Central US)',
-    type: 'Full-time · Remote · Permanent',
-    salary: '$155,000 - $170,000 USD + 30% bonus',
-    summary:
-      'Lead new-business development across the Central US for a global customs brokerage and trade-services organization. A hunter-inspirer owning territory strategy, pipeline, and B2B revenue across customs, trade compliance, and freight solutions.',
-    description: `A remote leadership role driving new-business development across a Central US territory (roughly Illinois south to Texas) for a global customs brokerage, trade-consulting, and freight-services organization. Owns territory strategy, new-client acquisition, and revenue growth — a hunter who can also inspire and push results.
-
-**What you'll be doing**
-
-- Develop strategic territory plans and identify high- and medium-potential accounts
-- Generate new business and introduce customs, trade-compliance, and freight solutions to new clients
-- Build and maintain new client relationships; conduct needs assessments and identify opportunities
-- Lead RFP responses and negotiate pricing and contract terms with cross-functional teams
-- Develop strategic account plans and ensure clear stakeholder communication
-- Meet and exceed quarterly and annual sales targets; present ongoing business reviews
-
-**What we're looking for**
-
-- 5+ years of related B2B sales / business-development experience
-- Proven ability to open and close business and exceed targets
-- Excellent B2B sales and key-account-management skills
-- Strong CRM discipline (e.g., Salesforce) and MS Office proficiency
-- High-initiative, self-motivated, results-oriented "hunter-inspirer"
-- Associate's degree or post-secondary education required; bachelor's preferred
-- Customs/trade/logistics industry experience preferred, not required
-
-**Compensation & benefits**
-
-- $155,000 - $170,000 USD base + 30% bonus
-- Remote — must reside in the territory
-- Full benefits`,
-    responsibilities: [
-      'Develop strategic territory plans and identify high-potential accounts',
-      'Generate new business and introduce customs, trade, and freight solutions',
-      'Build new client relationships and conduct needs assessments',
-      'Lead RFP responses and negotiate pricing and contract terms',
-      'Meet and exceed quarterly and annual sales targets',
-    ],
-    requirements: [
-      '5+ years of related B2B sales / business-development experience',
-      'Proven ability to open and close business and exceed targets',
-      'Excellent B2B sales and key-account-management skills',
-      'Strong CRM (e.g., Salesforce) and MS Office proficiency',
-      'Associate’s degree or post-secondary education required; bachelor’s preferred',
-    ],
-    createdAt: new Date('2026-08-10T12:04:00.000Z').toISOString(),
-  },
-  {
-    id: 'bd-exec-trade-toronto',
-    ref: 'CG-2026-035',
-    title: 'Business Development Executive — Customs & Trade',
-    location: 'Toronto, ON (Remote, GTA-based)',
-    type: 'Full-time · Remote · Permanent',
-    salary: '$100,000 CAD + uncapped commission',
-    summary:
-      'Remote hunter sales role winning net-new B2B business for a global customs brokerage and trade-services organization. Owns a defined GTA territory: prospecting, needs assessments, RFPs, and closing across customs, trade compliance, and freight solutions. ~25% local travel.',
-    description: `A remote, hunter B2B sales role for a global customs brokerage, trade-consulting, and freight-services organization. You'll own a defined local territory — building relationships, presenting solutions, and winning net-new business — with uncapped commission and approximately 25% local travel. Must reside in the Greater Toronto Area.
-
-**What you'll be doing**
-
-- Develop a strategic territory plan and identify high- and medium-potential accounts
-- Proactively introduce customs, trade-compliance, and freight solutions to new clients
-- Conduct thorough needs assessments and uncover additional opportunities
-- Draft RFPs with internal teams and ensure timely delivery
-- Negotiate pricing and contract terms; finalize contracts cross-functionally
-- Achieve or exceed assigned sales targets and keep CRM current
-
-**What we're looking for**
-
-- 5+ years of related B2B sales experience
-- Demonstrated ability to open and close business and exceed targets
-- Excellent communication, interpersonal, and key-account skills
-- Strong CRM (e.g., Salesforce) and MS Office proficiency
-- High-initiative, self-motivated, and results-oriented
-- Associate's degree or post-secondary education required; bachelor's preferred
-
-**Compensation & benefits**
-
-- $100,000 CAD base + uncapped monthly commission
-- Remote, GTA-based (~25% local travel)
-- Full benefits`,
-    responsibilities: [
-      'Develop a strategic territory plan and identify target accounts',
-      'Introduce customs, trade-compliance, and freight solutions to new clients',
-      'Conduct needs assessments and uncover opportunities',
-      'Draft RFPs and negotiate pricing and contract terms',
-      'Achieve or exceed sales targets and maintain CRM discipline',
-    ],
-    requirements: [
-      '5+ years of related B2B sales experience',
-      'Demonstrated ability to open and close business and exceed targets',
-      'Excellent communication, interpersonal, and key-account skills',
-      'Strong CRM (e.g., Salesforce) and MS Office proficiency',
-      'Associate’s degree or post-secondary education required; bachelor’s preferred',
-    ],
-    createdAt: new Date('2026-08-10T06:58:00.000Z').toISOString(),
-  },
-  {
-    id: 'bd-exec-trade-northern-la',
-    ref: 'CG-2026-038',
-    title: 'Business Development Executive — Customs & Trade',
-    location: 'Northern Los Angeles, CA (Remote)',
-    type: 'Full-time · Remote · Permanent',
-    salary: '$100,000 base + uncapped commission',
-    summary:
-      'Remote hunter sales role winning net-new B2B business for a global customs brokerage and trade-services organization. Owns a defined local territory: prospecting, needs assessments, RFPs, and closing across customs, trade compliance, and freight solutions. ~25% local travel.',
-    description: `A remote, hunter B2B sales role for a global customs brokerage, trade-consulting, and freight-services organization. You'll own a defined local territory — building relationships, presenting solutions, and winning net-new business — with uncapped commission and approximately 25% local travel.
-
-**What you'll be doing**
-
-- Develop a strategic territory plan and identify high- and medium-potential accounts
-- Proactively introduce customs, trade-compliance, and freight solutions to new clients
-- Conduct thorough needs assessments and uncover additional opportunities
-- Draft RFPs with internal teams and ensure timely delivery
-- Negotiate pricing and contract terms; finalize contracts cross-functionally
-- Achieve or exceed assigned sales targets and keep CRM current
-
-**What we're looking for**
-
-- 5+ years of related B2B sales experience
-- Demonstrated ability to open and close business and exceed targets
-- Excellent communication, interpersonal, and key-account skills
-- Strong CRM (e.g., Salesforce) and MS Office proficiency
-- High-initiative, self-motivated, and results-oriented
-- Associate's degree or post-secondary education required; bachelor's preferred
-
-**Compensation & benefits**
-
-- $100,000 base + uncapped monthly commission
-- Remote, territory-based (~25% local travel)
-- Full benefits`,
-    responsibilities: [
-      'Develop a strategic territory plan and identify target accounts',
-      'Introduce customs, trade-compliance, and freight solutions to new clients',
-      'Conduct needs assessments and uncover opportunities',
-      'Draft RFPs and negotiate pricing and contract terms',
-      'Achieve or exceed sales targets and maintain CRM discipline',
-    ],
-    requirements: [
-      '5+ years of related B2B sales experience',
-      'Demonstrated ability to open and close business and exceed targets',
-      'Excellent communication, interpersonal, and key-account skills',
-      'Strong CRM (e.g., Salesforce) and MS Office proficiency',
-      'Associate’s degree or post-secondary education required; bachelor’s preferred',
-    ],
-    createdAt: new Date('2026-08-10T01:52:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-23T15:42:00.000Z').toISOString(),
   },
   {
     id: 'it-account-exec-gta',
     ref: 'CG-2026-009',
+    discipline: 'corporate',
     title: 'Account Executive — IT Infrastructure (Reseller)',
     location: 'Mississauga, ON',
     type: 'Full-time · Hybrid',
@@ -709,11 +303,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Existing book of business and trusted customer relationships',
       'Consultative, entrepreneurial selling style; comfortable with long sales cycles',
     ],
-    createdAt: new Date().toISOString(),
+    createdAt: new Date('2026-08-17T13:24:00.000Z').toISOString(),
   },
   {
     id: 'bilingual-hr-admin-lachine',
     ref: 'CG-2026-008',
+    discipline: 'corporate',
     title: 'Bilingual HR Administrator & Compliance Coordinator',
     location: 'Lachine, QC',
     type: 'Full-time · Onsite · Permanent',
@@ -768,11 +363,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong organizational skills and ability to meet tight deadlines',
       'Comfortable with a variety of systems and platforms (D365 and SharePoint an asset)',
     ],
-    createdAt: new Date('2026-08-11T13:36:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-16T14:31:00.000Z').toISOString(),
   },
   {
     id: 'hs-compliance-manager-us',
     ref: 'CG-2026-007',
+    discipline: 'corporate',
     title: 'Health, Safety & Compliance Manager (U.S. Region)',
     location: 'Carlisle, PA or Columbus, OH',
     type: 'Full-time · Onsite · 30% travel',
@@ -839,11 +435,12 @@ Fully onsite, based in Carlisle, PA or Columbus, OH. Approximately 30% travel fo
       'Bachelor’s in Occupational Safety, Environmental Health, or related field (or equivalent)',
       'CSP, ASP, CHMM, or OSHA 30/50 certifications preferred',
     ],
-    createdAt: new Date('2026-08-11T08:30:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-15T15:38:00.000Z').toISOString(),
   },
   {
     id: 'bilingual-hr-specialist-lachine',
     ref: 'CG-2026-006',
+    discipline: 'corporate',
     title: 'Bilingual HR Recruitment & Operations Specialist',
     location: 'Lachine, QC',
     type: 'Full-time · Onsite',
@@ -898,11 +495,12 @@ Fully onsite, based in Carlisle, PA or Columbus, OH. Approximately 30% travel fo
       'Strong organizational and multitasking skills, high attention to detail',
       'General knowledge of Canadian and/or US employment legislation is an asset',
     ],
-    createdAt: new Date('2026-08-11T18:43:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-14T16:45:00.000Z').toISOString(),
   },
   {
     id: 'hr-coordinator-brantford',
     ref: 'CG-2026-005',
+    discipline: 'corporate',
     title: 'Human Resources Coordinator',
     location: 'Brantford, ON',
     type: 'Full-time · Onsite',
@@ -960,11 +558,12 @@ Fully onsite, based in Carlisle, PA or Columbus, OH. Approximately 30% travel fo
       'HRIS / timekeeping familiarity (ADP Workforce Now is an asset)',
       'CHRP designation or working toward it is an asset',
     ],
-    createdAt: new Date('2026-08-12T04:55:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-13T09:52:00.000Z').toISOString(),
   },
   {
     id: 'hr-ops-manager-mississauga',
     ref: 'CG-2026-004',
+    discipline: 'corporate',
     title: 'HR Operations Manager',
     location: 'Mississauga, ON',
     type: 'Full-time · Permanent',
@@ -1023,11 +622,12 @@ Reports to the CHRO. No direct reports; works closely with the HR Coordinator an
       'Strong analytical, organizational, and communication skills',
       'Ability to handle confidential information with discretion',
     ],
-    createdAt: new Date('2026-08-11T03:23:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-12T10:59:00.000Z').toISOString(),
   },
   {
     id: 'sales-coordinator-hamilton',
     ref: 'CG-2026-003',
+    discipline: 'corporate',
     title: 'Sales Coordinator',
     location: 'Hamilton, ON',
     type: 'Full-time · Onsite',
@@ -1081,11 +681,12 @@ Reports to the CHRO. No direct reports; works closely with the HR Coordinator an
       'Customer-focused, proactive mindset',
       'Comfortable with CRM tools in a fast-paced, team-oriented environment',
     ],
-    createdAt: new Date('2026-08-09T20:45:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-11T11:06:00.000Z').toISOString(),
   },
   {
     id: 'ap-specialist-sarnia',
     ref: 'CG-2026-002',
+    discipline: 'corporate',
     title: 'Accounts Payable Specialist',
     location: 'Sarnia, ON',
     type: 'Full-time · Onsite',
@@ -1137,11 +738,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Proficiency with Excel',
       'Based in Canada — Sarnia, Windsor, or Mississauga preferred',
     ],
-    createdAt: new Date().toISOString(),
+    createdAt: new Date('2026-08-10T12:13:00.000Z').toISOString(),
   },
   {
     id: 'lrm-monroe',
     ref: 'CG-2026-001',
+    discipline: 'corporate',
     title: 'Labor Relations Manager',
     location: 'Monroe, OH',
     type: 'Full-time',
@@ -1194,327 +796,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Teamsters experience a strong asset',
       'PHR, SPHR, SHRM-CP, or SHRM-SCP preferred',
     ],
-    createdAt: new Date('2026-08-10T17:11:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-09T13:20:00.000Z').toISOString(),
   },
-
-  // ── Logistics / freight sales (general mandates, multiple markets) ───────
-  {
-    id: 'logistics-sales-miami',
-    ref: 'CG-2026-040',
-    title: 'Logistics Sales Executive',
-    location: 'Miami, FL',
-    type: 'Full-time · Hybrid · Permanent',
-    salary: '$80,000 - $120,000 base + uncapped commission',
-    summary:
-      'Hunter sales role for a growing logistics and freight-services organization — selling 3PL and managed transportation solutions (truckload, LTL, intermodal, cross-border) to shippers across the territory. Net-new business development with uncapped commission.',
-    description: `A hunter sales role for a growing logistics and freight-services organization. You'll own a local territory end-to-end — prospecting shippers, building relationships, and closing net-new business across truckload, LTL, intermodal, cross-border, and managed transportation solutions. Uncapped commission and strong growth potential.
-
-**What you'll be doing**
-
-- Prospect and develop net-new business with shippers across your territory
-- Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation
-- Own the full sales cycle — prospecting, discovery, pricing, proposal, and close
-- Build and grow a book of business and long-term shipper relationships
-- Partner with operations, pricing, and carrier teams to win and retain freight
-- Maintain disciplined pipeline management and CRM hygiene
-
-**What we're looking for**
-
-- B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation
-- Hunter mentality with a track record of opening and closing new accounts
-- Strong prospecting, relationship-building, and negotiation skills
-- Comfortable owning a quota and a territory in a fast-paced environment
-- CRM discipline (e.g., Salesforce) and strong communication
-- An existing book of shipper relationships is a plus
-
-**Compensation & benefits**
-
-- $80,000 - $120,000 base + uncapped commission
-- Health and dental benefits
-- Career growth in a fast-growing logistics organization`,
-    responsibilities: [
-      'Prospect and develop net-new business with shippers across your territory',
-      'Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation',
-      'Own the full sales cycle from prospecting through pricing, proposal, and close',
-      'Build and grow a book of business and long-term shipper relationships',
-      'Partner with operations, pricing, and carrier teams to win and retain freight',
-      'Maintain disciplined pipeline management and CRM hygiene',
-    ],
-    requirements: [
-      'B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation',
-      'Hunter mentality with a track record of opening and closing new accounts',
-      'Strong prospecting, relationship-building, and negotiation skills',
-      'Comfortable owning a quota and a territory in a fast-paced environment',
-      'CRM discipline (e.g., Salesforce) and strong communication',
-      'An existing book of shipper relationships is a plus',
-    ],
-    createdAt: new Date('2026-08-09T10:32:00.000Z').toISOString(),
-  },
-  {
-    id: 'logistics-sales-tampa',
-    ref: 'CG-2026-041',
-    title: 'Logistics Sales Executive',
-    location: 'Tampa, FL',
-    type: 'Full-time · Hybrid · Permanent',
-    salary: '$80,000 - $120,000 base + uncapped commission',
-    summary:
-      'Hunter sales role for a growing logistics and freight-services organization — selling 3PL and managed transportation solutions (truckload, LTL, intermodal, cross-border) to shippers across the territory. Net-new business development with uncapped commission.',
-    description: `A hunter sales role for a growing logistics and freight-services organization. You'll own a local territory end-to-end — prospecting shippers, building relationships, and closing net-new business across truckload, LTL, intermodal, cross-border, and managed transportation solutions. Uncapped commission and strong growth potential.
-
-**What you'll be doing**
-
-- Prospect and develop net-new business with shippers across your territory
-- Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation
-- Own the full sales cycle — prospecting, discovery, pricing, proposal, and close
-- Build and grow a book of business and long-term shipper relationships
-- Partner with operations, pricing, and carrier teams to win and retain freight
-- Maintain disciplined pipeline management and CRM hygiene
-
-**What we're looking for**
-
-- B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation
-- Hunter mentality with a track record of opening and closing new accounts
-- Strong prospecting, relationship-building, and negotiation skills
-- Comfortable owning a quota and a territory in a fast-paced environment
-- CRM discipline (e.g., Salesforce) and strong communication
-- An existing book of shipper relationships is a plus
-
-**Compensation & benefits**
-
-- $80,000 - $120,000 base + uncapped commission
-- Health and dental benefits
-- Career growth in a fast-growing logistics organization`,
-    responsibilities: [
-      'Prospect and develop net-new business with shippers across your territory',
-      'Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation',
-      'Own the full sales cycle from prospecting through pricing, proposal, and close',
-      'Build and grow a book of business and long-term shipper relationships',
-      'Partner with operations, pricing, and carrier teams to win and retain freight',
-      'Maintain disciplined pipeline management and CRM hygiene',
-    ],
-    requirements: [
-      'B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation',
-      'Hunter mentality with a track record of opening and closing new accounts',
-      'Strong prospecting, relationship-building, and negotiation skills',
-      'Comfortable owning a quota and a territory in a fast-paced environment',
-      'CRM discipline (e.g., Salesforce) and strong communication',
-      'An existing book of shipper relationships is a plus',
-    ],
-    createdAt: new Date('2026-08-09T05:26:00.000Z').toISOString(),
-  },
-  {
-    id: 'logistics-sales-chattanooga',
-    ref: 'CG-2026-042',
-    title: 'Logistics Sales Executive',
-    location: 'Chattanooga, TN',
-    type: 'Full-time · Hybrid · Permanent',
-    salary: '$80,000 - $120,000 base + uncapped commission',
-    summary:
-      'Hunter sales role for a growing logistics and freight-services organization — selling 3PL and managed transportation solutions (truckload, LTL, intermodal, cross-border) to shippers across the territory. Net-new business development with uncapped commission.',
-    description: `A hunter sales role for a growing logistics and freight-services organization. You'll own a local territory end-to-end — prospecting shippers, building relationships, and closing net-new business across truckload, LTL, intermodal, cross-border, and managed transportation solutions. Uncapped commission and strong growth potential.
-
-**What you'll be doing**
-
-- Prospect and develop net-new business with shippers across your territory
-- Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation
-- Own the full sales cycle — prospecting, discovery, pricing, proposal, and close
-- Build and grow a book of business and long-term shipper relationships
-- Partner with operations, pricing, and carrier teams to win and retain freight
-- Maintain disciplined pipeline management and CRM hygiene
-
-**What we're looking for**
-
-- B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation
-- Hunter mentality with a track record of opening and closing new accounts
-- Strong prospecting, relationship-building, and negotiation skills
-- Comfortable owning a quota and a territory in a fast-paced environment
-- CRM discipline (e.g., Salesforce) and strong communication
-- An existing book of shipper relationships is a plus
-
-**Compensation & benefits**
-
-- $80,000 - $120,000 base + uncapped commission
-- Health and dental benefits
-- Career growth in a fast-growing logistics organization`,
-    responsibilities: [
-      'Prospect and develop net-new business with shippers across your territory',
-      'Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation',
-      'Own the full sales cycle from prospecting through pricing, proposal, and close',
-      'Build and grow a book of business and long-term shipper relationships',
-      'Partner with operations, pricing, and carrier teams to win and retain freight',
-      'Maintain disciplined pipeline management and CRM hygiene',
-    ],
-    requirements: [
-      'B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation',
-      'Hunter mentality with a track record of opening and closing new accounts',
-      'Strong prospecting, relationship-building, and negotiation skills',
-      'Comfortable owning a quota and a territory in a fast-paced environment',
-      'CRM discipline (e.g., Salesforce) and strong communication',
-      'An existing book of shipper relationships is a plus',
-    ],
-    createdAt: new Date('2026-08-09T00:20:00.000Z').toISOString(),
-  },
-  {
-    id: 'logistics-sales-chicago',
-    ref: 'CG-2026-043',
-    title: 'Logistics Sales Executive',
-    location: 'Chicago, IL',
-    type: 'Full-time · Hybrid · Permanent',
-    salary: '$80,000 - $120,000 base + uncapped commission',
-    summary:
-      'Hunter sales role for a growing logistics and freight-services organization — selling 3PL and managed transportation solutions (truckload, LTL, intermodal, cross-border) to shippers across the territory. Net-new business development with uncapped commission.',
-    description: `A hunter sales role for a growing logistics and freight-services organization. You'll own a local territory end-to-end — prospecting shippers, building relationships, and closing net-new business across truckload, LTL, intermodal, cross-border, and managed transportation solutions. Uncapped commission and strong growth potential.
-
-**What you'll be doing**
-
-- Prospect and develop net-new business with shippers across your territory
-- Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation
-- Own the full sales cycle — prospecting, discovery, pricing, proposal, and close
-- Build and grow a book of business and long-term shipper relationships
-- Partner with operations, pricing, and carrier teams to win and retain freight
-- Maintain disciplined pipeline management and CRM hygiene
-
-**What we're looking for**
-
-- B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation
-- Hunter mentality with a track record of opening and closing new accounts
-- Strong prospecting, relationship-building, and negotiation skills
-- Comfortable owning a quota and a territory in a fast-paced environment
-- CRM discipline (e.g., Salesforce) and strong communication
-- An existing book of shipper relationships is a plus
-
-**Compensation & benefits**
-
-- $80,000 - $120,000 base + uncapped commission
-- Health and dental benefits
-- Career growth in a fast-growing logistics organization`,
-    responsibilities: [
-      'Prospect and develop net-new business with shippers across your territory',
-      'Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation',
-      'Own the full sales cycle from prospecting through pricing, proposal, and close',
-      'Build and grow a book of business and long-term shipper relationships',
-      'Partner with operations, pricing, and carrier teams to win and retain freight',
-      'Maintain disciplined pipeline management and CRM hygiene',
-    ],
-    requirements: [
-      'B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation',
-      'Hunter mentality with a track record of opening and closing new accounts',
-      'Strong prospecting, relationship-building, and negotiation skills',
-      'Comfortable owning a quota and a territory in a fast-paced environment',
-      'CRM discipline (e.g., Salesforce) and strong communication',
-      'An existing book of shipper relationships is a plus',
-    ],
-    createdAt: new Date('2026-08-08T19:13:00.000Z').toISOString(),
-  },
-  {
-    id: 'logistics-sales-new-york',
-    ref: 'CG-2026-044',
-    title: 'Logistics Sales Executive',
-    location: 'New York, NY',
-    type: 'Full-time · Hybrid · Permanent',
-    salary: '$80,000 - $120,000 base + uncapped commission',
-    summary:
-      'Hunter sales role for a growing logistics and freight-services organization — selling 3PL and managed transportation solutions (truckload, LTL, intermodal, cross-border) to shippers across the territory. Net-new business development with uncapped commission.',
-    description: `A hunter sales role for a growing logistics and freight-services organization. You'll own a local territory end-to-end — prospecting shippers, building relationships, and closing net-new business across truckload, LTL, intermodal, cross-border, and managed transportation solutions. Uncapped commission and strong growth potential.
-
-**What you'll be doing**
-
-- Prospect and develop net-new business with shippers across your territory
-- Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation
-- Own the full sales cycle — prospecting, discovery, pricing, proposal, and close
-- Build and grow a book of business and long-term shipper relationships
-- Partner with operations, pricing, and carrier teams to win and retain freight
-- Maintain disciplined pipeline management and CRM hygiene
-
-**What we're looking for**
-
-- B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation
-- Hunter mentality with a track record of opening and closing new accounts
-- Strong prospecting, relationship-building, and negotiation skills
-- Comfortable owning a quota and a territory in a fast-paced environment
-- CRM discipline (e.g., Salesforce) and strong communication
-- An existing book of shipper relationships is a plus
-
-**Compensation & benefits**
-
-- $80,000 - $120,000 base + uncapped commission
-- Health and dental benefits
-- Career growth in a fast-growing logistics organization`,
-    responsibilities: [
-      'Prospect and develop net-new business with shippers across your territory',
-      'Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation',
-      'Own the full sales cycle from prospecting through pricing, proposal, and close',
-      'Build and grow a book of business and long-term shipper relationships',
-      'Partner with operations, pricing, and carrier teams to win and retain freight',
-      'Maintain disciplined pipeline management and CRM hygiene',
-    ],
-    requirements: [
-      'B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation',
-      'Hunter mentality with a track record of opening and closing new accounts',
-      'Strong prospecting, relationship-building, and negotiation skills',
-      'Comfortable owning a quota and a territory in a fast-paced environment',
-      'CRM discipline (e.g., Salesforce) and strong communication',
-      'An existing book of shipper relationships is a plus',
-    ],
-    createdAt: new Date('2026-08-08T14:07:00.000Z').toISOString(),
-  },
-  {
-    id: 'logistics-sales-us-remote',
-    ref: 'CG-2026-045',
-    title: 'Logistics Sales Executive',
-    location: 'Remote (US)',
-    type: 'Full-time · Remote · Permanent',
-    salary: '$80,000 - $120,000 base + uncapped commission',
-    summary:
-      'Remote hunter sales role for a growing logistics and freight-services organization — selling 3PL and managed transportation solutions (truckload, LTL, intermodal, cross-border) to shippers across a national US territory. Uncapped commission.',
-    description: `A remote, hunter sales role for a growing logistics and freight-services organization. You'll own a national US territory end-to-end — prospecting shippers, building relationships, and closing net-new business across truckload, LTL, intermodal, cross-border, and managed transportation solutions. Uncapped commission and strong growth potential.
-
-**What you'll be doing**
-
-- Prospect and develop net-new business with shippers across your territory
-- Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation
-- Own the full sales cycle — prospecting, discovery, pricing, proposal, and close
-- Build and grow a book of business and long-term shipper relationships
-- Partner with operations, pricing, and carrier teams to win and retain freight
-- Maintain disciplined pipeline management and CRM hygiene
-
-**What we're looking for**
-
-- B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation
-- Hunter mentality with a track record of opening and closing new accounts
-- Strong prospecting, relationship-building, and negotiation skills
-- Comfortable owning a quota and a territory in a fast-paced environment
-- CRM discipline (e.g., Salesforce) and strong communication
-- An existing book of shipper relationships is a plus
-
-**Compensation & benefits**
-
-- $80,000 - $120,000 base + uncapped commission
-- Health and dental benefits
-- Career growth in a fast-growing logistics organization`,
-    responsibilities: [
-      'Prospect and develop net-new business with shippers across a national territory',
-      'Sell 3PL and freight solutions: truckload, LTL, intermodal, cross-border, and managed transportation',
-      'Own the full sales cycle from prospecting through pricing, proposal, and close',
-      'Build and grow a book of business and long-term shipper relationships',
-      'Partner with operations, pricing, and carrier teams to win and retain freight',
-      'Maintain disciplined pipeline management and CRM hygiene',
-    ],
-    requirements: [
-      'B2B sales experience, ideally in freight, logistics, 3PL, brokerage, or transportation',
-      'Hunter mentality with a track record of opening and closing new accounts',
-      'Strong prospecting, relationship-building, and negotiation skills',
-      'Comfortable owning a quota and a national territory in a fast-paced environment',
-      'CRM discipline (e.g., Salesforce) and strong communication',
-      'An existing book of shipper relationships is a plus',
-    ],
-    createdAt: new Date('2026-08-10T22:17:00.000Z').toISOString(),
-  },
-
-  // ── Phantom / pipeline placeholder roles (demo) ──────────────────────────
   {
     id: 'controller-calgary',
     ref: 'CG-2026-010',
+    discipline: 'corporate',
     title: 'Controller',
     location: 'Calgary, AB',
     type: 'Full-time · Hybrid',
@@ -1563,11 +850,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Advanced Excel and mid-market ERP experience',
       'High attention to detail and a continuous-improvement mindset',
     ],
-    createdAt: new Date('2026-08-14T23:18:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-02T12:09:00.000Z').toISOString(),
   },
   {
     id: 'director-sales-vancouver',
     ref: 'CG-2026-011',
+    discipline: 'corporate',
     title: 'Director of Sales',
     location: 'Vancouver, BC',
     type: 'Full-time · Hybrid',
@@ -1616,11 +904,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong consultative and enterprise/strategic selling skills',
       'Excellent forecasting and CRM (e.g., Salesforce) discipline',
     ],
-    createdAt: new Date('2026-08-14T13:06:00.000Z').toISOString(),
+    createdAt: new Date('2026-08-01T13:16:00.000Z').toISOString(),
   },
   {
     id: 'vp-finance-seattle',
     ref: 'CG-2026-012',
+    discipline: 'corporate',
     title: 'VP of Finance',
     location: 'Seattle, WA',
     type: 'Full-time · Onsite',
@@ -1669,11 +958,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Experience scaling finance functions in growth environments',
       'Excellent business partnering and communication skills',
     ],
-    createdAt: new Date('2026-08-14T07:59:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-31T14:23:00.000Z').toISOString(),
   },
   {
     id: 'hr-business-partner-winnipeg',
     ref: 'CG-2026-013',
+    discipline: 'corporate',
     title: 'HR Business Partner',
     location: 'Winnipeg, MB',
     type: 'Full-time · Onsite',
@@ -1722,11 +1012,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Highly organized and discreet with sensitive information',
       'CPHR designation (or working toward it) an asset',
     ],
-    createdAt: new Date('2026-08-14T02:53:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-30T15:30:00.000Z').toISOString(),
   },
   {
     id: 'cfo-nyc',
     ref: 'CG-2026-014',
+    discipline: 'corporate',
     title: 'Chief Financial Officer',
     location: 'New York, NY',
     type: 'Full-time · Hybrid',
@@ -1775,11 +1066,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Track record scaling finance in high-growth companies',
       'Strong M&A and capital-markets exposure',
     ],
-    createdAt: new Date('2026-08-13T21:46:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-29T16:37:00.000Z').toISOString(),
   },
   {
     id: 'fpa-manager-alpharetta',
     ref: 'CG-2026-015',
+    discipline: 'corporate',
     title: 'FP&A Manager',
     location: 'Alpharetta, GA',
     type: 'Full-time · Hybrid',
@@ -1828,11 +1120,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong business partnering and communication skills',
       'CPA/CFA/MBA preferred',
     ],
-    createdAt: new Date('2026-08-13T11:34:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-28T09:44:00.000Z').toISOString(),
   },
   {
     id: 'director-hr-tampa',
     ref: 'CG-2026-016',
+    discipline: 'corporate',
     title: 'Director of Human Resources',
     location: 'Tampa, FL',
     type: 'Full-time · Onsite',
@@ -1881,11 +1174,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong employee-relations and business-partnering skills',
       'SHRM-CP/SHRM-SCP or PHR/SPHR preferred',
     ],
-    createdAt: new Date('2026-08-13T06:27:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-27T10:51:00.000Z').toISOString(),
   },
   {
     id: 'regional-sales-manager-chattanooga',
     ref: 'CG-2026-017',
+    discipline: 'corporate',
     title: 'Regional Sales Manager',
     location: 'Chattanooga, TN',
     type: 'Full-time · Onsite',
@@ -1934,11 +1228,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Disciplined pipeline management and CRM (e.g., Salesforce) use',
       'Willingness to travel within the region',
     ],
-    createdAt: new Date('2026-08-13T01:21:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-26T11:58:00.000Z').toISOString(),
   },
   {
     id: 'finance-manager-buffalo',
     ref: 'CG-2026-018',
+    discipline: 'corporate',
     title: 'Finance Manager',
     location: 'Buffalo, NY',
     type: 'Full-time · Hybrid',
@@ -1987,11 +1282,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Advanced Excel and ERP experience',
       'CPA preferred',
     ],
-    createdAt: new Date('2026-08-12T20:15:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-25T12:05:00.000Z').toISOString(),
   },
   {
     id: 'vp-hr-nyc',
     ref: 'CG-2026-019',
+    discipline: 'corporate',
     title: 'VP, Human Resources',
     location: 'New York, NY',
     type: 'Full-time · Hybrid',
@@ -2040,13 +1336,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Proven org-design, talent, and culture-building track record',
       'SHRM-SCP/SPHR preferred',
     ],
-    createdAt: new Date('2026-08-12T15:08:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-24T13:12:00.000Z').toISOString(),
   },
-
-  // ── Phantom / pipeline placeholder roles, batch 2 (demo) ─────────────────
   {
     id: 'assistant-controller-chicago',
     ref: 'CG-2026-020',
+    discipline: 'corporate',
     title: 'Assistant Controller',
     location: 'Chicago, IL',
     type: 'Full-time · Hybrid',
@@ -2095,11 +1390,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Advanced Excel and ERP experience (NetSuite, Sage, Dynamics)',
       'High attention to detail and a continuous-improvement mindset',
     ],
-    createdAt: new Date('2026-08-17T02:22:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-23T14:19:00.000Z').toISOString(),
   },
   {
     id: 'enterprise-ae-chicago',
     ref: 'CG-2026-021',
+    discipline: 'corporate',
     title: 'Enterprise Account Executive',
     location: 'Chicago, IL',
     type: 'Full-time · Hybrid',
@@ -2148,11 +1444,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Disciplined pipeline management and CRM (e.g., Salesforce) use',
       'Executive presence and strong negotiation skills',
     ],
-    createdAt: new Date('2026-08-16T21:16:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-22T15:26:00.000Z').toISOString(),
   },
   {
     id: 'talent-acquisition-manager-boston',
     ref: 'CG-2026-022',
+    discipline: 'corporate',
     title: 'Talent Acquisition Manager',
     location: 'Boston, MA',
     type: 'Full-time · Hybrid',
@@ -2201,11 +1498,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong ATS (Greenhouse, Lever) and recruiting analytics',
       'Excellent stakeholder management and communication',
     ],
-    createdAt: new Date('2026-08-16T16:09:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-21T16:33:00.000Z').toISOString(),
   },
   {
     id: 'coo-boston',
     ref: 'CG-2026-023',
+    discipline: 'corporate',
     title: 'Chief Operating Officer',
     location: 'Boston, MA',
     type: 'Full-time · Onsite',
@@ -2254,11 +1552,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Experience building teams, processes, and operating systems',
       'Executive presence and strong cross-functional leadership',
     ],
-    createdAt: new Date('2026-08-16T11:03:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-20T09:40:00.000Z').toISOString(),
   },
   {
     id: 'director-finance-dallas',
     ref: 'CG-2026-024',
+    discipline: 'corporate',
     title: 'Director of Finance',
     location: 'Dallas, TX',
     type: 'Full-time · Hybrid',
@@ -2306,11 +1605,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Experience partnering with business and executive leaders',
       'Advanced systems and analytical skills',
     ],
-    createdAt: new Date('2026-08-16T05:57:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-19T10:47:00.000Z').toISOString(),
   },
   {
     id: 'regional-sales-director-dallas',
     ref: 'CG-2026-025',
+    discipline: 'corporate',
     title: 'Regional Sales Director',
     location: 'Dallas, TX',
     type: 'Full-time · Hybrid',
@@ -2359,11 +1659,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong forecasting and CRM (e.g., Salesforce) discipline',
       'Consultative, value-based selling background',
     ],
-    createdAt: new Date('2026-08-16T00:50:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-18T11:54:00.000Z').toISOString(),
   },
   {
     id: 'hr-director-denver',
     ref: 'CG-2026-026',
+    discipline: 'corporate',
     title: 'HR Director',
     location: 'Denver, CO',
     type: 'Full-time · Onsite',
@@ -2412,11 +1713,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Strong employee-relations and business-partnering skills',
       'SHRM-CP/SHRM-SCP or PHR/SPHR preferred',
     ],
-    createdAt: new Date('2026-08-15T19:44:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-17T12:01:00.000Z').toISOString(),
   },
   {
     id: 'bdm-denver',
     ref: 'CG-2026-027',
+    discipline: 'corporate',
     title: 'Business Development Manager',
     location: 'Denver, CO',
     type: 'Full-time · Hybrid',
@@ -2465,11 +1767,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Disciplined CRM (e.g., Salesforce) and outbound habits',
       'Self-motivated, hunter mentality',
     ],
-    createdAt: new Date('2026-08-15T14:38:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-16T13:08:00.000Z').toISOString(),
   },
   {
     id: 'controller-charlotte',
     ref: 'CG-2026-028',
+    discipline: 'corporate',
     title: 'Controller',
     location: 'Charlotte, NC',
     type: 'Full-time · Hybrid',
@@ -2518,11 +1821,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Advanced ERP and Excel skills',
       'High attention to detail and a process-improvement mindset',
     ],
-    createdAt: new Date('2026-08-15T09:31:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-15T14:15:00.000Z').toISOString(),
   },
   {
     id: 'cro-charlotte',
     ref: 'CG-2026-029',
+    discipline: 'corporate',
     title: 'Chief Revenue Officer',
     location: 'Charlotte, NC',
     type: 'Full-time · Hybrid',
@@ -2571,11 +1875,12 @@ Open to candidates in Sarnia (preferred), Windsor, or Mississauga, ON. Full-time
       'Excellent forecasting and operating discipline',
       'Executive presence and board-level communication',
     ],
-    createdAt: new Date('2026-08-15T04:25:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-14T15:22:00.000Z').toISOString(),
   },
   {
     id: 'bi-analyst-gta',
     ref: 'CG-2026-046',
+    discipline: 'corporate',
     title: 'Business Intelligence Analyst',
     location: 'Remote (GTA-based)',
     type: 'Full-time · Remote · Permanent',
@@ -2631,11 +1936,12 @@ Monday to Friday, 8:00am-5:00pm. Remote, but you must be GTA-based and able to a
       'Strong requirements gathering and stakeholder management',
       'GTA-based and able to attend a Mississauga office as needed',
     ],
-    createdAt: new Date('2026-08-18T09:00:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-13T16:29:00.000Z').toISOString(),
   },
   {
     id: 'pm-automated-systems-gta',
     ref: 'CG-2026-047',
+    discipline: 'corporate',
     title: 'Project Manager — Automated Systems',
     location: 'Remote / Field (GTA)',
     type: 'Full-time · Remote · Permanent',
@@ -2690,11 +1996,12 @@ Monday to Friday, 8:00am-5:00pm. Remote and field-based across the GTA, with tra
       'Automation, intralogistics, material handling or industrial construction background preferred',
       'Willing to travel to customer sites across the GTA',
     ],
-    createdAt: new Date('2026-08-18T03:54:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-12T09:36:00.000Z').toISOString(),
   },
   {
     id: 'national-buyer-gta',
     ref: 'CG-2026-048',
+    discipline: 'corporate',
     title: 'National Buyer',
     location: 'Greater Toronto Area',
     type: 'Full-time · Hybrid · Permanent',
@@ -2743,11 +2050,12 @@ Monday to Friday, 8:00am-5:00pm. Remote and field-based across the GTA, with tra
       'Able to manage multiple concurrent requests and projects',
       'Ready for national-scope category ownership',
     ],
-    createdAt: new Date('2026-08-17T22:48:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-11T10:43:00.000Z').toISOString(),
   },
   {
     id: 'accountant-lachine',
     ref: 'CG-2026-049',
+    discipline: 'corporate',
     title: 'Accountant / Senior Accountant',
     location: 'Lachine, QC',
     type: 'Full-time · Onsite · Permanent',
@@ -2797,7 +2105,7 @@ You would not own Accounts Payable or Accounts Receivable, beyond occasional sup
       'Willingness to learn and grow into greater responsibility',
       'Collaborative approach working alongside an Accounting Technician',
     ],
-    createdAt: new Date('2026-08-17T17:41:00.000Z').toISOString(),
+    createdAt: new Date('2026-07-10T11:50:00.000Z').toISOString(),
   },
 ];
 

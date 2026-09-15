@@ -94,7 +94,7 @@ const Contact: React.FC = () => {
           src={BG_IMAGE}
           alt=""
           aria-hidden="true"
-          className="w-full h-full object-cover opacity-25 grayscale-[40%]"
+          className="w-full h-full object-cover object-top opacity-25 grayscale-[40%]"
         />
         <div className="absolute inset-0 bg-brand-dark/70"></div>
         <div
@@ -110,14 +110,14 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* LEFT — Glass card */}
           <aside
-            className={`lg:col-span-5 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            className={`lg:col-span-5 lg:order-2 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           >
             <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-sm p-8 md:p-10 lg:p-12 flex flex-col gap-10 shadow-2xl">
               {/* Brand block */}
               <div className="flex flex-col">
                 <div className="flex items-center gap-3 mb-2">
                   <img
-                    src="https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png"
+                    src="https://corp.certusgroup.com/CertusLOGO_burgundy_circle.png"
                     className="w-9 h-9 opacity-90"
                     alt="Certus Logo"
                     referrerPolicy="no-referrer"
@@ -140,8 +140,8 @@ const Contact: React.FC = () => {
                 </ContactRow>
 
                 <ContactRow icon={Phone} label="Direct line">
-                  <a href="tel:+14372951799" className="hover:text-white transition-colors">
-                    (437) 295 1799
+                  <a href="tel:+18553237887" className="hover:text-white transition-colors">
+                    (1 855) 323 7887
                   </a>
                 </ContactRow>
 
@@ -157,7 +157,7 @@ const Contact: React.FC = () => {
 
               {/* Social */}
               <a
-                href="https://www.linkedin.com/showcase/certus-supply-chain-search/"
+                href="https://www.linkedin.com/company/thecertusgroupofcompanies"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group mt-auto pt-6 border-t border-white/10 flex items-center justify-between"
@@ -183,7 +183,7 @@ const Contact: React.FC = () => {
 
           {/* RIGHT — Headline + form */}
           <div
-            className={`lg:col-span-7 transition-all duration-1000 delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            className={`lg:col-span-7 lg:order-1 transition-all duration-1000 delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.05] mb-10">
               Get in touch

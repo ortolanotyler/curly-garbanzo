@@ -10,7 +10,7 @@ const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
 const NA_COUNTRY_IDS = new Set(['124', '840', '484']); // Canada, USA, Mexico
 
 const HQ = { lat: 43.6532, lng: -79.3832 };
-const CERTUS_LOGO = 'https://res.cloudinary.com/dvbubqhpp/image/upload/v1770919808/CertusLOGO_szfewa.png';
+const CERTUS_LOGO = 'https://corp.certusgroup.com/CertusLOGO_burgundy_circle.png';
 
 const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
   'toronto,on': { lat: 43.6532, lng: -79.3832 },
@@ -202,7 +202,7 @@ export default function LocationsMap() {
   };
 
   const handlePinLeave = () => {
-    closeTimer.current = window.setTimeout(() => setHoveredKey(null), 200);
+    closeTimer.current = window.setTimeout(() => setHoveredKey(null), 300);
   };
 
   return (
@@ -346,8 +346,19 @@ export default function LocationsMap() {
         const openAbove = py - boxH - 16 > HEADER_SAFE;
         const top = openAbove ? py - boxH - 14 : py + 18;
         const left = Math.max(8, Math.min(px - BOX_W / 2, size.w - BOX_W - 8));
+        // Invisible hover bridge across the gap between the pin and the popup,
+        // so the dropdown stays open while the cursor travels toward it.
+        const nearEdge = openAbove ? top + boxH : top;
+        const bridgeTop = Math.min(py, nearEdge) - 6;
+        const bridgeH = Math.abs(nearEdge - py) + 12;
         return (
           <div className="absolute inset-0 z-30 pointer-events-none" aria-hidden="true">
+            <div
+              onMouseEnter={() => handlePinEnter(hoveredPin.key)}
+              onMouseLeave={handlePinLeave}
+              style={{ left: px - 45, top: bridgeTop, width: 90, height: bridgeH }}
+              className="absolute pointer-events-auto"
+            />
             <div
               onMouseEnter={() => handlePinEnter(hoveredPin.key)}
               onMouseLeave={handlePinLeave}
