@@ -15,71 +15,67 @@ import { BlogPost } from '../types';
 const POSTS: BlogPost[] = [
   {
     slug: 'ontario-50000-pay-range-rule-finance-hiring',
-    title: 'Ontario\'s $50,000 Rule: Why Your CFO Search Is Exempt and Your Controller Search Is Not',
+    title: 'Ontario Caps Advertised Pay Ranges at $50,000. Your CFO Posting Is Exempt.',
     excerpt:
-      'Since 1 January 2026 an advertised range in Ontario cannot span more than $50,000, while postings above $200,000 are exempt entirely. Disclosure in Ontario jumped from 49% to 71% while the rest of Canada stayed flat. What that means for pricing a finance role.',
+      'Since 1 January 2026 an advertised range in Ontario cannot span more than $50,000, and postings above $200,000 are exempt from disclosure entirely. Pay disclosure in Ontario went from 49% of postings to 71% while the rest of the country held flat. What that does to pricing a finance role.',
     author: 'Certus Corporate Search',
     date: '2026-09-01',
     tags: ['Pay Transparency', 'Finance Hiring', 'Ontario', 'Compensation'],
     coverImage:
       'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1600',
-    content: `Here is a problem that didn't exist in Ontario eighteen months ago. You're hiring a Controller. Your internal band for the role spans more than $50,000, because it always has, because the gap between a Controller who can close the books and a Controller who can rebuild the close process is worth more than fifty thousand dollars.
+    content: `Ontario capped the width of an advertised pay range at $50,000 on 1 January 2026. For a lot of Controller searches that is narrower than the band the company actually works with, because the distance between someone who can close the books on time and someone who can rebuild the close process has always been worth more than fifty thousand dollars.
 
-As of 1 January 2026, you can't advertise that band. Ontario caps the spread on a publicly advertised range at $50,000.
+The rule has a second half that gets less attention. Postings where expected compensation is over $200,000 are exempt from the disclosure requirement altogether. A CFO search clears that threshold. A Controller search usually does not.
 
-Now hold that against the other half of the rule. Postings where expected compensation exceeds $200,000 are exempt entirely. So the CFO search escapes the requirement, and the Controller search doesn't.
-
-That inversion is worth sitting with. The role where you have the most pricing flexibility is the one the law now makes you commit on, and the role where you would most like to keep your options open is free.
+The search where you have the most room to move is the one you now have to commit to in public, and the search where you would most like to keep the number to yourself is the one the province leaves alone. Most of the finance leaders we have spoken to since January think that is backwards. It is also the law, so the useful question is what to do about it.
 
 *Current as of September 2026. This is a summary for hiring managers, not legal advice.*
 
-## What the rule actually says
+## What the rule says
 
-The requirements live in Part III.1 of the Employment Standards Act, sections 8.2 through 8.6, with the detail in Ontario Regulation 476/24. In plain terms, a publicly advertised job posting must include the expected compensation or a range, and that range may not exceed $50,000 in width.
+The requirements sit in Part III.1 of the Employment Standards Act, sections 8.2 through 8.6, with the detail in Ontario Regulation 476/24. A publicly advertised job posting has to state the expected compensation or a range, and that range cannot be more than $50,000 wide.
 
-Two things employers get wrong. The obligation attaches to *publicly advertised* postings, so the analysis changes for roles filled through a search firm or a private network. And the $200,000 exemption is a threshold on expected compensation, not a general escape hatch for senior roles.
+Two details trip employers up. The obligation attaches to publicly advertised postings, so a role filled through a search firm or a private network sits in a different analysis. And the $200,000 exemption is a threshold on expected compensation for the role, not a general carve-out for anything senior.
 
-## It's already changing what Ontario looks like
+## Ontario postings changed faster than the law required
 
-The interesting evidence isn't the law, it's what happened after.
+Indeed's Hiring Lab tracks how many Canadian job postings disclose pay. In Ontario the share went from 49% to 71%. Across the rest of the country it stayed roughly where it was, around 40%.
 
-Indeed's Hiring Lab measured the share of Canadian job postings that disclose pay. In Ontario, that share went from **49% to 71%**. In the rest of the country it stayed roughly flat, around 40%.
+That is a large move in one province in about a year, and it changes what a candidate sees. Somebody scanning Ontario postings now finds a number on seven out of ten of them. A posting without one stands out, and not in a useful way.
 
-That's a real behavioural shift in one province in about a year, and it means something specific for you: a candidate scanning Ontario postings now sees pay on roughly seven of ten. Yours being the exception is a signal, not a neutral omission.
+## What disclosure costs
 
-## What disclosure does to your wage bill
+Both of the usual claims about this are overstated. Publishing ranges is not free, and it is not going to blow up your compensation structure either.
 
-This is where most commentary goes wrong, in both directions. It's neither free nor catastrophic.
+The most careful work we have found is an NBER paper by Arnold, Quach and Taska, working paper 34480. It associates pay transparency with wage increases somewhere between 1.3% and 3.6%, and finds no measurable effect on pay dispersion.
 
-The most careful work on this is an NBER paper by Arnold, Quach and Taska (working paper 34480), which finds pay transparency associated with wage increases in the range of **1.3% to 3.6%**, and, importantly, **no measurable effect on pay dispersion.**
+Stay with that second finding for a moment. Compression is the fear we hear most often: publish the band, everyone drifts to the top of it, your internal differentials collapse. The data does not show that happening. It shows a modest lift in the overall level and not much movement in the spread.
 
-Read that second finding carefully, because it contradicts the thing employers most fear. The common worry is that publishing ranges compresses your internal structure, that everyone migrates to the top of the band and your differentials collapse. The evidence doesn't show that. What it shows is a modest upward drift in the level.
+Budget accordingly. Assume a low single-digit increase on newly posted roles and leave your existing structure alone.
 
-So the honest budgeting posture is: assume a low single-digit percentage increase on newly posted roles, and stop worrying about your existing structure detonating.
+## Four decisions the cap forces
 
-## The practical decisions this forces
+**Decide whether the range is real before you post it.** Fifty thousand dollars is wide enough to be meaningful and too narrow to hide in. Post $110,000 to $160,000 with no intention of going past $125,000 and you will spend the search interviewing people you cannot close. They will remember it too, and senior finance in this market is a small room.
 
-**Decide whether the range is real before you post it.** A $50,000 window is enough to be meaningful and not enough to hide in. If you post $110,000 to $160,000 and never intend to pay above $125,000, you will spend your time interviewing people you can't close, and they will remember.
+**Split the role, or narrow the band honestly.** When a true band runs wider than $50,000 it is usually because two different jobs are still sharing one requisition. A senior Controller and a hands-on Controller are separate searches at separate numbers, and the cap is a reasonable prompt to admit that.
 
-**Split the role, or narrow the band honestly.** If your true band is wider than $50,000, that's usually because you haven't decided which of two jobs you're hiring. Sometimes the right response to the constraint is to accept that a senior Controller and a hands-on Controller are separate searches with separate ranges.
+**Do not structure around the $200,000 exemption.** Padding a posting to clear the threshold so you can avoid disclosing reads badly later, to candidates and to the Ministry.
 
-**Don't use the $200,000 exemption as a workaround.** Structuring a posting to clear the threshold in order to avoid disclosure is the kind of thing that reads badly later, to candidates and to regulators.
+**Look at what your competitors are publishing.** Seven in ten Ontario postings now carry a number. That is free, current market data on your own roles, and it beats the salary aggregators, which will happily disagree with each other by twenty thousand dollars on the same title.
 
-**Check what your competitors are showing.** Seven in ten Ontario postings now disclose. That's free market data on your own roles, and it's a better comparator than any salary aggregator, which routinely disagree with each other by wide margins on the same title.
+## If you are also changing the office policy this quarter
 
-## One more thing worth knowing before you set the office policy
+Plenty of companies are rewriting postings and tightening attendance in the same few months. There is a finance-specific number you should have in front of you before doing both at once.
 
-While you're rewriting postings, the other lever you're probably pulling is office attendance, and there's a finance-specific number worth having.
+ACCA's Global Talent Trends 2026 surveyed 11,389 people in 160 countries between October 2025 and February 2026. Among Gen Y finance professionals, 44% said they would consider leaving if they were required to spend more time in the office. In the same survey, 66% agreed that employers should require a set number of office days.
 
-ACCA's Global Talent Trends 2026, which surveyed 11,389 people across 160 countries between October 2025 and February 2026, found that **44% of Gen Y finance professionals would consider leaving if required to spend more time in the office.** The same survey found **66% agree employers should require a set number of office days.**
+Those two numbers sit together more comfortably than they look. People accept a defined expectation. What they react to is a change to one they had already built their week around. Tighten attendance in the same quarter you are trying to hire a finance team and you are bidding against yourself.
 
-Those aren't in conflict, and the combination is the useful part. People broadly accept a defined in-office expectation. What they leave over is a *change* to it. If you're tightening attendance in the same quarter you're trying to hire a finance team, you're competing against yourself.
-
-A note on rigour: the North American subset of that survey is small and self-selected, so treat it as directional rather than as a benchmark for your own population.
+One caveat on that survey. The North American subset is small and self-selected, so read it as direction rather than as a benchmark for your own population.
 
 ---
 
-*Certus Corporate Search places finance, HR and shared-services leadership across Canada and the United States. If you're pricing a role against a $50,000 window and aren't sure where the market actually sits, we are happy to tell you what we are seeing.*`,
+*Certus Corporate Search places finance, HR and shared-services leadership across Canada and the United States. If you are pricing a role against a $50,000 window and are not sure where the market actually sits, we are happy to tell you what we are seeing.*`,
   },
 ];
 
@@ -90,5 +86,5 @@ export const getBlogPosts = (): BlogPost[] =>
 export const getBlogPost = (slug: string): BlogPost | undefined =>
   POSTS.find((p) => p.slug === slug);
 
-/** Raw list — used by the server to build the sitemap. */
+/** Raw list, used by the server to build the sitemap. */
 export const BLOG_POSTS = POSTS;
