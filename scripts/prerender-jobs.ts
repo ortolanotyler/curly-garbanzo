@@ -34,6 +34,7 @@ const DIST_HTML = path.join(DIST, 'index.html');
 // Base is the production subdomain; override with VITE_SITE_URL if it changes.
 const SITE_URL = (process.env.VITE_SITE_URL || 'https://corp.certusgroup.com').replace(/\/$/, '');
 
+const ORG_NAME = 'Certus Corporate Search';
 const ONE_START = '<!--job-ld:start-->';
 const ONE_END = '<!--job-ld:end-->';
 
@@ -167,7 +168,20 @@ function buildJobPage(template: string, job: JobPosting): string {
  */
 function buildStaticPage(
   template: string,
-  route: { path: string; title: string; desc: string; bodyHtml?: string },
+  route: {
+    path: string;
+    title: string;
+    desc: string;
+    bodyHtml?: string;
+    // Article routes pass these three. Without them every blog post
+    // inherited the template's defaults: og:type "website" and the
+    // company logo as the share image, so a post shared to LinkedIn
+    // showed a small burgundy circle instead of its own cover, and
+    // Google saw no article markup at all.
+    image?: string;
+    ogType?: string;
+    jsonLd?: unknown[];
+  },
 ): string {
   const url = `${SITE_URL}${route.path}`;
   let html = template;
@@ -180,8 +194,53 @@ function buildStaticPage(
   html = setMeta(html, 'property', 'twitter:url', url);
   html = setMeta(html, 'property', 'twitter:title', route.title);
   html = setMeta(html, 'property', 'twitter:description', route.desc);
+  if (route.ogType) html = setMeta(html, 'property', 'og:type', route.ogType);
+  if (route.image) {
+    html = setMeta(html, 'property', 'og:image', route.image);
+    html = setMeta(html, 'property', 'twitter:image', route.image);
+  }
+  if (route.jsonLd && route.jsonLd.length) {
+    const block = `${ONE_START}\n  ${route.jsonLd.map(ldScript).join('\n  ')}\n  ${ONE_END}`;
+    html = html.replace('</head>', `  ${block}\n</head>`);
+  }
   if (route.bodyHtml) html = injectBody(html, route.bodyHtml);
   return html;
+}
+
+/** BlogPosting plus a breadcrumb, matching what the technical site's
+ *  SSR renderer already emits for its Insights posts. */
+function buildBlogJsonLd(post: BlogPost): unknown[] {
+  const url = `${SITE_URL}/blog/${post.slug}`;
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.excerpt || '',
+      image: post.coverImage ? [post.coverImage] : undefined,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: { '@type': 'Organization', name: post.author || ORG_NAME, url: SITE_URL },
+      publisher: {
+        '@type': 'Organization',
+        name: ORG_NAME,
+        url: SITE_URL,
+        logo: { '@type': 'ImageObject', url: `${SITE_URL}/CertusLOGO_burgundy_circle.png` },
+      },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      url,
+      keywords: (post.tags || []).join(', ') || undefined,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Insights', item: `${SITE_URL}/blog` },
+        { '@type': 'ListItem', position: 3, name: post.title, item: url },
+      ],
+    },
+  ];
 }
 
 function buildJobsListingBodyHtml(jobs: JobPosting[]): string {
@@ -259,6 +318,9 @@ async function main() {
       title: `${post.title} | Certus Corporate Search`,
       desc: (post.excerpt || '').slice(0, 300),
       bodyHtml: buildBlogPostBodyHtml(post),
+      image: post.coverImage,
+      ogType: 'article',
+      jsonLd: buildBlogJsonLd(post),
     })),
   ];
   for (const route of routes) {
