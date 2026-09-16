@@ -141,9 +141,9 @@ function buildJobPage(template: string, job: JobPosting): string {
   html = setMeta(html, 'property', 'og:url', url);
   html = setMeta(html, 'property', 'og:title', title);
   html = setMeta(html, 'property', 'og:description', desc);
-  html = setMeta(html, 'property', 'twitter:url', url);
-  html = setMeta(html, 'property', 'twitter:title', title);
-  html = setMeta(html, 'property', 'twitter:description', desc);
+  html = setMeta(html, 'name', 'twitter:url', url);
+  html = setMeta(html, 'name', 'twitter:title', title);
+  html = setMeta(html, 'name', 'twitter:description', desc);
 
   const breadcrumb = {
     '@context': 'https://schema.org',
@@ -191,13 +191,13 @@ function buildStaticPage(
   html = setMeta(html, 'property', 'og:url', url);
   html = setMeta(html, 'property', 'og:title', route.title);
   html = setMeta(html, 'property', 'og:description', route.desc);
-  html = setMeta(html, 'property', 'twitter:url', url);
-  html = setMeta(html, 'property', 'twitter:title', route.title);
-  html = setMeta(html, 'property', 'twitter:description', route.desc);
+  html = setMeta(html, 'name', 'twitter:url', url);
+  html = setMeta(html, 'name', 'twitter:title', route.title);
+  html = setMeta(html, 'name', 'twitter:description', route.desc);
   if (route.ogType) html = setMeta(html, 'property', 'og:type', route.ogType);
   if (route.image) {
     html = setMeta(html, 'property', 'og:image', route.image);
-    html = setMeta(html, 'property', 'twitter:image', route.image);
+    html = setMeta(html, 'name', 'twitter:image', route.image);
   }
   if (route.jsonLd && route.jsonLd.length) {
     const block = `${ONE_START}\n  ${route.jsonLd.map(ldScript).join('\n  ')}\n  ${ONE_END}`;
