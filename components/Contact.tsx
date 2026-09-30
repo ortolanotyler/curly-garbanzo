@@ -134,7 +134,7 @@ const Contact: React.FC = () => {
               {/* Contact rows */}
               <div className="space-y-6">
                 <ContactRow icon={Building2} label="Headquarters">
-                  91 Skyway Avenue, Suite 206
+                  74 Jutland Road, Unit 38
                   <br />
                   Toronto, ON · M8Z 0G7
                 </ContactRow>

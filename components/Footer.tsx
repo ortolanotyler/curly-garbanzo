@@ -153,7 +153,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onViewJobs, onViewSubmit, o
                 <ArrowUpRight size={12} className="text-white/30" />
               </div>
               <p className="text-gray-500 text-sm font-light leading-relaxed">
-                91 Skyway Avenue, Suite 206
+                74 Jutland Road, Unit 38
                 <br />
                 Toronto, ON · M8Z 0G7
               </p>

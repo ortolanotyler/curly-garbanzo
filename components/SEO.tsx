@@ -85,7 +85,7 @@ const SEO: React.FC<SEOProps> = ({
       'Certus Corporate Search runs shared services executive search engagements — finance, HR, sales, and executive placements at corporate clients across North America.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '91 Skyway Avenue, Suite 206',
+      streetAddress: '74 Jutland Road, Unit 38',
       addressLocality: 'Toronto',
       addressRegion: 'ON',
       postalCode: 'M8Z 0G7',
