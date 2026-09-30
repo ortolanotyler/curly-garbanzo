@@ -109,7 +109,33 @@ html,body{background:#0E141E;margin:0}
 .ssr-fallback ul{list-style:none;margin:20px 0 0;padding:0}
 .ssr-fallback li{padding:16px 0;border-top:1px solid rgba(255,255,255,0.1);color:#9FA8B5}
 .ssr-fallback li a{display:block;color:inherit;text-decoration:none}
-</style>`;
+html.js .ssr-fallback{display:none}
+</style>
+<script>
+/* The fallback exists for clients that never run the bundle. Anything that
+   DOES run it only ever sees this content flash and get replaced, so hide it
+   before first paint: this script runs during head parse, so .js is set on
+   <html> before the body is painted and the fallback never appears.
+   (Ported from the logistics site, 2026-09-30, after the text flashed on
+   corp.certusgroup.com before the landing page mounted.)
+
+   Not cloaking - it is plain progressive enhancement. Without JS the content
+   is fully visible, and a JS-capable crawler gets the real hydrated app.
+
+   The timeout is the safety net: if the bundle 404s or throws, .ssr-fallback
+   is still sitting in #root after 5s, so put the content back rather than
+   leaving a blank page. */
+(function(){
+  var d=document.documentElement;
+  d.className += (d.className ? ' ' : '') + 'js';
+  setTimeout(function(){
+    var r=document.getElementById('root');
+    if(r && r.querySelector('.ssr-fallback')){
+      d.className = d.className.replace(/(^|\\s)js(\\s|$)/,'$1$2');
+    }
+  },5000);
+})();
+</script>`;
 
 // Every builder above returns its own `<div id="root"><main>...</main></div>`
 // string rather than going through a shared wrapper, so rather than touching
