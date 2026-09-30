@@ -88,7 +88,7 @@ const SEO: React.FC<SEOProps> = ({
       streetAddress: '91 Skyway Avenue, Suite 206',
       addressLocality: 'Toronto',
       addressRegion: 'ON',
-      postalCode: 'M9W 6R5',
+      postalCode: 'M8Z 0G7',
       addressCountry: 'CA',
     },
     contactPoint: {

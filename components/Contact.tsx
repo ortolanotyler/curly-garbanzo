@@ -136,7 +136,7 @@ const Contact: React.FC = () => {
                 <ContactRow icon={Building2} label="Headquarters">
                   91 Skyway Avenue, Suite 206
                   <br />
-                  Toronto, ON · M9W 6R5
+                  Toronto, ON · M8Z 0G7
                 </ContactRow>
 
                 <ContactRow icon={Phone} label="Direct line">
