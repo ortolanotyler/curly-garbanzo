@@ -3,6 +3,71 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'analytics-engineer-mississauga',
+    ref: 'CG-2026-064',
+    discipline: 'corporate',
+    title: 'Analytics Engineer',
+    location: 'Mississauga, ON (Hybrid)',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$117,000 - $120,000 CAD',
+    summary:
+      'Full-stack data role for a leading Canadian supply chain and logistics provider. Own the flow of data from ingestion and transformation through modelling to the Power BI dashboards that Supply Chain, Operations and Finance run on. Azure, Snowflake, SQL and Python.',
+    description: `An Analytics Engineer role with a leading Canadian supply chain and logistics provider. You would own the full lifecycle of the business's data - from raw ingestion and transformation through modelling, analysis and insight delivery.
+
+The role blends the strengths of a Data Analyst and a Data Engineer. You would make sure the business has clean, reliable, analytics-ready data, build the models the BI team works from, and partner directly with stakeholders to turn raw data into decisions.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based out of Mississauga, Ontario.
+
+**What you'll be doing**
+
+- Extract, clean, transform and validate datasets across systems
+- Build robust, reusable ELT/ETL pipelines with modern tools
+- Support the cloud data platform (Azure, Snowflake) and deliver analytics-ready datasets for BI and business teams
+- Build and maintain scalable data models and the semantic layer - business-friendly metrics, dimensions and standardized logic
+- Document data lineage and transformation logic for transparency and governance
+- Analyze data to identify trends, diagnose performance issues and support decision making
+- Automate recurring analysis with Python and SQL, and support forecasting and trend detection where needed
+- Build, maintain and optimize Power BI dashboards and reports
+- Partner with stakeholders across Supply Chain, Operations and Finance, and with Data Engineers on reliability and scale
+- Take part in agile ceremonies, sprint reviews and data governance activities
+
+**What we're looking for**
+
+- 3-5 years of experience in analytics engineering, data engineering or advanced analytics
+- Degree in Data Science, Analytics, Software Engineering, Computer Science, Math or a related field
+- Strong SQL for data extraction and transformation
+- Python or R for scripting, automation and exploratory analysis
+- Experience with BI tools - Power BI preferred; Tableau or Looker considered
+- Understanding of ETL/ELT concepts, cloud data platforms and data modelling
+- Certifications in Power BI, SQL, Azure, Snowflake or Python are an asset
+- Strong communication skills - you will explain findings to technical and non-technical audiences
+
+**Compensation**
+
+- $117,000 - $120,000 CAD
+- Permanent, full-time
+- Hybrid out of Mississauga`,
+    responsibilities: [
+      'Build and maintain ELT/ETL pipelines on Azure and Snowflake',
+      'Design scalable data models and a business-friendly semantic layer',
+      'Document data lineage and transformation logic',
+      'Build and optimize Power BI dashboards and reports',
+      'Automate recurring analysis with Python and SQL',
+      'Partner with Supply Chain, Operations and Finance stakeholders',
+    ],
+    requirements: [
+      '3-5 years in analytics engineering, data engineering or advanced analytics',
+      'Degree in Data Science, Analytics, Computer Science, Math or related field',
+      'Strong SQL; Python or R for scripting and automation',
+      'BI tool experience - Power BI preferred',
+      'Understanding of ELT/ETL, cloud data platforms and data modelling',
+      'Power BI, Azure, Snowflake, SQL or Python certifications an asset',
+    ],
+    createdAt: new Date('2026-10-02T13:00:00.000Z').toISOString(),
+  },
+  {
     id: 'hse-specialist-gta',
     ref: 'CG-2026-063',
     discipline: 'corporate',
