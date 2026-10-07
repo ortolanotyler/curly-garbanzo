@@ -3,6 +3,64 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'customer-relationship-manager-lachine',
+    ref: 'CG-2026-065',
+    discipline: 'corporate',
+    title: 'Customer Relationship Manager (Bilingual)',
+    location: 'Lachine, QC (On-site)',
+    type: 'Full-time · On-site · Permanent',
+    salary: 'Up to $75,000 CAD',
+    summary:
+      'Own and grow a book of 30-40 established accounts for a leading global customs brokerage and freight forwarding provider. Account management, business reviews and upselling across air, ocean, customs, warehousing and road. Bilingual French/English, on-site in Lachine.',
+    description: `A Customer Relationship Manager role with a leading global customs brokerage and freight forwarding provider. You would own a dedicated book of existing accounts and be the voice of the customer inside the business: building relationships, running business reviews, and growing each account by quoting, upselling and cross-selling.
+
+This is account management, not new-client hunting. The book is roughly 30-40 accounts, tiered by size and Quebec-heavy, with customers across Canada. Customer Service Representatives handle day-to-day shipment updates, so your time goes into strategy, retention and growth.
+
+**Schedule & location**
+
+Permanent, full-time. On-site in Lachine, Monday to Friday, 9am-5pm. Some local client visits within Greater Montreal (mileage covered, no overnight travel), so a valid driver's licence and a car are needed.
+
+**What you'll be doing**
+
+- Act as the main point of contact for your assigned accounts and build strong relationships with key stakeholders
+- Run regular business reviews and visit top-tier customers
+- Grow accounts by quoting, upselling and cross-selling air, ocean, customs, warehousing and road services
+- Move accounts up the tiers and protect retention
+- Resolve escalations: delays, inventory shortages, transportation issues and service disruptions, leading internal teams to a fix
+- Monitor customer forecasts and demand trends and support S&OP and SLA management
+- Help customers use self-serve BI and analytics tools for shipment-level insight
+
+**What we're looking for**
+
+- Freight forwarding and/or customs brokerage experience (air, ocean or both)
+- Account management or inside sales experience; a senior, sales-minded CSR ready to step up is also welcome
+- Strong business acumen and the ability to make decisions across a book of business
+- Fluent in French and English
+- Salesforce experience; CargoWise and Power BI are strong assets
+- Transpacific trade knowledge is an asset
+- Lives within a reasonable commute of Lachine
+
+**Compensation**
+
+- Up to $75,000 CAD base salary`,
+    responsibilities: [
+      'Own a book of 30-40 established accounts as their main point of contact',
+      'Run business reviews and visit top-tier customers in Greater Montreal',
+      'Grow accounts through quoting, upselling and cross-selling',
+      'Lead escalations and recovery plans with internal teams',
+      'Support forecasting, S&OP and SLA management',
+      'Help customers use BI and analytics tools for shipment insight',
+    ],
+    requirements: [
+      'Freight forwarding and/or customs brokerage experience (air, ocean or both)',
+      'Account management or inside sales experience, or a senior sales-minded CSR',
+      'Fluent French and English',
+      'Salesforce experience; CargoWise and Power BI an asset',
+      'On-site in Lachine Monday to Friday, with a driver\'s licence and a car',
+    ],
+    createdAt: new Date('2026-10-07T13:00:00.000Z').toISOString(),
+  },
+  {
     id: 'analytics-engineer-mississauga',
     ref: 'CG-2026-064',
     discipline: 'corporate',
