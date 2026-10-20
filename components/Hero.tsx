@@ -1,5 +1,13 @@
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
 import { Section } from '../types';
+
+// Same 15-minute booking the group gateway and the logistics site use, so a
+// visitor meets one consistent way in. hide_gdpr_banner drops Calendly's
+// cookie bar; the colour params stop the hand-off from jarring.
+const BOOKING_URL =
+  'https://calendly.com/tyler-certusgroup/the-certus-group' +
+  '?hide_gdpr_banner=1&background_color=0E141E&text_color=ffffff&primary_color=9fa8b5';
 
 interface HeroProps {
   onViewJobs: () => void;
@@ -7,8 +15,8 @@ interface HeroProps {
 }
 
 // Landing-page intro hero. Sits below SplitGateway and above the rest of
-// the landing flow. Bigger and quieter than the gateway — no CTAs, no
-// video, just typography and a faint backdrop.
+// the landing flow. Quieter than the gateway: typography and a faint
+// backdrop, plus the one booking CTA under the intro copy.
 const Hero: React.FC<HeroProps> = () => {
   return (
     <section
@@ -40,6 +48,19 @@ const Hero: React.FC<HeroProps> = () => {
           confidentiality, and business-critical demands of leadership hiring, and we deliver talent
           that keeps teams performing and organizations growing.
         </p>
+
+        <a
+          href={BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-8 inline-flex h-14 items-center justify-center gap-3 bg-white px-8 text-[11px] font-bold uppercase tracking-[0.28em] text-brand-dark transition-transform duration-200 active:scale-[0.98] md:mt-10 md:text-[12px] md:tracking-[0.3em]"
+        >
+          Book a call
+          <ArrowRight
+            strokeWidth={2}
+            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+          />
+        </a>
       </div>
     </section>
   );
