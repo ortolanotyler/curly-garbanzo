@@ -3,6 +3,876 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'financial-controller-toronto',
+    ref: 'CG-2026-065',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Toronto, ON',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$120,000 - $135,000 CAD',
+    summary:
+      'Financial Controller for an established organization in Toronto. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Toronto is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based in Toronto, ON.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA designation with 5+ years of progressive accounting experience
+- Strong working knowledge of ASPE/IFRS and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $120,000 - $135,000 CAD
+- Performance bonus
+- Health, dental, and vision benefits
+- RRSP matching
+- Hybrid schedule`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA designation with 5+ years of progressive accounting experience',
+      'Strong knowledge of ASPE/IFRS and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:39:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-ottawa',
+    ref: 'CG-2026-066',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Ottawa, ON',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$110,000 - $125,000 CAD',
+    summary:
+      'Financial Controller for an established organization in Ottawa. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Ottawa is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based in Ottawa, ON.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA designation with 5+ years of progressive accounting experience
+- Strong working knowledge of ASPE/IFRS and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $110,000 - $125,000 CAD
+- Performance bonus
+- Health, dental, and vision benefits
+- RRSP matching
+- Hybrid schedule`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA designation with 5+ years of progressive accounting experience',
+      'Strong knowledge of ASPE/IFRS and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:38:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-montreal',
+    ref: 'CG-2026-067',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Montreal, QC',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$115,000 - $130,000 CAD',
+    summary:
+      'Financial Controller for an established organization in Montreal. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Montreal is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based in Montreal, QC.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA designation with 5+ years of progressive accounting experience
+- Strong working knowledge of ASPE/IFRS and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $115,000 - $130,000 CAD
+- Performance bonus
+- Health, dental, and vision benefits
+- RRSP matching
+- Hybrid schedule`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA designation with 5+ years of progressive accounting experience',
+      'Strong knowledge of ASPE/IFRS and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:37:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-vancouver',
+    ref: 'CG-2026-068',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Vancouver, BC',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$120,000 - $135,000 CAD',
+    summary:
+      'Financial Controller for an established organization in Vancouver. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Vancouver is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based in Vancouver, BC.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA designation with 5+ years of progressive accounting experience
+- Strong working knowledge of ASPE/IFRS and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $120,000 - $135,000 CAD
+- Performance bonus
+- Health, dental, and vision benefits
+- RRSP matching
+- Hybrid schedule`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA designation with 5+ years of progressive accounting experience',
+      'Strong knowledge of ASPE/IFRS and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:36:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-edmonton',
+    ref: 'CG-2026-069',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Edmonton, AB',
+    type: 'Full-time · Onsite · Permanent',
+    salary: '$110,000 - $125,000 CAD',
+    summary:
+      'Financial Controller for an established organization in Edmonton. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Edmonton is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Onsite, based in Edmonton, AB.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA designation with 5+ years of progressive accounting experience
+- Strong working knowledge of ASPE/IFRS and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $110,000 - $125,000 CAD
+- Performance bonus
+- Health, dental, and vision benefits
+- RRSP matching
+- Onsite, full-time`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA designation with 5+ years of progressive accounting experience',
+      'Strong knowledge of ASPE/IFRS and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:35:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-winnipeg',
+    ref: 'CG-2026-070',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Winnipeg, MB',
+    type: 'Full-time · Onsite · Permanent',
+    salary: '$110,000 - $120,000 CAD',
+    summary:
+      'Financial Controller for an established organization in Winnipeg. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Winnipeg is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Onsite, based in Winnipeg, MB.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA designation with 5+ years of progressive accounting experience
+- Strong working knowledge of ASPE/IFRS and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $110,000 - $120,000 CAD
+- Performance bonus
+- Health, dental, and vision benefits
+- RRSP matching
+- Onsite, full-time`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA designation with 5+ years of progressive accounting experience',
+      'Strong knowledge of ASPE/IFRS and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:34:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-halifax',
+    ref: 'CG-2026-071',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Halifax, NS',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$110,000 - $125,000 CAD',
+    summary:
+      'Financial Controller for an established organization in Halifax. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Halifax is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based in Halifax, NS.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA designation with 5+ years of progressive accounting experience
+- Strong working knowledge of ASPE/IFRS and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $110,000 - $125,000 CAD
+- Performance bonus
+- Health, dental, and vision benefits
+- RRSP matching
+- Hybrid schedule`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA designation with 5+ years of progressive accounting experience',
+      'Strong knowledge of ASPE/IFRS and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:33:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-chicago',
+    ref: 'CG-2026-072',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Chicago, IL',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$120,000 - $135,000',
+    summary:
+      'Financial Controller for an established organization in Chicago. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Chicago is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based in Chicago, IL.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA (or working toward it) with 5+ years of progressive accounting experience
+- Strong working knowledge of U.S. GAAP and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $120,000 - $135,000
+- Performance bonus
+- Health, dental, and vision benefits
+- 401(k) with company match
+- Hybrid schedule`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA (or working toward it) with 5+ years of progressive accounting experience',
+      'Strong knowledge of U.S. GAAP and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:32:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-dallas',
+    ref: 'CG-2026-073',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Dallas, TX',
+    type: 'Full-time · Onsite · Permanent',
+    salary: '$115,000 - $130,000',
+    summary:
+      'Financial Controller for an established organization in Dallas. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Dallas is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Onsite, based in Dallas, TX.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA (or working toward it) with 5+ years of progressive accounting experience
+- Strong working knowledge of U.S. GAAP and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $115,000 - $130,000
+- Performance bonus
+- Health, dental, and vision benefits
+- 401(k) with company match
+- Onsite, full-time`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA (or working toward it) with 5+ years of progressive accounting experience',
+      'Strong knowledge of U.S. GAAP and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:31:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-atlanta',
+    ref: 'CG-2026-074',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Atlanta, GA',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$115,000 - $130,000',
+    summary:
+      'Financial Controller for an established organization in Atlanta. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Atlanta is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based in Atlanta, GA.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA (or working toward it) with 5+ years of progressive accounting experience
+- Strong working knowledge of U.S. GAAP and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $115,000 - $130,000
+- Performance bonus
+- Health, dental, and vision benefits
+- 401(k) with company match
+- Hybrid schedule`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA (or working toward it) with 5+ years of progressive accounting experience',
+      'Strong knowledge of U.S. GAAP and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:30:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-phoenix',
+    ref: 'CG-2026-075',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Phoenix, AZ',
+    type: 'Full-time · Onsite · Permanent',
+    salary: '$110,000 - $125,000',
+    summary:
+      'Financial Controller for an established organization in Phoenix. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Phoenix is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Onsite, based in Phoenix, AZ.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA (or working toward it) with 5+ years of progressive accounting experience
+- Strong working knowledge of U.S. GAAP and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $110,000 - $125,000
+- Performance bonus
+- Health, dental, and vision benefits
+- 401(k) with company match
+- Onsite, full-time`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA (or working toward it) with 5+ years of progressive accounting experience',
+      'Strong knowledge of U.S. GAAP and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:29:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-denver',
+    ref: 'CG-2026-076',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Denver, CO',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$120,000 - $135,000',
+    summary:
+      'Financial Controller for an established organization in Denver. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Denver is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based in Denver, CO.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA (or working toward it) with 5+ years of progressive accounting experience
+- Strong working knowledge of U.S. GAAP and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $120,000 - $135,000
+- Performance bonus
+- Health, dental, and vision benefits
+- 401(k) with company match
+- Hybrid schedule`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA (or working toward it) with 5+ years of progressive accounting experience',
+      'Strong knowledge of U.S. GAAP and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:28:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-nashville',
+    ref: 'CG-2026-077',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Nashville, TN',
+    type: 'Full-time · Onsite · Permanent',
+    salary: '$110,000 - $125,000',
+    summary:
+      'Financial Controller for an established organization in Nashville. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Nashville is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Onsite, based in Nashville, TN.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA (or working toward it) with 5+ years of progressive accounting experience
+- Strong working knowledge of U.S. GAAP and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $110,000 - $125,000
+- Performance bonus
+- Health, dental, and vision benefits
+- 401(k) with company match
+- Onsite, full-time`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA (or working toward it) with 5+ years of progressive accounting experience',
+      'Strong knowledge of U.S. GAAP and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:27:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-charlotte',
+    ref: 'CG-2026-078',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Charlotte, NC',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$115,000 - $130,000',
+    summary:
+      'Financial Controller for an established organization in Charlotte. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Charlotte is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based in Charlotte, NC.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA (or working toward it) with 5+ years of progressive accounting experience
+- Strong working knowledge of U.S. GAAP and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $115,000 - $130,000
+- Performance bonus
+- Health, dental, and vision benefits
+- 401(k) with company match
+- Hybrid schedule`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA (or working toward it) with 5+ years of progressive accounting experience',
+      'Strong knowledge of U.S. GAAP and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:26:33.000Z').toISOString(),
+  },
+  {
+    id: 'financial-controller-minneapolis',
+    ref: 'CG-2026-079',
+    discipline: 'corporate',
+    title: 'Financial Controller',
+    location: 'Minneapolis, MN',
+    type: 'Full-time · Hybrid · Permanent',
+    salary: '$115,000 - $130,000',
+    summary:
+      'Financial Controller for an established organization in Minneapolis. Own the month-end close, financial reporting, budgeting, and internal controls, and lead a small accounting team.',
+    description: `A growing, established organization in Minneapolis is hiring a Financial Controller to lead its accounting function. You would report to the CFO or VP of Finance and own the month-end close, financial reporting, and the controls behind them.
+
+**Schedule & location**
+
+Permanent, full-time. Hybrid, based in Minneapolis, MN.
+
+**What you'll be doing**
+
+- Own full-cycle accounting and a timely, accurate month-end and year-end close
+- Prepare monthly financial statements and management reporting
+- Lead the annual budget, forecasts, and cash-flow management
+- Maintain internal controls and accounting policies, and improve processes
+- Manage the external audit and work with auditors and tax advisors
+- Lead and develop a small accounting team
+
+**What we're looking for**
+
+- CPA (or working toward it) with 5+ years of progressive accounting experience
+- Strong working knowledge of U.S. GAAP and internal controls
+- Experience owning the month-end close
+- Advanced Excel and experience with an ERP system
+- Prior experience leading or mentoring staff
+- Clear communicator who works well across departments
+
+**Compensation & benefits**
+
+- $115,000 - $130,000
+- Performance bonus
+- Health, dental, and vision benefits
+- 401(k) with company match
+- Hybrid schedule`,
+    responsibilities: [
+      'Own full-cycle accounting and the month-end and year-end close',
+      'Prepare monthly financial statements and management reporting',
+      'Lead budgeting, forecasting, and cash-flow management',
+      'Maintain internal controls, accounting policies, and process improvements',
+      'Manage the external audit and auditor/tax-advisor relationships',
+      'Lead and develop a small accounting team',
+    ],
+    requirements: [
+      'CPA (or working toward it) with 5+ years of progressive accounting experience',
+      'Strong knowledge of U.S. GAAP and internal controls',
+      'Experience owning the month-end close',
+      'Advanced Excel and ERP experience',
+      'Experience leading or mentoring staff',
+    ],
+    createdAt: new Date('2026-10-29T18:25:33.000Z').toISOString(),
+  },
+  {
     id: 'analytics-engineer-mississauga',
     ref: 'CG-2026-064',
     discipline: 'corporate',
