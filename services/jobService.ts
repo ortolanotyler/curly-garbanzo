@@ -3,6 +3,75 @@ import { JobPosting, LinkedInPost } from '../types';
 // Active job postings
 const MOCK_JOBS: JobPosting[] = [
   {
+    id: 'director-national-accounts-dallas',
+    ref: 'CG-2026-080',
+    discipline: 'corporate',
+    title: 'Director of National Accounts',
+    location: 'Dallas, TX',
+    type: 'Full-time · Onsite · Permanent',
+    salary: 'Base + commission, OTE to $150K+',
+    summary:
+      'Relationship-driven national sales role with an established, growing B2B company. Win new organizational clients across the US, grow an existing book of accounts, and own each relationship from first call through launch and long-term growth.',
+    description: `An established, growing B2B company is hiring a Director of National Accounts to expand its client base across the United States. You would win new organizational clients, grow a portfolio of existing accounts, and be the person each client relies on from the first conversation onward.
+
+This is a hunter-and-farmer role for someone who builds relationships with decision makers, likes owning their own book, and is motivated by new business.
+
+**Schedule & location**
+
+Permanent, full-time. Onsite in the Dallas-Fort Worth area, with travel to client meetings and industry events as needed.
+
+**What you'll be doing**
+
+- Develop new client relationships with organizations across the US
+- Build relationships with owners, directors and other key decision makers
+- Prospect through phone, email, social media, referrals and your own network
+- Run introductory calls, presentations and meetings with prospective clients
+- Manage the full sales cycle, from first outreach through launch and ongoing account management
+- Maintain and grow a portfolio of existing accounts
+- Find opportunities to expand each account across the company's full range of products and services
+- Build tailored programs around each client's needs, budget and structure
+- Work with internal teams (customer service, operations, design and purchasing) to make every launch a success
+- Keep prospect, pipeline and account activity up to date in the CRM
+- Follow up consistently and manage many opportunities at different stages at once
+- Track market trends to spot new sales opportunities
+- Attend industry events, conferences and client meetings when needed
+- Meet or exceed new business and account growth targets
+
+**What we're looking for**
+
+- Proven B2B sales experience with both new business development and account management
+- A track record of building long-term relationships with organization-level buyers
+- Comfortable owning a territory and a book of business with little hand-holding
+- Organized, self-motivated and coachable
+- Experience with a CRM and a disciplined follow-up process
+- Willing to travel for client meetings and events
+- Experience selling to clubs, associations or other member-based organizations is an asset
+
+**Compensation**
+
+- Competitive base salary plus commission, on-target earnings to $150K+
+- 401(k)
+- Health, dental and vision insurance, HSA and life insurance
+- Paid time off and an employee discount`,
+    responsibilities: [
+      'Win new organizational clients across the US',
+      'Build relationships with owners, directors and key decision makers',
+      'Manage the full sales cycle from first outreach through launch',
+      'Maintain and grow a portfolio of existing accounts',
+      'Build tailored programs around each client\'s needs and budget',
+      'Coordinate with internal teams on successful client launches',
+    ],
+    requirements: [
+      'Proven B2B sales experience in new business and account management',
+      'Track record building long-term relationships with organization-level buyers',
+      'Self-motivated, organized and coachable',
+      'Disciplined CRM and follow-up habits',
+      'Willing to travel for client meetings and events',
+      'Selling to clubs, associations or member-based organizations is an asset',
+    ],
+    createdAt: new Date('2026-11-04T14:00:00.000Z').toISOString(),
+  },
+  {
     id: 'financial-controller-toronto',
     ref: 'CG-2026-065',
     discipline: 'corporate',
