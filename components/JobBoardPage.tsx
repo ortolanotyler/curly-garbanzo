@@ -245,13 +245,8 @@ const JobRowSkeleton: React.FC = () => (
                     </div>
                 ) : visibleJobs.length > 0 ? (
                     <div className="space-y-3">
-                        {/* JobPosting Structured Data — emit for all jobs so search engines index them.
-                            The selected job's schema comes from its full <SEO job> above, so skip it here. */}
-                        {jobs
-                            .filter((job) => !selectedJob || String(job.id) !== String(selectedJob.id))
-                            .map((job) => (
-                                <SEO key={`seo-${job.id}`} job={job} schemaOnly={true} />
-                            ))}
+                        {/* No JobPosting schema on the listing: Google's job-posting rules allow it
+                            only on each job's own page (JobPage / prerendered dist/jobs/<id>). */}
                         {visibleJobs.map((job) => (
                             <div
                                 key={job.id}
@@ -274,7 +269,13 @@ const JobRowSkeleton: React.FC = () => (
                                         {job.ref}
                                     </span>
                                     <h3 className="text-xl md:text-2xl font-medium text-white group-hover:text-brand-silver transition-colors leading-tight tracking-tight">
-                                        {job.title}
+                                        {/* Real link so crawlers (and cmd-click) reach each job page; a plain click still opens the drawer via the card. */}
+                                        <a
+                                            href={`/jobs/${job.id}`}
+                                            onClick={(e) => { if (!(e.metaKey || e.ctrlKey || e.shiftKey)) e.preventDefault(); else e.stopPropagation(); }}
+                                        >
+                                            {job.title}
+                                        </a>
                                     </h3>
                                     {job.summary && (
                                         <p className="text-sm text-white/50 font-light leading-relaxed line-clamp-1 max-w-2xl">

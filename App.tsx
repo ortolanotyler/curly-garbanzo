@@ -16,6 +16,7 @@ import { View, Section } from './types';
 // Route-level lazy chunks — these views are only loaded when navigated to,
 // keeping the initial gateway/landing bundle lean.
 const JobBoardPage = lazy(() => import('./components/JobBoardPage'));
+const JobPage = lazy(() => import('./components/JobPage'));
 const SubmitResumePage = lazy(() => import('./components/SubmitResumePage'));
 const BlogPage = lazy(() => import('./components/BlogPage'));
 const BlogPostPage = lazy(() => import('./components/BlogPostPage'));
@@ -135,6 +136,20 @@ const App: React.FC = () => {
             onViewSubmit={() => setView('submit')}
           />
         </>
+      );
+    }
+
+    if (view === 'jobs' && initialJobId) {
+      // A direct /jobs/:id load gets its own page (matches the prerendered HTML),
+      // not the board with a popup. Clicking a card on the board still opens the drawer.
+      return (
+        <Suspense fallback={<RouteLoader />}>
+          <JobPage
+            jobId={initialJobId}
+            onBack={() => setView('landing')}
+            onViewAll={() => { setInitialJobId(null); setView('jobs'); }}
+          />
+        </Suspense>
       );
     }
 

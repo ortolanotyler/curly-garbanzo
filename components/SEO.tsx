@@ -15,6 +15,8 @@ interface SEOProps {
   isGateway?: boolean;
   schemaOnly?: boolean;
   noindex?: boolean;
+  /** Skip JobPosting JSON-LD (the prerendered page already carries it). */
+  omitJobSchema?: boolean;
 }
 
 const DEFAULT_SITE_URL = 'https://corp.certusgroup.com';
@@ -46,6 +48,7 @@ const SEO: React.FC<SEOProps> = ({
   isGateway = false,
   schemaOnly = false,
   noindex = false,
+  omitJobSchema = false,
 }) => {
   const baseUrl = getBaseUrl();
   const resolvedCanonical = canonical || (typeof window !== 'undefined' ? `${baseUrl}${window.location.pathname}` : baseUrl);
@@ -117,7 +120,7 @@ const SEO: React.FC<SEOProps> = ({
   };
 
   // JobPosting schema — Google for Jobs spec (builder shared with ./jobSchema).
-  const jobSchema: Record<string, unknown> | null = job
+  const jobSchema: Record<string, unknown> | null = job && !omitJobSchema
     ? buildJobPostingSchema(job, baseUrl)
     : null;
 
