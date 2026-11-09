@@ -14,6 +14,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+const SITE_TAG = "corporate";
 
 // Sitemap covering the known SPA routes, every prerendered per-job page, and
 // every blog post. Per-job pages are statically generated (scripts/prerender-jobs.ts)
@@ -139,6 +140,29 @@ app.post("/api/blob-upload", async (req, res) => {
   }
 });
 
+// Also save every application / pipeline submission in Axis (web_applications),
+// where the morning intake downloads the resume and starts the skill market
+// process. Best-effort with a short timeout: the recruit@ email still goes.
+async function saveToAxis(payload: Record<string, unknown>) {
+  const key = process.env.AXIS_REFERRAL_KEY;
+  if (!key) return;
+  const controller = new AbortController();
+  const t = setTimeout(() => controller.abort(), 8000);
+  try {
+    const r = await fetch(process.env.AXIS_APPLICATIONS_URL || "https://certus.sale/api/web-applications", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Referral-Key": key },
+      signal: controller.signal,
+      body: JSON.stringify({ site: SITE_TAG, ...payload }),
+    });
+    if (!r.ok) console.error("Axis application save failed:", r.status, await r.text().catch(() => ""));
+  } catch (error) {
+    console.error("Axis application save failed:", error);
+  } finally {
+    clearTimeout(t);
+  }
+}
+
 app.post("/api/submit-pipeline", async (req, res) => {
   const { firstName, lastName, email, linkedin, note, interests, resumeUrl, resumeName } = req.body;
 
@@ -156,6 +180,8 @@ app.post("/api/submit-pipeline", async (req, res) => {
     ? `<a href="${resumeUrl}" target="_blank" rel="noopener">Download ${resumeName || 'resume'}</a>`
     : 'Not provided';
   const resumeText = resumeUrl ? `${resumeName || 'resume'}: ${resumeUrl}` : 'Not provided';
+
+  await saveToAxis({ firstName, lastName, email, linkedin, note, interests, resumeUrl, resumeName });
 
   const msg = {
     to: "recruit@certusgroup.com",
@@ -210,6 +236,8 @@ app.post("/api/apply", async (req, res) => {
     ? `<a href="${resumeUrl}" target="_blank" rel="noopener">Download ${resumeName || 'resume'}</a>`
     : 'Not provided';
   const resumeText = resumeUrl ? `${resumeName || 'resume'}: ${resumeUrl}` : 'Not provided';
+
+  await saveToAxis({ firstName, lastName, email, phone, linkedin, jobTitle, jobRef, resumeUrl, resumeName });
 
   const msg = {
     to: "recruit@certusgroup.com",
