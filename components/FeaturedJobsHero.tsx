@@ -93,11 +93,11 @@ const FeaturedJobsHero: React.FC<FeaturedJobsHeroProps> = ({ onViewJobs }) => {
                 <div
                   key={job.id}
                   onClick={() => setSelectedJob(job)}
-                  className="group relative bg-white/[0.02] border border-white/5 rounded-sm p-6 md:p-7 hover:border-brand-silver/40 hover:bg-white/[0.04] transition-all duration-300 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-5"
+                  className="group relative bg-white/[0.02] border border-white/5 rounded-sm p-6 md:p-7 hover:border-brand-silver/40 hover:bg-white/[0.04] transition-all duration-300 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-5 lg:gap-10"
                 >
                   <div className="absolute top-0 left-0 w-[2px] h-full bg-brand-silver scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
 
-                  <div className="flex-grow min-w-0">
+                  <div className="flex-1 min-w-0">
                     <span className="text-[10px] font-bold text-white/40 uppercase tracking-[0.25em]">
                       {job.ref}
                     </span>
@@ -106,14 +106,14 @@ const FeaturedJobsHero: React.FC<FeaturedJobsHeroProps> = ({ onViewJobs }) => {
                     </h3>
                   </div>
 
-                  <div className="flex items-center justify-between w-full gap-4 md:w-auto md:justify-start md:flex-wrap md:gap-8 md:shrink-0">
-                    <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.15em] text-white/60 min-w-0">
+                  <div className="flex items-center justify-between w-full gap-4 sm:gap-8 lg:w-auto lg:justify-start lg:shrink-0">
+                    <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.15em] text-white/60 min-w-0 lg:w-52">
                       <MapPin size={14} className="text-brand-silver shrink-0" strokeWidth={1.5} />
-                      <span className="truncate">{job.location}</span>
+                      <span className="leading-relaxed">{job.location}</span>
                     </div>
-                    <div className="hidden sm:flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.15em] text-white/60">
-                      <DollarSign size={14} className="text-brand-silver" strokeWidth={1.5} />
-                      <span>{job.salary}</span>
+                    <div className="hidden sm:flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.15em] text-white/60 lg:w-60">
+                      <DollarSign size={14} className="text-brand-silver shrink-0" strokeWidth={1.5} />
+                      <span className="leading-relaxed">{job.salary}</span>
                     </div>
 
                     <button
