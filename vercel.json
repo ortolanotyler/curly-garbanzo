@@ -138,6 +138,11 @@
       "handle": "filesystem"
     },
     {
+      "src": "/jobs/[^/]+/?$",
+      "status": 404,
+      "dest": "/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
