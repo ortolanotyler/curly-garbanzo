@@ -5,6 +5,7 @@ import { ArrowRight, MapPin, DollarSign } from 'lucide-react';
 import { JobPosting } from '../types';
 import * as jobService from '../services/jobService';
 import JobDetailDrawer from './JobDetailDrawer';
+import { placeLocation } from './mapGeo';
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 const NA_COUNTRY_IDS = new Set(['124', '840', '484']); // Canada, USA, Mexico
@@ -12,51 +13,10 @@ const NA_COUNTRY_IDS = new Set(['124', '840', '484']); // Canada, USA, Mexico
 const HQ = { lat: 43.6532, lng: -79.3832 };
 const CERTUS_LOGO = 'https://corp.certusgroup.com/CertusLOGO_burgundy_circle.png';
 
-const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
-  'toronto,on': { lat: 43.6532, lng: -79.3832 },
-  'mississauga,on': { lat: 43.5890, lng: -79.6441 },
-  'sarnia,on': { lat: 42.9745, lng: -82.4066 },
-  'hamilton,on': { lat: 43.2557, lng: -79.8711 },
-  'brantford,on': { lat: 43.1394, lng: -80.2644 },
-  'lachine,qc': { lat: 45.4351, lng: -73.6776 },
-  'vancouver,bc': { lat: 49.2827, lng: -123.1207 },
-  'calgary,ab': { lat: 51.0447, lng: -114.0719 },
-  'winnipeg,mb': { lat: 49.8951, lng: -97.1384 },
-  'new york,ny': { lat: 40.7128, lng: -74.006 },
-  'chicago,il': { lat: 41.8781, lng: -87.6298 },
-  'seattle,wa': { lat: 47.6062, lng: -122.3321 },
-  'boston,ma': { lat: 42.3601, lng: -71.0589 },
-  'dallas,tx': { lat: 32.7767, lng: -96.797 },
-  'denver,co': { lat: 39.7392, lng: -104.9903 },
-  'miami,fl': { lat: 25.7617, lng: -80.1918 },
-  'carlisle,pa': { lat: 40.2017, lng: -77.1997 },
-  'charlotte,nc': { lat: 35.2271, lng: -80.8431 },
-  'columbus,oh': { lat: 39.9612, lng: -82.9988 },
-  'monroe,oh': { lat: 39.4392, lng: -84.3622 },
-  'tampa,fl': { lat: 27.9506, lng: -82.4572 },
-  'alpharetta,ga': { lat: 34.0754, lng: -84.2941 },
-  'chattanooga,tn': { lat: 35.0456, lng: -85.3097 },
-  'buffalo,ny': { lat: 42.8864, lng: -78.8784 },
-  'york,pa': { lat: 39.9626, lng: -76.7277 },
-  'south shore montreal,qc': { lat: 45.5312, lng: -73.5181 }, // Rive-Sud / Longueuil
-  'northern los angeles,ca': { lat: 34.2381, lng: -118.5301 }, // San Fernando Valley
-  'sarnia / windsor / mississauga,on': { lat: 42.9745, lng: -82.4066 }, // pinned at Sarnia (preferred)
-};
-
-const normalizeLocation = (raw: string): string | null => {
-  if (!raw) return null;
-  const cleaned = raw.replace(/remote\s*\/\s*/i, '').trim();
-  const parts = cleaned.split(',').map((p) => p.trim());
-  if (parts.length < 2) return null;
-  const city = parts[0].toLowerCase();
-  const region = parts[1].slice(0, 2).toLowerCase();
-  return `${city},${region}`;
-};
-
 type JobPin = { lat: number; lng: number; key: string; label: string; jobs: JobPosting[]; cluster?: boolean; hq?: boolean };
 
-// Remote roles have no city, so they normally don't pin. Anchor specific ones
-// to a representative hub (the role still reads "Remote ..." on the board).
+// Exact location strings pinned on a chosen hub city instead of the country
+// (the role still reads "Remote ..." on the board).
 const REMOTE_PINS: Record<string, { key: string; label: string }> = {
   'Remote (US)': { key: 'chicago,il', label: 'Chicago, IL' },
   'Remote (Central US)': { key: 'dallas,tx', label: 'Dallas, TX' },
@@ -65,21 +25,13 @@ const REMOTE_PINS: Record<string, { key: string; label: string }> = {
 const groupJobsByCity = (jobs: JobPosting[]): JobPin[] => {
   const buckets = new Map<string, JobPin>();
   for (const job of jobs) {
-    const override = REMOTE_PINS[job.location.trim()];
-    const key = override ? override.key : normalizeLocation(job.location);
-    if (!key) continue;
-    const coords = CITY_COORDS[key];
-    if (!coords) continue;
-    const existing = buckets.get(key);
+    const place = placeLocation(job.location, REMOTE_PINS);
+    if (!place) continue;
+    const existing = buckets.get(place.key);
     if (existing) {
       existing.jobs.push(job);
     } else {
-      let label = override?.label;
-      if (!label) {
-        const displayParts = job.location.replace(/remote\s*\/\s*/i, '').split(',').map((p) => p.trim());
-        label = `${displayParts[0]}, ${displayParts[1].slice(0, 2).toUpperCase()}`;
-      }
-      buckets.set(key, { ...coords, key, label, jobs: [job] });
+      buckets.set(place.key, { lat: place.lat, lng: place.lng, key: place.key, label: place.label, jobs: [job] });
     }
   }
   return Array.from(buckets.values());
